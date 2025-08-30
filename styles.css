@@ -366,7 +366,8 @@ section[id] {
 }
 
 .intro-content {
-        width: 70vh;
+        width: 50vw;
+        padding: 0 16px;
         margin: 0 auto;
 }
 
