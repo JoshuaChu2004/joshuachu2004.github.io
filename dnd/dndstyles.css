@@ -41,7 +41,7 @@ a:hover {
 }
 
 .header-container {
-    width: min(1100px, 92vw);
+    width: 95vw;
     margin-inline: 24px 0;
     color: var(--hfg);
 }
