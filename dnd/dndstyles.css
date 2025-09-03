@@ -535,6 +535,144 @@ section[id] {
     text-decoration: underline;
 }
 
+/* Dynamic Content Page Styles */
+.breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 24px;
+    font-size: 14px;
+    color: var(--muted);
+}
+
+.breadcrumb a {
+    color: var(--brand);
+    text-decoration: none;
+}
+
+.breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+.breadcrumb span {
+    color: var(--fg);
+    font-weight: 600;
+}
+
+.content-header {
+    margin-bottom: 32px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+}
+
+.content-header h1 {
+    font-size: 36px;
+    font-weight: 800;
+    margin: 0 0 8px 0;
+    color: var(--fg);
+}
+
+.content-type {
+    font-size: 16px;
+    color: var(--muted);
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+}
+
+.back-to-top {
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+}
+
+.back-to-top a {
+    color: var(--brand);
+    text-decoration: none;
+    font-weight: 600;
+    padding: 12px 24px;
+    border: 2px solid var(--brand);
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.back-to-top a:hover {
+    background-color: var(--brand);
+    color: white;
+}
+
+.loading {
+    text-align: center;
+    padding: 48px 16px;
+    color: var(--muted);
+    font-style: italic;
+}
+
+/* Content area styles for individual pages */
+#content-area {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 16px;
+}
+
+#markdown-content {
+    line-height: 1.6;
+}
+
+#markdown-content h1,
+#markdown-content h2,
+#markdown-content h3 {
+    color: var(--fg);
+    margin-top: 32px;
+    margin-bottom: 16px;
+}
+
+#markdown-content h1 {
+    font-size: 28px;
+    font-weight: 700;
+}
+
+#markdown-content h2 {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+#markdown-content h3 {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+#markdown-content p {
+    margin-bottom: 16px;
+    color: var(--muted);
+}
+
+#markdown-content strong {
+    color: var(--fg);
+    font-weight: 600;
+}
+
+#markdown-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0;
+}
+
+#markdown-content th,
+#markdown-content td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+}
+
+#markdown-content th {
+    background-color: var(--bg-secondary);
+    font-weight: 600;
+    color: var(--fg);
+}
+
 .toc-container {
     display: flex;
     flex-direction: column;

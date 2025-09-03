@@ -1,0 +1,930 @@
+﻿/* SeatMap Styles - Extracted from SeatMap.cshtml */
+
+.ScrollBarThin {
+    scrollbar-width: thin;
+    scrollbar-color: #dadada #fff;
+}
+.ScrollBarThin::-webkit-scrollbar {
+    width: 5px;
+    height: 15px;
+}
+.ScrollBarThin::-webkit-scrollbar-thumb {
+    background: #c5c5c5;
+}
+.SeatMapRoot {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+.SeatMapHeader {
+    display: flex;
+    overflow: hidden;
+    padding: 15px 0 15px 10px;
+    align-items: center; /* Vertically center image and text */
+    flex: 0 0 10%;
+    width: 100%;
+    height: 80px;
+    min-height: 80px;
+    max-height: 80px;
+    border-bottom: 1px solid var(--border-color);
+    box-sizing: border-box;
+}
+.EventPosterWrapper{
+    margin: 0 0 0 0;
+    height: auto;
+    width: auto;
+}
+.EventPosterWrapper > img {
+    margin: 0 10px 0 0;
+    height: 60px;
+    min-height: 60px;
+    width: auto;
+    max-width: 150px;
+    border-radius: 6px;
+}
+
+.SeatmapMain {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+.SeatmapContainer {
+    float: left;
+    width: calc(100% - 350px) !important;
+    height: 100% !important;
+    box-sizing: border-box;
+}
+.SeatmapSidebar {
+    float: right;
+    min-width: 350px;
+    width: 350px;
+    height: 100%;
+    border-left: 1px solid #dadada;
+    box-sizing: border-box;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+.TicketQtyWrapper {
+    padding: 10px;
+}
+.TicketQtySelect {
+    border-radius: 6px;
+}
+.MultiSliderWrapper {
+    padding: 10px;
+    margin: 0 0 10px 0;
+}
+.SliderContainer {
+    position: relative;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.SliderTrack {
+    flex: 1;
+    height: 8px;
+    background: #e0e0e0;
+    border-radius: 4px;
+    position: relative;
+    margin: 0 10px;
+}
+.SliderHandle {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: #007bff;
+    border-radius: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    z-index: 2;
+}
+.SliderHandle:hover {
+    background: #0056b3;
+}
+.SliderMinValue{
+    margin: 0 10px 0 0;
+    font-size: 14px;
+    font-weight: 300;
+    color: #000;
+    min-width: 40px;
+    text-align: center;
+    border: 1px solid #dadada;
+    border-radius: 6px;
+}
+.SliderMaxValue {
+    margin: 0 0 0 10px;
+    font-size: 14px;
+    font-weight: 300;
+    color: #000;
+    min-width: 40px;
+    text-align: center;
+    border: 1px solid #dadada;
+    border-radius: 6px;
+}
+.SeatListSection {
+    padding: 0 10px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0; /* Important for flex child to shrink */
+}
+.SortTabsWrapper {
+    display: flex;
+    margin-bottom: 10px;
+    padding: 1px 0px 1px 2px;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid #dadada;
+    width: 100%;
+}
+
+.SortTab {
+    flex: 1;
+    margin: 1px 2px 1px 0px;
+    padding: 8px 12px;
+    background: #efefef;
+    color: var(--black-color);
+    border: none;
+    white-space: nowrap;
+    min-width: 0;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 4px !important
+}
+
+.SortTab.active {
+    background: #007bff;
+    color: white;
+}
+
+.SortTab:hover:not(.active) {
+    background: #e9ecef;
+}
+
+.SeatListContainer {
+    /*max-height: 550px;*/
+    /*overflow-y: auto;*/
+    overflow-y: scroll;
+    background: white;
+    flex: 1; /* This will make it take up remaining space */
+}
+
+.SeatItem {
+    margin: 0 0 3px 0;
+    padding: 8px 12px;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    border-top: 1px solid #fff;
+    border-left: 1px solid #fff;
+    border-right: 1px solid #fff;
+    box-sizing: border-box;
+}
+
+.SeatItem:hover {
+    background-color: #f8f9fa;
+    border-top: 1px solid var(--border-color-light);
+    border-left: 1px solid var(--border-color-light);
+    border-right: 1px solid var(--border-color-light);
+    box-sizing: border-box;
+}
+
+.SeatItem.selected {
+    background-color: #f8f9fa;
+    border: 1px solid var(--border-color);
+}
+.SeatItem.expanded {
+    background-color: #f1f1f1;
+}
+
+.SeatItemWrapper {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.SeatInfo {
+    flex: 1;
+}
+
+.SeatName {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--black-color);
+}
+
+.SeatDetails {
+    font-size: 12px;
+    color: #666;
+    margin-top: 2px;
+}
+.SeatTypes {
+    font-size: 12px;
+    color: #007bff;
+    margin-top: 2px;
+    font-style: italic;
+}
+
+.CartIndicator {
+    display: none;
+    margin-top: 2px;
+    font-size: 10px;
+    color: #007bff;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+.SeatItem.in-cart {
+    margin: 0 0 3px 0;
+    border-left: 3px solid #007bff;
+}
+
+.SeatOptions {
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid #dadada;
+    border-radius: 4px;
+    width: 100%;
+}
+
+.SeatOptionButton {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 6px 8px;
+    margin: 2px 0;
+    background: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 12px;
+}
+
+.SeatOptionButton:hover {
+    background: #e9ecef;
+    border-color: #007bff;
+}
+
+.SeatOptionButton.selected {
+    background: #caccce;
+    border-color: #007bff;
+}
+
+.OptionType {
+    font-weight: 500;
+}
+
+.OptionPrice {
+    font-weight: bold;
+}
+.RemoveOptions {
+    width: 100%;
+}
+
+.SeatPriceWrapper {
+    font-weight: 400;
+    font-size: 17px;
+    color: var(--black-color);
+    position: relative; /* Added for absolute positioning of remove button */
+    text-align: right;
+}
+
+.SeatRemoveButton {
+    font-size: 16px;
+    color: var(--black-color);
+    cursor: pointer;
+}
+
+.SeatRemoveButton:hover {
+    color: #ee0000;
+}
+
+.PriceText {
+    margin: 0 0 0 0;
+    font-size: 17px;
+    font-weight: 400;
+    color: var(--black-color);
+    text-align: right;
+}
+
+.PatternFillArrow {
+    font-size: 14px;
+    color: #007bff;
+    margin-left: 10px;
+    margin-right: 50px;
+    cursor: pointer;
+}
+
+.SeatADA {
+    display: block;
+    margin-top: 2px;
+    font-size: 13px;
+    font-weight: 400;
+    color: #007bff;
+    text-transform: uppercase;
+    text-align: right;
+}
+
+/* !!! TODO: hide in js code */
+.DropdownWrapper {
+    margin: 5px 0 0 0;
+    align-items: center;
+    width: 100%;
+}
+
+.priceOptionsDropdown {
+    height: 30px !important;
+    max-height: 30px !important;
+    width: 100%;
+    flex: 1;
+}
+
+.priceOptionsDropdown.show {
+    display: block;
+}
+
+.priceOptionsDropdown option {
+    font-size: 14px;
+    border: 1px solid #dadada;
+}
+
+.SidebarFooter {
+    padding: 20px;
+    background: #fff;
+    border-top: 1px solid var(--border-color);
+    flex-shrink: 0; /* Prevent footer from shrinking */
+}
+
+.SidebarFooter .ButtonSubmitAlt {
+    padding: 15px;
+    width: 100%;
+}
+
+.PixiContainer {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background: #fff;
+    overflow: hidden;
+}
+
+/* Loading Spinner Styles */
+.SeatMapLoadingSpinnerOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    pointer-events: all;
+    cursor: not-allowed;
+}
+
+.SeatMapLoadingSpinner{
+    text-align: center;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 30px;
+    border-radius: 12px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Blur effect for the entire seatmap container when loading */
+.SeatMapRoot.loading {
+    filter: blur(1px);
+    pointer-events: none;
+    user-select: none;
+    z-index: 9999;  
+}
+
+.SeatMapRoot.loading * {
+    pointer-events: none !important;
+}
+.EventName {
+    margin: 0 0 0 0;
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--black-color);
+    box-sizing: border-box;
+}
+.VenueName {
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--secondary-color);
+    box-sizing: border-box;
+}
+.VenueAddress {
+    padding: 0 0 0 0;
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--secondary-color);
+    box-sizing: border-box;
+}
+.EventDateInfo {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--primary-color);
+    box-sizing: border-box;
+}
+
+.HeaderClose {
+    font-size: 32px;
+    color: var(--black-color);
+    cursor: pointer;
+    margin-left: auto;
+    padding: 0 20px;
+    transition: color 0.2s;
+}
+.HeaderClose:hover {
+    color: #d00;
+}
+.SeatInfo {
+    margin-bottom: 4px;
+}
+.UIOverlay {
+    position: absolute;
+    top: 75px;
+    left: 10px;
+    padding: 15px;
+    z-index: 1000;
+}
+.IconButton {
+    margin: 0 5px 0 0;
+    background: #ffffff;
+    border: none;
+    padding: 6px;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    box-shadow: var(--shadow-light);
+}
+.IconButton i {
+    font-size: 24px;
+}
+.IconButton:hover {
+    opacity: 0.5;
+}
+.CheckoutBox {
+    position: absolute;
+    background: #fff;
+    border: 1px solid #333;
+    border-radius: 10px;
+    padding: 12px 16px;
+    color: #000;
+    font-size: 14px;
+    margin-left: 40px;
+    white-space: nowrap;
+    width: fit-content;
+    box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
+    font-family: sans-serif;
+    z-index: 1000;
+}
+.CheckoutBox strong {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 16px;
+    left: 200px;
+}
+.CartBadge {
+    position: absolute;
+    top: 8px;
+    right: 4px;
+    background-color: red;
+    color: white;
+    font-size: 13px;
+    font-weight: bold;
+    border-radius: 50%;
+    padding: 2px 5px;
+    min-width: 16px;
+    text-align: center;
+    line-height: 1;
+}
+
+/* Split mobile button (hidden by default, JS toggles .mobile) */
+.MobileSplitButton {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    display: none;                 
+    z-index: 999;
+    height: 60px;
+    min-width: 190px;
+    border-radius: 8px;           
+    overflow: hidden;
+    background: var(--black-color);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-light);
+}
+
+/* Show on mobile */
+.MobileSplitButton.mobile { display: flex; }
+
+/* Reset inner buttons to inherit the parent look */
+.MobileSplitButton button {
+    all: unset;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--surface);
+    height: 60px;
+    cursor: pointer;
+    font-size: 14px;             
+    font-weight: 400;             
+    line-height: 1;
+    user-select: none;
+}
+
+/* 2/3 "Continue" area */
+.MobileSplitButton .SplitContinue {
+    flex: 2 1 auto;
+    padding: 0 18px;
+    background: var(--black-color);
+    transition: background 0.2s ease;
+}
+
+/* 1/3 expand area */
+.MobileSplitButton .SplitExpand {
+    flex: 1 1 auto;
+    min-width: 56px;
+    background: var(--black-color);
+    border-left: 1px solid rgba(255,255,255,0.25);
+    transition: background 0.2s ease;
+    font-size: 18px;              
+}
+
+/* Hover/active states match SidebarFootContinueButton */
+.MobileSplitButton .SplitContinue:hover,
+.MobileSplitButton .SplitExpand:hover {
+    background: var(--primary-color);
+}
+
+.MobileSplitButton .SplitContinue:active,
+.MobileSplitButton .SplitExpand:active {
+    filter: brightness(0.95);
+}
+
+/* Focus ring for a11y (subtle, matches theme) */
+.MobileSplitButton .SplitContinue:focus-visible,
+.MobileSplitButton .SplitExpand:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+/* Never show on desktop */
+@media (min-width: 801px) {
+    .MobileSplitButton { display: none !important; }
+}
+
+/* Mobile toggle button */
+.MobileSidebarToggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,123,255,0.3);
+    z-index: 999;
+    transition: all 0.2s;
+    visibility: hidden;
+}
+
+/* Mobile panel header with drag handle */
+.MobilePanelHeader {
+    height: 0px;
+    background: #f8f9fa;
+    border-bottom: 1px solid #dadada;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    cursor: pointer;
+    visibility: hidden;
+}
+
+.MobilePanelDragHandle {
+    width: 40px;
+    height: 4px;
+    background: #ccc;
+    border-radius: 2px;
+}
+
+.MobilePanelTitle {
+    position: absolute;
+    left: 15px;
+    font-weight: 500;
+    font-size: 14px;
+    color: #333;
+}
+
+.MobilePanelClose {
+    position: absolute;
+    right: 15px;
+    font-size: 20px;
+    color: #666;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.SeatMapIndexHeader {
+    margin: -8px;
+    padding: 8px 8px 8px 12px;
+    height: 37px;
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 14px;
+    color: var(--black-color);
+    box-sizing: border-box;
+    border-bottom: none;
+    cursor: pointer;
+}
+
+.SeatMapIndexHeader.show {
+    border-bottom: 1px solid var(--border-color-light) !important;
+}
+
+.SeatMapIndex {
+    position: absolute;
+    bottom: 57px;
+    left: 20px;
+    padding: 8px;
+    z-index: 1000;
+    width: 200px;
+    height: auto;
+    min-height: 37px;
+    transform: translateY(100%);
+    transition: transform 0.3s ease-in-out;
+    background: #fff;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    box-shadow: var(--shadow-light);
+    box-sizing: border-box;
+}
+
+.SeatMapIndex.show {
+    height: auto;
+}
+
+.IndexContainer {
+    width: 100%;
+    height: 100%;
+    margin: 16px 0 0 0;
+    display: none;
+
+}
+.IndexContainer.show {
+    display: block;
+}
+.IndexItem, .IndexItemClickable {
+    width: 100%;
+    overflow: hidden;
+    clear: both;
+    padding: 5px 0 1px 0;
+    background: none;
+}
+.IndexItemClickable {
+    cursor: pointer;
+}
+.IndexItem.Wheelchair, .IndexItemClickable.Wheelchair {
+    border-bottom: 1px solid var(--border-color-light);
+    margin-bottom: 6px;
+}
+.IndexItemClickable.selected {
+    background: #f0f0f0;
+    border-radius: 6px;
+}
+.IndexColor {
+    margin: 0 9px 0 3px;
+    float: left;
+    width: 17px;
+    height: 17px;
+    border-radius: 17px;
+}
+.IndexName {
+    float: left;
+    font-size: 17px;
+    margin: -4px 0 0 0px;
+}
+
+/* Responsive layout for mobile */
+@media (max-width: 800px) {
+    /* Prevent unwanted touch behaviors */
+    * {
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Prevent body scrolling when modal is open */
+    body {
+        overflow: hidden;
+        position: fixed;
+        width: 100%;
+        height: 100%;
+    }
+
+    .SeatMapRoot {
+        overflow: hidden;
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        -webkit-overflow-scrolling: touch;
+    }
+    .EventName {
+        font-size: 12px;
+    }
+    .VenueName {
+        font-size: 10px;
+    }
+    .VenueAddress {
+        font-size: 10px;
+    }
+    .EventDateInfo {
+        font-size: 10px;
+    }
+
+    /* Prevent header from being dragged */
+    .SeatMapHeader {
+        -webkit-user-drag: none;
+        -khtml-user-drag: none;
+        -moz-user-drag: none;
+        -o-user-drag: none;
+        user-drag: none;
+        touch-action: none;
+    }
+    .SeatmapContainer {
+        float: none;
+        width: 100% !important;
+        height: 100% !important;
+    }
+    .SeatmapMain {
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+        touch-action: pan-x pan-y;
+    }
+
+    .SeatmapSidebar {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100% !important;
+        height: calc(60vh);
+        max-height: calc(60vh);
+        background: white;
+        border-top: 1px solid #dadada;
+        border-radius: 12px 12px 0 0;
+        transform: translateY(100%);
+        transition: transform 0.3s ease-in-out;
+        z-index: 1000;
+        box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
+        overflow: hidden;
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .SeatmapSidebar.show {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+    }
+
+    /* Mobile panel header with drag handle */
+    .MobilePanelHeader {
+        height: 40px;
+        visibility: visible;
+    }
+
+    /* Mobile-specific adjustments */
+    .TicketQtyWrapper.mobile {
+        /*padding: 0 0 15px 0;*/
+        padding: 8px;
+    }
+
+    .MultiSliderWrapper.mobile {
+        /*padding: 0 0 15px 0;*/
+        /*margin: 0 0 15px 0;*/
+        padding: 8px;
+        margin: 0px;
+    }
+
+    .SeatListSection.mobile {
+        /*padding: 0;*/
+        padding: 0 8px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        min-height: 0; /* Important for flex child to shrink */
+    }
+
+    .SeatListContainer.mobile {
+        flex: 1; /* Use flex instead of fixed height */
+        padding-bottom: 60px;
+    }
+
+    .SidebarFooter.mobile {
+        padding: 20px;
+        border-top: 1px solid var(--border-color);
+        background: white;
+        z-index: 1001;
+        flex-shrink: 0; /* Prevent footer from shrinking */
+    }
+
+    /* Mobile toggle button */
+    .MobileSplitButton { height: 52px; }
+    
+    .MobileSplitButton button { height: 52px; font-size: 12px; }
+    
+    .MobileSidebarToggle.mobile {
+        visibility: visible;
+    }
+
+    .MobileSidebarToggle:hover {
+        background: #0056b3;
+        transform: scale(1.1);
+    }
+
+    .SidebarFootContinueButton.mobile {
+        padding: 8px;
+        font-size: 12px;
+        margin: 0px;
+    }
+
+    .SeatItem {
+        padding: 4px 8px;
+    }
+
+    .SeatName{
+        font-size: 12px;
+    }
+
+    .SeatDetails {
+        font-size: 10px;
+    }
+    .SeatTypes {
+        font-size: 10px;
+    }
+
+    .CartIndicator {
+        font-size: 8px;
+    }
+
+
+    .SeatRemoveButton {
+        font-size: 12px;
+    }
+
+    .SeatPrice {
+        font-size: 12px;
+    }
+
+    .PriceText {
+        font-size: 12px;
+    }
+
+    .PatternFillArrow {
+        font-size: 12px;
+    }
+
+    .SeatADA {
+        font-size: 12px;
+    }
+    
+    .SeatMapIndex {
+        display: none;
+    }
+} 
+
+/* SEATMAP GOING INTO FULLSCREEN MODE */
+@media (max-width: 2000px) {
+	
+}
