@@ -1,3 +1,44 @@
 theme: jekyll-theme-minimal
 title: Joshua's homepage
 description: Bookmark this to keep an eye on my project updates!
+
+permalink: pretty
+
+collections:
+  classes:
+    output: true
+    permalink: /dnd/classes/:name/
+  items:
+    output: true
+    permalink: /dnd/items/:name/
+  spells:
+    output: true
+    permalink: /dnd/spells/:name/
+  races:
+    output: true
+    permalink: /dnd/races/:name/
+  feats:
+    output: true
+    permalink: /dnd/feats/:name/
+  house-rules:
+    output: true
+    permalink: /dnd/house-rules/:name/
+  reworks:
+    output: true
+    permalink: /dnd/reworks/:name/
+
+defaults:
+  - scope: { type: classes }
+    values: { layout: dnd }
+  - scope: { type: items }
+    values: { layout: dnd }
+  - scope: { type: spells }
+    values: { layout: dnd }
+  - scope: { type: races }
+    values: { layout: dnd }
+  - scope: { type: feats }
+    values: { layout: dnd }
+  - scope: { type: house-rules }
+    values: { layout: dnd }
+  - scope: { type: reworks }
+    values: { layout: dnd }

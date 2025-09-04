@@ -1,0 +1,28 @@
+---
+layout: default
+---
+
+<div id="header-placeholder"></div>
+
+<section class="intro-content">
+    <div class="section-content">
+        <div class="breadcrumb">
+            <a href="/dnd/">D&D Homebrew</a> &gt; 
+            <a href="/dnd/#{{ page.collection }}">{{ page.collection | capitalize | replace: '-', ' ' }}</a> &gt; 
+            <span>{{ page.title }}</span>
+        </div>
+        
+        <div class="content-header">
+            <h1>{{ page.title }}</h1>
+            <p class="content-type">{{ page.content_type | default: page.collection | capitalize | replace: '-', ' ' }}</p>
+        </div>
+        
+        <div id="markdown-content">
+            {{ content }}
+        </div>
+        
+        <div class="back-to-top">
+            <a href="/dnd/#{{ page.collection }}">← Back to {{ page.collection | capitalize | replace: '-', ' ' }}</a>
+        </div>
+    </div>
+</section>

@@ -1,52 +1,54 @@
+---
+layout: default
+---
+
 # Magic Items
 
 A collection of custom magic items for D&D 5e campaigns.
 
 ## Weapons
 
-### [Flameblade](/dnd/items/flameblade)
-*Weapon (longsword), rare (requires attunement)*
-
-A fiery longsword that deals extra fire damage and can be ignited to provide light and additional effects.
-
-**Key Features:**
-- Extra fire damage on hits
-- Can be ignited for light and effects
-- Grants fire resistance to wielder
-- Requires attunement with Constitution save
-
-### [Thunderfist](/dnd/items/thunderfist)
-*Weapon (warhammer), very rare (requires attunement)*
-
-A mighty warhammer that crackles with thunder energy and can unleash devastating sonic attacks.
+{% for item in site.items %}
+{% if item.category == 'weapon' %}
+### [{{ item.title }}]({{ item.url }})
+{{ item.description }}
+{% endif %}
+{% endfor %}
 
 ## Armor
 
-### [Shadowweave](/dnd/items/shadowweave)
-*Armor (leather), rare (requires attunement)*
-
-Dark leather armor that allows the wearer to blend into shadows and move silently.
+{% for item in site.items %}
+{% if item.category == 'armor' %}
+### [{{ item.title }}]({{ item.url }})
+{{ item.description }}
+{% endif %}
+{% endfor %}
 
 ## Wondrous Items
 
-### [Ring of the Phoenix](/dnd/items/phoenix-ring)
-*Ring, legendary (requires attunement)*
-
-A ring that allows the wearer to be reborn from ashes once per year.
+{% for item in site.items %}
+{% if item.category == 'wondrous' %}
+### [{{ item.title }}]({{ item.url }})
+{{ item.description }}
+{% endif %}
+{% endfor %}
 
 ## Consumables
 
-### [Potion of Elemental Resistance](/dnd/items/elemental-potion)
-*Potion, uncommon*
-
-A potion that grants resistance to one damage type for 1 hour.
+{% for item in site.items %}
+{% if item.category == 'consumable' %}
+### [{{ item.title }}]({{ item.url }})
+{{ item.description }}
+{% endif %}
+{% endfor %}
 
 ## Creating New Items
 
 To add a new magic item:
 
-1. Create a markdown file in `/dnd/content/items/itemname.md`
-2. The page will automatically be accessible at `/dnd/items/itemname`
+1. Create a markdown file in the items collection directory:
+   - `_items/itemname.md`
+2. The page will automatically be accessible at `/dnd/items/itemname/`
 3. Update this overview page with a link to your new item
 
 ## Item Rarity Guidelines

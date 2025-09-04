@@ -1,17 +1,20 @@
+---
+layout: default
+---
+
 # Classes
 
 Here you'll find all the custom classes and subclasses for D&D 5e.
 
 ## Custom Classes
 
-### [Warpriest](/dnd/classes/warpriest)
-A divine warrior who channels the power of the gods through martial prowess and sacred magic. Perfect for players who want to combine the martial capabilities of a fighter with the divine magic of a cleric.
+{% for class in site.classes %}
+### [{{ class.title }}]({{ class.url }})
+{{ class.description }}
 
 **Key Features:**
-- Divine Strike for extra radiant damage
-- Channel Divinity abilities
-- Domain-based spellcasting
-- Martial weapon and armor proficiency
+- {{ class.key_features | default: "See full class details for complete feature list" }}
+{% endfor %}
 
 ## Custom Subclasses
 
@@ -31,9 +34,9 @@ A divine warrior who channels the power of the gods through martial prowess and 
 
 To add a new class or subclass:
 
-1. Create a markdown file in the appropriate directory:
-   - `/dnd/content/classes/classname.md`
-2. The page will automatically be accessible at `/dnd/classes/classname`
+1. Create a markdown file in the appropriate collection directory:
+   - `_classes/classname.md`
+2. The page will automatically be accessible at `/dnd/classes/classname/`
 3. Update this overview page with a link to your new content
 
 ## Content Guidelines

@@ -1,4 +1,10 @@
-# Flameblade
+---
+layout: dnd
+title: Flameblade
+content_type: Item
+category: weapon
+description: A fiery longsword that deals extra fire damage and can be ignited to provide light and additional effects.
+---
 
 *Weapon (longsword), rare (requires attunement)*
 
