@@ -84,7 +84,12 @@ class DndRouter {
         fetch(contentPath)
             .then(response => {
                 if (!response.ok) {
-                    throw new Error('Content not found');
+                    // Only throw error if it's a 404 (content not found)
+                    if (response.status === 404) {
+                        throw new Error('Content file not found');
+                    } else {
+                        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                    }
                 }
                 return response.text();
             })
@@ -100,8 +105,15 @@ class DndRouter {
                 }
             })
             .catch(error => {
-                console.error('Error loading content:', error);
-                this.show404();
+                // Only log 404 errors for missing content files
+                if (error.message === 'Content file not found') {
+                    console.warn(`D&D Router: Content file not found: ${contentPath}`);
+                    this.show404();
+                } else {
+                    // Log other errors (network issues, server errors, etc.)
+                    console.error('D&D Router: Error loading content:', error);
+                    this.showError(error.message);
+                }
             });
     }
 
@@ -130,6 +142,14 @@ class DndRouter {
         document.getElementById('content-area').innerHTML = `
             <h1>Content Not Found</h1>
             <p>The requested D&D content could not be found.</p>
+            <a href="/dnd/">← Back to D&D Homebrew</a>
+        `;
+    }
+
+    showError(errorMessage) {
+        document.getElementById('content-area').innerHTML = `
+            <h1>Error Loading Content</h1>
+            <p>There was an error loading the content: ${errorMessage}</p>
             <a href="/dnd/">← Back to D&D Homebrew</a>
         `;
     }
