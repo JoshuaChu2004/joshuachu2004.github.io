@@ -1,5 +1,5 @@
-// D&D Page Loader - Handles dynamic loading of individual content pages
-class DndPageLoader {
+// D&D Dynamic Page Router - Handles all dynamic content loading
+class DndRouter {
     constructor() {
         this.baseUrl = '/dnd';
         this.contentBase = '/dnd/content';
@@ -7,80 +7,80 @@ class DndPageLoader {
     }
 
     init() {
-        // Check if we're on a content page
         const path = window.location.pathname;
-        if (path.startsWith(this.baseUrl + '/') && path !== this.baseUrl + '/') {
+        
+        // If we're on the main dnd page, redirect to index
+        if (path === this.baseUrl || path === this.baseUrl + '/') {
+            window.location.href = this.baseUrl + '/index.html';
+            return;
+        }
+
+        // Check if this is a content page
+        if (path.startsWith(this.baseUrl + '/')) {
             this.loadContentPage(path);
+        } else {
+            this.show404();
         }
     }
 
     loadContentPage(path) {
-        // Extract the content type and name from the URL
-        // e.g., /dnd/classes/warpriest -> type: classes, name: warpriest
         const pathParts = path.replace(this.baseUrl + '/', '').split('/');
-        const contentType = pathParts[0]; // classes, items, spells, etc.
-        const contentName = pathParts[1]; // specific name
+        const contentType = pathParts[0];
+        const contentName = pathParts[1];
 
         if (!contentType || !contentName) {
             this.show404();
             return;
         }
 
-        // Load the appropriate template and content
-        this.loadTemplate(contentType, contentName);
+        // Update page title and meta
+        const displayName = this.formatName(contentName);
+        document.title = `${displayName} - Joshua Chu D&D Homebrew`;
+        
+        // Create breadcrumb and content
+        this.createPageStructure(contentType, contentName, displayName);
+        
+        // Load the markdown content
+        this.loadMarkdownContent(contentType, contentName);
     }
 
-    loadTemplate(contentType, contentName) {
-        // Create the page structure dynamically
-        const template = this.getTemplate(contentType, contentName);
-        document.body.innerHTML = template;
-
-        // Load the content
-        const contentPath = `${this.contentBase}/${contentType}/${contentName}.md`;
-        this.loadMarkdownContent(contentPath, contentName);
-    }
-
-    getTemplate(contentType, contentName) {
+    createPageStructure(contentType, contentName, displayName) {
         const titles = {
             'classes': 'Subclass',
-            'items': 'Item',
+            'items': 'Item', 
             'spells': 'Spell',
             'races': 'Race',
             'feats': 'Feat'
         };
 
         const title = titles[contentType] || 'Content';
-        const displayName = this.formatName(contentName);
-
-        return `
-            <div id="header-placeholder"></div>
+        const contentArea = document.getElementById('content-area');
+        
+        contentArea.innerHTML = `
+            <div class="breadcrumb">
+                <a href="/dnd/">D&D Homebrew</a> &gt; 
+                <a href="/dnd/#${contentType}">${this.capitalizeFirst(contentType)}</a> &gt; 
+                <span>${displayName}</span>
+            </div>
             
-            <section class="intro-content">
-                <div class="section-content">
-                    <div class="breadcrumb">
-                        <a href="/dnd/">D&D Homebrew</a> &gt; 
-                        <a href="/dnd/#${contentType}">${this.capitalizeFirst(contentType)}</a> &gt; 
-                        <span>${displayName}</span>
-                    </div>
-                    
-                    <div class="content-header">
-                        <h1>${displayName}</h1>
-                        <p class="content-type">${title}</p>
-                    </div>
-                    
-                    <div id="content-area" data-content="${this.contentBase}/${contentType}/${contentName}.md">
-                        <div class="loading">Loading content...</div>
-                    </div>
-                </div>
-            </section>
-
+            <div class="content-header">
+                <h1>${displayName}</h1>
+                <p class="content-type">${title}</p>
+            </div>
+            
+            <div id="markdown-content" data-content="${this.contentBase}/${contentType}/${contentName}.md">
+                <div class="loading">Loading content...</div>
+            </div>
+            
             <div class="back-to-top">
                 <a href="/dnd/#${contentType}">← Back to ${this.capitalizeFirst(contentType)}</a>
             </div>
         `;
     }
 
-    loadMarkdownContent(contentPath, contentName) {
+    loadMarkdownContent(contentType, contentName) {
+        const contentPath = `${this.contentBase}/${contentType}/${contentName}.md`;
+        
         fetch(contentPath)
             .then(response => {
                 if (!response.ok) {
@@ -89,23 +89,20 @@ class DndPageLoader {
                 return response.text();
             })
             .then(markdown => {
-                // Use your existing markdown renderer
-                this.renderMarkdown(markdown);
+                // Use your existing content loader if available
+                const contentDiv = document.getElementById('markdown-content');
+                if (window.AdvancedContentLoader) {
+                    // Use your existing loader
+                    window.AdvancedContentLoader.loadContent(contentDiv, contentPath);
+                } else {
+                    // Fallback to simple markdown rendering
+                    contentDiv.innerHTML = this.simpleMarkdownToHtml(markdown);
+                }
             })
             .catch(error => {
                 console.error('Error loading content:', error);
                 this.show404();
             });
-    }
-
-    renderMarkdown(markdown) {
-        // This would integrate with your existing markdown renderer
-        // For now, we'll use a simple approach
-        const contentArea = document.getElementById('content-area');
-        if (contentArea) {
-            // You can integrate this with your existing advanced-content-loader.js
-            contentArea.innerHTML = this.simpleMarkdownToHtml(markdown);
-        }
     }
 
     simpleMarkdownToHtml(markdown) {
@@ -120,7 +117,6 @@ class DndPageLoader {
     }
 
     formatName(name) {
-        // Convert kebab-case or snake_case to Title Case
         return name
             .replace(/[-_]/g, ' ')
             .replace(/\b\w/g, l => l.toUpperCase());
@@ -131,20 +127,15 @@ class DndPageLoader {
     }
 
     show404() {
-        document.body.innerHTML = `
-            <div id="header-placeholder"></div>
-            <section class="intro-content">
-                <div class="section-content">
-                    <h1>Content Not Found</h1>
-                    <p>The requested D&D content could not be found.</p>
-                    <a href="/dnd/">← Back to D&D Homebrew</a>
-                </div>
-            </section>
+        document.getElementById('content-area').innerHTML = `
+            <h1>Content Not Found</h1>
+            <p>The requested D&D content could not be found.</p>
+            <a href="/dnd/">← Back to D&D Homebrew</a>
         `;
     }
 }
 
-// Initialize the page loader when the DOM is ready
+// Initialize the router when the DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
-    new DndPageLoader();
+    new DndRouter();
 });
