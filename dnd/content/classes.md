@@ -8,7 +8,13 @@ Here you'll find all the custom classes and subclasses for D&D 5e.
 
 ## Custom Classes
 
+{% for class in site.classes %}
+### [{{ class.title }}]({{ class.url }})
+{{ class.description }}
+
 **Key Features:**
+- {{ class.key_features | default: "See full class details for complete feature list" }}
+{% endfor %}
 
 ## Custom Subclasses
 
