@@ -1,28 +1,46 @@
----
-layout: default
----
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{% if page.title %}{{ page.title }} - Joshua Chu D&D Homebrew{% else %}{{ site.title }}{% endif %}</title>
+    <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/dnd/dndstyles.css">
+    <script src="/js/components.js"></script>
+    <script src="/js/advanced-content-loader.js"></script>
+</head>
 
-<div id="header-placeholder"></div>
+<body>
+    <div id="header-placeholder"></div>
 
-<section class="intro-content">
-    <div class="section-content">
-        <div class="breadcrumb">
-            <a href="/dnd/">D&D Homebrew</a> &gt; 
-            <a href="/dnd/#{{ page.collection }}">{{ page.collection | capitalize | replace: '-', ' ' }}</a> &gt; 
-            <span>{{ page.title }}</span>
+    <section class="intro-content">
+        <div class="section-content">
+            <div class="breadcrumb">
+                <a href="/dnd/">D&D Homebrew</a> &gt; 
+                <a href="/dnd/#{{ page.collection }}">{{ page.collection | capitalize | replace: '-', ' ' }}</a> &gt; 
+                <span>{{ page.title }}</span>
+            </div>
+            
+            <div class="content-header">
+                <h1>{{ page.title }}</h1>
+                <p class="content-type">{{ page.content_type | default: page.collection | capitalize | replace: '-', ' ' }}</p>
+            </div>
+            
+            <div id="markdown-content">
+                {{ content }}
+            </div>
+            
+            <div class="back-to-top">
+                <a href="/dnd/#{{ page.collection }}">← Back to {{ page.collection | capitalize | replace: '-', ' ' }}</a>
+            </div>
         </div>
-        
-        <div class="content-header">
-            <h1>{{ page.title }}</h1>
-            <p class="content-type">{{ page.content_type | default: page.collection | capitalize | replace: '-', ' ' }}</p>
-        </div>
-        
-        <div id="markdown-content">
-            {{ content }}
-        </div>
-        
-        <div class="back-to-top">
-            <a href="/dnd/#{{ page.collection }}">← Back to {{ page.collection | capitalize | replace: '-', ' ' }}</a>
-        </div>
-    </div>
-</section>
+    </section>
+</body>
+</html>
+
+
+
