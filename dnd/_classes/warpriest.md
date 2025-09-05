@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: dnd
 title: Warpriest
 content_type: Subclass
 description: A divine warrior who channels the power of the gods through martial prowess and sacred magic.
