@@ -1,7 +1,3 @@
----
-layout: default
----
-
 # Magic Items
 
 A collection of custom magic items for D&D 5e campaigns.
