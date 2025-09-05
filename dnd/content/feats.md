@@ -1,22 +1,51 @@
-# Feats
+---
+layout: default
+---
 
-Custom character feats and abilities for D&D 5e.
+# Classes
 
-## Creating New Feats
+Here you'll find all the custom classes and subclasses for D&D 5e.
 
-To add a new feat:
+## Custom Classes
 
-1. Create a markdown file in the feats collection directory:
-   - `dnd/_feats/featname.md`
-2. The page will automatically be accessible at `/dnd/feats/featname/`
-3. Update this overview page with a link to your new feat
+{% for class in site.classes %}
+### [{{ class.title }}]({{ class.url }})
+{{ class.description }}
 
-## Feat Design Guidelines
+**Key Features:**
+- {{ class.key_features | default: "See full class details for complete feature list" }}
+{% endfor %}
 
-When creating new feats:
+## Custom Subclasses
 
-- Follow D&D 5e feat structure and prerequisites
-- Balance power level against existing feats
-- Consider class and build synergies
-- Include clear mechanical benefits
-- Provide interesting character development options
+### Fighter Subclasses
+- [Battle Master](/dnd/classes/battle-master) - Tactical combat specialist
+- [Eldritch Knight](/dnd/classes/eldritch-knight) - Fighter with arcane magic
+
+### Cleric Subclasses  
+- [War Domain](/dnd/classes/war-domain) - Divine warrior
+- [Life Domain](/dnd/classes/life-domain) - Healing specialist
+- [Warpriest](/dnd/classes/warpriest) - Warpriest
+
+### Wizard Subclasses
+- [School of Evocation](/dnd/classes/evocation) - Master of destructive magic
+- [School of Abjuration](/dnd/classes/abjuration) - Protective magic specialist
+
+## Creating New Content
+
+To add a new class or subclass:
+
+1. Create a markdown file in the appropriate collection directory:
+   - `_classes/classname.md`
+2. The page will automatically be accessible at `/dnd/classes/classname/`
+3. Update this overview page with a link to your new content
+
+## Content Guidelines
+
+When creating new classes or subclasses:
+
+- Follow D&D 5e design principles
+- Balance features appropriately for their level
+- Include clear descriptions of abilities
+- Provide example builds or usage tips
+- Test thoroughly before publishing
