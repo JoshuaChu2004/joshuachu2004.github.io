@@ -1,7 +1,3 @@
----
-layout: default
----
-
 # Classes
 
 Here you'll find all the custom classes and subclasses for D&D 5e.
