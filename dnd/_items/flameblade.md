@@ -1,5 +1,5 @@
 ---
-layout: dnd
+layout: default
 title: Flameblade
 content_type: Item
 category: weapon
