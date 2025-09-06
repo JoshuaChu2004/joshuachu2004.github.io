@@ -1,0 +1,695 @@
+@using VBO.Areas.Assets.ApplicationLogic.Session
+@using VBO.Areas.Online.Models.Cart
+@using VBO.Areas.Plugin.Assets
+@model VBO.Areas.Assets.Models.Tickets.LoadTicketsViewModel
+
+@{
+	Layout = null;
+	var IsEventGA = Model.EventDateList.FirstOrDefault().EventHasGA;
+	var ISEventAS = Model.EventDateList.FirstOrDefault().EventHasAS;
+	int eventID = Model.EventDateList.FirstOrDefault().EventID;
+	int eventDateID = Model.EventDateList.FirstOrDefault().EventDateID;
+	string sessionID = SessionConfig.CurrentSession.UniqueUserSessionID.ToString();
+	int orderID = SessionConfig.CurrentSession.OrderID ?? 0;
+	int orgID = SessionConfig.CurrentSession.OrgID;
+	Guid uniqueEventDateID = Model.EventDateList.FirstOrDefault().UniqueEventDateID;
+	string brandName = SessionConfig.Organization.BrandName;
+	string groupCodeButtonText = string.IsNullOrWhiteSpace(SessionConfig.CurrentSession.GroupCode) 
+			? Translation.Tickets.txtEnterGroupCode : Translation.Tickets.txtRemoveGroupCode;
+
+	string seatMapMessage = Model.SeatMapMessage ?? "";
+}
+
+<link rel="stylesheet" href="/Areas/Online/Assets/CSS/SeatMap.css" />
+
+<script>
+	$(async function() {
+		await setGATicketCounter();
+		await setASTicketCounter();
+
+		$(document).ready(function () {
+			// Call once
+			initializeSignalR();
+			if (@orderID > 0 && @eventID > 0 && @eventDateID > 0 && @orgID > 0) {
+				joinSeatmapGroup(@orderID, @eventID, @eventDateID, @orgID);
+			}
+		});
+	});
+
+	window.signalRInitialized = false;
+	window.signalRSeatHub = null;
+	window.signalRIsConnected = false;
+	window.signalRJoinQueue = [];
+
+	function initializeSignalR() {
+		if (window.signalRInitialized) return;
+
+		$.connection.hub.url = "https://wsx.vbotickets.com/signalr";
+
+		// Setup listener stack before connection starts
+		if (!window._seatStatusListeners) {
+			window._seatStatusListeners = [];
+
+			// Register shared dispatcher
+			$.connection.seatHub.client.changeSeatStatus = function (seatId, seatStatus) {
+				for (const fn of window._seatStatusListeners) {
+					try {
+						fn(seatId, seatStatus);
+					} catch (err) {
+						console.error("SeatStatus handler error:", err);
+					}
+				}
+			};
+		}
+
+		$.connection.hub.start().done(function () {
+			window.signalRIsConnected = true;
+
+			while (window.signalRJoinQueue.length > 0) {
+				const { orderID, groupName } = window.signalRJoinQueue.shift();
+				$.connection.seatHub.server.joinGroup(orderID, groupName);
+			}
+		});
+
+		window.signalRSeatHub = $.connection.seatHub;
+		window.signalRInitialized = true;
+	}
+
+	function joinSeatmapGroup(orderID, eventID, eventDateID, orgID) {
+		const groupName = `${orgID}-${eventID}-${eventDateID}`;
+
+		if (window.signalRIsConnected) {
+			window.signalRSeatHub.server.joinGroup(orderID, groupName);
+		} else {
+			// Defer until connected
+			window.signalRJoinQueue.push({ orderID, groupName });
+		}
+	}
+	
+	// get GA ticket quantities
+	async function setGATicketCounter(){
+		let url = "@GlobalConfig.ServerDomain/online/CartActions/GetCartItemsQty";
+		let data = { s: "@sessionID", };
+		$.ajax({
+			url,
+			data,
+			cache: false,
+			success: function(data){
+				let parsedData = JSON.parse(data);
+				if (parsedData == undefined || parsedData.length < 1) {
+					$("._gaCounter").html(0);
+				} else {
+					$("._gaCounter").each(function () {
+						let openSeatID = $(this).data("open-seatid");
+						let matchingItem = parsedData.find(item => item.OpenSeatID == openSeatID);
+						if (matchingItem) {
+							$(this).html(matchingItem.Qty);
+							$(`#ButtonMinus${openSeatID}`).attr("disabled", false);
+						} else {
+							$(this).html(0);
+						}
+					});
+				}
+			}
+		});
+	}
+
+	// get AS ticket quantity -> between the plus and minus buttons -> once retrieved, puts it between the buttons.
+	async function setASTicketCounter() {
+		let url = "@GlobalConfig.ServerDomain/online/CartActions/GetASCartItemsQty";
+		let data = { s: "@sessionID" };
+		$.ajax({
+			url,
+			data,
+			cache: false,
+			success: function(response) {
+				if (response == undefined || response == null) {
+					response.qty = 0;
+				}
+				
+				$(".__asCounter").html(response.qty);
+				$('.__asMinus').attr("disabled", false);
+			}
+		});
+	}
+
+	// ticket qty
+	async function handleTicketQty(ticketQty, ticketID, tickettype, priceGroupDetailID = 0, unlockSeat = false, section="", seatID = 0) {
+		let url = "";
+		 
+		if (@IsEventGA.ToString().ToLower() && tickettype == "ga"){
+			url = "@GlobalConfig.ServerDomain/online/CartActions/UpdateGACartItemQty";
+			let data = {
+				qty: ticketQty,
+				ticketID: ticketID,
+				s: "@sessionID",
+			};
+			$.ajax({
+				url: url,
+				data: data,
+				cache: false,
+				success: function (html) {
+					RefreshCartView();
+				}
+			});
+		}
+		
+		if (@ISEventAS.ToString().ToLower() && tickettype == "as") {
+			const websocketGroupName = `${@orgID}-${@eventID}-${@eventDateID}`;
+			if (section == "") {
+				section = $(`#TicketInfoAS_${ticketID}`).find("option:selected").data("tsection");
+			}
+			
+			if (priceGroupDetailID == 0) {
+				priceGroupDetailID = $(`#TicketPrice_${ticketID}`).find("option:selected").data("pgdtlid");
+			}
+			
+			url = "@GlobalConfig.ServerDomain/online/CartActions/UpdateASCartItemQty";	
+			let data = {
+				eventDateID: "@Model.EventDateList.FirstOrDefault().EventDateID",
+				tSection: section,
+				qty: ticketQty,
+				priceGroupDetailID: priceGroupDetailID,
+				seatID: seatID,
+				s: "@sessionID",
+			};
+			$.ajax({
+				url: url,
+				data: data,
+				cache: false,
+				success: function (res) {
+					RefreshCartView();
+					if (window.signalRSeatHub && Array.isArray(res.seatIds)) {
+						res.seatIds.forEach(id => {
+							window.signalRSeatHub.server.notifySeatChange(null, websocketGroupName, String(id), res.status);
+						});
+					}
+				}
+			});
+			if (unlockSeat && seatmapSidebar) {
+				seatmapSidebar.unlockSeat(seatID);
+			}
+		}
+	}
+	
+	// Add or subtract Tickets to the Cart.
+	function TicketCount(e, tickettype, useQty = 1) {
+		let ticketID = $(e).data("ticketid");
+		let $counterEl = $(`#TicketCounter${ticketID}`);
+		let currentValue = parseInt($counterEl.html());
+		let $buttonPlus = $(`#ButtonPlus${ticketID}`);
+		let $buttonMinus = $(`#ButtonMinus${ticketID}`);
+		let ticketMaxQty = parseInt($buttonPlus.data("qtymax"));
+		useQty = parseInt(useQty);
+		ChangeCartIconNumber(useQty, tickettype);
+		
+        @* We need to add the original Ticket Counter value to the maxQty to get the real maxQty. 
+        By default, items of matching events in cart subtract from ticketMaxQty. We are adding them back. *@
+        ticketMaxQty = parseInt(window.originalTicketCounterNumbers[ticketID]) + ticketMaxQty;
+		let newValue = currentValue + useQty;
+		let isUnderMaxTicketQty = newValue < ticketMaxQty;
+		
+		if (newValue < 0) {
+			$counterEl.html(0);
+			$(e).attr("disabled", true);
+		} else if (!isUnderMaxTicketQty) {
+			$buttonPlus.attr("disabled", true);
+			$counterEl.html(parseInt(newValue));
+		} else {
+			$counterEl.html(parseInt(newValue));
+			$buttonMinus.attr("disabled",newValue <= 0);
+			$buttonPlus.attr("disabled",false);
+			$('.__asMinus').attr("disabled",true);
+		}
+		
+		if(useQty == 0) return;
+		handleTicketQty(useQty, ticketID, tickettype);
+		
+		// Disable and enable the minus button for AS tickets as needed.
+		if (tickettype === "as") {
+			$buttonMinus.attr("disabled", parseInt($counterEl.text()) < 1);
+		}
+	}
+	
+	// Change Cart Icon Number
+	function ChangeCartIconNumber(num = 0, tickettype) {
+		if (num == 0) return;
+		num = parseInt(num);
+		
+		let $cartCountEl = $("#CartCount");
+		let currentValue = parseInt($cartCountEl.html());
+		
+		if(tickettype == "as" && 
+			(currentValue + num) < 0){
+			num = parseInt($('.__asCounter').html())*-1;
+		}
+		
+		$cartCountEl.html(currentValue + parseInt(num));
+	}
+
+	// AS best available seating
+	function GetASPrice(id) {
+		let $tixInfo = $(`#TicketInfoAS_${id}`);
+		let tixInfoVal = $tixInfo.val();
+		
+		let SerFee = $($tixInfo).find("option:selected").attr("serfee");
+		let FacFee = $($tixInfo).find("option:selected").attr("facfee");
+
+		let url = "/V5.0/controls/tickets.asp";
+		let data = {
+			a: "getasprice",
+			s: "@sessionID",
+			tixinfo: tixInfoVal
+		};
+
+		$.ajax({
+			url: url,
+			data: data,
+			cache: false,
+			success: function (html) {
+				let $ticketPrice = $(`#TicketPrice_${id}`);
+				$ticketPrice.html(html);
+				$("#ServiceFee_" + id).html(SerFee);
+				$("#FacilityFee_" + id).html(FacFee);
+
+				// don't show dropdown if only one element
+				let childCount = $ticketPrice.children().length;
+				if (childCount > 0) {
+					$ticketPrice.removeAttr("disabled").attr("class", "uk-select");
+				} else {
+					$ticketPrice.attr("disabled", "").attr("class", "uk-input");
+				}
+
+				// calculate qty
+				GetASQty(id);
+			}
+		});
+
+	}
+	// AS best available qty
+	function GetASQty(id) {
+		let tixInfoVal = $(`#TicketInfoAS_${id}`).val();
+		let $tixPrice = $(`#TicketPrice_${id}`);
+		let tixPriceVal = $tixPrice.val();
+		let pgDtlID = $tixPrice.find(":selected").data("pgdtlid");
+		let pgDtPromo = $tixPrice.find(":selected").data("pgdtpromo");
+		let url = `/v5.0/controls/tickets.asp`;
+		let data = {
+			a: "getasqty",
+			s: "@sessionID",
+			tixInfo: tixInfoVal,
+			tixprice: tixPriceVal,
+			pgdtlid: pgDtlID,
+			pgdtpromo: pgDtPromo
+		}
+
+		$.ajax({
+			url: url,
+			data: data,
+			cache: false,
+			success: function (html) {
+				let response = html.split("||");
+				responseOptionTags = response[0];
+				$(`#Qty_${id}`).html(responseOptionTags);
+				$(`#Tix_${id}`).val(tixInfoVal);
+				$(`#PriceGroupDetailID_${id}`).val(pgDtlID);
+				$(`#Param_${id}`).val(pgDtPromo);
+				setASTicketCounter();
+			}
+		});
+	}
+
+	// refresh cart view
+	async function RefreshCartView() {
+		$.ajax({
+			url: "@GlobalConfig.ServerDomain/online/Cart/ViewCart",
+			data: {
+				s: "@sessionID",
+				viewLocation: "@CartViewLocation.TicketSelect",
+			},
+			method: "GET",
+			success: function (result) {
+				$("#CartSummary").html(result);
+			}
+		})
+	}
+
+	// load seatmap overlay
+	async function LoadSeatMap(eventID, eventDateID) {
+		let userSession = await GetUserSession(readCookie("unique-org-id"));
+
+		// show the popup
+		$("#seatmap-overlay-body").data("initialized", true).show();
+		let mapUrl = "@GlobalConfig.ServerDomain/online/seatmap/renderseatmap";
+
+		$.ajax({
+			url: mapUrl,
+			cache: false,
+			async: true,
+			data: {
+				eventID: eventID,
+				eventDateID: eventDateID,
+				s: userSession
+			},
+			success: function (html) {
+				const seenMessage = readCookie("seatmap-message-@(orgID)");
+				if ("@seatMapMessage" != "" && seenMessage != "1") {
+					//UikitModal("html", "Html", "@seatMapMessage", "Promoter Message", 500); // Promoter Message
+					//createCookie("seatmap-message-@(orgID)", "1");
+				}
+				$("#seatmap-overlay-body").html(html);
+
+				// Ensure the popup has proper dimensions before initializing
+				//$("#seatmap-overlay-body").attr("style", "position: absolute; top: 0; left: 0; width:100vW; height:100vH; z-index:999999; background-color:#fff; box-sizing:border-box; overflow:hidden;");
+
+				// Force a layout recalculation
+				$("#seatmap-overlay-body")[0].offsetHeight;
+
+				// Small delay to ensure DOM is ready
+				setTimeout(() => {
+					// Ensure popup is visible so we can get proper dimensions
+					$("#seatmap-overlay").show();
+
+					if ($("#seatmap-overlay-body").data("initialized")) {
+						seatmapApp = new SeatmapApp();
+						seatmapHeader = new SeatmapHeader();
+						seatmapSidebar = new SeatmapSidebar();
+						seatmapIndex = new SeatmapIndex();
+					} else {
+						loadSeatmapScripts();
+					}
+				}, 100);
+			}
+		});
+	}
+
+	// close seatmap
+	function CloseSeatMap() {
+		$("#seatmap-overlay-body").html("");
+		$("#seatmap-overlay").hide();
+
+		// Safely destroy the PIXI application
+        if (seatmapApp && seatmapApp.app) {
+            console.log("destroying PIXI app");
+            try {
+                seatmapApp.app.destroy(true, true);
+            } catch (error) {
+                console.warn('Error destroying PIXI app:', error);
+            }
+        }
+
+        // Clean up references
+        if (seatmapSidebar) {
+            seatmapSidebar.cleanup();
+            seatmapSidebar = null;
+        }
+        if (seatmapApp) {
+            seatmapApp.cleanup();
+            seatmapApp = null;
+        }
+        if (seatmapHeader) {
+            seatmapHeader = null;
+        }
+        if (seatmapIndex) {
+            seatmapIndex.cleanup();
+            seatmapIndex = null;
+        }
+        
+        // Clean up any global references
+        if (window.seatmapSidebar) {
+            window.seatmapSidebar = null;
+        }
+        if (window.seatmapApp) {
+            window.seatmapApp = null;
+        }
+        if (window.seatmapIndex) {
+            window.seatmapIndex = null;
+        }
+	}
+
+	// toggle ticket notes
+	function ToggleTicketNotes(id) {
+		$(`#TicketNotes${id}`).toggle();
+	}
+	
+	// load the group code modal
+	function LoadGCModal() {
+		if (@string.IsNullOrWhiteSpace(SessionConfig.CurrentSession.GroupCode).ToString().ToLower()) {
+			UikitModal("ajax", "@Config.OldPluginUrl/controls/events.asp", "load_gc_form&s=@SessionConfig.CurrentSession.UniqueUserSessionID&uniqueEventDateID=@uniqueEventDateID&brandName=@brandName", "@Translation.Tickets.txtEnterGroupCode", 400);
+		} else {
+			RemoveGroupCode();
+		}
+	}
+	
+	//removes the group code from session and order
+	function RemoveGroupCode() {
+		$.ajax({
+			url: "/online/Tickets/RemoveGroupCode",
+			data: {s: "@sessionID"},
+			success: function () {
+				RefreshTicketSelect();
+			}
+		});
+	}
+
+	// reload tickets
+	function RefreshTicketSelect() {
+		$.ajax({
+			url: "@GlobalConfig.ServerDomain/online/Tickets/TicketSelect",
+			data: {
+				s: "@sessionID",
+				uniqueEventDateID: $("#TicketOverlay").data("edid")
+			},
+			method: "GET",
+			success: function (result) {
+				$("#TicketSelect").html(result);
+			}
+		});
+	}
+
+    // Make originalTicketCounterNumbers a global variable
+    window.originalTicketCounterNumbers = {};
+    
+    // Capture the original AS ticket counter numbers for calculating available qty within PopulateTicketQtyDropdown().
+    function captureOriginalCounterNumbers() {
+        if (typeof $ === 'undefined') return;
+        
+        $("[id^='TicketCounter']").each(function() {
+            const id = $(this).attr("id");
+            const match = id.match(/^TicketCounter(\d+)$/);
+            if (match) {
+                const ticketID = match[1];
+                window.originalTicketCounterNumbers[ticketID] = $(this).text();
+            }
+        });
+    }
+    
+    // Use a delay to ensure all elements are loaded before captureOriginalNumbers is called.
+    $(document).ready(function() {
+        setTimeout(captureOriginalCounterNumbers, 500);
+    });
+    
+    function PopulateTicketQtyDropdown(ticketID, maxTicketQty)
+	{
+        let qtySelect = $(`#Qty_${ticketID}`);
+        let qtyOptions = qtySelect.find('option');
+        let selectedValue = qtySelect.val();
+
+        if (selectedValue) {
+            let ticketCounter = $(`#TicketCounter${ticketID}`);
+            if (ticketCounter.length > 0) { ticketCounter = ticketCounter[0]; }
+            let ticketCounterValue = parseInt($(ticketCounter).text());
+            let availableQty = Math.min(maxTicketQty - (ticketCounterValue - window.originalTicketCounterNumbers[ticketID]), 20);
+	        
+            qtyOptions.remove();
+            if (availableQty >= 1) {
+                for (let i = 1; i <= availableQty; i++) {
+                    qtySelect.append(`<option value="${i}">${i}</option>`);
+                }
+            } else {
+                qtySelect.append(`<option value="0">0</option>`);
+            }
+
+            // Restore the previously selected value if it's still available, otherwise select best fallback
+            if (selectedValue && qtySelect.find(`option[value="${selectedValue}"]`).length > 0) {
+                qtySelect.val(selectedValue);
+            } else if (availableQty >= 1) {
+                qtySelect.val(1);
+            } else {
+                qtySelect.val(0);
+            }
+        }
+    }
+</script>
+
+<!-- TICKET HEADER -->
+<div class="TicketSelectHeader" role="header">
+	<div class="EventNameDateWrapper">
+		<span class="EventName Truncate">@Model.EventDateList.FirstOrDefault().EventName</span>
+		<span class="EventDate"><i class="fa-regular fa-clock"></i> @Model.EventDateList.FirstOrDefault().EventDate</span>
+	</div>
+	<div class="EventNotes">@Translation.Tickets.txtMemberLoginMessage</div>
+
+	<div class="GroupCodeButtonWrapper">
+		<button class="ButtonSubmitAlt GroupCodeButtonSm" onclick="LoadGCModal()">@groupCodeButtonText</button>
+	</div>
+</div>
+
+<!-- TICKET CONTAINER -->
+<div class="TicketSelectContainer ScrollBarThin">
+
+	<!-- TICKET TYPE SELECTOR -->
+	@if (ISEventAS)
+	{
+		<div class="TicketTypeSelectorWrapper">
+			<div class="TicketType Active">@Translation.Tickets.txtBestAvailable</div>
+			<div class="TicketType" onclick="LoadSeatMap(@Model.EventDateList.FirstOrDefault().EventID, @Model.EventDateList.FirstOrDefault().EventDateID)">@Translation.Tickets.txtSeatMap</div>
+		</div>
+	}
+
+	<!-- GA -->
+	@if (Model.EventDateList.Count > 0 && IsEventGA)
+	{
+		<div class="TicketSectionName">@Translation.Tickets.txtGA</div>
+
+		foreach (var ticket in Model.EventDateList.FirstOrDefault().GAViewModel.GATickets)
+		{
+			@* TODO: This logic should be moved into the Controller. *@
+			bool IsTicketGroupPromoType = !String.IsNullOrEmpty(ticket.GroupCode) || ticket.PromoType == "GroupTicket"; 
+			decimal ticketFees = (decimal) (ticket.FacilityFee + ticket.PromoterServiceFee + ticket.ServiceFee);
+			
+			@* Preventing free tickets from incorrectly showing fees. *@
+			if (ticket.TicketPrice == 0.00)
+			{
+				ticketFees = (decimal)0.00;
+			}
+			decimal ticketPriceMinusFees = (decimal)ticket.TicketPrice - ticketFees;
+			bool isTaggedTicket = !String.IsNullOrWhiteSpace(ticket.PromoOption);
+			bool accountHasTagForTicket = Model.AccountTags
+				.Select(x => x.Name)
+				.Any(tag => ticket.PromoOption.Contains(tag));
+
+			if (isTaggedTicket && !accountHasTagForTicket)
+			{
+				continue;
+			}
+
+			bool ticketDisabled = (isTaggedTicket && !accountHasTagForTicket) || ticket.QtyAvailable <= 1;
+			string disabled = ticketDisabled ? "disabled" : "";
+
+			 if (isTaggedTicket && ticket.TagMaxQty > 0)
+			 {
+				 ticket.QtyMax = ticket.TagMaxQty;
+			 } 
+			 
+			<div class="TicketWrapper @(IsTicketGroupPromoType ? "GroupTicket" : "")">
+				<div class="uk-grid-small uk-flex-middle" uk-grid>
+					<!-- TICKET NAME -->
+					<div class="uk-width-expand">
+						<div class="TicketName">
+							@if (!String.IsNullOrWhiteSpace(ticket.tSection))
+							{
+								@ticket.tSection <span>//</span>
+							}
+
+							@ticket.tSectionGroupName
+						</div>
+						@if (!String.IsNullOrWhiteSpace(ticket.Notes))
+						{
+							<span class="TicketNotesTrigger"><a href="javascript:;" onclick="ToggleTicketNotes('@(ticket.OpenSeatID)');">@Translation.Global.txtShowDetails</a> <i class="fa-regular fa-circle-info"></i></span>
+						}
+					</div>
+
+					<!-- PRICE -->
+					<div class="uk-width-auto uk-margin-small">
+						<div class="TicketPrice">@ticket.TicketPrice.ToString("F2")</div>
+						<div class="TicketFees">@ticketPriceMinusFees.ToString("F2") + @ticketFees.ToString("F2") fees </div>
+					</div>
+
+					<!-- QTY -->
+					<div class="uk-width-auto">
+						<div class="TicketButtonsWrapper">
+							<button class="PlusMinus" id="ButtonMinus@(ticket.OpenSeatID)" aria-label="Remove from cart" onclick="TicketCount(this, 'ga', -1)" data-ticketID="@(ticket.OpenSeatID)" disabled>
+								<i class="fa-solid fa-minus" aria-hidden="true"></i>
+							</button>
+							<div class="TicketCounter _gaCounter" id="TicketCounter@(ticket.OpenSeatID)" data-open-seatid="@(ticket.OpenSeatID)"></div>
+							<button class="PlusMinus" id="ButtonPlus@(ticket.OpenSeatID)" aria-label="Add to cart" onclick="TicketCount(this, 'ga')" data-ticketID="@(ticket.OpenSeatID)" @(disabled) data-qtymax="@(ticket.QtyMax)">
+								<i class="fa-solid fa-plus" aria-hidden="true"></i>
+							</button>
+						</div>
+					</div>
+				</div>
+
+				<!-- TICKET NOTES -->
+				<div id="TicketNotes@(ticket.OpenSeatID)" class="TicketNotes">@ticket.Notes</div>
+			</div>
+		}
+	}
+
+	<!-- AS -->
+	@if (Model.EventDateList.Count > 0 && Model.EventDateList.First().ASViewModel?.ASTickets.Count > 0 && Model.EventDateList.First().EventHasAS)
+	{
+		var first = Model.EventDateList?.First().ASViewModel?.ASTickets?.FirstOrDefault();
+		
+		<div class="TicketSectionName">@Translation.Tickets.txtAssignedSeating - @Translation.Tickets.txtBestAvailable</div>
+
+		<div class="TicketWrapper">
+			<div class="uk-grid-small uk-flex-middle" uk-grid>
+				<!-- TICKET NAME -->
+				<div class="uk-width-expand">
+					<div class="uk-grid-small" uk-grid>
+						<!-- SECTION -->
+						<div class="uk-width-1-1 uk-width-1-3@s">
+							<div class="Label">1. Select Section</div>
+							<select name="TicketInfoAS_@(first.iTix)" id="TicketInfoAS_@(first.iTix)" class="uk-select" onchange="GetASPrice('@first.iTix');">
+								@foreach (var asTicket in Model.EventDateList.FirstOrDefault().ASViewModel.ASTickets)
+								{
+									<option serfee="@asTicket.ServiceFee.ToString("C")" facfee="@asTicket.FacilityFee.ToString("C")" value="@($"AS|{asTicket.CurrentEventDate.EventID}|{asTicket.CurrentEventDate.EventDateID}|{asTicket.CurrentEventDate.EventDate}|{asTicket.tSection}|{asTicket.PriceGroupName}")" data-tsection="@asTicket.tSection">
+										@asTicket.tSection (@asTicket.QtyAvailable @PluginTranslation.Tickets.txtAvailable)
+									</option>
+								}
+							</select>
+						</div>
+						<!-- TICKET NAME -->
+						<div class="uk-width-1-1 uk-width-1-3@s">
+							<div class="Label">2. Select Price</div>
+							<select name="TicketPrice_@(first.iTix)" id="TicketPrice_@(first.iTix)" class="uk-select" onchange="GetASQty(@first.iTix)">
+								@*Populated by GetASQTY*@
+							</select>
+						</div>
+						<!-- TICKET QTY -->
+						<div class="uk-width-1-1 uk-width-1-3@s">
+							<div class="Label">3. Select Qty</div>
+							<select name="Qty_@(first.iTix)" id="Qty_@(first.iTix)" rel="@first.iTix" class="uk-select">
+                                @* This gets populated by GetASPrice() initially, and then by PopulateTicketQtyDropdown(). *@
+							</select>
+						</div>
+					</div>
+				</div>
+
+				<!-- QTY -->
+				<div class="uk-width-auto">
+					<div class="TicketButtonsWrapper">		
+						@* AS tickets should always remove the last ticket placed as of now. *@
+						<button class="PlusMinus __asMinus" id="ButtonMinus@(first.iTix)" aria-label="Decrease Ticket Count" onclick="TicketCount(this, 'as', -1)" data-ticketid="@first.iTix" disabled>
+							<i class="fa-solid fa-minus"></i>
+						</button>
+						<div class="TicketCounter __asCounter" id="TicketCounter@(first.iTix)"></div>
+						<button class="PlusMinus" id="ButtonPlus@(first.iTix)" aria-label="Increase Ticket Count" onclick="TicketCount(this, 'as', $('#Qty_@(first.iTix)').val()); PopulateTicketQtyDropdown(@first.iTix, @first.MaxTixQty);" data-ticketid="@first.iTix" data-qtymax="@first.MaxTixQty">
+							<i class="fa-solid fa-plus"></i>
+						</button>
+					</div>
+				</div>
+				<input type="hidden" name="Tix_@(first.iTix)" id="Tix_@(first.iTix)" value="@($"AS|{first.CurrentEventDate.EventID}|{first.CurrentEventDate.EventDateID}|{first.CurrentEventDate.EventDate}|{first.tSection}|{first.PriceGroupName}")" />
+				<input type="hidden" name="Param_@first.iTix" id="Param_@first.iTix" value="@first.PromoType" />
+				<input type="hidden" name="ParamValue_@(first.iTix)" id="ParamValue_@(first.iTix)" value="@first.PromoValue" />
+				<input type="hidden" name="Param2_@(first.iTix)" id="Param2_@(first.iTix)" value="@first.Param2" />
+				<input type="hidden" name="ParamValue2_@(first.iTix)" id="ParamValue2_@(first.iTix)" value="@first.ParamValue2" />
+				<input type="hidden" name="ASListViewPrice_@(first.iTix)" id="ASListViewPrice_@(first.iTix)" value="@first.TicketPrice" />
+				<input type="hidden" name="PriceGroupDetailID_@(first.iTix)" id="PriceGroupDetailID_@(first.iTix)" value="@first.PriceGroupDetailID" />
+				<script>$(function() { GetASPrice('@first.iTix'); });</script>
+
+			</div>
+		</div>
+	}
+</div>

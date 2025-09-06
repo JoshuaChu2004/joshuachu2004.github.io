@@ -59,6 +59,7 @@ async function loadContentFromData(element) {
     try {
         const response = await fetch(contentPath);
         const markdown = await response.text();
+        console.log(markdown);
         const html = markdownToHtml(markdown);
         element.innerHTML = html;
     } catch (error) {

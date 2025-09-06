@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Joshua Chu – Portfolio</title>
+    <meta name="description" content="Games, D&D homebrew, and engineering projects by Joshua Chu." />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="js/components.js"></script>
+    <script src="js/advanced-content-loader.js"></script>
+</head>
+<body>
+    <div id="header-placeholder"></div>
+
+    <main class="container">
+        <!-- HERO -->
+        <section class="hero">
+            <div class="intro-content">
+                <span class="kicker">Portfolio</span>
+                <div class="slogan">Crafting Immersive Gameplay,<br>
+                    Building Solutions,<br>
+                    and Designing Exciting TTRPG Content.</div>
+                <div class="about">I’m Joshua Chu, a Computer Science student at UCSB, game developer, and TTRPG designer. I create engaging systems, polished user experiences, and collaborative stories—whether that’s through building video games, designing tabletop mechanics, or developing tools as a frontend engineering intern at VBO Tickets.</div>
+                <div class="cta">
+                    <a class="btn primary" href="#games">See my work</a>
+                    <a class="btn" href="assets/Joshua_Chu_Resume.pdf" target="_blank" rel="noopener">Download résumé</a>
+                    <a class="btn" href="https://github.com/chujoshua2004" target="_blank" rel="noopener">GitHub</a>
+                    <a class="btn" href="https://spiritboundstudios.itch.io" target="_blank" rel="noopener">itch.io</a>
+                    <a class="btn" href="https://www.linkedin.com/in/chujoshua2004" target="_blank" rel="noopener">LinkedIn</a>
+                </div>
+            </div>
+            <div class="image-carousel">
+                <div class="carousel-container">
+                    <div class="carousel-track">
+                        <!-- Clone of last slide for seamless loop -->
+                        <div class="carousel-slide">
+                            <img src="assets/WayOfTheRisingStorm/WayOfTheRisingStorm-1.png" alt="Project 4" />
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="assets/intothedepths.png" alt="Project 1" />
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="assets/volley.png" alt="Project 2" />
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="assets/seatmap.png" alt="Project 3" />
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="assets/WayOfTheRisingStorm/WayOfTheRisingStorm-1.png" alt="Project 4" />
+                        </div>
+                        <!-- Clone of first slide for seamless loop -->
+                        <div class="carousel-slide">
+                            <img src="assets/intothedepths.png" alt="Project 1" />
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-controls">
+                    <button class="carousel-btn prev" onclick="scrollCarousel(-1)">‹</button>
+                    <button class="carousel-btn next" onclick="scrollCarousel(1)">›</button>
+                </div>
+                <div class="carousel-dots">
+                    <span class="dot active" onclick="goToSlide(1)"></span>
+                    <span class="dot" onclick="goToSlide(2)"></span>
+                    <span class="dot" onclick="goToSlide(3)"></span>
+                    <span class="dot" onclick="goToSlide(4)"></span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Video Games Section -->
+        <section id="games" class="section">
+            <div class="section-header">Video Games</div>
+            <div class="grid projects">
+                <div class="project-card">
+                    <a class="project-title" href="https://spiritboundstudios.itch.io/into-the-depths" target="_blank" rel="noopener">Into the Depths</a>
+                    <div class="project-description">A roguelike deckbuilder game where you start out with a set of cards and battle monsters to gain new ones. Upgrade your deck, collect features, and loot items off of monsters!</div>
+                    <img src="assets/intothedepths.png" alt="Into the Depths" />
+                    <a class="project-link" href="https://spiritboundstudios.itch.io/into-the-depths" target="_blank" rel="noopener">Play Now</a>
+                </div>
+                <div class="project-card">
+                    <a class="project-title" href="https://spiritboundstudios.itch.io/volley" target="_blank" rel="noopener">Volley!</a>
+                    <div class="project-description">A 2D volleyball game where you play as a volleyball player trying to win matches.</div>
+                    <img src="assets/volley.png" alt="Volley!" />
+                    <a class="project-link" href="https://spiritboundstudios.itch.io/volley" target="_blank" rel="noopener">Play Now</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Software Section -->
+        <section id="software" class="section">
+            <div class="section-header">Software Projects</div>
+            <div class="grid projects">
+                <div class="project-card">
+                    <a class="project-title" href="#" target="_blank" rel="noopener">Seat Map Application</a>
+                    <div class="project-description">Frontend engineering work for VBO Tickets, developing interactive seat maps for event ticketing.</div>
+                    <img src="assets/seatmap.png" alt="Seat Map Application" />
+                    <a class="project-link" href="#" target="_blank" rel="noopener">View Project</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- D&D Homebrew Section -->
+        <section id="homebrew" class="section">
+            <div class="section-header">D&D Homebrew Content</div>
+            <div class="grid projects">
+                <div class="project-card">
+                    <a class="project-title" href="#" target="_blank" rel="noopener">Way of the Rising Storm</a>
+                    <div class="project-description">A custom D&D 5e monk subclass focused on lightning and storm abilities.</div>
+                    <img src="assets/WayOfTheRisingStorm/WayOfTheRisingStorm-1.png" alt="Way of the Rising Storm" />
+                    <a class="project-link" href="#" target="_blank" rel="noopener">View Content</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section">
+            <div class="section-header">About Me</div>
+            <div class="section-content" data-content="/content/about.md">
+                <!-- Content will be loaded automatically -->
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section">
+            <div class="section-header">Get In Touch</div>
+            <div class="section-content" data-content="/content/contact.md">
+                <!-- Content will be loaded automatically -->
+            </div>
+            <div class="contact-links">
+                <a class="btn" href="mailto:chujoshua2004@gmail.com">Email Me</a>
+                <a class="btn" href="https://www.linkedin.com/in/chujoshua2004" target="_blank" rel="noopener">LinkedIn</a>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        let currentSlide = 1; // Start at the first real slide (index 1)
+        const totalSlides = 4; // Number of real slides
+        const track = document.querySelector('.carousel-track');
+        const dots = document.querySelectorAll('.dot');
+        let autoAdvanceInterval;
+        let isTransitioning = false;
+
+        function startAutoAdvance() {
+            // Clear any existing interval
+            if (autoAdvanceInterval) {
+                clearInterval(autoAdvanceInterval);
+            }
+            // Start new interval
+            autoAdvanceInterval = setInterval(() => {
+                scrollCarousel(1);
+            }, 5000);
+        }
+
+        function resetAutoAdvance() {
+            startAutoAdvance();
+        }
+
+        function scrollCarousel(direction) {
+            if (isTransitioning) return;
+            
+            const newSlide = currentSlide + direction;
+            
+            // Your loop logic here
+            currentSlide = newSlide;
+            updateCarousel(false);
+            
+            resetAutoAdvance();
+        }
+
+        function goToSlide(slideIndex) {
+            if (isTransitioning) return;
+            
+            currentSlide = slideIndex; // Adjust for the clone at the beginning
+            updateCarousel();
+            resetAutoAdvance();
+        }
+
+        function updateCarousel(a = false) {
+            const animate = currentSlide > 0 && currentSlide <= totalSlides;
+            console.log(currentSlide);
+            console.log(totalSlides);
+            console.log(animate);
+            isTransitioning = true;
+            if (a) {
+                track.style.transition = 'none';
+            } else {
+                track.style.transition = 'transform 0.5s ease-in-out';
+            }
+        
+            const offset = -currentSlide * 100;
+            track.style.transform = `translateX(${offset}%)`;
+            
+            // Update dots (adjust for the clone)
+            const realSlideIndex = currentSlide - 1;
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === realSlideIndex);
+            });
+            
+            if (animate) {
+                setTimeout(() => {
+                    isTransitioning = false;
+                }, 500);
+            } else {
+                setTimeout(() => {
+                    isTransitioning = false;
+                    if (currentSlide === 0) {
+                        currentSlide = totalSlides;
+                    } else if (currentSlide === totalSlides + 1) {
+                        currentSlide = 1;
+                    }
+                    updateCarousel(true);
+                }, 500);
+
+            }
+        }
+
+        function jumpToSlide(slideIndex) {
+            if (isTransitioning) return;
+            currentSlide = slideIndex;
+            updateCarousel(false);
+            resetAutoAdvance();
+        }
+
+        jumpToSlide(1);
+
+        // Start auto-advance on page load
+        startAutoAdvance();
+    </script>
+</body>
+</html>

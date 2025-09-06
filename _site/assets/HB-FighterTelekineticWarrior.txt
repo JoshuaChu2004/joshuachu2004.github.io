@@ -1,0 +1,50 @@
+### Fighter: Telekinetic Warrior
+
+These fighters utilize their natural psionic power to enhance their abilities on the battlefield. Defense, offense, and strategy are the cornerstones of any good fighter. These trained warriors are sometimes called supersoldiers, due to their unnatural speed, damage, and physical ability.
+
+##### Telekinetic Warrior Features
+| Fighter Level | Features |
+|:----:|:-------------|
+| 3rd | Weapon Rebound, Enhance Item (+1) |
+| 7th | Psionic Tactics |
+| 10th | Enhance Item (+2) |
+| 15th | Surging Force (Forceful Surge) |
+| 18th | More Psionic Tactics |
+
+#### Weapon Rebound
+
+Starting at 3rd level, you can retrieve your thrown weapons instantaneously. When you throw a weapon with the thrown property, you can have it return to your hand (no action required) immediately after the attack whether or not it hits the intended target.
+
+#### Enhance Item
+
+At 3rd level, you can use your psionic powers to saturate your equipment. At the end of a long rest, you can choose to give a +1 bonus to a single nonmagical weapon (+1 to attack rolls and damage rolls), set of armor, or shield. This does not make the item a magical item, and any damage dealt by the item is not magical. This bonus lasts until you finish a long rest.
+
+When you reach 10th level, this bonus increases to +2.
+
+#### Psionic Tactics
+
+At 7th level, you gain special properties to whichever equipment you augment with your Enhance Item feature.
+
+***Weapon.*** Any weapon attacks made with the chosen weapon are considered magical for the purposes of overcoming immunity or resistance to nonmagical damage.
+
+***Armor.*** When you are hit with an attack while wearing this armor, you can use your reaction to temporarily increase your AC by 1 until the beginning of your next turn. Each time you are hit until this effect ends, your AC increases by 1 more. This increase can stack a number of times equal to your proficiency bonus, and all AC increases from this ability are lost when you start your next turn.
+
+***Shield.*** The chosen shield also can be used as a martial weapon. It gains the finesse, light, and thrown properties. It has a normal range of 20 feet and a long range of 40 feet, and it deals 1d8 bludgeoning damage on a hit. When you throw this weapon and it hits the target, you can use a bonus action to make it attack another target within 20 feet of the previous target.
+
+#### Surging Force
+
+When you reach 15th level, you can blast foes from your path. When you use your Action Surge feature, all weapon attacks for the rest of your turn deal an extra 1d8 of force damage on a hit. When you deal this damage, the target is pushed 10 feet away from you.
+
+```
+```
+
+
+#### Advanced Psionic Tactics
+
+At 18th level, the equipment you have infused with psionic energy gains even more unique properties.
+
+***Weapon.*** All weapon attacks made with the chosen weapon now gain +3 to attack rolls and damage rolls. This replaces the Enhance Item bonus.
+
+***Armor.*** When a creature hits you with a melee attack, they must make a Strength saving throw (DC = 8 + your proficiency bonus + your Strength or Dexterity modifier) or be knocked prone.
+
+***Shield.*** When you use your Attack action to throw the chosen shield as a weapon and it hits the target, you can use any additional attacks granted by your Extra Attack feature to have it attack additional targets within 20 feet of the previous target.

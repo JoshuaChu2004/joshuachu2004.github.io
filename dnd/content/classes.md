@@ -13,6 +13,7 @@ Here you'll find all the custom classes and subclasses for D&D 5e.
 {% endfor %}
 
 ## Custom Subclasses
+Pog
 
 ### Fighter Subclasses
 - [Battle Master](/dnd/classes/battle-master) - Tactical combat specialist

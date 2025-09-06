@@ -1,0 +1,208 @@
+@using Newtonsoft.Json
+@using VBO.Areas.Assets.ApplicationLogic.Session
+@model VBO.Areas.Online.Models.Tickets.SeatMapViewModel
+@{
+	Layout = null;
+	int mapID = Model.MapID;
+	var eventID = Model.EventID;
+	var eventDateID = Model.EventDateID ;
+	var orgID = Model.OrgID;
+	var orderID = Model.OrderID;
+	string eventPoster = Model.EventPoster.IfNullOrWhite("blank2.jpg");
+	string sessionID = SessionConfig.CurrentSession.UniqueUserSessionID.ToString();
+}
+
+<script>
+	$(function () {
+		resizeSideBar();
+	});
+
+	// also fire whenever the window is resized
+	$(window).on('resize', resizeSideBar);
+
+	// resize sidebar
+	function resizeSideBar() {
+		var $bodyEl = $('#seatmap-overlay-body');
+		var $containerEl = $('#SeatMapSidebar');
+
+		if ($bodyEl.length === 0 || $containerEl.length === 0) return;
+
+		var newHeight = $bodyEl.innerHeight();
+
+		// If height == 0, try again soon
+		if (newHeight === 0) {
+			setTimeout(resizeSideBar, 100);
+			return;
+		} else {
+			newHeight = newHeight - 80;
+		}
+
+		$containerEl.height(newHeight);
+	}
+
+	function isSeatSelectable(seat) {
+		if (salesMethod == "online" ) {
+			if (seat.seatData.status == "A") {
+				return true;
+			} else {
+				return false;
+			}
+		} else  {
+			if (
+            seat.seatData.status !== "S" &&
+            seat.seatData.status !== "C" &&
+            seat.seatData.status !== "R" &&
+            seat.seatData.status !== "" &&
+            seat.seatData.status !== "U" &&
+            seat.seatData.name !== "Unknown") {
+				return true;
+			} else {
+				return false;
+			}
+		}
+	}
+</script>
+
+<!-- Loading Spinner -->
+<div id="SeatMapLoadingSpinnerOverlay" class="SeatMapLoadingSpinnerOverlay">
+	<div class="SeatMapLoadingSpinner">
+		<div uk-spinner="ratio: 2"></div>
+	</div>
+</div>
+
+<!-- MAIN SEATMAP CONTAINER -->
+<div class="SeatMapRoot">
+	<!-- HEADER -->
+	<div id="SeatMapHeader" class="SeatMapHeader">
+		<div class="EventPosterWrapper">
+			<img src="https://vboblobprod.blob.core.windows.net/awsvboticketscom/_images/events/@(eventPoster)" />
+		</div>
+		<div id="HeaderText" class="HeaderText">
+			<div id="Title" class="EventName">@Model.EventDate.EventDateName</div>
+			<div id="Venue" class="VenueName"><i class="fa-regular fa-house-tree"></i> @Model.Venue.VenueName - <span class="VenueAddress">@Model.Venue.VenueCity, @Model.Venue.VenueState</span></div>
+			<div id="TimeDate" class="EventDateInfo">
+				<i class="fa-regular fa-clock"></i> @Model.EventDate.EventDate.ToString("dddd, MMM dd, yyyy @ h:mm tt")
+			</div>
+		</div>
+		<div id="HeaderClose" class="HeaderClose" aria-label="Close" onclick="CloseSeatMap();">
+			<i class="fa-light fa-times"></i>
+		</div>
+	</div>
+
+	<!-- MAIN -->
+	<div class="SeatmapMain">
+		<div id="SeatMapContainer" class="SeatmapContainer">
+			<div id="PixiContainer" class="PixiContainer"
+			     data-seatmap="@($"{GlobalConfig.ImgPath}/_images/seatmaps/svgmap_{mapID}.html")"
+			     data-websocket-group-name="@($"{orgID}-{eventID}-{eventDateID}")"
+			     data-order-id="@orderID">
+			</div>
+			<div id="UIOverlay" class="UIOverlay">
+				<div class="uk-grid-small uk-child-width-1-1" uk-grid>
+					<button id="reset-view" class="IconButton IconButtonReset" aria-label="Reset View"><i class="fa-light fa-sync-alt"></i></button>
+					<button id="zoom-in" class="IconButton IconButtonZoomIn" aria-label="Zoom In"><i class="fa-light fa-plus"></i></button>
+					<button id="zoom-out" class="IconButton IconButtonZoomOut" aria-label="Zoom Out"><i class="fa-light fa-minus"></i></button>
+				</div>
+			</div>
+			<div id="SeatMapIndex" class="SeatMapIndex">
+				<div class="SeatMapIndexHeader"><i class="fa-regular fa-circle-info"></i> &nbsp;Seat Map Index</div>
+				<div id="IndexContainer" class="IndexContainer show">
+					<div class="IndexItem">
+						<div id="SeatMapColorUnavailable" class="IndexColor" style="background-color: #727272; border: 2px solid #444444;"></div>
+						<div class="IndexName">Unavailable</div>
+					</div>
+					<div class="IndexItem">
+						<div id="SeatMapColorSold" class="IndexColor" style="background-color: @Model.SeatMapColorSold; border: 2px solid #444444;"></div>
+						<div class="IndexName">Sold</div>
+					</div>
+					<div class="IndexItem Wheelchair">
+						<div id="SeatMapColorHC" class="IndexColor" style="background-color: @Model.SeatMapColorHC; border: 2px solid #444444;"></div>
+						<div class="IndexName">ADA</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- SIDE BAR -->
+		<div id="SeatMapSidebar" class="SeatmapSidebar">
+			<div class="MobilePanelHeader">
+				<div class="MobilePanelDragHandle"></div>
+				<div class="MobilePanelTitle">@Translation.Global.txtSeatOptions</div>
+				<div class="MobilePanelClose">
+					<i class="fal fa-times"></i>
+				</div>
+			</div>
+			<div class="MultiSliderWrapper">
+				<div class="SliderContainer">
+					<span class="SliderMinValue MinValue">0</span>
+					<div class="SliderTrack">
+						<div class="SliderHandle" data-value="0" data-type="min" data-position="0"></div>
+						<div class="SliderHandle" data-value="100" data-type="max" data-position="100"></div>
+					</div>
+					<span class="SliderMaxValue MaxValue">100</span>
+				</div>
+			</div>
+
+			<!-- LIST TICKETS -->
+			<div class="SeatListSection">
+				<div class="SortTabsWrapper">
+					<button class="SortTab Button ButtonSubmit active" data-sort="lowest">@Translation.Global.txtLowest</button>
+					<button class="SortTab Button ButtonSubmit" data-sort="best">@Translation.Global.txtBest</button>
+					<button class="SortTab Button ButtonSubmit" data-sort="cart" data-count="0">@Translation.Global.txtCart</button>
+				</div>
+				<div class="SeatListContainer ScrollBarThin" id="SeatListContainer">
+					<!-- Seat items will be populated by JavaScript -->
+				</div>
+			</div>
+
+			<!-- FOOTER -->
+			<div class="SidebarFooter">
+				<button type="button" id="SidebarFootContinueButton" class="ButtonSubmitAlt">@Translation.Global.txtContinue.ToUpper()</button>
+			</div>
+		</div>
+
+		<!-- Mobile Sidebar Toggle Button -->
+		<button id="MobileSidebarToggle" class="MobileSidebarToggle">
+			<i class="fa-light fa-list"></i>
+		</button>
+		<!-- NEW split button (hidden by default; shown on mobile when cart > 0) -->
+		<div id="MobileSplitButton" class="MobileSplitButton" role="group" aria-label="Mobile actions">
+			<button id="MobileContinuePart" class="SplitContinue" aria-label="Continue checkout">
+				@Translation.Global.txtContinue.ToUpper()
+			</button>
+			<button id="MobileExpandPart" class="SplitExpand" aria-label="Open seat options">
+				<i class="fa-light fa-chevron-up"></i>
+			</button>
+		</div>
+	</div>
+</div>
+
+<script>
+	if (typeof seatData == 'undefined') {
+		var sessionID = @Html.Raw(JsonConvert.SerializeObject(sessionID));
+		var seatData = @Html.Raw(JsonConvert.SerializeObject(Model.Seats));
+		var priceGroups = @Html.Raw(JsonConvert.SerializeObject(Model.PriceGroups));
+		var sections = @Html.Raw(Json.Encode(Model.Sections));
+		var seatMapShape = @Html.Raw(Json.Encode(Model.SeatMapShape));
+		var seatMapColorSold = @Html.Raw(Json.Encode(Model.SeatMapColorSold));
+		var outline = @Html.Raw(Json.Encode(Model.Outline));
+		var salesMethod = @Html.Raw(Json.Encode(Model.SalesMethod));
+		var orderID = @Html.Raw(Json.Encode(Model.OrderID));
+		var currencySymbol = @Html.Raw(Json.Encode(Model.CurrencySymbol));
+		var eventDateID = @Html.Raw(Json.Encode(Model.EventDateID));
+		var uniqueEventDateID = @Html.Raw(Json.Encode(Model.UniqueEventDateID));
+	} else {
+		sessionID = @Html.Raw(JsonConvert.SerializeObject(sessionID));
+		seatData = @Html.Raw(JsonConvert.SerializeObject(Model.Seats));
+		priceGroup = @Html.Raw(JsonConvert.SerializeObject(Model.PriceGroups));
+		sections = @Html.Raw(Json.Encode(Model.Sections));
+		seatMapShape = @Html.Raw(Json.Encode(Model.SeatMapShape));
+		seatMapColorSold = @Html.Raw(Json.Encode(Model.SeatMapColorSold));
+		outline = @Html.Raw(Json.Encode(Model.Outline));
+		salesMethod = @Html.Raw(Json.Encode(Model.SalesMethod));
+		orderID = @Html.Raw(Json.Encode(Model.OrderID));
+		currencySymbol = @Html.Raw(Json.Encode(Model.CurrencySymbol));
+		eventDateID = @Html.Raw(Json.Encode(Model.EventDateID));
+		uniqueEventDateID = @Html.Raw(Json.Encode(Model.UniqueEventDateID));
+	}
+</script>
