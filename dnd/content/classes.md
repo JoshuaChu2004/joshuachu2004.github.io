@@ -1,3 +1,8 @@
+---
+layout: bare
+title: D&D Classes
+permalink: /dnd/content/classes
+---
 # Classes
 
 Here you'll find all the custom classes and subclasses for D&D 5e.

@@ -1,3 +1,8 @@
+---
+layout: bare
+title: D&D Reworks
+permalink: /dnd/content/Reworks
+---
 # Reworks
 
 Modifications and improvements to existing D&D 5e content.

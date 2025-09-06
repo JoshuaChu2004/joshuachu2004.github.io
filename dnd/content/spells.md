@@ -1,3 +1,8 @@
+---
+layout: bare
+title: D&D Spells
+permalink: /dnd/content/Spells
+---
 # Spells
 
 Custom spells and magical abilities for D&D 5e.

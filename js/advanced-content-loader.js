@@ -23,6 +23,7 @@ async function loadAdvancedContent(sectionId, contentPath) {
 
 // Simple markdown to HTML converter with semantic div classes
 function markdownToHtml(markdown) {
+    console.log("Markdown: ", markdown);
     return markdown
         // Headers
         .replace(/^### (.*$)/gim, '<div class="subheader">$1</div>')
@@ -51,17 +52,39 @@ function loadAllContent() {
     contentElements.forEach(loadContentFromData);
 }
 
+// Extract content from HTML page (removes head, body tags, etc.)
+function extractContentFromHtml(html) {
+    // Create a temporary DOM element to parse the HTML
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = html;
+    
+    // Find the body content
+    const body = tempDiv.querySelector('body');
+    if (body) {
+        return body.innerHTML;
+    }
+    
+    // If no body tag, return the content as-is
+    return html;
+}
+
 // Load content using data attributes
 async function loadContentFromData(element) {
     const contentPath = element.dataset.content;
+    console.log(contentPath);
     if (!contentPath) return;
     
     try {
         const response = await fetch(contentPath);
-        const markdown = await response.text();
-        console.log(markdown);
-        const html = markdownToHtml(markdown);
-        element.innerHTML = html;
+        const html = await response.text();
+        console.log("Raw HTML:", html);
+        
+        // Extract just the content from the HTML page
+        const content = extractContentFromHtml(html);
+        console.log("Extracted content:", content);
+        
+        // Set the content directly (it's already HTML from Jekyll)
+        element.innerHTML = content;
     } catch (error) {
         console.error(`Error loading content from ${contentPath}:`, error);
     }

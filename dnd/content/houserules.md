@@ -1,3 +1,8 @@
+---
+layout: bare
+title: D&D House Rules
+permalink: /dnd/content/houserules
+---
 # House Rules
 
 Campaign-specific modifications and rulings for D&D 5e.

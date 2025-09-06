@@ -1,3 +1,8 @@
+---
+layout: bare
+title: D&D Items
+permalink: /dnd/content/Items
+---
 # Magic Items
 
 A collection of custom magic items for D&D 5e campaigns.

@@ -1,3 +1,8 @@
+---
+layout: bare
+title: D&D Feats
+permalink: /dnd/content/Feats
+---
 # Feats
 
 Custom character feats and abilities for D&D 5e.

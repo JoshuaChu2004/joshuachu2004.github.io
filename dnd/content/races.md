@@ -1,3 +1,8 @@
+---
+layout: bare
+title: D&D Races
+permalink: /dnd/content/Races
+---
 # Races
 
 Custom player races and racial variants for D&D 5e.

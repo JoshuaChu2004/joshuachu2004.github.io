@@ -28,6 +28,9 @@ collections:
   reworks:
     output: true
     permalink: /dnd/reworks/:name/
+  content:
+    output: true
+    permalink: /dnd/content/:name/
 
 defaults:
   - scope: { type: classes }
@@ -43,4 +46,6 @@ defaults:
   - scope: { type: house-rules }
     values: { layout: dnd }
   - scope: { type: reworks }
+    values: { layout: dnd }
+  - scope: { type: content }
     values: { layout: dnd }

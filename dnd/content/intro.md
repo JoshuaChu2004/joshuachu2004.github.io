@@ -1,3 +1,9 @@
+---
+layout: bare
+title: D&D Homebrew
+permalink: /dnd/content/intro
+---
+
 # D&D Homebrew
 
 Welcome to my collection of D&D 5e homebrew content! Here you'll find custom classes, spells, items, races, and more that I've created for my campaigns.
