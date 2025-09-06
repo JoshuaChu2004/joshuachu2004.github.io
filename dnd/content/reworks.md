@@ -1,7 +1,7 @@
 ---
 layout: bare
 title: D&D Reworks
-permalink: /dnd/content/Reworks
+permalink: /dnd/content/reworks
 ---
 # Reworks
 

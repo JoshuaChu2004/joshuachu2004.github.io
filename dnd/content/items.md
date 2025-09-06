@@ -1,7 +1,7 @@
 ---
 layout: bare
 title: D&D Items
-permalink: /dnd/content/Items
+permalink: /dnd/content/items
 ---
 # Magic Items
 

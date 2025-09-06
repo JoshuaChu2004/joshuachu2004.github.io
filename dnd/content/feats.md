@@ -1,7 +1,7 @@
 ---
 layout: bare
 title: D&D Feats
-permalink: /dnd/content/Feats
+permalink: /dnd/content/feats
 ---
 # Feats
 

@@ -1,7 +1,7 @@
 ---
 layout: bare
 title: D&D Races
-permalink: /dnd/content/Races
+permalink: /dnd/content/races
 ---
 # Races
 

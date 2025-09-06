@@ -1,7 +1,7 @@
 ---
 layout: bare
 title: D&D Spells
-permalink: /dnd/content/Spells
+permalink: /dnd/content/spells
 ---
 # Spells
 
