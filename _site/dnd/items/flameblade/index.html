@@ -14,6 +14,15 @@
     <script src="/js/advanced-content-loader.js"></script>
 </head>
 
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Auto-load content from data attributes
+        loadAllContent();
+        const html = document.querySelector('html');
+        html.innerHTML = convertToDivs(extractContentFromHtml(html.innerHTML));
+    });
+</script>
+
 <body>
     <div id="header-placeholder"></div>
 

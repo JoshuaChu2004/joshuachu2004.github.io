@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Starborne - Joshua Chu D&D Homebrew</title>
+    <meta name="description" content="At the moment of your birth, the stars had aligned in such a way that cosmic energy had reached a maximum. Some of that energy was absorbed into your skin, causing you to sparkle and be able to wield the power of the stars. Depending on the rarity of your specific alignment and the duration it was held for, you could either be one of many Starborne in your generation or the first in thousands of years." />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/dnd/dndstyles.css">
+    <script src="/js/components.js"></script>
+    <script src="/js/advanced-content-loader.js"></script>
+</head>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Auto-load content from data attributes
+        loadAllContent();
+        const html = document.querySelector('html');
+        html.innerHTML = convertToDivs(extractContentFromHtml(html.innerHTML));
+    });
+</script>
+
+<body>
+    <div id="header-placeholder"></div>
+
+    <section class="intro-content">
+        <div class="section-content">
+            <div class="breadcrumb">
+                <a href="/dnd/">D&D Homebrew</a> &gt; 
+                <a href="/dnd/#subclasses">Subclasses</a> &gt; 
+                <span>Starborne</span>
+            </div>
+            
+            <div class="content-header">
+                <h1>Starborne</h1>
+                <p class="content-type">Subclass</p>
+            </div>
+            
+            <div id="markdown-content">
+                <h1 id="starborne">Starborne</h1>
+<p><strong><em>At the moment of your birth, the stars had aligned in such a way that cosmic energy had reached a maximum. Some of that energy was absorbed into your skin, causing you to sparkle and be able to wield the power of the stars. Depending on the rarity of your specific alignment and the duration it was held for, you could either be one of many Starborne in your generation or the first in thousands of years.</em></strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Sorcerer Level</th>
+      <th>Features</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1st</td>
+      <td>Alignment of Stars, Light of the Cosmos</td>
+    </tr>
+    <tr>
+      <td>6th</td>
+      <td>Star Charged, Constellations</td>
+    </tr>
+    <tr>
+      <td>11th</td>
+      <td>Cosmic Omen</td>
+    </tr>
+    <tr>
+      <td>14th</td>
+      <td>Glow of the Universe</td>
+    </tr>
+    <tr>
+      <td>18th</td>
+      <td>Celestial Charge</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="alignment-of-stars">Alignment of Stars</h3>
+<p>At 1st level, at the end of a long rest, you spend the final moments looking out into the night and connecting yourself to the various constellations in the sky, each of which correlates to a different Star Spell and does not contribute to the number of Sorcerer Spells you may learn. The number of constellations you may connect to at 1st level is three. You connect to two more Star Spells at 6th (5), 11th (7), and 17th (9) level.
+Starborne often feel a pull to the star or celestial body that they were born under and they tend to form superstitions about them.</p>
+<div class="break"> </div>
+<p>Many Starborne spells and features will deal cosmic damage. When you gain this feature, choose an astral force that determines your cosmic damage’s type. At 14th level, you may choose a second damage type, allowing you to freely choose between the two which damage type your spells do when you cast them.</p>
+
+<h3 id="star-spells">Star Spells</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Spell Level</th>
+      <th>Spells</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Cantrip</td>
+      <td>Starlight, Cosmic Beam, Pocket</td>
+    </tr>
+    <tr>
+      <td>1st</td>
+      <td>Astral Grasp, Gravity Well, Superposition</td>
+    </tr>
+    <tr>
+      <td>2nd</td>
+      <td>Stardust, Solar Flare</td>
+    </tr>
+    <tr>
+      <td>3rd</td>
+      <td>Light Trick, Mesmerize</td>
+    </tr>
+    <tr>
+      <td>4th</td>
+      <td>Change Gravity, Comet</td>
+    </tr>
+    <tr>
+      <td>5th</td>
+      <td>Shine</td>
+    </tr>
+    <tr>
+      <td>6th</td>
+      <td>Star Walk</td>
+    </tr>
+    <tr>
+      <td>7th</td>
+      <td>Astral Domain</td>
+    </tr>
+    <tr>
+      <td>8th</td>
+      <td>Black Hole</td>
+    </tr>
+    <tr>
+      <td>9th</td>
+      <td>Supernova</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="cosmic-damage-table">Cosmic Damage Table</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>d8</th>
+      <th>Cosmic Damage Type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>Fire</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Cold</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Lightning</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>Necrotic</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>Radiant</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>Acid</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>Psychic</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>Thunder</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="light-of-the-cosmos">Light of the Cosmos</h3>
+<p>Also at 1st level, your body subtly glows with the light of distant stars. While conscious, you emit dim light in a 20-foot radius, are immune to fall damage, and your jump distance is doubled. As an action, you may expend a spell slot to ignite your cosmic radiance for 1 hour, gaining one of the following benefits depending on the time of day:</p>
+<ul>
+  <li><strong>Day.</strong> Add a d4 to all spell damage rolls.</li>
+  <li><strong>Night.</strong> Add a d4 to all ability checks and saving throws within the next hour.</li>
+</ul>
+
+<h3 id="star-charged">Star Charged</h3>
+<p>At 6th level, you are able to draw additional power from the constellations in the sky, conferring parts of their essence to you and allowing you to empower your spells. As a bonus action, you can spend two sorcery points to become Charged for 1 hour. While Charged, you may cast a Star Spell using its Charged version, spending the Charge.</p>
+
+<h3 id="constellations">Constellations</h3>
+<p>Also at 6th level, the alignment of stars and planets affect your Light of the Cosmos ability. At the end of a long rest, you also roll on the Constellation table, which confers a unique effect.</p>
+
+<h4 id="constellation-table">Constellation Table</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>d6 Constellation</th>
+      <th>Constellation Effect</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1 - The Moon of Ill Omen</td>
+      <td>A faraway, red moon that burns with the malice of bloody history. While Light of the Cosmos is Active, whenever you roll for cosmic damage, you may take 1d6 cosmic damage to add that to the rolled damage.</td>
+    </tr>
+    <tr>
+      <td>2 - Star of Illiat</td>
+      <td>The brightest star in the northern area, a symbol of hope and bravery. While Light of the Cosmos is active, you can cast the Resistance spell as a reaction to a creature within 20 ft. making a Saving Throw.</td>
+    </tr>
+    <tr>
+      <td>3 - Przepis’ Belt</td>
+      <td>Dual lines of stars, bringing fortuitous omens to people around the world. Once while Light of the Cosmos is active, you may add a d6 to an ability check, attack roll, or saving throw. You regain this after a short rest.</td>
+    </tr>
+    <tr>
+      <td>4 - Ymir’s Heart</td>
+      <td>The first of the giants, immortalized in the night sky, known for his resilience to all adversity. While Light of the Cosmos is active, at the start of every round, you gain Temporary Hit Points equal to your Charisma modifier.</td>
+    </tr>
+    <tr>
+      <td>5 - Hammer of Valdez</td>
+      <td>A pattern of stars in the shape of a hammer, said to represent the skill and expertise of the masters that came before. Choose a skill or a tool. While Light of the Cosmos is active, you gain proficiency in that skill or tool.</td>
+    </tr>
+    <tr>
+      <td>6 - The Gleaming Band</td>
+      <td>A long, curved band of bright blue stars, associated with the birth of the universe. While Light of the Cosmos is active, you gain a flying speed equal to your walking speed.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="cosmic-omen">Cosmic Omen</h3>
+<p>At 11th level, you have begun to divine the future by looking into the stars. You now know the following Divination spells: Augury, Clairvoyance, and Divination.</p>
+
+<h3 id="glow-of-the-universe">Glow of the Universe</h3>
+<p>At 14th level, your natural connection to the stars becomes nearly perfect, improving your Light of the Cosmos feature. While Light of the Cosmos is active, you now gain one of the following benefits depending on the time of day:</p>
+<ul>
+  <li><strong>Day.</strong> When you cast a spell that deals Cosmic damage, you may add your Charisma modifier to the damage roll.</li>
+  <li><strong>Night.</strong> Once per turn when you cast a Star Spell, you may reduce the cost of Metamagic options applied to the spell by one.</li>
+</ul>
+
+<h3 id="celestial-charge">Celestial Charge</h3>
+<p>At 18th level, you become a natural fount of cosmic energy after resting. At the end of each long rest, you become Charged until the end of your next long rest.</p>
+
+            </div>
+            
+            <div class="back-to-top">
+                <a href="/dnd/#subclasses">← Back to Subclasses</a>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
+
+
+

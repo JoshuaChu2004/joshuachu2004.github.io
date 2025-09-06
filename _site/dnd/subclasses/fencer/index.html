@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Fencer - Joshua Chu D&D Homebrew</title>
+    <meta name="description" content="Fencers are skilled duelists of the urban streets, full of flair and obsessed with honor. Often found wielding a precise blade and a complimenting sidearm, they can draw the awe of a crowd and strike fear in the hearts of their enemies, often leaving the enemies bleeding thereafter. Rumors tend to circulate renowned Fencers, granting them an air of mystery and charm." />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/dnd/dndstyles.css">
+    <script src="/js/components.js"></script>
+    <script src="/js/advanced-content-loader.js"></script>
+</head>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Auto-load content from data attributes
+        loadAllContent();
+        const html = document.querySelector('html');
+        html.innerHTML = convertToDivs(extractContentFromHtml(html.innerHTML));
+    });
+</script>
+
+<body>
+    <div id="header-placeholder"></div>
+
+    <section class="intro-content">
+        <div class="section-content">
+            <div class="breadcrumb">
+                <a href="/dnd/">D&D Homebrew</a> &gt; 
+                <a href="/dnd/#subclasses">Subclasses</a> &gt; 
+                <span>Fencer</span>
+            </div>
+            
+            <div class="content-header">
+                <h1>Fencer</h1>
+                <p class="content-type">Subclass</p>
+            </div>
+            
+            <div id="markdown-content">
+                <h1 id="fencer">Fencer</h1>
+<p><strong><em>Fencers are skilled duelists of the urban streets, full of flair and obsessed with honor. Often found wielding a precise blade and a complimenting sidearm, they can draw the awe of a crowd and strike fear in the hearts of their enemies, often leaving the enemies bleeding thereafter. Rumors tend to circulate renowned Fencers, granting them an air of mystery and charm.</em></strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Fighter Level</th>
+      <th>Features</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>3rd</td>
+      <td>Flair, Articulate</td>
+    </tr>
+    <tr>
+      <td>7th</td>
+      <td>Flourish</td>
+    </tr>
+    <tr>
+      <td>10th</td>
+      <td>Renown</td>
+    </tr>
+    <tr>
+      <td>15th</td>
+      <td>Constant Guard</td>
+    </tr>
+    <tr>
+      <td>18th</td>
+      <td>Coup de Grâce</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="flair">Flair</h3>
+<p>At 3rd level, your time duelling within the streets has taught you that you can utilize your performative skills to trick your opponents while wooing the crowd at the same time.</p>
+
+<div class="break"> </div>
+
+<p><strong>Flairs.</strong> You learn three Flairs of your choice. Many Flairs enhance an attack in some way. You can use only one Flair per attack. You learn two additional Flairs of your choice at 7th, 10th, and 15th level. Each time you learn new Flairs , you can also replace one Flair you know with a different one.</p>
+
+<div class="break"> </div>
+
+<p><strong>Flair Point.</strong> You have four Flair Points. You regain all of your expended Flair Points when you finish a short or long rest. You gain another Flair Points at 7th level and one more at 11th level.</p>
+
+<div class="break"> </div>
+
+<p><strong>Saving Throws.</strong> Some of your Flairs require your target to make a saving throw to resist the Flair’s effects. The saving throw DC is calculated as follows:</p>
+
+<div class="break"> </div>
+
+<p><strong>Flair save DC</strong> = 8 + your proficiency bonus + your Charisma modifier.</p>
+
+<h3 id="articulate">Articulate</h3>
+<p>Also at 3rd level, your eloquence and charm gives you proficiency in Persuasion, Deception, or Intimidation.</p>
+
+<h3 id="flourish">Flourish</h3>
+<p>At 7th level, you may perform a flashy flick of your weapon to regain Flair. After succeeding a melee weapon attack, you may use your bonus action to regain a Flair point.</p>
+
+<h3 id="renown">Renown</h3>
+<p>At 10th level, you have been adventuring long enough to build an air of renown around you. Choose one of the following titles to bear:</p>
+<ul>
+  <li><strong>The Honorable:</strong> You learn the cantrip Friends, along with the spells Compelled Duel and Calm Emotions. These spells use your Charisma as the spellcasting ability, but their DC is your Flair DC. The spells can be cast once without using a spell slot per short rest.</li>
+  <li><strong>The Precise:</strong> You learn the cantrip True Strike, along with the spells Hunter’s Mark and Blindness/Deafness. These spells use your Charisma as the spellcasting ability, but their DC is your Flair DC. These spells can be cast once without using a spell slot per short rest.</li>
+  <li><strong>The Eloquent:</strong> You learn the cantrip Vicious Mockery, along with the spells Charm Person and Suggestion. These spells use your Charisma as the spellcasting ability, but their DC is your Flair DC. The spells can be cast once without using a spell slot per short rest.</li>
+</ul>
+
+<h3 id="constant-guard">Constant Guard</h3>
+<p>At 15th level, your swordplay has evolved to always be ready to defend. You can no longer be surprised and you may add your Charisma modifier to your AC as long as you are not wearing heavy armor, using a shield, or wielding a heavy weapon.</p>
+
+<h3 id="coup-de-grâce">Coup de Grâce</h3>
+<p>At 18th level, you have become a master of the blade and know exactly where to strike to defeat your enemies. Once per short rest upon succeeding an attack, you may spend a Flair point to turn the attack into a Critical Hit. This does not affect creatures that are immune to critical hits.</p>
+
+            </div>
+            
+            <div class="back-to-top">
+                <a href="/dnd/#subclasses">← Back to Subclasses</a>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
+
+
+

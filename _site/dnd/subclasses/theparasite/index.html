@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>The Parasite - Joshua Chu D&D Homebrew</title>
+    <meta name="description" content="Your patron is a cosmic parasite, draining the vitality out of whole peoples and worlds. Upon forging a pact with such a patron, you become host to one of its nascent offspring. As you grow in power, the boundary between your identity and the parasitic larva within you blurs." />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/dnd/dndstyles.css">
+    <script src="/js/components.js"></script>
+    <script src="/js/advanced-content-loader.js"></script>
+</head>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Auto-load content from data attributes
+        loadAllContent();
+        const html = document.querySelector('html');
+        html.innerHTML = convertToDivs(extractContentFromHtml(html.innerHTML));
+    });
+</script>
+
+<body>
+    <div id="header-placeholder"></div>
+
+    <section class="intro-content">
+        <div class="section-content">
+            <div class="breadcrumb">
+                <a href="/dnd/">D&D Homebrew</a> &gt; 
+                <a href="/dnd/#subclasses">Subclasses</a> &gt; 
+                <span>The Parasite</span>
+            </div>
+            
+            <div class="content-header">
+                <h1>The Parasite</h1>
+                <p class="content-type">Subclass</p>
+            </div>
+            
+            <div id="markdown-content">
+                <h1 id="the-parasite">The Parasite</h1>
+<p><strong><em>Your patron is a cosmic parasite, draining the vitality out of whole peoples and worlds. Upon forging a pact with such a patron, you become host to one of its nascent offspring. As you grow in power, the boundary between your identity and the parasitic larva within you blurs.</em></strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Warlock Level</th>
+      <th>Features</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1st</td>
+      <td>Arcane Siphon, Physical Specimen</td>
+    </tr>
+    <tr>
+      <td>6th</td>
+      <td>Symbiotic Sentinel</td>
+    </tr>
+    <tr>
+      <td>10th</td>
+      <td>Spawn Pawn</td>
+    </tr>
+    <tr>
+      <td>14th</td>
+      <td>Parasitic Surge</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="expanded-spell-list">Expanded Spell List</h3>
+<p>The Parasite lets you choose from an expanded list of spells when you learn a warlock spell. The following spells are added to the warlock spell list for you.</p>
+
+<h4 id="parasite-spells-table">Parasite Spells Table</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Warlock Level</th>
+      <th>Spells</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1st</td>
+      <td>Charm Person, Command</td>
+    </tr>
+    <tr>
+      <td>3rd</td>
+      <td>Borrowed Knowledge, Detect Thoughts</td>
+    </tr>
+    <tr>
+      <td>5th</td>
+      <td>Dispel Magic, Sending</td>
+    </tr>
+    <tr>
+      <td>7th</td>
+      <td>Compulsion, Raulothim’s Psychic Lance</td>
+    </tr>
+    <tr>
+      <td>9th</td>
+      <td>Dominate Person, Modify Memory</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="arcane-siphon">Arcane Siphon</h3>
+<p>Your patron has taught you to siphon magic from your enemies and make it your own. When a creature you can see within 60 ft. casts a spell of a level equal or lower to your pact spell slots or uses a magical feature, you may use your reaction to force them to make a Charisma saving throw. On a failure, you siphon and copy their magic. While siphoned, you may cast the spell once without spending a pact spell slot, treating it as a warlock spell. If it was a magical feature, you may use it once as an action, using your Warlock spell save DC and your Charisma modifier.</p>
+<div class="break"> </div>
+<p>You can only siphon one spell or feature at once. If you use this feature while already siphoned, you lose the knowledge of the previous ability. You can use this feature a number of times equal to your proficiency bonus per long rest. An ability is no longer siphoned if you go unconscious or die.</p>
+
+<h3 id="physical-specimen">Physical Specimen</h3>
+<p>Starting at 1st level, your patron has enhanced your physical form to improve your utility as a host and pawn. When you finish a long rest, choose up to two of the following benefits. You gain these benefits until your next long rest.</p>
+<ul>
+  <li><strong>Parasitic Fortitude.</strong> You gain temporary hit points equal to your Warlock level until the end of your next long rest.</li>
+  <li><strong>Darkvision.</strong> You gain darkvision out to a distance of 60 feet. If you already have darkvision, its range increases by 30 feet.</li>
+  <li><strong>Swift Feet.</strong> Your movement speed is increased by 5 ft.</li>
+  <li><strong>Empowered Constitution.</strong> You have advantage on saving throws against disease and poison.</li>
+  <li><strong>Unnatural Athleticism.</strong> Your jump distances are tripled and you gain a climb speed equal to your walking speed. When you make a Strength (Athletics) or Dexterity (Acrobatics) ability check you can use your reaction to add a bonus to the roll. This bonus is equal to your Charisma modifier.</li>
+</ul>
+<div class="break"> </div>
+<p>You may choose an additional benefit at the end of a long rest at 10th level.</p>
+
+<h3 id="symbiotic-sentinel">Symbiotic Sentinel</h3>
+<p>Starting at 6th level, your patron remains alert to threats to its host and a chosen ally at all times. You cannot be surprised and you gain advantage on Wisdom saving throws. You are also able to extend this protection to a willing creature you can touch as an action. While you and your chosen ally is within 1 mile with each other, you can communicate telepathically and are always aware of the other’s location. If you use this action again, the previous creature loses the protection.</p>
+
+<h3 id="spawn-pawn">Spawn Pawn</h3>
+<p>At 10th level, you learn the dominate person spell. It counts as a warlock spell for you, but it doesn’t count against the number of spells you know. You can also cast it once without a spell slot, and you regain the ability to do so when you finish a long rest.</p>
+<div class="break"> </div>
+<p>When you cast this spell, your patron enhances the magic, dealing psychic damage equal to your warlock level if the creature succeeds on a saving throw to end the spell. In addition, damage can’t break your concentration on this spell.</p>
+
+<h3 id="parasitic-surge">Parasitic Surge</h3>
+<p>Starting when you reach 14th level, you patron does everything in its power to keep you alive. When you are brought below half your hit points, you are given a choice by your patron to sacrifice something for a powerful boon. As a bonus action on a subsequent turn, choose one of the following sacrifices:</p>
+<ul>
+  <li>Your maximum hit points is reduced by 2d8 + 5.</li>
+  <li>A random ability score is reduced by 1.</li>
+  <li>You become blinded.</li>
+  <li>Your AC is reduced by 5.</li>
+  <li>You have disadvantage on Strength and Dexterity ability checks.</li>
+</ul>
+
+<p>After you make a sacrifice, you gain a surge of power, causing you to instantly gain two warlock spell slots, 20 temporary hit points, advantage on all saving throws spells for 1 minute, and you regain 1d8 hit points whenever you cast a warlock spell or cantrip for 1 minute. When this effect ends, you gain two levels of exhaustion as the magic leaves your body damaged and drained. A sacrifice may only be reversed by the Greater Restoration spell.</p>
+<div class="break"> </div>
+<p>Once you use this feature, you can not use it again until you finish a long rest.</p>
+
+            </div>
+            
+            <div class="back-to-top">
+                <a href="/dnd/#subclasses">← Back to Subclasses</a>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
+
+
+

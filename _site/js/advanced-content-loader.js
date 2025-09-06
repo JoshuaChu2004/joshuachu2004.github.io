@@ -2,6 +2,7 @@
 // First, include this in your HTML: <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
 async function loadAdvancedContent(sectionId, contentPath) {
+    //debugger;
     try {
         const response = await fetch(contentPath);
         const markdown = await response.text();
@@ -22,7 +23,10 @@ async function loadAdvancedContent(sectionId, contentPath) {
 }
 
 function convertToDivs(markdown) {
+    //debugger;
+    console.log("Markdown: ", markdown);
         return markdown
+        .replace(/<h4([^>]*)>(.*?)<\/h4>/gim, '<div class="subsubheader"$1>$2</div>')
         .replace(/<h3([^>]*)>(.*?)<\/h3>/gim, '<div class="subheader"$1>$2</div>')
         .replace(/<h2([^>]*)>(.*?)<\/h2>/gim, '<div class="header"$1>$2</div>')
         .replace(/<h1([^>]*)>(.*?)<\/h1>/gim, '<div class="title"$1>$2</div>')
@@ -37,9 +41,21 @@ function convertToDivs(markdown) {
         .replace(/<p>(.*?)<\/p>/gim, '<div class="paragraph">$1</div>')
         // Clean up empty paragraphs
         .replace(/<div class="paragraph"><\/div>/gim, '')
-        // Clean up consecutive <br> tags
+         // Clean up consecutive <br> tags
         .replace(/<br><br>/gim, '<br>')
         .replace(/<div class="paragraph"><br><\/div>/g, '')
+        // Remove standalone <br> tags that are causing issues
+        .replace(/<div class="paragraph"><br><\/div>/gim, '')
+        .replace(/<br>/gim, '')
+         
+         // Tables
+         .replace(/<table([^>]*)>/gim, '<div class="table-wrapper"><table$1>')
+         .replace(/<\/table>/gim, '</table></div>')
+         .replace(/<thead([^>]*)>/gim, '<thead$1>')
+         .replace(/<tbody([^>]*)>/gim, '<tbody$1>')
+         .replace(/<tr([^>]*)>/gim, '<tr$1>')
+         .replace(/<th([^>]*)>(.*?)<\/th>/gim, '<th$1>$2</th>')
+         .replace(/<td([^>]*)>(.*?)<\/td>/gim, '<td$1>$2</td>')
 }
 // Simple markdown to HTML converter with semantic div classes
 function markdownToHtml(markdown) {
@@ -107,6 +123,9 @@ async function loadContentFromData(element) {
         
         // Set the content directly (it's already HTML from Jekyll)
         element.innerHTML = content;
+        element.querySelectorAll('.fa-star').forEach(icon => {
+            icon.title = 'Playtested Material';
+        });
     } catch (error) {
         console.error(`Error loading content from ${contentPath}:`, error);
     }

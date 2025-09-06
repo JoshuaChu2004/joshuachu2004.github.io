@@ -10,6 +10,9 @@ collections:
   classes:
     output: true
     permalink: /dnd/classes/:name/
+  subclasses:
+    output: true
+    permalink: /dnd/subclasses/:name/
   items:
     output: true
     permalink: /dnd/items/:name/
@@ -34,6 +37,8 @@ collections:
 
 defaults:
   - scope: { type: classes }
+    values: { layout: dnd }
+  - scope: { type: subclasses }
     values: { layout: dnd }
   - scope: { type: items }
     values: { layout: dnd }

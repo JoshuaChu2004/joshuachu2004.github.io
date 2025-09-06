@@ -19,7 +19,7 @@ Welcome to my collection of D&D 5e homebrew content! Here you'll find custom cla
 
 ## Browse Carefully!
 
-Finished material will be denoted with a <i class="fa-solid fa-star"></i> symbol, signifying that it has gone through multiple iterations and has been playtested to a degree that I feel comfortable saying it is publishable material. If it doesn't have a :star:, it is either a work in progress or has not been playtested enough to be considered finished.
+Finished material will be denoted with a <i class="fa-solid fa-star"></i> symbol, signifying that it has gone through multiple iterations and has been playtested to a degree that I feel comfortable saying it is publishable material. If it doesn't have a <i class="fa-solid fa-star"></i>, it is either a work in progress or has not been playtested enough to be considered finished.
 
 Despite this, everything here is still homebrew material. It is not endorsed by Wizards of the Coast, nor should you use it in any D&D setting without first getting the approval of the DM and the table.
 <br> <br>

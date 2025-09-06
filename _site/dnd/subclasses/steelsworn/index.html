@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Steelsworn - Joshua Chu D&D Homebrew</title>
+    <meta name="description" content="They say that a weapon is as much a person as the one who wields it, that it feels, thinks, and has a personality. Many form a special relationship with their weapon, but they still see it as merely a tool to deal death. A select few wield their weapon knowing that it has a soul and must be treated as such. These Steelsworn Fighters often manifest their bonds with weapons through deep emotional connections or earn their respect in a trial of combat. Through this bond, their weapon grants them arcane abilities that make them a terrifying force on the battlefield." />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/dnd/dndstyles.css">
+    <script src="/js/components.js"></script>
+    <script src="/js/advanced-content-loader.js"></script>
+</head>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Auto-load content from data attributes
+        loadAllContent();
+        const html = document.querySelector('html');
+        html.innerHTML = convertToDivs(extractContentFromHtml(html.innerHTML));
+    });
+</script>
+
+<body>
+    <div id="header-placeholder"></div>
+
+    <section class="intro-content">
+        <div class="section-content">
+            <div class="breadcrumb">
+                <a href="/dnd/">D&D Homebrew</a> &gt; 
+                <a href="/dnd/#subclasses">Subclasses</a> &gt; 
+                <span>Steelsworn</span>
+            </div>
+            
+            <div class="content-header">
+                <h1>Steelsworn</h1>
+                <p class="content-type">Subclass</p>
+            </div>
+            
+            <div id="markdown-content">
+                <h1 id="steelsworn">Steelsworn</h1>
+<p><strong><em>They say that a weapon is as much a person as the one who wields it, that it feels, thinks, and has a personality. Many form a special relationship with their weapon, but they still see it as merely a tool to deal death. A select few wield their weapon knowing that it has a soul and must be treated as such. These Steelsworn Fighters often manifest their bonds with weapons through deep emotional connections or earn their respect in a trial of combat. Through this bond, their weapon grants them arcane abilities that make them a terrifying force on the battlefield.</em></strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Fighter Level</th>
+      <th>Features</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>3rd</td>
+      <td>Bonded Weapon, Enhancements, Minor Arcana</td>
+    </tr>
+    <tr>
+      <td>7th</td>
+      <td>Hastened Arcana</td>
+    </tr>
+    <tr>
+      <td>10th</td>
+      <td>Enhancements</td>
+    </tr>
+    <tr>
+      <td>11th</td>
+      <td>Sunder Will</td>
+    </tr>
+    <tr>
+      <td>15th</td>
+      <td>Weapon of Alert</td>
+    </tr>
+    <tr>
+      <td>18th</td>
+      <td>Perfect Bond</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="bonded-weapon">Bonded Weapon</h3>
+<p>At 3rd level, you learn a ritual that creates a magical bond between yourself and one weapon. You perform the ritual over the course of 1 hour, which can be done during a short rest. The weapon must be within your reach throughout the ritual, at the conclusion of which you touch the weapon and forge the bond. A bonded weapon forms a nascent sentience that grows as you get stronger.</p>
+<div class="break"> </div>
+<p>Once you have bonded a weapon to yourself, you can’t be disarmed of that weapon unless you are incapacitated. If it is on the same plane of existence, you can summon that weapon as a bonus action on your turn, causing it to teleport instantly to your hand. Your bonded weapon must be on your person in order to use the abilities gained from this subclass.</p>
+
+<h3 id="enhancements">Enhancements</h3>
+<p>At 3rd level, the bond between you and your weapon grants magically influences your abilities.</p>
+<div class="break"> </div>
+<p><strong>Enhancements.</strong> You learn three Enhancements of your choice. Many Enhancements improve an attack in some way, though you must be holding your Bonded Weapon to use them. You can use only one Enhancement per attack. You learn two additional Enhancements of your choice at 7th, 10th, and 15th level. Each time you gain a level in this class , you can also replace one Enhancement you know with a different one.</p>
+
+<p><strong>Bond Point.</strong> You have four Bond Points which are used to fuel your Enhancements. You regain all of your expended Bond Points when you finish a short or long rest. You gain another Bond Points at 7th level and one more at 11th level.</p>
+
+<p><strong>Saving Throws.</strong> Some of your Enhancements require your target to make a saving throw to resist the Enhancement’s effects. The saving throw DC is calculated as follows:</p>
+
+<p><strong>Enhancement save DC</strong> = 8 + your proficiency bonus + your Intelligence modifier.</p>
+
+<h3 id="minor-arcana">Minor Arcana</h3>
+<p>Also at 3rd level, you gain two cantrips from the wizard spell list. You use Intelligence as your spell casting modifier for these spells. You must be holding your Bonded Weapon to cast these cantrips.</p>
+<div class="break"> </div>
+
+<p>You learn an additional cantrip at 7th and 15th level.</p>
+
+<h3 id="hastened-magic">Hastened Magic</h3>
+<p>At 7th level, when you use an Enhancement on your turn, you may cast a cantrip in place of a weapon attack.</p>
+
+<h3 id="sunder-will">Sunder Will</h3>
+<p>At 10th level, your weapon now psychically affects creatures that are struck by it. When you succeed an attack against a creature using your Bonded Weapon, they have disadvantage on their next saving throw against your spells or Enhancements. This may only be used once per round.</p>
+
+<h3 id="weapon-of-alert">Weapon of Alert</h3>
+<p>At 15th level, your weapon stands at the ready, even if you are not. If you are surprised or become unconscious, your bonded weapon immediately rolls its own initiative and acts on its turn until you pick it up again as a bonus action.</p>
+<div class="break"> </div>
+
+<p>While acting on its own, the weapon uses your game statistics and can take one of the following actions on its turn: Attack (two weapon attacks), Dash, Help, or Shove. When it uses the Help action, it can rouse you from unconsciousness if you are asleep. The weapon can move up to 30 ft. on its turn, but it can not enter a space that is farther than 30 ft. away from you. If the weapon is ever more than 30 ft. away, it falls to the ground and becomes inert.</p>
+<div class="break"> </div>
+
+<p>The weapon can use your Enhancements, but it does not benefit from or use any of your other class features while acting on its own.</p>
+
+<h3 id="perfect-bond">Perfect Bond</h3>
+<p>At 18th level, you can fully connect your mind to the budding sentience of your weapon as an action. For 1 minute, when you roll a weapon attack using your Bonded Weapon, you treat any roll that is 8 or below as a 9. This feature can only be used once per long rest.</p>
+
+            </div>
+            
+            <div class="back-to-top">
+                <a href="/dnd/#subclasses">← Back to Subclasses</a>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
+
+
+
