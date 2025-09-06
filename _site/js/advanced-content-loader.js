@@ -21,10 +21,31 @@ async function loadAdvancedContent(sectionId, contentPath) {
     }
 }
 
+function convertToDivs(markdown) {
+        return markdown
+        .replace(/<h3([^>]*)>(.*?)<\/h3>/gim, '<div class="subheader"$1>$2</div>')
+        .replace(/<h2([^>]*)>(.*?)<\/h2>/gim, '<div class="header"$1>$2</div>')
+        .replace(/<h1([^>]*)>(.*?)<\/h1>/gim, '<div class="title"$1>$2</div>')
+
+        // Bold
+        .replace(/<strong>(.*?)<\/strong>/gim, '<span class="bold">$1</span>')
+        // Italic
+        .replace(/<em>(.*?)<\/em>/gim, '<span class="italic">$1</span>')
+        // Links
+        .replace(/<a href="([^"]+)">([^<]+)<\/a>/gim, '<a href="$1" class="link">$2</a>')
+        // Wrap in paragraphs
+        .replace(/<p>(.*?)<\/p>/gim, '<div class="paragraph">$1</div>')
+        // Clean up empty paragraphs
+        .replace(/<div class="paragraph"><\/div>/gim, '')
+        // Clean up consecutive <br> tags
+        .replace(/<br><br>/gim, '<br>')
+        .replace(/<div class="paragraph"><br><\/div>/g, '')
+}
 // Simple markdown to HTML converter with semantic div classes
 function markdownToHtml(markdown) {
     console.log("Markdown: ", markdown);
     return markdown
+    
         // Headers
         .replace(/^### (.*$)/gim, '<div class="subheader">$1</div>')
         .replace(/^## (.*$)/gim, '<div class="header">$1</div>')
@@ -61,6 +82,7 @@ function extractContentFromHtml(html) {
     // Find the body content
     const body = tempDiv.querySelector('body');
     if (body) {
+        console.log("Body:", body.innerHTML);
         return body.innerHTML;
     }
     
@@ -80,7 +102,7 @@ async function loadContentFromData(element) {
         console.log("Raw HTML:", html);
         
         // Extract just the content from the HTML page
-        const content = extractContentFromHtml(html);
+        const content = convertToDivs(extractContentFromHtml(html));
         console.log("Extracted content:", content);
         
         // Set the content directly (it's already HTML from Jekyll)

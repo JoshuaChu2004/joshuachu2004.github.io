@@ -326,7 +326,7 @@ section[id] {
     padding: 24px 0;
 }
 
-.intro-content .section-content {
+.section-content {
     width: min(800px, 90vw);
     margin: 0 auto;
     padding: 0 16px;
