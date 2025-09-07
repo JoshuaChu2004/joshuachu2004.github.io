@@ -6,7 +6,6 @@ class: Monk
 description: Monks of the Way of the Force have gained telekinetic abilities and can channel the ki of objects and opponents without touching them. Their abilities grow and expand as they get stronger, as well as morph to fit their personal psyche. They are pacifists, peacekeepers, roamers, and seekers of vengeance.
 finished: false
 ---
-# Way of The Force
 ***Monks of the Way of the Force have gained telekinetic abilities and can channel the ki of objects and opponents without touching them. Their abilities grow and expand as they get stronger, as well as morph to fit their personal psyche. They are pacifists, peacekeepers, roamers, and seekers of vengeance.***
 
 | Monk Level | Features |

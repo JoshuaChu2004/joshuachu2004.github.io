@@ -6,7 +6,6 @@ class: Rogue
 description: Within every society, there are those who disturb the quiet, seek to harm others. Criminals, politicians, religious zealots, injustice is found around every corner. Vigilantes make it their mission to bring down these lowlifes, utilizing their vast array of skills to overcome the odds. Depending on their reputation, their name may be shouted and cheered in the taverns, or spoken only in hushed whispers out of fear.
 finished: false
 ---
-# Vigilante
 ***Within every society, there are those who disturb the quiet, seek to harm others. Criminals, politicians, religious zealots, injustice is found around every corner. Vigilantes make it their mission to bring down these lowlifes, utilizing their vast array of skills to overcome the odds. Depending on their reputation, their name may be shouted and cheered in the taverns, or spoken only in hushed whispers out of fear.***
 
 | Rogue Level | Features |

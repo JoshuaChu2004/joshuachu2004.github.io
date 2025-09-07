@@ -6,7 +6,6 @@ class: Bard
 description: Every good lead needs a supporting act. The comedic relief to the straight man. Bards of the College of Jesters are widely renowned for their ability to bring up those around them. Whether it be setting their mates for a punchline or a knife through the chest. Alone, they may not be quite so fearsome, but amongst their merry band of compatriots, they will bring out the best.
 finished: true
 ---
-# College of Jesters
 ***Every good lead needs a supporting act. The comedic relief to the straight man. Bards of the College of Jesters are widely renowned for their ability to bring up those around them. Whether it be setting their mates for a punchline or a knife through the chest. Alone, they may not be quite so fearsome, but amongst their merry band of compatriots, they will bring out the best.***
 
 | Bard Level | Features |

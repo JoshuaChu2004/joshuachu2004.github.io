@@ -20,6 +20,10 @@
         loadAllContent();
         const html = document.querySelector('html');
         html.innerHTML = convertToDivs(extractContentFromHtml(html.innerHTML));
+        
+        document.querySelectorAll('.fa-star').forEach(icon => {
+            icon.title = 'Playtested Material';
+        });
     });
 </script>
 
@@ -34,14 +38,15 @@
                 <span>School of Inquisimancy</span>
             </div>
             
-            <div class="content-header">
-                <h1>School of Inquisimancy</h1>
-                <p class="content-type">Subclass</p>
+            <div id="content-header" class="content-header">
+                
+                <h1>School of Inquisimancy <i class="fa-solid fa-star"></i></h1>
+                
+                <p class="content-type">Wizard Subclass</p>
             </div>
             
             <div id="markdown-content">
-                <h1 id="school-of-inquisimancy">School of Inquisimancy</h1>
-<p><strong><em>Inquisimancy is a secret school of magic known by only a few select families. Those who know the magic are often close advisors to the king, who interrogate spies or captured soldiers for information about the kingdom’s enemies. A more sinister form of magic is often used in torture, breaking the minds of even the most resilient of targets. There are whispers amongst the common folk about such practices, though most dismiss them as just folk tales meant to dissuade them from rebelling or breaking the law. To Inquisimancers, the mind is a playground to be manipulated and pulled until its secrets pour out. They are often curious people, seeking out mystery and the unknown in an endless pursuit of knowledge.</em></strong></p>
+                <p><strong><em>Inquisimancy is a secret school of magic known by only a few select families. Those who know the magic are often close advisors to the king, who interrogate spies or captured soldiers for information about the kingdom’s enemies. A more sinister form of magic is often used in torture, breaking the minds of even the most resilient of targets. There are whispers amongst the common folk about such practices, though most dismiss them as just folk tales meant to dissuade them from rebelling or breaking the law. To Inquisimancers, the mind is a playground to be manipulated and pulled until its secrets pour out. They are often curious people, seeking out mystery and the unknown in an endless pursuit of knowledge.</em></strong></p>
 
 <table>
   <thead>
@@ -144,7 +149,7 @@ You gain an extra use of the Read Emotion feat.</p>
             </div>
             
             <div class="back-to-top">
-                <a href="/dnd/#subclasses">← Back to Subclasses</a>
+                <a href="#content-header">Back to Top</a>
             </div>
         </div>
     </section>

@@ -6,7 +6,6 @@ class: Wizard
 description: Summoning is the art of conjuring creatures and objects to aid you in your endeavors. Wizards of the School of Summoning are often characterized by having many “helpers” around them at all times, even if they are not expecting danger. They are often joked about needing a summon to do everything for them, from eating to walking. However, most do not dare to say it to their faces, lest a flock of hawks descend upon them.
 finished: false
 ---
-# School of Summoning
 ***Summoning is the art of conjuring creatures and objects to aid you in your endeavors. Wizards of the School of Summoning are often characterized by having many “helpers” around them at all times, even if they are not expecting danger. They are often joked about needing a summon to do everything for them, from eating to walking. However, most do not dare to say it to their faces, lest a flock of hawks descend upon them.***
 
 | Wizard Level | Features |

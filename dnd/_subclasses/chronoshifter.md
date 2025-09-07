@@ -6,7 +6,6 @@ class: Sorcerer
 description: Your blood carries a special trait that allows you to subtly adjust the weave of time. Rare as it is dangerous to be able to perform such feats, Chronoshifters must be careful in the use of their magic. Many hide their abilities, relegating them to small, inconsequential adjustments while the ambitious utilize them to change the world.
 finished: true
 ---
-# Chronoshifter
 ***Your blood carries a special trait that allows you to subtly adjust the weave of time. Rare as it is dangerous to be able to perform such feats, Chronoshifters must be careful in the use of their magic. Many hide their abilities, relegating them to small, inconsequential adjustments while the ambitious utilize them to change the world.***
 
 | Sorcerer Level | Features |

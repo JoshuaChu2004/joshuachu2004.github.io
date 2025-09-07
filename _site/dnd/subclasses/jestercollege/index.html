@@ -20,6 +20,10 @@
         loadAllContent();
         const html = document.querySelector('html');
         html.innerHTML = convertToDivs(extractContentFromHtml(html.innerHTML));
+        
+        document.querySelectorAll('.fa-star').forEach(icon => {
+            icon.title = 'Playtested Material';
+        });
     });
 </script>
 
@@ -34,14 +38,15 @@
                 <span>College of Jesters</span>
             </div>
             
-            <div class="content-header">
-                <h1>College of Jesters</h1>
-                <p class="content-type">Subclass</p>
+            <div id="content-header" class="content-header">
+                
+                <h1>College of Jesters <i class="fa-solid fa-star"></i></h1>
+                
+                <p class="content-type">Bard Subclass</p>
             </div>
             
             <div id="markdown-content">
-                <h1 id="college-of-jesters">College of Jesters</h1>
-<p><strong><em>Every good lead needs a supporting act. The comedic relief to the straight man. Bards of the College of Jesters are widely renowned for their ability to bring up those around them. Whether it be setting their mates for a punchline or a knife through the chest. Alone, they may not be quite so fearsome, but amongst their merry band of compatriots, they will bring out the best.</em></strong></p>
+                <p><strong><em>Every good lead needs a supporting act. The comedic relief to the straight man. Bards of the College of Jesters are widely renowned for their ability to bring up those around them. Whether it be setting their mates for a punchline or a knife through the chest. Alone, they may not be quite so fearsome, but amongst their merry band of compatriots, they will bring out the best.</em></strong></p>
 
 <table>
   <thead>
@@ -95,7 +100,7 @@ Once per short rest, if the creature’s reaction triggers an effect described i
             </div>
             
             <div class="back-to-top">
-                <a href="/dnd/#subclasses">← Back to Subclasses</a>
+                <a href="#content-header">Back to Top</a>
             </div>
         </div>
     </section>

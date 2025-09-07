@@ -6,7 +6,6 @@ class: Paladin
 description: The Oath of Protection is for paladins willing to sacrifice the world to save the ones they love. Sometimes called guardians, protectors, or champions, these paladins often travel in smaller groups, as they are wary of any and all strangers. They are often parents, siblings, or spouses who have promised the world to their protected. Unlike most paladins, those under this oath have a flexible moral code so long as it benefits their loved ones. From the outside, these paladins may seem like normal travelers, harmless even, as they lack the traditional paladin garb. Make no mistake, however. Those who prove a danger to their loved ones will soon regret their choices.
 finished: true
 ---
-# Oath of Protection
 ***The Oath of Protection is for paladins willing to sacrifice the world to save the ones they love. Sometimes called guardians, protectors, or champions, these paladins often travel in smaller groups, as they are wary of any and all strangers. They are often parents, siblings, or spouses who have promised the world to their protected. Unlike most paladins, those under this oath have a flexible moral code so long as it benefits their loved ones. From the outside, these paladins may seem like normal travelers, harmless even, as they lack the traditional paladin garb. Make no mistake, however. Those who prove a danger to their loved ones will soon regret their choices.***
 
 | Paladin Level | Features |

@@ -20,6 +20,10 @@
         loadAllContent();
         const html = document.querySelector('html');
         html.innerHTML = convertToDivs(extractContentFromHtml(html.innerHTML));
+        
+        document.querySelectorAll('.fa-star').forEach(icon => {
+            icon.title = 'Playtested Material';
+        });
     });
 </script>
 
@@ -34,14 +38,15 @@
                 <span>School of the Wolf</span>
             </div>
             
-            <div class="content-header">
+            <div id="content-header" class="content-header">
+                
                 <h1>School of the Wolf</h1>
-                <p class="content-type">Subclass</p>
+                
+                <p class="content-type">Witcher Subclass</p>
             </div>
             
             <div id="markdown-content">
-                <h1 id="school-of-the-wolf">School of the Wolf</h1>
-<p><strong><em>Witchers of the School of the Wolf have carved out their reputations as well-balanced, esteemed monster hunters. True generalists, their school’s philosophy lies closest to the original Order of Witchers, which is also reflected in their training as they do not often specialize in one discipline or another. Though their widespread skills often make them versatile and formidable foes.</em></strong></p>
+                <p><strong><em>Witchers of the School of the Wolf have carved out their reputations as well-balanced, esteemed monster hunters. True generalists, their school’s philosophy lies closest to the original Order of Witchers, which is also reflected in their training as they do not often specialize in one discipline or another. Though their widespread skills often make them versatile and formidable foes.</em></strong></p>
 
 <table>
   <tbody>
@@ -91,7 +96,7 @@ Once per round, you gain an Adrenaline point when you drink a potion or apply an
             </div>
             
             <div class="back-to-top">
-                <a href="/dnd/#subclasses">← Back to Subclasses</a>
+                <a href="#content-header">Back to Top</a>
             </div>
         </div>
     </section>

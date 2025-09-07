@@ -20,6 +20,10 @@
         loadAllContent();
         const html = document.querySelector('html');
         html.innerHTML = convertToDivs(extractContentFromHtml(html.innerHTML));
+        
+        document.querySelectorAll('.fa-star').forEach(icon => {
+            icon.title = 'Playtested Material';
+        });
     });
 </script>
 
@@ -34,14 +38,15 @@
                 <span>School of Summoning</span>
             </div>
             
-            <div class="content-header">
+            <div id="content-header" class="content-header">
+                
                 <h1>School of Summoning</h1>
-                <p class="content-type">Subclass</p>
+                
+                <p class="content-type">Wizard Subclass</p>
             </div>
             
             <div id="markdown-content">
-                <h1 id="school-of-summoning">School of Summoning</h1>
-<p><strong><em>Summoning is the art of conjuring creatures and objects to aid you in your endeavors. Wizards of the School of Summoning are often characterized by having many “helpers” around them at all times, even if they are not expecting danger. They are often joked about needing a summon to do everything for them, from eating to walking. However, most do not dare to say it to their faces, lest a flock of hawks descend upon them.</em></strong></p>
+                <p><strong><em>Summoning is the art of conjuring creatures and objects to aid you in your endeavors. Wizards of the School of Summoning are often characterized by having many “helpers” around them at all times, even if they are not expecting danger. They are often joked about needing a summon to do everything for them, from eating to walking. However, most do not dare to say it to their faces, lest a flock of hawks descend upon them.</em></strong></p>
 
 <table>
   <thead>
@@ -102,7 +107,7 @@
             </div>
             
             <div class="back-to-top">
-                <a href="/dnd/#subclasses">← Back to Subclasses</a>
+                <a href="#content-header">Back to Top</a>
             </div>
         </div>
     </section>

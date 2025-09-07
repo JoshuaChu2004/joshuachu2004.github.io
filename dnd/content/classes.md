@@ -2,19 +2,30 @@
 layout: bare
 title: D&D Classes
 permalink: /dnd/content/classes
+barbarian_icon: fas fa-fire-flame-curved fa-8x
+bard_icon: fas fa-guitar fa-8x
+cleric_icon: fas fa-person-praying fa-8x
+druid_icon: fa-solid fa-tree fa-8x
+fighter_icon: fa-solid fa-gavel fa-8x
+monk_icon: fa-solid fa-hand-fist fa-8x
+paladin_icon: fa-solid fa-shield-halved fa-8x
+ranger_icon: fa-solid fa-paw fa-8x
+rogue_icon: fa-solid fa-eye-low-vision fa-8x
+sorcerer_icon: fa-solid fa-hand-sparkles fa-8x
+warlock_icon: fa-solid fa-dragon fa-8x
+wizard_icon: fa-solid fa-wand-sparkles fa-8x
 ---
-# Classes
-
-Here you'll find all the custom classes and subclasses for D&D 5e.
-
 {% for class in site.classes %}
+<div class="section class" markdown="1">
+<div class="class-icon {{ class.icon }}"></div>
+<div class="class-content" markdown="1">
 {% if class.finished %}
 
-## [The {{ class.title }}]( {{ class.url }}) <i class="fa-solid fa-star"></i>
+## [{{ class.title }}]( {{ class.url }}) <i class="fa-solid fa-star"></i>
 
 {% else %}
 
-## [The {{ class.title }}]( {{ class.url }})
+## [{{ class.title }}]( {{ class.url }})
 
 {% endif %}
 ***{{ class.description }}***
@@ -23,7 +34,7 @@ Here you'll find all the custom classes and subclasses for D&D 5e.
 #### Homebrew Subclasses:
 {% assign subclass_count = 0 %}
 {% for subclass in site.subclasses %}
-{% if subclass.class == class.title %}
+{% if subclass.class == class.class %}
 {% assign subclass_count = subclass_count | plus: 1 %}
 
 - [{{ subclass.title }}]({{ subclass.url }})
@@ -32,10 +43,13 @@ Here you'll find all the custom classes and subclasses for D&D 5e.
   {% if subclass_count == 0 %}
   *None Available*
   {% endif %}
-
-<div class="break"></div>
+</div>
+</div>
   {% endfor %}
 
+<div class="section class" markdown="1">
+<div class="class-icon {{ page.barbarian_icon }}"></div>
+<div class="class-content" markdown="1">
 ## The Barbarian
 
 ***For some, their rage springs from a communion with fierce animal spirits. Others draw from a roiling reservoir of anger at a world full of pain. For every barbarian, rage is a power that fuels not just a battle frenzy but also uncanny reflexes, resilience, and feats of strength.***
@@ -56,7 +70,12 @@ Here you'll find all the custom classes and subclasses for D&D 5e.
   {% if barbarian_count == 0 %}
   *None Available*
   {% endif %}
-<div class="break"></div>
+</div>
+</div>
+
+<div class="section class" markdown="1">
+<div class="class-icon {{ page.bard_icon }}"></div>
+<div class="class-content" markdown="1">
 
 ## The Bard
 
@@ -78,7 +97,12 @@ Here you'll find all the custom classes and subclasses for D&D 5e.
   {% if bard_count == 0 %}
   *None Available*
   {% endif %}
-<div class="break"></div>
+</div>
+</div>
+
+<div class="section class" markdown="1">
+<div class="class-icon {{ page.cleric_icon }}"></div>
+<div class="class-content" markdown="1">
 
 ## The Cleric
 
@@ -100,6 +124,12 @@ Here you'll find all the custom classes and subclasses for D&D 5e.
   {% if cleric_count == 0 %}
   *None Available*
   {% endif %}
+</div>
+</div>
+
+<div class="section class" markdown="1">
+<div class="class-icon {{ page.druid_icon }}"></div>
+<div class="class-content" markdown="1">
 
 ## The Druid
 
@@ -121,7 +151,12 @@ Here you'll find all the custom classes and subclasses for D&D 5e.
   {% if druid_count == 0 %}
   *None Available*
   {% endif %}
-<div class="break"></div>
+</div>
+</div>
+
+<div class="section class" markdown="1">
+<div class="class-icon {{ page.fighter_icon }}"></div>
+<div class="class-content" markdown="1">
 
 ## The Fighter
 
@@ -143,7 +178,12 @@ Here you'll find all the custom classes and subclasses for D&D 5e.
   {% if fighter_count == 0 %}
   *None Available*
   {% endif %}
-<div class="break"></div>
+</div>
+</div>
+
+<div class="section class" markdown="1">
+<div class="class-icon {{ page.monk_icon }}"></div>
+<div class="class-content" markdown="1">
 
 ## The Monk
 
@@ -165,7 +205,12 @@ Here you'll find all the custom classes and subclasses for D&D 5e.
   {% if monk_count == 0 %}
   *None Available*
   {% endif %}
-<div class="break"></div>
+</div>
+</div>
+
+<div class="section class" markdown="1">
+<div class="class-icon {{ page.paladin_icon }}"></div>
+<div class="class-content" markdown="1">
 
 ## The Paladin
 
@@ -187,7 +232,12 @@ Here you'll find all the custom classes and subclasses for D&D 5e.
   {% if paladin_count == 0 %}
   *None Available*
   {% endif %}
-<div class="break"></div>
+</div>
+</div>
+
+<div class="section class" markdown="1">
+<div class="class-icon {{ page.ranger_icon }}"></div>
+<div class="class-content" markdown="1">
 
 ## The Ranger
 
@@ -209,7 +259,12 @@ Here you'll find all the custom classes and subclasses for D&D 5e.
   {% if ranger_count == 0 %}
   *None Available*
   {% endif %}
-<div class="break"></div>
+</div>
+</div>
+
+<div class="section class" markdown="1">
+<div class="class-icon {{ page.rogue_icon }}"></div>
+<div class="class-content" markdown="1">
 
 ## The Rogue
 
@@ -231,7 +286,12 @@ Here you'll find all the custom classes and subclasses for D&D 5e.
   {% if rogue_count == 0 %}
   *None Available*
   {% endif %}
-<div class="break"></div>
+</div>
+</div>
+
+<div class="section class" markdown="1">
+<div class="class-icon {{ page.sorcerer_icon }}"></div>
+<div class="class-content" markdown="1">
 
 ## The Sorcerer
 
@@ -253,7 +313,12 @@ Here you'll find all the custom classes and subclasses for D&D 5e.
   {% if sorcerer_count == 0 %}
   *None Available*
   {% endif %}
-<div class="break"></div>
+</div>
+</div>
+
+<div class="section class" markdown="1">
+<div class="class-icon {{ page.warlock_icon }}"></div>
+<div class="class-content" markdown="1">
 
 ## The Warlock
 
@@ -275,7 +340,12 @@ Here you'll find all the custom classes and subclasses for D&D 5e.
   {% if warlock_count == 0 %}
   *None Available*
   {% endif %}
-<div class="break"></div>
+</div> 
+</div>
+
+<div class="section class no-border" markdown="1">
+<div class="class-icon {{ page.wizard_icon }}"></div>
+<div class="class-content" markdown="1">
 
 ## The Wizard
 
@@ -297,4 +367,5 @@ Here you'll find all the custom classes and subclasses for D&D 5e.
   {% if wizard_count == 0 %}
   *None Available*
   {% endif %}
-<div class="break"></div>
+</div>
+</div>

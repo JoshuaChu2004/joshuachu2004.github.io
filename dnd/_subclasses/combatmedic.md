@@ -6,7 +6,6 @@ class: Fighter
 description: Combat Medics are a true sight for sore eyes on the battlefield. When comrades and enemies lie on the ground wounded, the Combat Medics are the ones in war aiming to save lives rather than take them. Wielding bandages, needles, and herbs, they will do their utmost to make sure their allies stay in the fight and more importantly, stay alive.
 finished: false
 ---
-# Combat Medic 
 ***Combat Medics are a true sight for sore eyes on the battlefield. When comrades and enemies lie on the ground wounded, the Combat Medics are the ones in war aiming to save lives rather than take them. Wielding bandages, needles, and herbs, they will do their utmost to make sure their allies stay in the fight and more importantly, stay alive.***
 
 | Fighter Level | Features |

@@ -20,6 +20,10 @@
         loadAllContent();
         const html = document.querySelector('html');
         html.innerHTML = convertToDivs(extractContentFromHtml(html.innerHTML));
+        
+        document.querySelectorAll('.fa-star').forEach(icon => {
+            icon.title = 'Playtested Material';
+        });
     });
 </script>
 
@@ -34,9 +38,13 @@
                 <span>{{ page.title }}</span>
             </div>
             
-            <div class="content-header">
+            <div id="content-header" class="content-header">
+                {% if page.finished %}
+                <h1>{{ page.title }} <i class="fa-solid fa-star"></i></h1>
+                {% else %}
                 <h1>{{ page.title }}</h1>
-                <p class="content-type">{{ page.content_type | default: page.collection | capitalize | replace: '-', ' ' }}</p>
+                {% endif %}
+                <p class="content-type">{{page.class | default: ''}} {{ page.content_type | default: page.collection | capitalize | replace: '-', ' ' }}</p>
             </div>
             
             <div id="markdown-content">
@@ -44,7 +52,7 @@
             </div>
             
             <div class="back-to-top">
-                <a href="{{ '/dnd/' | relative_url }}#{{ page.collection }}">← Back to {{ page.collection | capitalize | replace: '-', ' ' }}</a>
+                <a href="{{relative_url}}#content-header">Back to Top</a>
             </div>
         </div>
     </section>

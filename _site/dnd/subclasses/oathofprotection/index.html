@@ -20,6 +20,10 @@
         loadAllContent();
         const html = document.querySelector('html');
         html.innerHTML = convertToDivs(extractContentFromHtml(html.innerHTML));
+        
+        document.querySelectorAll('.fa-star').forEach(icon => {
+            icon.title = 'Playtested Material';
+        });
     });
 </script>
 
@@ -34,14 +38,15 @@
                 <span>Oath of Protection</span>
             </div>
             
-            <div class="content-header">
-                <h1>Oath of Protection</h1>
-                <p class="content-type">Subclass</p>
+            <div id="content-header" class="content-header">
+                
+                <h1>Oath of Protection <i class="fa-solid fa-star"></i></h1>
+                
+                <p class="content-type">Paladin Subclass</p>
             </div>
             
             <div id="markdown-content">
-                <h1 id="oath-of-protection">Oath of Protection</h1>
-<p><strong><em>The Oath of Protection is for paladins willing to sacrifice the world to save the ones they love. Sometimes called guardians, protectors, or champions, these paladins often travel in smaller groups, as they are wary of any and all strangers. They are often parents, siblings, or spouses who have promised the world to their protected. Unlike most paladins, those under this oath have a flexible moral code so long as it benefits their loved ones. From the outside, these paladins may seem like normal travelers, harmless even, as they lack the traditional paladin garb. Make no mistake, however. Those who prove a danger to their loved ones will soon regret their choices.</em></strong></p>
+                <p><strong><em>The Oath of Protection is for paladins willing to sacrifice the world to save the ones they love. Sometimes called guardians, protectors, or champions, these paladins often travel in smaller groups, as they are wary of any and all strangers. They are often parents, siblings, or spouses who have promised the world to their protected. Unlike most paladins, those under this oath have a flexible moral code so long as it benefits their loved ones. From the outside, these paladins may seem like normal travelers, harmless even, as they lack the traditional paladin garb. Make no mistake, however. Those who prove a danger to their loved ones will soon regret their choices.</em></strong></p>
 
 <table>
   <thead>
@@ -142,7 +147,7 @@ You can end this effect on your turn as part of any other action. If the spell c
             </div>
             
             <div class="back-to-top">
-                <a href="/dnd/#subclasses">← Back to Subclasses</a>
+                <a href="#content-header">Back to Top</a>
             </div>
         </div>
     </section>

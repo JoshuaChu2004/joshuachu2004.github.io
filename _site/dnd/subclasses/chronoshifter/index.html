@@ -20,6 +20,10 @@
         loadAllContent();
         const html = document.querySelector('html');
         html.innerHTML = convertToDivs(extractContentFromHtml(html.innerHTML));
+        
+        document.querySelectorAll('.fa-star').forEach(icon => {
+            icon.title = 'Playtested Material';
+        });
     });
 </script>
 
@@ -34,14 +38,15 @@
                 <span>Chronoshifter</span>
             </div>
             
-            <div class="content-header">
-                <h1>Chronoshifter</h1>
-                <p class="content-type">Subclass</p>
+            <div id="content-header" class="content-header">
+                
+                <h1>Chronoshifter <i class="fa-solid fa-star"></i></h1>
+                
+                <p class="content-type">Sorcerer Subclass</p>
             </div>
             
             <div id="markdown-content">
-                <h1 id="chronoshifter">Chronoshifter</h1>
-<p><strong><em>Your blood carries a special trait that allows you to subtly adjust the weave of time. Rare as it is dangerous to be able to perform such feats, Chronoshifters must be careful in the use of their magic. Many hide their abilities, relegating them to small, inconsequential adjustments while the ambitious utilize them to change the world.</em></strong></p>
+                <p><strong><em>Your blood carries a special trait that allows you to subtly adjust the weave of time. Rare as it is dangerous to be able to perform such feats, Chronoshifters must be careful in the use of their magic. Many hide their abilities, relegating them to small, inconsequential adjustments while the ambitious utilize them to change the world.</em></strong></p>
 
 <table>
   <thead>
@@ -191,7 +196,7 @@
             </div>
             
             <div class="back-to-top">
-                <a href="/dnd/#subclasses">← Back to Subclasses</a>
+                <a href="#content-header">Back to Top</a>
             </div>
         </div>
     </section>

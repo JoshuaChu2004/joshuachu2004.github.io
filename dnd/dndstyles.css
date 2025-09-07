@@ -1,10 +1,10 @@
 :root {
     --bg: #f3eee5;
-    --fg: #434241;
+    --fg: #242322;
     --hfg:#f3f1e9;
-    --muted: #4a4e53;
+    --muted: #2e3033;
     --hmuted: #a8b3c2;
-    --brand: #908149;
+    --brand: #776936;
     --card: #131720;
     --card-light: #1a1f2c;
     --accent: #ffd166;
@@ -251,7 +251,43 @@ footer {
 
 .section {
     padding: 16px 0;
-    border-bottom: 1px solid var(--border);
+    position: relative;
+}
+
+.section::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background-color: var(--border);
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+}
+
+.section.class {
+    display: flex;
+    flex-direction: row;
+    gap: 88px;
+}
+
+.class-icon {
+    align-self: center;
+    width: 128px;
+    height: 128px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.section.no-border {
+    border: none;
+}
+
+table th:first-child {
+    white-space: nowrap;
 }
 
 .badges {
@@ -339,7 +375,7 @@ section[id] {
 }
 
 .section-content {
-    width: min(800px, 90vw);
+    width: min(900px, 90vw);
     margin: 0 auto;
     padding: 0 16px;
 }
@@ -513,6 +549,7 @@ section[id] {
     margin-top: 24px;
 }
 
+
 .section-content .header {
     color: var(--fg);
     font-size: 24px;
@@ -580,7 +617,7 @@ section[id] {
 }
 
 .content-header {
-    margin-bottom: 32px;
+    margin-bottom: 16px;
     padding-bottom: 16px;
     border-bottom: 1px solid var(--border);
 }
@@ -604,7 +641,6 @@ section[id] {
 .back-to-top {
     margin-top: 48px;
     padding-top: 24px;
-    border-top: 1px solid var(--border);
     text-align: center;
 }
 

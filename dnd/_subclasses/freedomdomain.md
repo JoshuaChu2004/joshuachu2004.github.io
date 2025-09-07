@@ -6,7 +6,6 @@ class: Cleric
 description: Clerics of the domain of Freedom follow their God’s will of freeing people from their shackles. They are liberators from cruel lords, emancipators of those in slave labor, and also freers from more abstract chains. The sight of a Freedom Cleric is one that brings hope to the downtrodden and fear to the oppressor.
 finished: false
 ---
-# Freedom Domain
 ***Clerics of the domain of Freedom follow their God’s will of freeing people from their shackles. They are liberators from cruel lords, emancipators of those in slave labor, and also freers from more abstract chains. The sight of a Freedom Cleric is one that brings hope to the downtrodden and fear to the oppressor.***
 
 | Cleric Level | Features |

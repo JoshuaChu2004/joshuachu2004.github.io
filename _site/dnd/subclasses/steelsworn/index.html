@@ -20,6 +20,10 @@
         loadAllContent();
         const html = document.querySelector('html');
         html.innerHTML = convertToDivs(extractContentFromHtml(html.innerHTML));
+        
+        document.querySelectorAll('.fa-star').forEach(icon => {
+            icon.title = 'Playtested Material';
+        });
     });
 </script>
 
@@ -34,14 +38,15 @@
                 <span>Steelsworn</span>
             </div>
             
-            <div class="content-header">
+            <div id="content-header" class="content-header">
+                
                 <h1>Steelsworn</h1>
-                <p class="content-type">Subclass</p>
+                
+                <p class="content-type">Fighter Subclass</p>
             </div>
             
             <div id="markdown-content">
-                <h1 id="steelsworn">Steelsworn</h1>
-<p><strong><em>They say that a weapon is as much a person as the one who wields it, that it feels, thinks, and has a personality. Many form a special relationship with their weapon, but they still see it as merely a tool to deal death. A select few wield their weapon knowing that it has a soul and must be treated as such. These Steelsworn Fighters often manifest their bonds with weapons through deep emotional connections or earn their respect in a trial of combat. Through this bond, their weapon grants them arcane abilities that make them a terrifying force on the battlefield.</em></strong></p>
+                <p><strong><em>They say that a weapon is as much a person as the one who wields it, that it feels, thinks, and has a personality. Many form a special relationship with their weapon, but they still see it as merely a tool to deal death. A select few wield their weapon knowing that it has a soul and must be treated as such. These Steelsworn Fighters often manifest their bonds with weapons through deep emotional connections or earn their respect in a trial of combat. Through this bond, their weapon grants them arcane abilities that make them a terrifying force on the battlefield.</em></strong></p>
 
 <table>
   <thead>
@@ -121,7 +126,7 @@
             </div>
             
             <div class="back-to-top">
-                <a href="/dnd/#subclasses">← Back to Subclasses</a>
+                <a href="#content-header">Back to Top</a>
             </div>
         </div>
     </section>

@@ -6,7 +6,6 @@ class: Witcher
 description: Witchers of the School of the Wolf have carved out their reputations as well-balanced, esteemed monster hunters. True generalists, their school’s philosophy lies closest to the original Order of Witchers, which is also reflected in their training as they do not often specialize in one discipline or another. Though their widespread skills often make them versatile and formidable foes.
 finished: false
 ---
-# School of the Wolf
 ***Witchers of the School of the Wolf have carved out their reputations as well-balanced, esteemed monster hunters. True generalists, their school’s philosophy lies closest to the original Order of Witchers, which is also reflected in their training as they do not often specialize in one discipline or another. Though their widespread skills often make them versatile and formidable foes.***
 
 

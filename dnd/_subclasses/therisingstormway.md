@@ -6,7 +6,6 @@ class: Monk
 description: Monks of the Rising Storm are those who harbor a deep well of ferocity and anger within themselves. But rather than let that energy loose all at once, they instead control it, allow it to build up within themselves and channel their fury into forked lightning. Way of the Rising Storm monks are known for using very little weaponry and instead rely solely on their body to overcome obstacles.
 finished: true
 ---
-# Way of the Rising Storm
 ***Monks of the Rising Storm are those who harbor a deep well of ferocity and anger within themselves. But rather than let that energy loose all at once, they instead control it, allow it to build up within themselves and channel their fury into forked lightning. Way of the Rising Storm monks are known for using very little weaponry and instead rely solely on their body to overcome obstacles.***
 
 | Monk Level | Features |

@@ -20,6 +20,10 @@
         loadAllContent();
         const html = document.querySelector('html');
         html.innerHTML = convertToDivs(extractContentFromHtml(html.innerHTML));
+        
+        document.querySelectorAll('.fa-star').forEach(icon => {
+            icon.title = 'Playtested Material';
+        });
     });
 </script>
 
@@ -34,14 +38,15 @@
                 <span>Way of The Force</span>
             </div>
             
-            <div class="content-header">
+            <div id="content-header" class="content-header">
+                
                 <h1>Way of The Force</h1>
-                <p class="content-type">Subclass</p>
+                
+                <p class="content-type">Monk Subclass</p>
             </div>
             
             <div id="markdown-content">
-                <h1 id="way-of-the-force">Way of The Force</h1>
-<p><strong><em>Monks of the Way of the Force have gained telekinetic abilities and can channel the ki of objects and opponents without touching them. Their abilities grow and expand as they get stronger, as well as morph to fit their personal psyche. They are pacifists, peacekeepers, roamers, and seekers of vengeance.</em></strong></p>
+                <p><strong><em>Monks of the Way of the Force have gained telekinetic abilities and can channel the ki of objects and opponents without touching them. Their abilities grow and expand as they get stronger, as well as morph to fit their personal psyche. They are pacifists, peacekeepers, roamers, and seekers of vengeance.</em></strong></p>
 
 <table>
   <thead>
@@ -133,7 +138,7 @@ If you were undisturbed during your meditation, suffering no damage or condition
             </div>
             
             <div class="back-to-top">
-                <a href="/dnd/#subclasses">← Back to Subclasses</a>
+                <a href="#content-header">Back to Top</a>
             </div>
         </div>
     </section>

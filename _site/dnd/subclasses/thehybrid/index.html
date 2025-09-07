@@ -20,6 +20,10 @@
         loadAllContent();
         const html = document.querySelector('html');
         html.innerHTML = convertToDivs(extractContentFromHtml(html.innerHTML));
+        
+        document.querySelectorAll('.fa-star').forEach(icon => {
+            icon.title = 'Playtested Material';
+        });
     });
 </script>
 
@@ -34,14 +38,15 @@
                 <span>The Hybrid</span>
             </div>
             
-            <div class="content-header">
+            <div id="content-header" class="content-header">
+                
                 <h1>The Hybrid</h1>
-                <p class="content-type">Subclass</p>
+                
+                <p class="content-type">Warlock Subclass</p>
             </div>
             
             <div id="markdown-content">
-                <h1 id="the-hybrid">The Hybrid</h1>
-<p><strong><em>Your patron is a War Devil, a powerful Fiend with the capability to turn anything into a weapon. In an attempt to dominate your psyche to be on the material plane once again, it has created a botched fusing of your minds. Despite this, the Devil is still able to take control of your body whenever it pleases, outside of rare, exceptional circumstances. Through this uneasy alliance, Hybrid warlocks roam the world following the whims of their Devil, often fighting for more control in any way they can.</em></strong></p>
+                <p><strong><em>Your patron is a War Devil, a powerful Fiend with the capability to turn anything into a weapon. In an attempt to dominate your psyche to be on the material plane once again, it has created a botched fusing of your minds. Despite this, the Devil is still able to take control of your body whenever it pleases, outside of rare, exceptional circumstances. Through this uneasy alliance, Hybrid warlocks roam the world following the whims of their Devil, often fighting for more control in any way they can.</em></strong></p>
 
 <table>
   <thead>
@@ -151,7 +156,7 @@
             </div>
             
             <div class="back-to-top">
-                <a href="/dnd/#subclasses">← Back to Subclasses</a>
+                <a href="#content-header">Back to Top</a>
             </div>
         </div>
     </section>

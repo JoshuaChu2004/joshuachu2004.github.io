@@ -20,6 +20,10 @@
         loadAllContent();
         const html = document.querySelector('html');
         html.innerHTML = convertToDivs(extractContentFromHtml(html.innerHTML));
+        
+        document.querySelectorAll('.fa-star').forEach(icon => {
+            icon.title = 'Playtested Material';
+        });
     });
 </script>
 
@@ -34,9 +38,11 @@
                 <span>Flameblade</span>
             </div>
             
-            <div class="content-header">
+            <div id="content-header" class="content-header">
+                
                 <h1>Flameblade</h1>
-                <p class="content-type">Item</p>
+                
+                <p class="content-type"> Item</p>
             </div>
             
             <div id="markdown-content">
@@ -85,7 +91,7 @@ An enhanced version that deals 2d6 extra fire damage and can cast <em>burning ha
             </div>
             
             <div class="back-to-top">
-                <a href="/dnd/#items">← Back to Items</a>
+                <a href="#content-header">Back to Top</a>
             </div>
         </div>
     </section>

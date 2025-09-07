@@ -8,7 +8,6 @@ description: Witchers of the School of the Cat are notorious for their slyness a
 finished: false
 ---
 
-# School of the Cat
 ***Witchers of the School of the Cat are notorious for their slyness and willingness to take on humanoid contracts. To them, coin is coin and people can be more monstrous than the monsters themselves. Imbued with augmented mutations to allow for silent movement, their Cat medallion is a sight most hope to never see.***
 
 | Witcher Level | Features |
@@ -34,4 +33,5 @@ At 15th level, your Signs is often followed by a flurry of precise strikes. Once
 
 ### Path of the Cat
 At 18th level, you have become a master of the shadows and blade, being a fearful presence even if you are not there. When you succeed a Stealth check, you may spend an Adrenaline point to force a creature to make a Wisdom saving throw against your Adrenaline Save DC. On a failure, they are frightened for 1 minute.
+<div class="break"></div>
 You also gain advantage on Stealth checks.

@@ -20,6 +20,10 @@
         loadAllContent();
         const html = document.querySelector('html');
         html.innerHTML = convertToDivs(extractContentFromHtml(html.innerHTML));
+        
+        document.querySelectorAll('.fa-star').forEach(icon => {
+            icon.title = 'Playtested Material';
+        });
     });
 </script>
 
@@ -34,14 +38,15 @@
                 <span>Prosperity Domain</span>
             </div>
             
-            <div class="content-header">
+            <div id="content-header" class="content-header">
+                
                 <h1>Prosperity Domain</h1>
-                <p class="content-type">Subclass</p>
+                
+                <p class="content-type">Cleric Subclass</p>
             </div>
             
             <div id="markdown-content">
-                <h1 id="prosperity-domain">Prosperity Domain</h1>
-<p><strong><em>Clerics of the domain of Prosperity serve deities who emoby wealth, fortune, and the flourishing of communities. They see prosperity as not only the accumulation of gold and materials, but in the growth of knowledge, opportunity, and quality of life. These clerics are often educators, advisors, and merchants, guiding others through wise investments and cooperation. However, not all of them are generous volunteers or philanthropists, but rather see the path to prosperity through the exchange of goods and services. Through their divine acts, they collect a payment in some form to ensure that currency continues to flow. Many Prosperity clerics look down upon those that seek to hoard wealth and good to themselves, denying others the chance to flourish. To such greed, they bring the wrath of their deity for their transgressions.</em></strong></p>
+                <p><strong><em>Clerics of the domain of Prosperity serve deities who emoby wealth, fortune, and the flourishing of communities. They see prosperity as not only the accumulation of gold and materials, but in the growth of knowledge, opportunity, and quality of life. These clerics are often educators, advisors, and merchants, guiding others through wise investments and cooperation. However, not all of them are generous volunteers or philanthropists, but rather see the path to prosperity through the exchange of goods and services. Through their divine acts, they collect a payment in some form to ensure that currency continues to flow. Many Prosperity clerics look down upon those that seek to hoard wealth and good to themselves, denying others the chance to flourish. To such greed, they bring the wrath of their deity for their transgressions.</em></strong></p>
 
 <table>
   <thead>
@@ -141,7 +146,7 @@
             </div>
             
             <div class="back-to-top">
-                <a href="/dnd/#subclasses">← Back to Subclasses</a>
+                <a href="#content-header">Back to Top</a>
             </div>
         </div>
     </section>

@@ -20,6 +20,10 @@
         loadAllContent();
         const html = document.querySelector('html');
         html.innerHTML = convertToDivs(extractContentFromHtml(html.innerHTML));
+        
+        document.querySelectorAll('.fa-star').forEach(icon => {
+            icon.title = 'Playtested Material';
+        });
     });
 </script>
 
@@ -34,14 +38,15 @@
                 <span>School of the Bear</span>
             </div>
             
-            <div class="content-header">
+            <div id="content-header" class="content-header">
+                
                 <h1>School of the Bear</h1>
-                <p class="content-type">Subclass</p>
+                
+                <p class="content-type">Witcher Subclass</p>
             </div>
             
             <div id="markdown-content">
-                <h1 id="school-of-the-bear">School of the Bear</h1>
-<p><strong><em>Witchers of the School of the Bear are known for being loners, seeking out little personal contact except for what is necessary on the Path. They think of themselves not as a race or group, but simply a profession. Because of this, there is often little comradery amongst Bear Witchers. Strong, large, and durable, they are the Witchers that have pushed their physical capabilities the furthest.</em></strong></p>
+                <p><strong><em>Witchers of the School of the Bear are known for being loners, seeking out little personal contact except for what is necessary on the Path. They think of themselves not as a race or group, but simply a profession. Because of this, there is often little comradery amongst Bear Witchers. Strong, large, and durable, they are the Witchers that have pushed their physical capabilities the furthest.</em></strong></p>
 
 <table>
   <thead>
@@ -95,7 +100,7 @@ Once per round, you gain an Adrenaline point when you take damage.</p>
             </div>
             
             <div class="back-to-top">
-                <a href="/dnd/#subclasses">← Back to Subclasses</a>
+                <a href="#content-header">Back to Top</a>
             </div>
         </div>
     </section>
