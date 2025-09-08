@@ -3,6 +3,7 @@ layout: dnd
 class: Witcher
 title: The Witcher
 content_type: Class
+custom_spells: true
 description: Normal individuals turned freaks of nature by the horrendous experiments known as the Trial of Grasses, Witchers are professional monster hunters who traditionally seek out contracts for coin. They are trained at a young age to be expert swordsmen, to memorize alchemical recipes and bestiarys, and to cast minor spells known as Signs to overcome their foes. Some beings despise their existence, many fear the twin blades on their back, but all cry for a Witcher when a monster threatens their lives.
 finished: false
 icon: fa-solid fa-flask fa-8x

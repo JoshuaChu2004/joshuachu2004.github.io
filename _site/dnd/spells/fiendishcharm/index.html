@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Fiendish Charm - Joshua Chu D&D Homebrew</title>
+    <meta name="description" content="Bookmark this to keep an eye on my project updates!" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/dnd/dndstyles.css">
+    <script src="/js/components.js"></script>
+    <script src="/js/advanced-content-loader.js"></script>
+</head>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Auto-load content from data attributes
+        loadAllContent();
+        const html = document.querySelector('html');
+        html.innerHTML = convertToDivs(extractContentFromHtml(html.innerHTML));
+        
+        document.querySelectorAll('.fa-star').forEach(icon => {
+            icon.title = 'Playtested Material';
+        });
+    });
+</script>
+
+<body>
+    <div id="header-placeholder"></div>
+
+    <section class="intro-content">
+        <div class="section-content">
+            <div class="breadcrumb">
+                <a href="/dnd/">D&D Homebrew</a> &gt; 
+                <a href="/dnd/#spells">Spells</a> &gt; 
+                <span>Fiendish Charm</span>
+            </div>
+            
+            <div id="content-header" class="content-header">
+                
+                <h1>Fiendish Charm <i class="fa-solid fa-star"></i></h1>
+                
+                <p class="content-type"> Spell</p>
+            </div>
+            
+            <div id="markdown-content">
+                
+                
+                <span class="italic">4th level Enchantment</span>
+                
+                
+                
+                <div class="break"></div> 
+
+                <div class="spell-properties">
+                    <div class="spell-property">
+                        <span class="bold">Casting Time:</span> 1 action
+                    </div>
+                    <div class="spell-property">
+                        <span class="bold">Range:</span> 30 ft.
+                    </div>
+                    <div class="spell-property">
+                        <span class="bold">Components:</span> V, S, M (a ring with a ruby gem, worth at least 25 gp, which the spell consumes)
+                    </div>
+                    <div class="spell-property">
+                        <span class="bold">Duration:</span> 1 hour (concentration)
+                    </div>
+                </div>
+                <div class="break"></div>
+                <p>Captivate the mind of a creature within 30 ft. that you can see through your infernal inheritance. The creature must succeed a Wisdom saving throw or be magically charmed for 1 day. The charmed target obeys any and all spoken commands, except directly suicidal ones. If the target takes damage from you, other creatures, or you give it a suicidal command, the target may repeat the saving throw, ending the effect on a success. When a creature succeeds the saving throw, they are immune to this spell for 24 hours.</p>
+
+                <div class="break"></div>
+                <div class="paragraph spell-lists">
+                    
+                      <span class="bold">Spell Lists:</span>
+                      
+                      
+                      <a href="/dnd/subclasses/fiendblade/">Sorcerer (Fiendblade)</a>
+                    
+                  </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
+
+
+

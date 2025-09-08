@@ -1,0 +1,29 @@
+witcher:
+  - name: "Igni"
+    level: "Cantrip"
+    school: "Evocation"
+    description: "You create a small flame in your hand or hurl it at a target within 30 feet."
+  - name: "Aard"
+    level: "1st"
+    school: "Evocation"
+    description: "You release a telekinetic blast that can push or knock down enemies."
+
+chronoshifter:
+  - name: "Temporal Shift"
+    level: "1st"
+    school: "Transmutation"
+    description: "You manipulate time around a creature, affecting their speed."
+  - name: "Chronal Recall"
+    level: "2nd"
+    school: "Divination"
+    description: "You glimpse into the past to gain information about recent events."
+
+starborne:
+  - name: "Stellar Bolt"
+    level: "Cantrip"
+    school: "Evocation"
+    description: "You hurl a bolt of starlight at a target within 60 feet."
+  - name: "Cosmic Awareness"
+    level: "1st"
+    school: "Divination"
+    description: "You gain insight into the cosmic forces around you."

@@ -2,6 +2,7 @@
 layout: dnd
 title: School of Inquisimancy
 content_type: Subclass
+custom_spells: true
 class: Wizard
 description: Inquisimancy is a secret school of magic known by only a few select families. Those who know the magic are often close advisors to the king, who interrogate spies or captured soldiers for information about the kingdom's enemies. A more sinister form of magic is often used in torture, breaking the minds of even the most resilient of targets. There are whispers amongst the common folk about such practices, though most dismiss them as just folk tales meant to dissuade them from rebelling or breaking the law. To Inquisimancers, the mind is a playground to be manipulated and pulled until its secrets pour out. They are often curious people, seeking out mystery and the unknown in an endless pursuit of knowledge.
 finished: true

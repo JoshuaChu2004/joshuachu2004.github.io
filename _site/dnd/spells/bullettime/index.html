@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bullet Time - Joshua Chu D&D Homebrew</title>
+    <meta name="description" content="Bookmark this to keep an eye on my project updates!" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/dnd/dndstyles.css">
+    <script src="/js/components.js"></script>
+    <script src="/js/advanced-content-loader.js"></script>
+</head>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Auto-load content from data attributes
+        loadAllContent();
+        const html = document.querySelector('html');
+        html.innerHTML = convertToDivs(extractContentFromHtml(html.innerHTML));
+        
+        document.querySelectorAll('.fa-star').forEach(icon => {
+            icon.title = 'Playtested Material';
+        });
+    });
+</script>
+
+<body>
+    <div id="header-placeholder"></div>
+
+    <section class="intro-content">
+        <div class="section-content">
+            <div class="breadcrumb">
+                <a href="/dnd/">D&D Homebrew</a> &gt; 
+                <a href="/dnd/#spells">Spells</a> &gt; 
+                <span>Bullet Time</span>
+            </div>
+            
+            <div id="content-header" class="content-header">
+                
+                <h1>Bullet Time <i class="fa-solid fa-star"></i></h1>
+                
+                <p class="content-type"> Spell</p>
+            </div>
+            
+            <div id="markdown-content">
+                
+                
+                <span class="italic">1st level Transmutation</span>
+                
+                
+                
+                <div class="break"></div> 
+
+                <div class="spell-properties">
+                    <div class="spell-property">
+                        <span class="bold">Casting Time:</span> 1 reaction, which you take when you fail a Dexterity saving throw or a creature attacks you
+                    </div>
+                    <div class="spell-property">
+                        <span class="bold">Range:</span> Self
+                    </div>
+                    <div class="spell-property">
+                        <span class="bold">Components:</span> V, S
+                    </div>
+                    <div class="spell-property">
+                        <span class="bold">Duration:</span> 1 round
+                    </div>
+                </div>
+                <div class="break"></div>
+                <p>As a reaction to failing a Dexterity saving throw or a creature making an attack roll against you, you slow down your perception of time, allowing you to dodge more effectively. You have advantage on Dexterity saving throws, creatures have disadvantage on attack rolls, Grapple checks, and Shove checks against you until the start of your next turn.</p>
+
+                <div class="break"></div>
+                <div class="paragraph spell-lists">
+                    
+                      <span class="bold">Spell Lists:</span>
+                      
+                      
+                      <a href="/dnd/subclasses/chronoshifter/">Sorcerer (Chronoshifter)</a>
+                    
+                  </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
+
+
+

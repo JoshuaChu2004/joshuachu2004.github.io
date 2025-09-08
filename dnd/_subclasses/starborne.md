@@ -2,6 +2,7 @@
 layout: dnd
 title: Starborne
 content_type: Subclass
+custom_spells: true
 class: Sorcerer
 description: At the moment of your birth, the stars had aligned in such a way that cosmic energy had reached a maximum. Some of that energy was absorbed into your skin, causing you to sparkle and be able to wield the power of the stars. Depending on the rarity of your specific alignment and the duration it was held for, you could either be one of many Starborne in your generation or the first in thousands of years.
 finished: false

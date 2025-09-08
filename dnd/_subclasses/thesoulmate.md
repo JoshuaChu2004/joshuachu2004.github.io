@@ -2,6 +2,7 @@
 layout: dnd
 title: The Soulmate
 content_type: Subclass
+custom_spells: false
 class: Warlock
 description: They say that love can be as powerful a magic as the most destructive of spells. Soulmate warlocks are those who made a pact with a loved one who has already passed. But despite the circumstances, the bond between them manifests into potent magic. Out of devotion and love to their patron, these warlocks look onto the future with hope, knowing that they are never truly alone.
 finished: false

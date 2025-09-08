@@ -2,6 +2,7 @@
 layout: dnd
 title: School of the Bear
 content_type: Subclass
+custom_spells: false
 class: Witcher
 description: Witchers of the School of the Bear are known for being loners, seeking out little personal contact except for what is necessary on the Path. They think of themselves not as a race or group, but simply a profession. Because of this, there is often little comradery amongst Bear Witchers. Strong, large, and durable, they are the Witchers that have pushed their physical capabilities the furthest.
 finished: false

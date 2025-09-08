@@ -1,20 +1,4 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{% if page.title %}{{ page.title }} - Joshua Chu D&D Homebrew{% else %}{{ site.title }}{% endif %}</title>
-    <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="{{ '/dnd/dndstyles.css' | relative_url }}">
-    <script src="{{ '/js/components.js' | relative_url }}"></script>
-    <script src="{{ '/js/advanced-content-loader.js' | relative_url }}"></script>
-</head>
-
-<body>
-    {{ content }}
-</body>
-</html>
+---
+layout: base
+---
+{{ content }}

@@ -2,6 +2,7 @@
 layout: dnd
 title: The Parasite
 content_type: Subclass
+custom_spells: false
 class: Warlock
 description: Your patron is a cosmic parasite, draining the vitality out of whole peoples and worlds. Upon forging a pact with such a patron, you become host to one of its nascent offspring. As you grow in power, the boundary between your identity and the parasitic larva within you blurs.
 finished: false

@@ -3,6 +3,7 @@
 layout: dnd
 title: School of the Cat
 content_type: Subclass
+custom_spells: false
 class: Witcher
 description: Witchers of the School of the Cat are notorious for their slyness and willingness to take on humanoid contracts. To them, coin is coin and people can be more monstrous than the monsters themselves. Imbued with augmented mutations to allow for silent movement, their Cat medallion is a sight most hope to never see.
 finished: false

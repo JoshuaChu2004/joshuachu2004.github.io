@@ -2,6 +2,7 @@
 layout: dnd
 title: Steelsworn
 content_type: Subclass
+custom_spells: false
 class: Fighter
 description: They say that a weapon is as much a person as the one who wields it, that it feels, thinks, and has a personality. Many form a special relationship with their weapon, but they still see it as merely a tool to deal death. A select few wield their weapon knowing that it has a soul and must be treated as such. These Steelsworn Fighters often manifest their bonds with weapons through deep emotional connections or earn their respect in a trial of combat. Through this bond, their weapon grants them arcane abilities that make them a terrifying force on the battlefield.
 finished: false

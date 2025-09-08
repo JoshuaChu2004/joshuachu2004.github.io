@@ -16,8 +16,8 @@ warlock_icon: fa-solid fa-dragon fa-8x
 wizard_icon: fa-solid fa-wand-sparkles fa-8x
 ---
 {% for class in site.classes %}
-<div class="section class" markdown="1">
-<div class="class-icon {{ class.icon }}"></div>
+<div class="section toc" markdown="1">
+<div class="section-icon {{ class.icon }}"></div>
 <div class="class-content" markdown="1">
 {% if class.finished %}
 
@@ -47,8 +47,8 @@ wizard_icon: fa-solid fa-wand-sparkles fa-8x
 </div>
   {% endfor %}
 
-<div class="section class" markdown="1">
-<div class="class-icon {{ page.barbarian_icon }}"></div>
+<div class="section toc" markdown="1">
+<div class="section-icon {{ page.barbarian_icon }}"></div>
 <div class="class-content" markdown="1">
 ## The Barbarian
 
@@ -73,8 +73,8 @@ wizard_icon: fa-solid fa-wand-sparkles fa-8x
 </div>
 </div>
 
-<div class="section class" markdown="1">
-<div class="class-icon {{ page.bard_icon }}"></div>
+<div class="section toc" markdown="1">
+<div class="section-icon {{ page.bard_icon }}"></div>
 <div class="class-content" markdown="1">
 
 ## The Bard
@@ -100,8 +100,8 @@ wizard_icon: fa-solid fa-wand-sparkles fa-8x
 </div>
 </div>
 
-<div class="section class" markdown="1">
-<div class="class-icon {{ page.cleric_icon }}"></div>
+<div class="section toc" markdown="1">
+<div class="section-icon {{ page.cleric_icon }}"></div>
 <div class="class-content" markdown="1">
 
 ## The Cleric
@@ -127,8 +127,8 @@ wizard_icon: fa-solid fa-wand-sparkles fa-8x
 </div>
 </div>
 
-<div class="section class" markdown="1">
-<div class="class-icon {{ page.druid_icon }}"></div>
+<div class="section toc" markdown="1">
+<div class="section-icon {{ page.druid_icon }}"></div>
 <div class="class-content" markdown="1">
 
 ## The Druid
@@ -154,8 +154,8 @@ wizard_icon: fa-solid fa-wand-sparkles fa-8x
 </div>
 </div>
 
-<div class="section class" markdown="1">
-<div class="class-icon {{ page.fighter_icon }}"></div>
+<div class="section toc" markdown="1">
+<div class="section-icon {{ page.fighter_icon }}"></div>
 <div class="class-content" markdown="1">
 
 ## The Fighter
@@ -181,8 +181,8 @@ wizard_icon: fa-solid fa-wand-sparkles fa-8x
 </div>
 </div>
 
-<div class="section class" markdown="1">
-<div class="class-icon {{ page.monk_icon }}"></div>
+<div class="section toc" markdown="1">
+<div class="section-icon {{ page.monk_icon }}"></div>
 <div class="class-content" markdown="1">
 
 ## The Monk
@@ -208,8 +208,8 @@ wizard_icon: fa-solid fa-wand-sparkles fa-8x
 </div>
 </div>
 
-<div class="section class" markdown="1">
-<div class="class-icon {{ page.paladin_icon }}"></div>
+<div class="section toc" markdown="1">
+<div class="section-icon {{ page.paladin_icon }}"></div>
 <div class="class-content" markdown="1">
 
 ## The Paladin
@@ -235,8 +235,8 @@ wizard_icon: fa-solid fa-wand-sparkles fa-8x
 </div>
 </div>
 
-<div class="section class" markdown="1">
-<div class="class-icon {{ page.ranger_icon }}"></div>
+<div class="section toc" markdown="1">
+<div class="section-icon {{ page.ranger_icon }}"></div>
 <div class="class-content" markdown="1">
 
 ## The Ranger
@@ -262,8 +262,8 @@ wizard_icon: fa-solid fa-wand-sparkles fa-8x
 </div>
 </div>
 
-<div class="section class" markdown="1">
-<div class="class-icon {{ page.rogue_icon }}"></div>
+<div class="section toc" markdown="1">
+<div class="section-icon {{ page.rogue_icon }}"></div>
 <div class="class-content" markdown="1">
 
 ## The Rogue
@@ -289,8 +289,8 @@ wizard_icon: fa-solid fa-wand-sparkles fa-8x
 </div>
 </div>
 
-<div class="section class" markdown="1">
-<div class="class-icon {{ page.sorcerer_icon }}"></div>
+<div class="section toc" markdown="1">
+<div class="section-icon {{ page.sorcerer_icon }}"></div>
 <div class="class-content" markdown="1">
 
 ## The Sorcerer
@@ -316,8 +316,8 @@ wizard_icon: fa-solid fa-wand-sparkles fa-8x
 </div>
 </div>
 
-<div class="section class" markdown="1">
-<div class="class-icon {{ page.warlock_icon }}"></div>
+<div class="section toc" markdown="1">
+<div class="section-icon {{ page.warlock_icon }}"></div>
 <div class="class-content" markdown="1">
 
 ## The Warlock
@@ -343,8 +343,8 @@ wizard_icon: fa-solid fa-wand-sparkles fa-8x
 </div> 
 </div>
 
-<div class="section class no-border" markdown="1">
-<div class="class-icon {{ page.wizard_icon }}"></div>
+<div class="section toc no-border" markdown="1">
+<div class="section-icon {{ page.wizard_icon }}"></div>
 <div class="class-content" markdown="1">
 
 ## The Wizard

@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{% if page.title %}{{ page.title }} - Joshua Chu{% else %}{{ site.title }}{% endif %}</title>
+    <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    {% if page.layout == 'spells' or page.layout == 'dnd' or page.type == 'dnd' %}
+    <link rel="stylesheet" href="{{ '/dnd/dndstyles.css' | relative_url }}">
+    {% else %}
+    <link rel="stylesheet" href="{{ '/styles.css' | relative_url }}">
+    {% endif %}
+    {% if page.custom_css %}
+    <link rel="stylesheet" href="{{ page.custom_css | relative_url }}">
+    {% endif %}
+</head>
+
+<body>
+    <header>
+        <div class="header-container">
+            <nav>
+                <div style="display: flex; gap: 12px; align-items: center">
+                    <span class="pill">🎮 Joshua Chu</span>
+                    <span class="muted" style="font-size: 13px">Game Developer • Software Engineer • D&D Homebrew Creator</span>
+                </div>
+                <div class="links">
+                    <a href="/index.html">Home</a>
+                    <a href="/index.html#games" data-short="Games">Video Games</a>
+                    <a href="/index.html#software">Software</a>
+                    <a href="/dnd/">D&D</a>
+                    <a href="/index.html#about">About</a>
+                    <a href="/index.html#contact">Contact</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    {{ content }}
+
+    {% if page.custom_js %}
+    <script src="{{ page.custom_js | relative_url }}"></script>
+    {% endif %}
+</body>
+</html>

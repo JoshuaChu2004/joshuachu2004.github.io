@@ -2,6 +2,7 @@
 layout: dnd
 title: Fiendblade
 content_type: Subclass
+custom_spells: true
 class: Sorcerer
 description: You or your ancestor before had an intense and dangerous encounter with a creature from the Plane of Fire that left you cursed to wield its volatile flames. While most would be unable to control their powers, wreaking havoc wherever they go, you have managed to harness your fire by channeling it through the metal of weapons.
 finished: true

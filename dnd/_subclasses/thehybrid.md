@@ -2,6 +2,7 @@
 layout: dnd
 title: The Hybrid
 content_type: Subclass
+custom_spells: false
 class: Warlock
 description: Your patron is a War Devil, a powerful Fiend with the capability to turn anything into a weapon. In an attempt to dominate your psyche to be on the material plane again, it has created a botched fusing of your minds. Despite this, the Devil is still able to take control of your body whenever it pleases, outside of rare, exceptional circumstances. Through this uneasy alliance, Hybrid warlocks roam the world following the whims of their Devil, often fighting for more control in any way they can.
 finished: false

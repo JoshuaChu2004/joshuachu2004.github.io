@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lockpick - Joshua Chu D&D Homebrew</title>
+    <meta name="description" content="Bookmark this to keep an eye on my project updates!" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/dnd/dndstyles.css">
+    <script src="/js/components.js"></script>
+    <script src="/js/advanced-content-loader.js"></script>
+</head>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Auto-load content from data attributes
+        loadAllContent();
+        const html = document.querySelector('html');
+        html.innerHTML = convertToDivs(extractContentFromHtml(html.innerHTML));
+        
+        document.querySelectorAll('.fa-star').forEach(icon => {
+            icon.title = 'Playtested Material';
+        });
+    });
+</script>
+
+<body>
+    <div id="header-placeholder"></div>
+
+    <section class="intro-content">
+        <div class="section-content">
+            <div class="breadcrumb">
+                <a href="/dnd/">D&D Homebrew</a> &gt; 
+                <a href="/dnd/#spells">Spells</a> &gt; 
+                <span>Lockpick</span>
+            </div>
+            
+            <div id="content-header" class="content-header">
+                
+                <h1>Lockpick</h1>
+                
+                <p class="content-type"> Spell</p>
+            </div>
+            
+            <div id="markdown-content">
+                
+                
+                <span class="italic">1st level Transmutation</span>
+                
+                
+                
+                <div class="break"></div> 
+
+                <div class="spell-properties">
+                    <div class="spell-property">
+                        <span class="bold">Casting Time:</span> 1 action
+                    </div>
+                    <div class="spell-property">
+                        <span class="bold">Range:</span> Touch
+                    </div>
+                    <div class="spell-property">
+                        <span class="bold">Components:</span> V, S
+                    </div>
+                    <div class="spell-property">
+                        <span class="bold">Duration:</span> Instantaneous
+                    </div>
+                </div>
+                <div class="break"></div>
+                <p>Magically open a simple and mundane lock with the touch of your fingers. The lock can not be magical and can not be very sophisticated.</p>
+
+<p><strong>Star Charged.</strong> The spell can now unlock advanced and complicated locks, even magical ones. However, the user must succeed a spellcasting check with DC determined by the DM.</p>
+
+                <div class="break"></div>
+                <div class="paragraph spell-lists">
+                    
+                      <span class="bold">Spell Lists:</span>
+                      
+                      
+                      <a href="/dnd/subclasses/starborne/">Sorcerer (Starborne)</a>
+                    
+                  </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
+
+
+

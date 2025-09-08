@@ -2,6 +2,7 @@
 layout: dnd
 title: Fencer
 content_type: Subclass
+custom_spells: false
 class: Fighter
 description: Fencers are skilled duelists of the urban streets, full of flair and obsessed with honor. Often found wielding a precise blade and a complimenting sidearm, they can draw the awe of a crowd and strike fear in the hearts of their enemies, often leaving the enemies bleeding thereafter. Rumors tend to circulate renowned Fencers, granting them an air of mystery and charm.
 finished: false

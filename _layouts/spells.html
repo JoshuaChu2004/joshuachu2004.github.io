@@ -1,0 +1,124 @@
+---
+layout: base
+---
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        loadSpells();
+        document.querySelectorAll('.fa-star').forEach(icon => {
+            icon.title = 'Playtested Material';
+        });
+    });
+
+    function loadSpells() {
+        //console.log('Loading spells');
+        const urlParams = new URLSearchParams(window.location.search);
+        //console.log(urlParams.get('subclass'));
+
+        const spellListFilter = urlParams.get('subclass');
+
+        if (spellListFilter) {
+
+            document.title = `${capitalize(spellListFilter)} Spells - Joshua Chu D&D Homebrew`;
+            document.getElementById('content-title').innerHTML = `${capitalize(spellListFilter)} Spells`;
+
+            const tbody = document.querySelector('tbody');
+
+            for (const spell of tbody.querySelectorAll('tr')) {
+                //console.log(spell.dataset.spelllists);
+                const spellLists = spell.dataset.spelllists.split(',');
+                if (spellLists.includes(spellListFilter)) {
+                    spell.style.display = 'table-row';
+                } else {
+                    spell.style.display = 'none';
+                }
+            }
+        }
+    }
+
+    function capitalize(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+</script>
+
+    <section class="intro-content">
+        <div class="section-content">
+            <div class="breadcrumb">
+                <a href="{{ '/dnd/' | relative_url }}">D&D Homebrew</a> &gt; 
+                <a href="{{ '/dnd/' | relative_url }}#{{ page.collection }}">{{ page.collection | capitalize | replace: '-', ' ' }}</a> &gt; 
+                <span>{{ page.title }}</span>
+            </div>
+            
+            <div id="content-header" class="content-header">
+                {% if page.finished %}
+                <h1 id="content-title">{{ page.title }} <i class="fa-solid fa-star"></i></h1>
+                {% else %}
+                <h1 id="content-title">{{ page.title }}</h1>
+                {% endif %}
+                <p id="content-type" class="content-type">{{page.class | default: ''}} {{ page.content_type | default: page.collection | capitalize | replace: '-', ' ' }}</p>
+            </div>
+            
+            <div id="markdown-content">
+                <table class="table-wrapper spell-list">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Spell Name</th>
+                            <th>Level</th>
+                            <th>School</th>
+                            <th>Casting Time</th>
+                            <th>Range</th>
+                            <th>Duration</th>
+                            <th>Components</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% assign sorted_spells = site.spells | sort: "level" %}
+                        {% for spell in sorted_spells %}
+                        {% if spell.content_type == 'Spell' %}
+                        {% assign tags = '' | split: '' %}
+                        {% for list in spell.spell_lists %}
+                          {% assign slug = list.list | downcase | replace: ' ', '-' %}
+                          {% assign tags = tags | push: slug %}
+                        {% endfor %}
+                  
+                        <tr data-spelllists="{{ tags | uniq | join: ',' }}">
+                            <td>
+                                {% if spell.finished %}
+                                <i class="fa-solid fa-star"></i>
+                                {% endif %}
+                            </td>
+                            <td><a href="{{ spell.url }}">{{ spell.title }}</a></td>
+                            <td>
+                                {% if spell.level == 0 %}
+                                <span class="italic">Cantrip</span>
+                                {% elsif spell.level == 0.5 %}
+                                <span class="italic">Sign</span>
+                                {% else %}
+                                <span class="italic">{{ spell.level }}</span>
+                                {% endif %}
+                            </td>
+                            <td>{{ spell.school }}</td>
+                            <td>
+                                {% assign cast = spell.casting_time | split: ',' %}
+                                {{ cast[0] }}
+                            </td>
+                            <td>{{ spell.range }}</td>
+                            <td>{{ spell.duration }}</td>
+                            <td>
+                                {% assign components = spell.components | split: '(' %}
+                                {{ components[0] }}
+                            </td>
+                        </tr>
+                        {% endif %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
+
+
+

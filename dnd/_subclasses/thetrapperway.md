@@ -2,6 +2,7 @@
 layout: dnd
 title: Way of the Trapper
 content_type: Subclass
+custom_spells: false
 class: Monk
 description: Monks of the Way of the Trapper are masters at manipulating the limbs and bodies of their opponents as well as delivering powerful and precise blows to stagger their enemies. While other schools of Monks frown on their more brutal approach to combat, Trapper Monks are ready to do what is necessary.
 finished: true
