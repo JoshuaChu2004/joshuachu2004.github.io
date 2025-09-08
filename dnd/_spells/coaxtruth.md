@@ -3,7 +3,7 @@ layout: spell
 content_type: Spell
 title: Coax Truth
 school: Enchantment
-level: 0
+level: "0"
 casting_time: 1 action
 range: 30 ft.
 duration: Instantaneous

@@ -3,7 +3,7 @@ layout: spell
 content_type: Spell
 title: Aard
 school: Evocation
-level: 0.5
+level: "01"
 casting_time: 1 weapon attack
 range: Self (15 ft. cube)
 duration: Instantaneous

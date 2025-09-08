@@ -3,7 +3,7 @@ layout: spell
 content_type: Spell
 title: Cosmic Beam
 school: Evocation
-level: 0
+level: "0"
 casting_time: 1 action
 range: 30 ft. (15 ft. cylinder)
 duration: Instantaneous

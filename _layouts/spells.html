@@ -73,7 +73,7 @@ layout: base
                         </tr>
                     </thead>
                     <tbody>
-                        {% assign sorted_spells = site.spells | sort: "level" %}
+                        {% assign sorted_spells = site.spells | sort: 'level' %}
                         {% for spell in sorted_spells %}
                         {% if spell.content_type == 'Spell' %}
                         {% assign tags = '' | split: '' %}
@@ -90,9 +90,9 @@ layout: base
                             </td>
                             <td><a href="{{ spell.url }}">{{ spell.title }}</a></td>
                             <td>
-                                {% if spell.level == 0 %}
+                                {% if spell.level == "0" %}
                                 <span class="italic">Cantrip</span>
-                                {% elsif spell.level == 0.5 %}
+                                {% elsif spell.level == "01" %}
                                 <span class="italic">Sign</span>
                                 {% else %}
                                 <span class="italic">{{ spell.level }}</span>

@@ -3,7 +3,7 @@ layout: spell
 content_type: Spell
 title: Heat Wave
 school: Evocation
-level: 0
+level: "0"
 casting_time: 1 action
 range: Self (20 ft. line)
 duration: Instantaneous

@@ -3,7 +3,7 @@ layout: spell
 content_type: Spell
 title: Quen
 school: Conjuration
-level: 0.5
+level: "01"
 casting_time: 1 weapon attack
 range: Self
 duration: 1 minute

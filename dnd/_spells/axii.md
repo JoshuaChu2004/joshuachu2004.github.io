@@ -3,7 +3,7 @@ layout: spell
 content_type: Spell
 title: Axii
 school: Enchantment
-level: 0.5
+level: "01"
 casting_time: 1 weapon attack
 range: 10 ft.
 duration: 1 round
