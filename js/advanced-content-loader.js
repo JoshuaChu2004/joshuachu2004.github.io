@@ -49,7 +49,12 @@ function convertToDivs(markdown) {
         .replace(/<br>/gim, '')
          
          // Tables
-         .replace(/<table([^>]*)>/gim, '<div class="table-wrapper"><table$1>')
+         .replace(/<table([^>]*)>/gim, function(match, attributes) {
+             // Extract id from table attributes
+             const idMatch = attributes.match(/id="([^"]*)"/);
+             const id = idMatch ? ` id="${idMatch[1]}"` : '';
+             return `<div class="table-wrapper"${id}><table${attributes}>`;
+         })
          .replace(/<\/table>/gim, '</table></div>')
          .replace(/<thead([^>]*)>/gim, '<thead$1>')
          .replace(/<tbody([^>]*)>/gim, '<tbody$1>')
