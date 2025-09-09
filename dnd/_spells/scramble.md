@@ -12,7 +12,7 @@ ritual: false
 concentration: false
 spell_lists:
  - list: School of Inquisimancy
-finished: false
+finished: true
 ---
 Manipulate many minds in a 20 ft. sphere within range to produce extreme amounts of feedback. Each creature in the radius must make a Intelligence saving throw. Upon fail, they take 4d8 psychic damage and have disadvantage on Intelligence and Wisdom saving throws for 1 minute. Upon success, they take half damage.
 

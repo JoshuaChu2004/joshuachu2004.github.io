@@ -1,5 +1,6 @@
 ---
 layout: base
+page_type: 'dnd'
 ---
 
 <script>
@@ -8,6 +9,7 @@ layout: base
         document.querySelectorAll('.fa-star').forEach(icon => {
             icon.title = 'Playtested Material';
         });
+        document.querySelector('#content-container').classList.remove('content-loading');
     });
 
     function loadSpells() {

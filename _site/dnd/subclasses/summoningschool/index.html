@@ -13,11 +13,15 @@
     <link rel="stylesheet" href="/dnd/dndstyles.css">
     
     
+    
+    <script src="/js/advanced-content-loader.js"></script>
+    
+
 </head>
 
 <body>
     <header>
-        <div class="header-container">
+        <div class="header-container" data-pageType="dnd" data-layout="dnd" data-custom_js="/js/advanced-content-loader.js">
             <nav>
                 <div style="display: flex; gap: 12px; align-items: center">
                     <span class="pill">🎮 Joshua Chu</span>
@@ -35,16 +39,19 @@
         </div>
     </header>
 
-    <script>
+    <div id="content-container" class="content-loading">
+        <script>
     document.addEventListener('DOMContentLoaded', function() {
         // Auto-load content from data attributes
         loadAllContent();
         const html = document.querySelector('html');
+        console.log('Loading content: ' + html.innerHTML);
         html.innerHTML = convertToDivs(extractContentFromHtml(html.innerHTML));
-        
+        console.log('Loading content: ' + html.innerHTML);
         document.querySelectorAll('.fa-star').forEach(icon => {
             icon.title = 'Playtested Material';
-        });
+        }); 
+        document.querySelector('#content-container').classList.remove('content-loading');
     });
 </script>
 
@@ -135,7 +142,18 @@
 
 
 
+    </div>
 
-    
 </body>
 </html>
+
+
+<script>    
+    console.log(document.querySelector('.header-container').dataset.pageType);
+    console.log(document.querySelector('.header-container').dataset.layout);
+
+    if (!document.querySelector('.header-container').dataset.custom_js) {
+        console.log('Removing content-loading class due to custom_js not being set');
+        document.querySelector('#content-container').classList.remove('content-loading');
+    }
+</script>

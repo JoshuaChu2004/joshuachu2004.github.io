@@ -147,6 +147,10 @@ nav a {
     border: none;
 }
 
+.section.no-border::after {
+    display: none;
+}
+
 .section.toc {
     display: flex;
     flex-direction: row;
@@ -172,7 +176,11 @@ nav a {
 
 /* Account for sticky header when scrolling to sections */
 section[id] {
-    scroll-margin-top: 60px;
+    scroll-margin-top: 80px;
+}
+
+table[id] {
+    scroll-margin-top: 80px;
 }
 
 /* ==========================================================================
@@ -394,6 +402,11 @@ section[id] {
     font-style: italic;
 }
 
+/* Hide content initially to prevent pop-in effect */
+.content-loading {
+    visibility: hidden;
+}
+
 /* ==========================================================================
    UTILITY COMPONENTS
    ========================================================================== */
@@ -434,6 +447,7 @@ section[id] {
    ========================================================================== */
 
 .spell-properties {
+    /* Spell properties container */
 }
 
 .spell-property {
@@ -532,17 +546,48 @@ section[id] {
    TABLES
    ========================================================================== */
 
-
-table th:first-child,
-table td:first-child {
-    max-width: 16px;
-    padding: 10px;
+/* D&D Stat Block Styling - Grouped borders */
+.stat-block {
+    border-collapse: collapse;
+    text-transform: none;
+    font-size: 16px;
 }
 
-table th:second-child,
-table td:second-child {
-    padding-left: 0;
-    white-space: nowrap;
+.stat-block-title {
+    font-size: 18px;
+    text-transform: none;
+    line-height: 1.2;
+}
+
+.stat-block-subtitle {
+    font-size: 14px;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--muted);
+    text-transform: none;
+}
+
+.stat-block-stats td {
+    text-align: center;
+}
+
+.stat-block-skills {
+}
+
+.stat-block-actions td {
+    border-bottom: none;
+    border-top: none;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+.stat-block-actions.stat-block-title {
+    text-decoration: underline;
+    padding: 12px 16px;
+}
+
+.stat-block tr:last-child td {
+    padding: 12px 16px;
 }
 
 .table-wrapper {
@@ -561,6 +606,7 @@ table {
     background: white;
     border-radius: 8px;
     overflow: hidden;
+    font-size: 16px;
 }
 
 th, td {

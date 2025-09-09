@@ -1,14 +1,29 @@
 ---
 layout: base
 custom_js: /js/advanced-content-loader.js
-type: dnd
+page_type: dnd
 ---
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const html = document.querySelector('#content-container');
+        html.innerHTML = convertToDivs(extractContentFromHtml(html.innerHTML));
+        
+        document.querySelectorAll('.fa-star').forEach(icon => {
+            icon.title = 'Playtested Material';
+        }); 
+        
+        // Remove loading class after conversion is complete
+        html.classList.remove('content-loading');
+    });
+</script>
+
 <body>
     <div id="header-placeholder"></div>
 
     <section class="intro-content">
-        <div class="section-content" data-content="/dnd/content/intro">
-            <!-- Content will be loaded automatically -->
+        <div class="section-content">
+            {% assign classes = site.content | where: "title", "Phoenix's Nest of Everything" | first %}
+            {{ classes.content }}
         </div>
     </section>
 
@@ -52,38 +67,51 @@ type: dnd
     </section>
 
     <section id="classes" class="section">
-        <div class="section-content" data-content="/dnd/content/classes">
-            <!-- Content will be loaded automatically -->
+        <div class="section-content">
+            {% assign classes = site.content | where: "title", "D&D Classes" | first %}
+            {{ classes.content }}
         </div>
     </section>
 
     <section id="spells" class="section">
-        <div class="section-content" data-content="/dnd/content/spells">
+        <div class="section-content">
+            {% assign spells = site.content | where: "title", "D&D Spells" | first %}
+            {{ spells.content }}
             <!-- Content will be loaded automatically -->
         </div>
     </section>
     <section id="races" class="section">
-        <div class="section-content" data-content="/dnd/content/races">
+        <div class="section-content">
+            {% assign races = site.content | where: "title", "D&D Races" | first %}
+            {{ races.content }}
             <!-- Content will be loaded automatically -->
         </div>
     </section>
     <section id="items" class="section">
-        <div class="section-content" data-content="/dnd/content/items">
+        <div class="section-content">
+            {% assign items = site.content | where: "title", "D&D Items" | first %}
+            {{ items.content }}
             <!-- Content will be loaded automatically -->
         </div>
     </section>
     <section id="feats" class="section">
-        <div class="section-content" data-content="/dnd/content/feats">
+        <div class="section-content">
+            {% assign feats = site.content | where: "title", "D&D Feats" | first %}
+            {{ feats.content }}
             <!-- Content will be loaded automatically -->
         </div>
     </section>
     <section id="house-rules" class="section">
-        <div class="section-content" data-content="/dnd/content/houserules">
+        <div class="section-content">
+            {% assign houseRules = site.content | where: "title", "D&D House Rules" | first %}
+            {{ houseRules.content }}
             <!-- Content will be loaded automatically -->
         </div>
     </section>
     <section id="reworks" class="section">
-        <div class="section-content" data-content="/dnd/content/reworks">
+        <div class="section-content">
+            {% assign reworks = site.content | where: "title", "D&D Reworks" | first %}
+            {{ reworks.content }}
             <!-- Content will be loaded automatically -->
         </div>
     </section>

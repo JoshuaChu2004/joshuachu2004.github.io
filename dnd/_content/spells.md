@@ -6,7 +6,7 @@ spell_icon: fas fa-book-open fa-8x
 ---
 
 
-<div class="section toc" markdown="1">
+<div class="section toc no-border" markdown="1">
 <div class="section-icon {{ page.spell_icon }}"></div>
 <div class="spell-content" markdown="1">
 # Spells 

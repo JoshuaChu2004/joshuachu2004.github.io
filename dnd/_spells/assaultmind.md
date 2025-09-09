@@ -12,7 +12,7 @@ ritual: false
 concentration: false
 spell_lists:
  - list: School of Inquisimancy
-finished: false
+finished: true
 ---
 You channel power into your arm and attempt to grasp the head of a creature within melee range. Make a spell attack on the creature. On a hit, the creature is restrained as their mind is forced to live through a nightmarish version of their worst memories, dealing 1d8 psychic damage. Until the spell ends, they take an additional 1d8 psychic damage at the start of their turn. A creature restrained by this spell can use its action to make a Wisdom saving throw against your spell save DC. On a success, it frees itself and the spell ends.
 

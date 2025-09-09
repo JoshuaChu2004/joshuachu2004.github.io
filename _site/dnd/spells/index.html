@@ -13,11 +13,13 @@
     <link rel="stylesheet" href="/dnd/dndstyles.css">
     
     
+    
+
 </head>
 
 <body>
     <header>
-        <div class="header-container">
+        <div class="header-container" data-pageType="dnd" data-layout="spells" data-custom_js="">
             <nav>
                 <div style="display: flex; gap: 12px; align-items: center">
                     <span class="pill">🎮 Joshua Chu</span>
@@ -35,12 +37,14 @@
         </div>
     </header>
 
-    <script>
+    <div id="content-container" class="content-loading">
+        <script>
     document.addEventListener('DOMContentLoaded', function() {
         loadSpells();
         document.querySelectorAll('.fa-star').forEach(icon => {
             icon.title = 'Playtested Material';
         });
+        document.querySelector('#content-container').classList.remove('content-loading');
     });
 
     function loadSpells() {
@@ -248,6 +252,8 @@
                   
                         <tr data-spelllists="school-of-inquisimancy">
                             <td>
+                                
+                                <i class="fa-solid fa-star"></i>
                                 
                             </td>
                             <td><a href="/dnd/spells/coaxtruth/">Coax Truth</a></td>
@@ -504,6 +510,8 @@
                   
                         <tr data-spelllists="school-of-inquisimancy">
                             <td>
+                                
+                                <i class="fa-solid fa-star"></i>
                                 
                             </td>
                             <td><a href="/dnd/spells/assaultmind/">Assault Mind</a></td>
@@ -821,6 +829,8 @@
                         <tr data-spelllists="school-of-inquisimancy">
                             <td>
                                 
+                                <i class="fa-solid fa-star"></i>
+                                
                             </td>
                             <td><a href="/dnd/spells/psychicwhip/">Psychic Whip</a></td>
                             <td>
@@ -966,6 +976,8 @@
                   
                         <tr data-spelllists="school-of-inquisimancy">
                             <td>
+                                
+                                <i class="fa-solid fa-star"></i>
                                 
                             </td>
                             <td><a href="/dnd/spells/scramble/">Scramble</a></td>
@@ -1168,6 +1180,8 @@
                   
                         <tr data-spelllists="school-of-inquisimancy">
                             <td>
+                                
+                                <i class="fa-solid fa-star"></i>
                                 
                             </td>
                             <td><a href="/dnd/spells/freeze/">Freeze</a></td>
@@ -1431,7 +1445,18 @@
 
 
 
+    </div>
 
-    
 </body>
 </html>
+
+
+<script>    
+    console.log(document.querySelector('.header-container').dataset.pageType);
+    console.log(document.querySelector('.header-container').dataset.layout);
+
+    if (!document.querySelector('.header-container').dataset.custom_js) {
+        console.log('Removing content-loading class due to custom_js not being set');
+        document.querySelector('#content-container').classList.remove('content-loading');
+    }
+</script>

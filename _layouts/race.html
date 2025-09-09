@@ -33,7 +33,7 @@ page_type: 'dnd'
                 {% else %}
                 <h1>{{ page.title }}</h1>
                 {% endif %}
-                <p class="content-type">{{page.class | default: ''}} {{ page.content_type | default: page.collection | capitalize | replace: '-', ' ' }}</p>
+                <p class="content-type">{{page.race | default: ''}} {{ page.content_type | default: page.collection | capitalize | replace: '-', ' ' }}</p>
             </div>
             
             <div id="markdown-content">

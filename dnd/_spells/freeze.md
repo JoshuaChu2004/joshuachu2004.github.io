@@ -12,6 +12,6 @@ ritual: false
 concentration: true
 spell_lists:
  - list: School of Inquisimancy
-finished: false
+finished: true
 ---
 Influence up to six creatures to see an illusion of their worst fears. All creatures must make a Wisdom saving throw. Upon fail, they are frightened for the duration of the spell. While frightened by this spell, their movement is reduced to 0 and are unable to increase it in any way. Affected creatures may reroll the saving throw at the end of their turn or when they take damage.

@@ -13,11 +13,15 @@
     <link rel="stylesheet" href="/dnd/dndstyles.css">
     
     
+    
+    <script src="/js/advanced-content-loader.js"></script>
+    
+
 </head>
 
 <body>
     <header>
-        <div class="header-container">
+        <div class="header-container" data-pageType="" data-layout="base" data-custom_js="/js/advanced-content-loader.js">
             <nav>
                 <div style="display: flex; gap: 12px; align-items: center">
                     <span class="pill">🎮 Joshua Chu</span>
@@ -35,12 +39,50 @@
         </div>
     </header>
 
-    <body>
+    <div id="content-container" class="content-loading">
+        <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const html = document.querySelector('#content-container');
+        html.innerHTML = convertToDivs(extractContentFromHtml(html.innerHTML));
+        
+        document.querySelectorAll('.fa-star').forEach(icon => {
+            icon.title = 'Playtested Material';
+        }); 
+        
+        // Remove loading class after conversion is complete
+        html.classList.remove('content-loading');
+    });
+</script>
+
+<body>
     <div id="header-placeholder"></div>
 
     <section class="intro-content">
-        <div class="section-content" data-content="/dnd/content/intro">
-            <!-- Content will be loaded automatically -->
+        <div class="section-content">
+            
+            <h1 id="phoenixs-nest-of-everything">Phoenix’s Nest of Everything</h1>
+<p>Welcome to my collection of D&amp;D 5e homebrew content! Here you’ll find custom classes, spells, items, races, and more that I’ve created for my campaigns.</p>
+
+<h2 id="what-youll-find">What You’ll Find</h2>
+
+<ul>
+  <li><strong>Classes</strong>: Custom subclasses and entirely new classes</li>
+  <li><strong>Spells</strong>: New magical incantations</li>
+  <li><strong>Items</strong>: Magic weapons, armor, and wondrous items</li>
+  <li><strong>Races</strong>: Custom player races and racial variants</li>
+  <li><strong>Feats</strong>: New character abilities and enhancements</li>
+  <li><strong>House Rules</strong>: Campaign-specific modifications and rulings</li>
+  <li><strong>Reworks</strong>: Changes to existing content, often to improve their mechanics or balance</li>
+</ul>
+
+<h2 id="browse-carefully">Browse Carefully!</h2>
+
+<p>Finished material will be denoted with a <i class="fa-solid fa-star"></i> symbol, signifying that it has gone through multiple iterations and has been playtested to a degree that I feel comfortable saying it is publishable material. If it doesn’t have a <i class="fa-solid fa-star"></i>, it is either a work in progress or has not been playtested enough to be considered finished.</p>
+
+<p>Despite this, everything here is still homebrew material. It is not endorsed by Wizards of the Coast, nor should you use it in any D&amp;D setting without first getting the approval of the DM and the table.
+<br /> <br />
+<em>Happy adventuring!</em></p>
+
         </div>
     </section>
 
@@ -84,38 +126,496 @@
     </section>
 
     <section id="classes" class="section">
-        <div class="section-content" data-content="/dnd/content/classes">
-            <!-- Content will be loaded automatically -->
+        <div class="section-content">
+            
+            
+<div class="section toc">
+  <div class="section-icon fa-solid fa-flask fa-8x"></div>
+  <div class="class-content">
+
+    <h2 id="the-witcher"><a href="/dnd/classes/witcher/">The Witcher</a></h2>
+
+    <p><strong><em>Normal individuals turned freaks of nature by the horrendous experiments known as the Trial of Grasses, Witchers are professional monster hunters who traditionally seek out contracts for coin. They are trained at a young age to be expert swordsmen, to memorize alchemical recipes and bestiarys, and to cast minor spells known as Signs to overcome their foes. Some beings despise their existence, many fear the twin blades on their back, but all cry for a Witcher when a monster threatens their lives.</em></strong>
+<br /></p>
+
+    <h4 id="homebrew-subclasses">Homebrew Subclasses:</h4>
+
+    <ul>
+      <li>
+        <p><a href="/dnd/subclasses/bearschool/">School of the Bear</a></p>
+      </li>
+      <li>
+        <p><a href="/dnd/subclasses/catschool/">School of the Cat</a></p>
+      </li>
+      <li>
+        <p><a href="/dnd/subclasses/wolfschool/">School of the Wolf</a></p>
+      </li>
+    </ul>
+
+  </div>
+</div>
+
+<div class="section toc">
+  <div class="section-icon fas fa-fire-flame-curved fa-8x"></div>
+  <div class="class-content">
+    <h2 id="the-barbarian">The Barbarian</h2>
+
+    <p><strong><em>For some, their rage springs from a communion with fierce animal spirits. Others draw from a roiling reservoir of anger at a world full of pain. For every barbarian, rage is a power that fuels not just a battle frenzy but also uncanny reflexes, resilience, and feats of strength.</em></strong></p>
+
+    <h4 id="homebrew-subclasses-1">Homebrew Subclasses:</h4>
+
+    <p><em>None Available</em></p>
+
+  </div>
+</div>
+
+<div class="section toc">
+  <div class="section-icon fas fa-guitar fa-8x"></div>
+  <div class="class-content">
+
+    <h2 id="the-bard">The Bard</h2>
+
+    <p><strong><em>Whether scholar, skald, or scoundrel, a bard weaves magic through words and music to inspire allies, demoralize foes, manipulate minds, create illusions, and even heal wounds. The bard is a master of song, speech, and the magic they contain.</em></strong></p>
+
+    <h4 id="homebrew-subclasses-2">Homebrew Subclasses:</h4>
+
+    <ul>
+      <li><a href="/dnd/subclasses/jestercollege/">College of Jesters</a> <i class="fa-solid fa-star"></i></li>
+    </ul>
+
+  </div>
+</div>
+
+<div class="section toc">
+  <div class="section-icon fas fa-person-praying fa-8x"></div>
+  <div class="class-content">
+
+    <h2 id="the-cleric">The Cleric</h2>
+
+    <p><strong><em>Clerics are intermediaries between the mortal world and the distant planes of the gods. As varied as the gods they serve, clerics strive to embody the handiwork of their deities. No ordinary priest, a cleric is imbued with divine magic.</em></strong></p>
+
+    <h4 id="homebrew-subclasses-3">Homebrew Subclasses:</h4>
+
+    <ul>
+      <li>
+        <p><a href="/dnd/subclasses/freedomdomain/">Freedom Domain</a></p>
+      </li>
+      <li>
+        <p><a href="/dnd/subclasses/prosperitydomain/">Prosperity Domain</a></p>
+      </li>
+    </ul>
+
+  </div>
+</div>
+
+<div class="section toc">
+  <div class="section-icon fa-solid fa-tree fa-8x"></div>
+  <div class="class-content">
+
+    <h2 id="the-druid">The Druid</h2>
+
+    <p><strong><em>Whether calling on the elemental forces of nature or emulating the creatures of the animal world, druids are an embodiment of nature’s resilience, cunning, and fury. They claim no mastery over nature, but see themselves as extensions of nature’s indomitable will.</em></strong></p>
+
+    <h4 id="homebrew-subclasses-4">Homebrew Subclasses:</h4>
+
+    <p><em>None Available</em></p>
+
+  </div>
+</div>
+
+<div class="section toc">
+  <div class="section-icon fa-solid fa-gavel fa-8x"></div>
+  <div class="class-content">
+
+    <h2 id="the-fighter">The Fighter</h2>
+
+    <p><strong><em>Fighters share an unparalleled mastery with weapons and armor, and a thorough knowledge of the skills of combat. They are well acquainted with death, both meting it out and staring it defiantly in the face.</em></strong></p>
+
+    <h4 id="homebrew-subclasses-5">Homebrew Subclasses:</h4>
+
+    <ul>
+      <li>
+        <p><a href="/dnd/subclasses/combatmedic/">Combat Medic</a></p>
+      </li>
+      <li>
+        <p><a href="/dnd/subclasses/fencer/">Fencer</a></p>
+      </li>
+      <li>
+        <p><a href="/dnd/subclasses/steelsworn/">Steelsworn</a></p>
+      </li>
+    </ul>
+
+  </div>
+</div>
+
+<div class="section toc">
+  <div class="section-icon fa-solid fa-hand-fist fa-8x"></div>
+  <div class="class-content">
+
+    <h2 id="the-monk">The Monk</h2>
+
+    <p><strong><em>Monks are united in their ability to magically harness the energy that flows in their bodies. Whether channeled as a striking display of combat prowess or a subtler focus of defensive ability and speed, this energy infuses all that a monk does.</em></strong></p>
+
+    <h4 id="homebrew-subclasses-6">Homebrew Subclasses:</h4>
+
+    <ul>
+      <li>
+        <p><a href="/dnd/subclasses/theforceway/">Way of The Force</a></p>
+      </li>
+      <li>
+        <p><a href="/dnd/subclasses/therisingstormway/">Way of the Rising Storm</a> <i class="fa-solid fa-star"></i></p>
+      </li>
+      <li>
+        <p><a href="/dnd/subclasses/thetrapperway/">Way of the Trapper</a> <i class="fa-solid fa-star"></i></p>
+      </li>
+    </ul>
+
+  </div>
+</div>
+
+<div class="section toc">
+  <div class="section-icon fa-solid fa-shield-halved fa-8x"></div>
+  <div class="class-content">
+
+    <h2 id="the-paladin">The Paladin</h2>
+
+    <p><strong><em>Whether sworn before a god’s altar and the witness of a priest, in a sacred glade before nature spirits and fey beings, or in a moment of desperation and grief with the dead as the only witness, a paladin’s oath is a powerful bond.</em></strong></p>
+
+    <h4 id="homebrew-subclasses-7">Homebrew Subclasses:</h4>
+
+    <ul>
+      <li><a href="/dnd/subclasses/oathofprotection/">Oath of Protection</a> <i class="fa-solid fa-star"></i></li>
+    </ul>
+
+  </div>
+</div>
+
+<div class="section toc">
+  <div class="section-icon fa-solid fa-paw fa-8x"></div>
+  <div class="class-content">
+
+    <h2 id="the-ranger">The Ranger</h2>
+
+    <p><strong><em>Far from the bustle of cities and towns, past the hedges that shelter the most distant farms from the terrors of the wild, amid the dense-packed trees of trackless forests and across wide and empty plains, rangers keep their unending watch.</em></strong></p>
+
+    <h4 id="homebrew-subclasses-8">Homebrew Subclasses:</h4>
+
+    <p><em>None Available</em></p>
+
+  </div>
+</div>
+
+<div class="section toc">
+  <div class="section-icon fa-solid fa-eye-low-vision fa-8x"></div>
+  <div class="class-content">
+
+    <h2 id="the-rogue">The Rogue</h2>
+
+    <p><strong><em>Rogues rely on skill, stealth, and their foes’ vulnerabilities to get the upper hand in any situation. They have a knack for finding the solution to just about any problem, demonstrating a resourcefulness and versatility that is the cornerstone of any successful adventuring party.</em></strong></p>
+
+    <h4 id="homebrew-subclasses-9">Homebrew Subclasses:</h4>
+
+    <ul>
+      <li><a href="/dnd/subclasses/vigilante/">Vigilante</a></li>
+    </ul>
+
+  </div>
+</div>
+
+<div class="section toc">
+  <div class="section-icon fa-solid fa-hand-sparkles fa-8x"></div>
+  <div class="class-content">
+
+    <h2 id="the-sorcerer">The Sorcerer</h2>
+
+    <p><strong><em>Sorcerers carry a magical birthright conferred upon them by an exotic bloodline, some otherworldly influence, or exposure to unknown cosmic forces. No one chooses sorcery; the power chooses the sorcerer.</em></strong></p>
+
+    <h4 id="homebrew-subclasses-10">Homebrew Subclasses:</h4>
+
+    <ul>
+      <li>
+        <p><a href="/dnd/subclasses/chronoshifter/">Chronoshifter</a> <i class="fa-solid fa-star"></i></p>
+      </li>
+      <li>
+        <p><a href="/dnd/subclasses/fiendblade/">Fiendblade</a> <i class="fa-solid fa-star"></i></p>
+      </li>
+      <li>
+        <p><a href="/dnd/subclasses/starborne/">Starborne</a></p>
+      </li>
+    </ul>
+
+  </div>
+</div>
+
+<div class="section toc">
+  <div class="section-icon fa-solid fa-dragon fa-8x"></div>
+  <div class="class-content">
+
+    <h2 id="the-warlock">The Warlock</h2>
+
+    <p><strong><em>Warlocks are seekers of the knowledge that lies hidden in the fabric of the multiverse. Through pacts made with mysterious beings of supernatural power, warlocks unlock magical effects both subtle and spectacular.</em></strong></p>
+
+    <h4 id="homebrew-subclasses-11">Homebrew Subclasses:</h4>
+
+    <ul>
+      <li>
+        <p><a href="/dnd/subclasses/thehybrid/">The Hybrid</a></p>
+      </li>
+      <li>
+        <p><a href="/dnd/subclasses/theparasite/">The Parasite</a></p>
+      </li>
+      <li>
+        <p><a href="/dnd/subclasses/thesoulmate/">The Soulmate</a></p>
+      </li>
+    </ul>
+
+  </div>
+</div>
+
+<div class="section toc no-border">
+  <div class="section-icon fa-solid fa-wand-sparkles fa-8x"></div>
+  <div class="class-content">
+
+    <h2 id="the-wizard">The Wizard</h2>
+
+    <p><strong><em>Wizards are supreme magic-users, defined and united as a class by the spells they cast. Drawing on the subtle weave of magic that permeates the cosmos, wizards cast spells of explosive fire, arcing lightning, subtle deception, brute-force mind control, and much more.</em></strong></p>
+
+    <h4 id="homebrew-subclasses-12">Homebrew Subclasses:</h4>
+
+    <ul>
+      <li>
+        <p><a href="/dnd/subclasses/inquisimancyschool/">School of Inquisimancy</a> <i class="fa-solid fa-star"></i></p>
+      </li>
+      <li>
+        <p><a href="/dnd/subclasses/summoningschool/">School of Summoning</a></p>
+      </li>
+    </ul>
+
+  </div>
+</div>
+
         </div>
     </section>
 
     <section id="spells" class="section">
-        <div class="section-content" data-content="/dnd/content/spells">
+        <div class="section-content">
+            
+            <div class="section toc no-border">
+  <div class="section-icon fas fa-book-open fa-8x"></div>
+  <div class="spell-content">
+    <h1 id="spells">Spells</h1>
+
+    <h2 id="all-spells"><a href="/dnd/spells/">All Spells</a></h2>
+
+    <ul>
+      <li>
+        <p><a href="/dnd/spells/?subclass=witcher">The Witcher Spells</a></p>
+      </li>
+      <li>
+        <p><a href="/dnd/spells/?subclass=chronoshifter">Chronoshifter Spells</a></p>
+      </li>
+      <li>
+        <p><a href="/dnd/spells/?subclass=fiendblade">Fiendblade Spells</a></p>
+      </li>
+      <li>
+        <p><a href="/dnd/spells/?subclass=school-of-inquisimancy">School of Inquisimancy Spells</a></p>
+      </li>
+      <li>
+        <p><a href="/dnd/spells/?subclass=starborne">Starborne Spells</a></p>
+      </li>
+    </ul>
+
+  </div>
+</div>
+
             <!-- Content will be loaded automatically -->
         </div>
     </section>
     <section id="races" class="section">
-        <div class="section-content" data-content="/dnd/content/races">
+        <div class="section-content">
+            
+            <div class="section toc no-border">
+  <div class="section-icon fas fa-users fa-8x"></div>
+  <div class="race-content">
+    <h1 id="races">Races</h1>
+
+    <ul>
+      <li>
+        <p><a href="/dnd/races/draconid/">Draconid</a></p>
+      </li>
+      <li>
+        <p><a href="/dnd/races/forestspirit/">Forest Spirit</a></p>
+      </li>
+    </ul>
+
+  </div>
+</div>
+
             <!-- Content will be loaded automatically -->
         </div>
     </section>
     <section id="items" class="section">
-        <div class="section-content" data-content="/dnd/content/items">
+        <div class="section-content">
+            
+            <h1 id="magic-items">Magic Items</h1>
+
+<p>A collection of custom magic items for D&amp;D 5e campaigns.</p>
+
+<h2 id="weapons">Weapons</h2>
+
+<h3 id="flameblade"><a href="/dnd/items/flameblade/">Flameblade</a></h3>
+<p>A fiery longsword that deals extra fire damage and can be ignited to provide light and additional effects.</p>
+
+<h2 id="armor">Armor</h2>
+
+<h2 id="wondrous-items">Wondrous Items</h2>
+
+<h2 id="consumables">Consumables</h2>
+
+<h2 id="creating-new-items">Creating New Items</h2>
+
+<p>To add a new magic item:</p>
+
+<ol>
+  <li>Create a markdown file in the items collection directory:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">_items/itemname.md</code></li>
+    </ul>
+  </li>
+  <li>The page will automatically be accessible at <code class="language-plaintext highlighter-rouge">/dnd/items/itemname/</code></li>
+  <li>Update this overview page with a link to your new item</li>
+</ol>
+
+<h2 id="item-rarity-guidelines">Item Rarity Guidelines</h2>
+
+<ul>
+  <li><strong>Common:</strong> Simple magical effects, minor utility</li>
+  <li><strong>Uncommon:</strong> Moderate power, useful in many situations</li>
+  <li><strong>Rare:</strong> Significant power, specialized effects</li>
+  <li><strong>Very Rare:</strong> Powerful effects, campaign-changing abilities</li>
+  <li><strong>Legendary:</strong> Game-changing power, unique abilities</li>
+</ul>
+
+<h2 id="balance-considerations">Balance Considerations</h2>
+
+<p>When creating magic items:</p>
+
+<ul>
+  <li>Consider the level of characters who might find them</li>
+  <li>Balance attunement requirements appropriately</li>
+  <li>Ensure effects don’t overshadow class abilities</li>
+  <li>Provide clear rules for how abilities work</li>
+  <li>Include interesting lore and history</li>
+</ul>
+
             <!-- Content will be loaded automatically -->
         </div>
     </section>
     <section id="feats" class="section">
-        <div class="section-content" data-content="/dnd/content/feats">
+        <div class="section-content">
+            
+            <h1 id="feats">Feats</h1>
+
+<p>Custom character feats and abilities for D&amp;D 5e.</p>
+
+<h2 id="creating-new-feats">Creating New Feats</h2>
+
+<p>To add a new feat:</p>
+
+<ol>
+  <li>Create a markdown file in the feats collection directory:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">dnd/_feats/featname.md</code></li>
+    </ul>
+  </li>
+  <li>The page will automatically be accessible at <code class="language-plaintext highlighter-rouge">/dnd/feats/featname/</code></li>
+  <li>Update this overview page with a link to your new feat</li>
+</ol>
+
+<h2 id="feat-design-guidelines">Feat Design Guidelines</h2>
+
+<p>When creating new feats:</p>
+
+<ul>
+  <li>Follow D&amp;D 5e feat structure and prerequisites</li>
+  <li>Balance power level against existing feats</li>
+  <li>Consider class and build synergies</li>
+  <li>Include clear mechanical benefits</li>
+  <li>Provide interesting character development options</li>
+</ul>
+
             <!-- Content will be loaded automatically -->
         </div>
     </section>
     <section id="house-rules" class="section">
-        <div class="section-content" data-content="/dnd/content/houserules">
+        <div class="section-content">
+            
+            <h1 id="house-rules">House Rules</h1>
+
+<p>Campaign-specific modifications and rulings for D&amp;D 5e.</p>
+
+<h2 id="creating-new-house-rules">Creating New House Rules</h2>
+
+<p>To add a new house rule:</p>
+
+<ol>
+  <li>Create a markdown file in the house-rules collection directory:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">dnd/_house-rules/rulename.md</code></li>
+    </ul>
+  </li>
+  <li>The page will automatically be accessible at <code class="language-plaintext highlighter-rouge">/dnd/house-rules/rulename/</code></li>
+  <li>Update this overview page with a link to your new rule</li>
+</ol>
+
+<h2 id="house-rule-guidelines">House Rule Guidelines</h2>
+
+<p>When creating house rules:</p>
+
+<ul>
+  <li>Clearly explain the rule and its purpose</li>
+  <li>Consider impact on game balance</li>
+  <li>Provide examples of how it works in practice</li>
+  <li>Include any necessary clarifications or exceptions</li>
+  <li>Explain the reasoning behind the rule</li>
+</ul>
+
             <!-- Content will be loaded automatically -->
         </div>
     </section>
     <section id="reworks" class="section">
-        <div class="section-content" data-content="/dnd/content/reworks">
+        <div class="section-content">
+            
+            <h1 id="reworks">Reworks</h1>
+
+<p>Modifications and improvements to existing D&amp;D 5e content.</p>
+
+<h2 id="creating-new-reworks">Creating New Reworks</h2>
+
+<p>To add a new rework:</p>
+
+<ol>
+  <li>Create a markdown file in the reworks collection directory:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">dnd/_reworks/reworkname.md</code></li>
+    </ul>
+  </li>
+  <li>The page will automatically be accessible at <code class="language-plaintext highlighter-rouge">/dnd/reworks/reworkname/</code></li>
+  <li>Update this overview page with a link to your new rework</li>
+</ol>
+
+<h2 id="rework-guidelines">Rework Guidelines</h2>
+
+<p>When creating reworks:</p>
+
+<ul>
+  <li>Clearly identify what you’re modifying</li>
+  <li>Explain the reasoning behind changes</li>
+  <li>Maintain balance with existing content</li>
+  <li>Provide clear before/after comparisons</li>
+  <li>Include playtesting notes if available</li>
+</ul>
+
             <!-- Content will be loaded automatically -->
         </div>
     </section>
@@ -123,9 +623,18 @@
     
 </body>
 </html>
+    </div>
 
-    
-    <script src="/js/advanced-content-loader.js"></script>
-    
 </body>
 </html>
+
+
+<script>    
+    console.log(document.querySelector('.header-container').dataset.pageType);
+    console.log(document.querySelector('.header-container').dataset.layout);
+
+    if (!document.querySelector('.header-container').dataset.custom_js) {
+        console.log('Removing content-loading class due to custom_js not being set');
+        document.querySelector('#content-container').classList.remove('content-loading');
+    }
+</script>
