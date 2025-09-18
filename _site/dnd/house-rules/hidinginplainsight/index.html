@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hiding in Plain Sight - Joshua Chu</title>
+    <meta name="description" content="Bookmark this to keep an eye on my project updates!" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="/dnd/dndstyles.css">
+    
+    
+    
+    <script src="/js/advanced-content-loader.js"></script>
+    
+
+</head>
+
+<body>
+    <header>
+        <div class="header-container" data-pageType="dnd" data-layout="dnd" data-custom_js="/js/advanced-content-loader.js">
+            <nav>
+                <div style="display: flex; gap: 12px; align-items: center">
+                    <span class="pill">🎮 Joshua Chu</span>
+                    <span class="muted" style="font-size: 13px">Game Developer • Software Engineer • D&D Homebrew Creator</span>
+                </div>
+                <div class="links">
+                    <a href="/index.html">Home</a>
+                    <a href="/index.html#games" data-short="Games">Video Games</a>
+                    <a href="/index.html#software">Software</a>
+                    <a href="/dnd/">D&D</a>
+                    <a href="/index.html#about">About</a>
+                    <a href="/index.html#contact">Contact</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div id="content-container" class="content-loading">
+        <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Auto-load content from data attributes
+        loadAllContent();
+        const html = document.querySelector('html');
+        console.log('Loading content: ' + html.innerHTML);
+        html.innerHTML = convertToDivs(extractContentFromHtml(html.innerHTML));
+        console.log('Loading content: ' + html.innerHTML);
+        document.querySelectorAll('.fa-star').forEach(icon => {
+            icon.title = 'Playtested Material';
+        }); 
+        document.querySelector('#content-container').classList.remove('content-loading');
+    });
+</script>
+
+    <section class="intro-content">
+        <div class="section-content">
+            <div class="breadcrumb">
+                <a href="/dnd/">D&D Homebrew</a> &gt; 
+                <a href="/dnd/#house-rules">House rules</a> &gt; 
+                <span>Hiding in Plain Sight</span>
+            </div>
+            
+            <div id="content-header" class="content-header">
+                
+                <h1>Hiding in Plain Sight</h1>
+                
+                <p class="content-type"> House rules</p>
+            </div>
+            
+            <div id="markdown-content">
+                <p>When making a Dexterity (Stealth) check to hide, if the creature(s) you are attempting to hide from are able to clearly see you without any cover or concealment, you have a -10 deduction to your roll. If at any point you are Hidden and end your turn Hiding in Plain Sight, you must make another Dexterity (Stealth) check with the deduction. You can not Hide in Plain Sight while within 5 ft. of a creature that can see or hear you. Creatures have advantage on Wisdom (Perception) checks made to find you while you are Hiding in Plain sight.</p>
+
+            </div>
+            
+            <div class="back-to-top">
+                <a href="#content-header">Back to Top</a>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
+
+
+
+
+    </div>
+
+</body>
+</html>
+
+
+<script>    
+    console.log(document.querySelector('.header-container').dataset.pageType);
+    console.log(document.querySelector('.header-container').dataset.layout);
+
+    if (!document.querySelector('.header-container').dataset.custom_js) {
+        console.log('Removing content-loading class due to custom_js not being set');
+        document.querySelector('#content-container').classList.remove('content-loading');
+    }
+</script>

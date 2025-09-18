@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Pouch of the All-Brewer - Joshua Chu</title>
+    <meta name="description" content="Bookmark this to keep an eye on my project updates!" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="/dnd/dndstyles.css">
+    
+    
+    
+    <script src="/js/advanced-content-loader.js"></script>
+    
+
+</head>
+
+<body>
+    <header>
+        <div class="header-container" data-pageType="dnd" data-layout="item" data-custom_js="/js/advanced-content-loader.js">
+            <nav>
+                <div style="display: flex; gap: 12px; align-items: center">
+                    <span class="pill">🎮 Joshua Chu</span>
+                    <span class="muted" style="font-size: 13px">Game Developer • Software Engineer • D&D Homebrew Creator</span>
+                </div>
+                <div class="links">
+                    <a href="/index.html">Home</a>
+                    <a href="/index.html#games" data-short="Games">Video Games</a>
+                    <a href="/index.html#software">Software</a>
+                    <a href="/dnd/">D&D</a>
+                    <a href="/index.html#about">About</a>
+                    <a href="/index.html#contact">Contact</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div id="content-container" class="content-loading">
+        <body>
+    <div id="header-placeholder"></div>
+
+    <section class="intro-content">
+        <div class="section-content">
+            <div class="breadcrumb">
+                <a href="/dnd/">D&D Homebrew</a> &gt; 
+                <a href="/dnd/#items">Items</a> &gt; 
+                <span>Pouch of the All-Brewer</span>
+            </div>
+            
+            <div id="content-header" class="content-header">
+                
+                <h1>Pouch of the All-Brewer</h1>
+                
+                <p class="content-type"> Item</p>
+            </div>
+            
+            <div id="markdown-content">
+
+                <div class="item-properties">
+                    
+                    
+                    
+                    
+                    <span class="italic">Wondrous Item, Rare (requires attunement)</span>
+                </div>
+                <div class="break"></div>
+                <p>You can pull a random potion out of your bag and choose to either drink it or toss it to another creature. Said creature can then drink the vial as a reaction. The vial will disappear after 5 minutes. Upon further investigation, it is impossible to determine the potions.</p>
+
+<div class="break"></div>
+
+<p>As a bonus action, pull out a random potion from your bag and roll a 1d6 to determine what type of potion it is.</p>
+
+<div class="break"></div>
+
+<p><strong>Potion Table (1d6):</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>d6</th>
+      <th>Potion</th>
+      <th>Effect</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td><strong>Dud potion.</strong></td>
+      <td>No effect.</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td><strong>Potion of Guidance.</strong></td>
+      <td>Gain a 1d4 to the creature’s next roll.</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td><strong>Potion of the Wind.</strong></td>
+      <td>Gain +10 movement speed and +1 to Dexterity Modifier until the end of their next turn.</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td><strong>Potion of Healing.</strong></td>
+      <td>Gain 3d4 + 3 Hit Points.</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td><strong>Potion of Weakness.</strong></td>
+      <td>Gain Improved Critical until the end of their next turn.</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td><strong>Potion of Inspiration.</strong></td>
+      <td>Gain Inspiration.</td>
+    </tr>
+  </tbody>
+</table>
+
+            </div>
+        </div>
+    </section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Auto-load content from data attributes
+        loadAllContent();
+        const html = document.querySelector('html');
+        html.innerHTML = convertToDivs(extractContentFromHtml(html.innerHTML));
+        
+        document.querySelectorAll('.fa-star').forEach(icon => {
+            icon.title = 'Playtested Material';
+        });
+        document.querySelector('#content-container').classList.remove('content-loading');
+    });
+</script>
+</body>
+</html>
+
+
+
+    </div>
+
+</body>
+</html>
+
+
+<script>    
+    console.log(document.querySelector('.header-container').dataset.pageType);
+    console.log(document.querySelector('.header-container').dataset.layout);
+
+    if (!document.querySelector('.header-container').dataset.custom_js) {
+        console.log('Removing content-loading class due to custom_js not being set');
+        document.querySelector('#content-container').classList.remove('content-loading');
+    }
+</script>

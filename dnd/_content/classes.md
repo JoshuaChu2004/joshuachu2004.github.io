@@ -2,6 +2,7 @@
 layout: bare
 title: D&D Classes
 permalink: /dnd/content/classes
+artificer_icon: fa-solid fa-wrench fa-8x
 barbarian_icon: fas fa-fire-flame-curved fa-8x
 bard_icon: fas fa-guitar fa-8x
 cleric_icon: fas fa-person-praying fa-8x
@@ -48,8 +49,36 @@ wizard_icon: fa-solid fa-wand-sparkles fa-8x
   {% endfor %}
 
 <div class="section toc" markdown="1">
+<div class="section-icon {{ page.artificer_icon }}"></div>
+<div class="class-content" markdown="1">
+
+## The Artificer
+
+***Makers of magic-infused objects, artificers are defined by their inventive nature. They see magic as a complex system waiting to be decoded and controlled. Instead of ephemeral spells, they seek to craft durable, useful, marvelous magical items.***
+
+#### Homebrew Subclasses:
+{% assign artificer_count = 0 %}
+{% for subclass in site.subclasses %}
+{% if subclass.class == "Artificer" %}
+{% assign artificer_count = artificer_count | plus: 1 %}
+{% if subclass.finished %}
+
+- [{{ subclass.title }}]({{ subclass.url }}) <i class="fa-solid fa-star"></i>
+{% else %}
+- [{{ subclass.title }}]({{ subclass.url }})
+{% endif %}
+  {% endif %}
+  {% endfor %}
+  {% if artificer_count == 0 %}
+  *None Available*
+  {% endif %}
+</div>
+</div>
+
+<div class="section toc" markdown="1">
 <div class="section-icon {{ page.barbarian_icon }}"></div>
 <div class="class-content" markdown="1">
+
 ## The Barbarian
 
 ***For some, their rage springs from a communion with fierce animal spirits. Others draw from a roiling reservoir of anger at a world full of pain. For every barbarian, rage is a power that fuels not just a battle frenzy but also uncanny reflexes, resilience, and feats of strength.***

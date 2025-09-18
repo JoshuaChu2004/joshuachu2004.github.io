@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Frozen Soul Dagger - Joshua Chu</title>
+    <meta name="description" content="Bookmark this to keep an eye on my project updates!" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="/dnd/dndstyles.css">
+    
+    
+    
+    <script src="/js/advanced-content-loader.js"></script>
+    
+
+</head>
+
+<body>
+    <header>
+        <div class="header-container" data-pageType="dnd" data-layout="item" data-custom_js="/js/advanced-content-loader.js">
+            <nav>
+                <div style="display: flex; gap: 12px; align-items: center">
+                    <span class="pill">🎮 Joshua Chu</span>
+                    <span class="muted" style="font-size: 13px">Game Developer • Software Engineer • D&D Homebrew Creator</span>
+                </div>
+                <div class="links">
+                    <a href="/index.html">Home</a>
+                    <a href="/index.html#games" data-short="Games">Video Games</a>
+                    <a href="/index.html#software">Software</a>
+                    <a href="/dnd/">D&D</a>
+                    <a href="/index.html#about">About</a>
+                    <a href="/index.html#contact">Contact</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div id="content-container" class="content-loading">
+        <body>
+    <div id="header-placeholder"></div>
+
+    <section class="intro-content">
+        <div class="section-content">
+            <div class="breadcrumb">
+                <a href="/dnd/">D&D Homebrew</a> &gt; 
+                <a href="/dnd/#items">Items</a> &gt; 
+                <span>Frozen Soul Dagger</span>
+            </div>
+            
+            <div id="content-header" class="content-header">
+                
+                <h1>Frozen Soul Dagger</h1>
+                
+                <p class="content-type"> Item</p>
+            </div>
+            
+            <div id="markdown-content">
+
+                <div class="item-properties">
+                    
+                    
+                    
+                    
+                    <span class="italic">Weapon (Dagger), Uncommon (requires attunement)</span>
+                </div>
+                <div class="break"></div>
+                <p>A dagger made from the soul of a frozen person. The art of soul-catching is rather mysterious and heavily guarded by the guilds that know how to contain a soul inside of material. Depending on the nature of the soul’s death, it is said that these souls contain great elemental power. A frozen soul embodies the sheer cold of the snowy mountains. At its very weakest, it can freeze those that are struck by the material, consuming their soul should they perish while they are encased in ice.</p>
+
+<p><strong>Frost DC.</strong> Many of the weapon’s features involve a Frost DC Save. At its current state, the Frost DC is 14.</p>
+
+<div class="break"></div>
+
+<p><strong>Freeze.</strong> Upon attacking a creature, you may expend a charge to encase a creature in ice. The creature must make a CON Save against your Frost DC. Upon fail, they are Petrified until the end of your next turn.</p>
+
+<div class="break"></div>
+
+<p><strong>Cracked Ice.</strong> Petrified creatures that have been frozen do not have resistance against your attacks with this weapon.</p>
+
+<div class="break"></div>
+
+<p><strong>Consume Soul.</strong> When you engage in combat against a powerful creature, the knife will shudder with hunger. Should you bring that creature below 0 Hit Points while they are Frozen, their soul will be consumed, strengthening the magic within the weapon, potentially unlocking new abilities and power.</p>
+
+<div class="break"></div>
+
+<p><strong>Cursed.</strong> This item is cursed by those who attune to it. When you attune to the blade and do not feed it souls for some time, it will begin to consume your own. After a certain amount of time, usually around a week, you will begin gaining points of exhaustion that can not be recovered from in any way except for consuming a soul.</p>
+
+            </div>
+        </div>
+    </section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Auto-load content from data attributes
+        loadAllContent();
+        const html = document.querySelector('html');
+        html.innerHTML = convertToDivs(extractContentFromHtml(html.innerHTML));
+        
+        document.querySelectorAll('.fa-star').forEach(icon => {
+            icon.title = 'Playtested Material';
+        });
+        document.querySelector('#content-container').classList.remove('content-loading');
+    });
+</script>
+</body>
+</html>
+
+
+
+    </div>
+
+</body>
+</html>
+
+
+<script>    
+    console.log(document.querySelector('.header-container').dataset.pageType);
+    console.log(document.querySelector('.header-container').dataset.layout);
+
+    if (!document.querySelector('.header-container').dataset.custom_js) {
+        console.log('Removing content-loading class due to custom_js not being set');
+        document.querySelector('#content-container').classList.remove('content-loading');
+    }
+</script>

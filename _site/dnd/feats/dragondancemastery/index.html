@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Dragon Dance Mastery - Joshua Chu</title>
+    <meta name="description" content="Bookmark this to keep an eye on my project updates!" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="/dnd/dndstyles.css">
+    
+    
+    
+    <script src="/js/advanced-content-loader.js"></script>
+    
+
+</head>
+
+<body>
+    <header>
+        <div class="header-container" data-pageType="dnd" data-layout="feat" data-custom_js="/js/advanced-content-loader.js">
+            <nav>
+                <div style="display: flex; gap: 12px; align-items: center">
+                    <span class="pill">🎮 Joshua Chu</span>
+                    <span class="muted" style="font-size: 13px">Game Developer • Software Engineer • D&D Homebrew Creator</span>
+                </div>
+                <div class="links">
+                    <a href="/index.html">Home</a>
+                    <a href="/index.html#games" data-short="Games">Video Games</a>
+                    <a href="/index.html#software">Software</a>
+                    <a href="/dnd/">D&D</a>
+                    <a href="/index.html#about">About</a>
+                    <a href="/index.html#contact">Contact</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div id="content-container" class="content-loading">
+        <body>
+    <div id="header-placeholder"></div>
+
+    <section class="intro-content">
+        <div class="section-content">
+            <div class="breadcrumb">
+                <a href="/dnd/">D&D Homebrew</a> &gt; 
+                <a href="/dnd/#feats">Feats</a> &gt; 
+                <span>Dragon Dance Mastery</span>
+            </div>
+            
+            <div id="content-header" class="content-header">
+                
+                <h1>Dragon Dance Mastery</h1>
+                
+                <p class="content-type"> Feat</p>
+            </div>
+            
+            <div id="markdown-content">
+
+                <div class="item-properties">
+                    
+                    
+                    
+                </div>
+                <p>You are now a master of the Dragon Dance, allowing you to assume two new stances for greater versatility in combat.</p>
+<ul>
+  <li>Increase Dexterity score by 1, max of 20</li>
+  <li><strong>Stance Dance.</strong> Having become a master of Dragon Dance, you are now able to switch between three stances: the offensive Champion Stance, the neutral Dragon Stance, and the defensive Vanguard Stance. You can switch between these three stances when you succeed a melee attack or when you take damage as a reaction. All bonuses and detriments from stances are lost upon exiting that stance.</li>
+  <li><strong>Champion Stance.</strong> An offensive stance that sacrifices defence in favor of more power. Upon entering this stance, you have advantage on your next attack and may reroll a damage die on your weapon attack rolls. However, other creatures have advantage on their attacks against you. You can switch to Dragon Stance without succeeding a melee attack as a minor action.  Instead of Draconic Riposte, enemies who miss a melee attack now trigger Champion Deflect.
+    <ul>
+      <li><strong>Champion Deflect.</strong> After performing a risky deflection of your opponent’s attack, you place yourself in an advantageous position to strike at a critical spot. Your next melee attack against the creature deals an additional damage die. You may switch your stance.</li>
+    </ul>
+  </li>
+  <li><strong>Dragon Stance.</strong> The neutral stance that provides adequate offensive capabilities and defence. Once per round upon entering this stance, you gain 10 ft. of movement.
+    <ul>
+      <li><strong>Draconic Riposte.</strong> You may switch your stance even if you miss your melee attack.</li>
+    </ul>
+  </li>
+  <li><strong>Vanguard Stance.</strong> A defensive stance that sacrifices power for increased protection. Upon entering this stance, you gain a bonus to your AC and saving throws equal to your Dexterity modifier. Each time you are attacked or make a saving throw, this bonus decreases by one, to a minimum of one. You have disadvantage on all attack rolls while in this stance. You can switch to Dragon Stance without succeeding a melee attack as a minor action. Instead of Draconic Riposte, enemies who roll a hit in your Counter range now trigger
+    <ul>
+      <li><strong>Vanguard Parry.</strong> Instead of a dodge and a counterattack, you parry the enemy’s attack as a reaction, throwing them off their balance and leaving them vulnerable. Your next melee attack against the creature has a +10 bonus to the roll. You may switch your stance.</li>
+    </ul>
+  </li>
+</ul>
+
+            </div>
+        </div>
+    </section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Auto-load content from data attributes
+        loadAllContent();
+        const html = document.querySelector('html');
+        html.innerHTML = convertToDivs(extractContentFromHtml(html.innerHTML));
+        
+        document.querySelectorAll('.fa-star').forEach(icon => {
+            icon.title = 'Playtested Material';
+        });
+        document.querySelector('#content-container').classList.remove('content-loading');
+    });
+</script>
+</body>
+</html>
+
+
+
+    </div>
+
+</body>
+</html>
+
+
+<script>    
+    console.log(document.querySelector('.header-container').dataset.pageType);
+    console.log(document.querySelector('.header-container').dataset.layout);
+
+    if (!document.querySelector('.header-container').dataset.custom_js) {
+        console.log('Removing content-loading class due to custom_js not being set');
+        document.querySelector('#content-container').classList.remove('content-loading');
+    }
+</script>

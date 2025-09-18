@@ -1,0 +1,116 @@
+---
+layout: base
+custom_js: /js/advanced-content-loader.js
+page_type: 'dnd'
+---
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Auto-load content from data attributes
+        loadHouseRules();
+        const html = document.querySelector('html');
+        console.log('Loading content: ' + html.innerHTML);
+        html.innerHTML = convertToDivs(extractContentFromHtml(html.innerHTML));
+        console.log('Loading content: ' + html.innerHTML);
+        document.querySelectorAll('.fa-star').forEach(icon => {
+            icon.title = 'Playtested Material';
+        }); 
+        document.querySelector('#content-container').classList.remove('content-loading');
+    });
+
+    function loadHouseRules() {
+        debugger;
+        //console.log('Loading spells');
+        const urlParams = new URLSearchParams(window.location.search);
+        //console.log(urlParams.get('subclass'));
+
+        let houseRuleTypeFilter = urlParams.get('type');
+
+        console.log(houseRuleTypeFilter);
+
+        if (houseRuleTypeFilter) {
+
+            //debugger;
+            for (const houseRule of document.querySelectorAll('#house-rule')) {
+                //console.log(spell.dataset.spelllists);
+                const houseRuleLists = houseRule.dataset.houseRuleType;
+                if (houseRuleLists.toLowerCase().includes(houseRuleTypeFilter.toLowerCase())) {
+                    houseRule.classList.remove('hidden');
+                } else {
+                    houseRule.classList.add('hidden');
+                }
+            }
+
+            houseRuleTypeFilter = houseRuleTypeFilter.replace(/-/g, ' ');
+
+            document.title = `${capitalize(houseRuleTypeFilter)} House Rules - Joshua Chu D&D Homebrew`;
+            document.getElementById('content-title').innerHTML = `${capitalize(houseRuleTypeFilter)} House Rules`;
+            document.getElementById('bread-crumb-title').innerHTML = `${capitalize(houseRuleTypeFilter)} House Rules`;
+        }
+    }
+    function capitalize(string) {
+        // Words that should not be capitalized in titles (except when they're the first or last word)
+        const lowercaseWords = ['a', 'an', 'and', 'as', 'at', 'but', 'by', 'for', 'if', 'in', 'nor', 'of', 'on', 'or', 'per', 'so', 'the', 'to', 'up', 'via', 'yet'];
+        
+        return string
+            .toLowerCase()
+            .split(' ')
+            .map((word, index, array) => {
+                // Always capitalize first and last words
+                if (index === 0 || index === array.length - 1) {
+                    return word.charAt(0).toUpperCase() + word.slice(1);
+                }
+                // Capitalize if not in the lowercase words list
+                if (!lowercaseWords.includes(word)) {
+                    return word.charAt(0).toUpperCase() + word.slice(1);
+                }
+                // Keep lowercase for articles, prepositions, conjunctions
+                return word;
+            })
+            .join(' ');
+    }
+</script>
+
+    <section class="intro-content">
+        <div class="section-content">
+            <div class="breadcrumb">
+                <a href="{{ '/dnd/' | relative_url }}">D&D Homebrew</a> &gt; 
+                <a href="{{ '/dnd/' | relative_url }}#{{ page.collection }}">{{ page.collection | capitalize | replace: '-', ' ' }}</a> &gt; 
+                <span>{{ page.title }}</span>
+            </div>
+            
+            <div id="content-header" class="content-header">
+                {% if page.finished %}
+                <h1>{{ page.title }} <i class="fa-solid fa-star"></i></h1>
+                {% else %}
+                <h1>{{ page.title }}</h1>
+                {% endif %}
+                <p class="content-type">{{page.class | default: ''}} {{ page.content_type | default: page.collection | capitalize | replace: '-', ' ' }}</p>
+            </div>
+            
+            <div id="markdown-content">
+                {% assign house_rules = site.house-rules | group_by: 'type' %}
+                {% for type in house_rules %}
+                {% for rule in type.items %}
+                <div id="house-rule" data-house-rule-type="{{ rule.type }}">
+                    {% if rule.finished %}
+                    <div class="header"><a href="{{ rule.url }}">{{ rule.title }} </a><i class="fa-solid fa-star"></i></div>
+                    {% else %}
+                    <div class="header"><a href="{{ rule.url }}">{{ rule.title }}</a></div>
+                    {% endif %}
+                    {{ rule.content }}
+                </div>
+                {% endfor %}
+                {% endfor %}
+            </div>
+            
+            <div class="back-to-top">
+                <a href="{{relative_url}}#content-header">Back to Top</a>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
+
+
+

@@ -52,7 +52,7 @@
         const urlParams = new URLSearchParams(window.location.search);
         //console.log(urlParams.get('subclass'));
 
-        let spellListFilter = urlParams.get('subclass');
+        let spellListFilter = urlParams.get('type');
 
         if (spellListFilter) {
             const tbody = document.querySelector('tbody');
@@ -103,6 +103,8 @@
             <div class="breadcrumb">
                 <a href="/dnd/">D&D Homebrew</a> &gt; 
                 
+                <a href="/dnd/#spells">Spells</a> &gt;
+                
                 <span id="bread-crumb-title">All Spells</span>
             </div>
             
@@ -110,7 +112,7 @@
                 
                 <h1 id="content-title">All Spells</h1>
                 
-                <p id="content-type" class="content-type"> </p>
+                <p id="content-type" class="content-type"> Spells</p>
             </div>
             
             <div id="markdown-content">
@@ -222,11 +224,13 @@
                         
                         
                   
-                        <tr data-spelllists="starborne">
+                        <tr data-spelllists="fiendblade">
                             <td>
                                 
+                                <i class="fa-solid fa-star"></i>
+                                
                             </td>
-                            <td><a href="/dnd/spells/cosmicbeam/">Cosmic Beam</a></td>
+                            <td><a href="/dnd/spells/heatwave/">Heat Wave</a></td>
                             <td>
                                 
                                 <span class="italic">Cantrip</span>
@@ -237,11 +241,11 @@
                                 
                                 1 action
                             </td>
-                            <td>30 ft. (15 ft. cylinder)</td>
+                            <td>Self (20 ft. line)</td>
                             <td>Instantaneous</td>
                             <td>
                                 
-                                V, S, M 
+                                V, S
                             </td>
                         </tr>
                         
@@ -308,13 +312,11 @@
                         
                         
                   
-                        <tr data-spelllists="fiendblade">
+                        <tr data-spelllists="starborne">
                             <td>
                                 
-                                <i class="fa-solid fa-star"></i>
-                                
                             </td>
-                            <td><a href="/dnd/spells/heatwave/">Heat Wave</a></td>
+                            <td><a href="/dnd/spells/cosmicbeam/">Cosmic Beam</a></td>
                             <td>
                                 
                                 <span class="italic">Cantrip</span>
@@ -325,11 +327,11 @@
                                 
                                 1 action
                             </td>
-                            <td>Self (20 ft. line)</td>
+                            <td>30 ft. (15 ft. cylinder)</td>
                             <td>Instantaneous</td>
                             <td>
                                 
-                                V, S
+                                V, S, M 
                             </td>
                         </tr>
                         
@@ -542,34 +544,6 @@
                             <td>
                                 
                             </td>
-                            <td><a href="/dnd/spells/superposition/">Superposition</a></td>
-                            <td>
-                                
-                                <span class="italic">1st</span>
-                                
-                            </td>
-                            <td>Conjuration</td>
-                            <td>
-                                
-                                1 bonus action
-                            </td>
-                            <td>120 ft.</td>
-                            <td>1 hour</td>
-                            <td>
-                                
-                                S
-                            </td>
-                        </tr>
-                        
-                        
-                        
-                        
-                        
-                  
-                        <tr data-spelllists="starborne">
-                            <td>
-                                
-                            </td>
                             <td><a href="/dnd/spells/astralgrasp/">Astral Grasp</a></td>
                             <td>
                                 
@@ -583,6 +557,62 @@
                             </td>
                             <td>Touch</td>
                             <td>1 minute</td>
+                            <td>
+                                
+                                V, S
+                            </td>
+                        </tr>
+                        
+                        
+                        
+                        
+                        
+                  
+                        <tr data-spelllists="armswright">
+                            <td>
+                                
+                            </td>
+                            <td><a href="/dnd/spells/weaponofusefulness/">Weapon of Usefulness</a></td>
+                            <td>
+                                
+                                <span class="italic">1st</span>
+                                
+                            </td>
+                            <td>Transmutation</td>
+                            <td>
+                                
+                                1 action
+                            </td>
+                            <td>Self</td>
+                            <td>1 hour</td>
+                            <td>
+                                
+                                V, S, M 
+                            </td>
+                        </tr>
+                        
+                        
+                        
+                        
+                        
+                  
+                        <tr data-spelllists="starborne">
+                            <td>
+                                
+                            </td>
+                            <td><a href="/dnd/spells/lockpick/">Lockpick</a></td>
+                            <td>
+                                
+                                <span class="italic">1st</span>
+                                
+                            </td>
+                            <td>Transmutation</td>
+                            <td>
+                                
+                                1 action
+                            </td>
+                            <td>Touch</td>
+                            <td>Instantaneous</td>
                             <td>
                                 
                                 V, S
@@ -628,34 +658,6 @@
                             <td>
                                 
                             </td>
-                            <td><a href="/dnd/spells/lockpick/">Lockpick</a></td>
-                            <td>
-                                
-                                <span class="italic">1st</span>
-                                
-                            </td>
-                            <td>Transmutation</td>
-                            <td>
-                                
-                                1 action
-                            </td>
-                            <td>Touch</td>
-                            <td>Instantaneous</td>
-                            <td>
-                                
-                                V, S
-                            </td>
-                        </tr>
-                        
-                        
-                        
-                        
-                        
-                  
-                        <tr data-spelllists="starborne">
-                            <td>
-                                
-                            </td>
                             <td><a href="/dnd/spells/gravitywell/">Gravity Well</a></td>
                             <td>
                                 
@@ -684,22 +686,22 @@
                             <td>
                                 
                             </td>
-                            <td><a href="/dnd/spells/lighttrick/">Light Trick</a></td>
+                            <td><a href="/dnd/spells/superposition/">Superposition</a></td>
                             <td>
                                 
-                                <span class="italic">2nd</span>
+                                <span class="italic">1st</span>
                                 
                             </td>
-                            <td>Illusion</td>
+                            <td>Conjuration</td>
                             <td>
                                 
-                                1 action
+                                1 bonus action
                             </td>
-                            <td>Self</td>
-                            <td>1 minute</td>
+                            <td>120 ft.</td>
+                            <td>1 hour</td>
                             <td>
                                 
-                                V, S, M 
+                                S
                             </td>
                         </tr>
                         
@@ -708,23 +710,25 @@
                         
                         
                   
-                        <tr data-spelllists="starborne">
+                        <tr data-spelllists="school-of-inquisimancy">
                             <td>
                                 
+                                <i class="fa-solid fa-star"></i>
+                                
                             </td>
-                            <td><a href="/dnd/spells/stardust/">Stardust</a></td>
+                            <td><a href="/dnd/spells/psychicwhip/">Psychic Whip</a></td>
                             <td>
                                 
                                 <span class="italic">2nd</span>
                                 
                             </td>
-                            <td>Conjuration</td>
+                            <td>Enchantment</td>
                             <td>
                                 
                                 1 action
                             </td>
-                            <td>Self</td>
-                            <td>1 minute (Concentration)</td>
+                            <td>30 ft.</td>
+                            <td>Instantaneous</td>
                             <td>
                                 
                                 V, S
@@ -766,6 +770,62 @@
                         
                         
                   
+                        <tr data-spelllists="armswright">
+                            <td>
+                                
+                            </td>
+                            <td><a href="/dnd/spells/conjureoil/">Conjure Oil</a></td>
+                            <td>
+                                
+                                <span class="italic">2nd</span>
+                                
+                            </td>
+                            <td>Transmutation</td>
+                            <td>
+                                
+                                1 action
+                            </td>
+                            <td>Touch</td>
+                            <td>1 minute (Concentration)</td>
+                            <td>
+                                
+                                V, S
+                            </td>
+                        </tr>
+                        
+                        
+                        
+                        
+                        
+                  
+                        <tr data-spelllists="starborne">
+                            <td>
+                                
+                            </td>
+                            <td><a href="/dnd/spells/stardust/">Stardust</a></td>
+                            <td>
+                                
+                                <span class="italic">2nd</span>
+                                
+                            </td>
+                            <td>Conjuration</td>
+                            <td>
+                                
+                                1 action
+                            </td>
+                            <td>Self</td>
+                            <td>1 minute (Concentration)</td>
+                            <td>
+                                
+                                V, S
+                            </td>
+                        </tr>
+                        
+                        
+                        
+                        
+                        
+                  
                         <tr data-spelllists="fiendblade">
                             <td>
                                 
@@ -796,6 +856,34 @@
                         
                         
                   
+                        <tr data-spelllists="starborne">
+                            <td>
+                                
+                            </td>
+                            <td><a href="/dnd/spells/lighttrick/">Light Trick</a></td>
+                            <td>
+                                
+                                <span class="italic">2nd</span>
+                                
+                            </td>
+                            <td>Illusion</td>
+                            <td>
+                                
+                                1 action
+                            </td>
+                            <td>Self</td>
+                            <td>1 minute</td>
+                            <td>
+                                
+                                V, S, M 
+                            </td>
+                        </tr>
+                        
+                        
+                        
+                        
+                        
+                  
                         <tr data-spelllists="fiendblade">
                             <td>
                                 
@@ -818,36 +906,6 @@
                             <td>
                                 
                                 V, S, M 
-                            </td>
-                        </tr>
-                        
-                        
-                        
-                        
-                        
-                  
-                        <tr data-spelllists="school-of-inquisimancy">
-                            <td>
-                                
-                                <i class="fa-solid fa-star"></i>
-                                
-                            </td>
-                            <td><a href="/dnd/spells/psychicwhip/">Psychic Whip</a></td>
-                            <td>
-                                
-                                <span class="italic">2nd</span>
-                                
-                            </td>
-                            <td>Enchantment</td>
-                            <td>
-                                
-                                1 action
-                            </td>
-                            <td>30 ft.</td>
-                            <td>Instantaneous</td>
-                            <td>
-                                
-                                V, S
                             </td>
                         </tr>
                         
@@ -890,36 +948,6 @@
                                 <i class="fa-solid fa-star"></i>
                                 
                             </td>
-                            <td><a href="/dnd/spells/devilssight/">Devil's Sight</a></td>
-                            <td>
-                                
-                                <span class="italic">3rd</span>
-                                
-                            </td>
-                            <td>Transmutation</td>
-                            <td>
-                                
-                                1 action
-                            </td>
-                            <td>Self</td>
-                            <td>1 hour (concentration)</td>
-                            <td>
-                                
-                                V, S
-                            </td>
-                        </tr>
-                        
-                        
-                        
-                        
-                        
-                  
-                        <tr data-spelllists="fiendblade">
-                            <td>
-                                
-                                <i class="fa-solid fa-star"></i>
-                                
-                            </td>
                             <td><a href="/dnd/spells/flarerush/">Flare Rush</a></td>
                             <td>
                                 
@@ -936,6 +964,64 @@
                             <td>
                                 
                                 V, S
+                            </td>
+                        </tr>
+                        
+                        
+                        
+                        
+                        
+                  
+                        <tr data-spelllists="school-of-inquisimancy">
+                            <td>
+                                
+                                <i class="fa-solid fa-star"></i>
+                                
+                            </td>
+                            <td><a href="/dnd/spells/scramble/">Scramble</a></td>
+                            <td>
+                                
+                                <span class="italic">3rd</span>
+                                
+                            </td>
+                            <td>Enchantment</td>
+                            <td>
+                                
+                                1 action
+                            </td>
+                            <td>60 ft. (20 ft. sphere)</td>
+                            <td>Instantaneous</td>
+                            <td>
+                                
+                                V, S, M 
+                            </td>
+                        </tr>
+                        
+                        
+                        
+                        
+                        
+                  
+                        <tr data-spelllists="armswright">
+                            <td>
+                                
+                            </td>
+                            <td><a href="/dnd/spells/stelecho/">Steel Echo</a></td>
+                            <td>
+                                
+                                <span class="italic">3rd</span>
+                                
+                            </td>
+                            <td>Divination</td>
+                            <td>
+                                
+                                1 action
+                            </td>
+                            <td>Self (30 ft. sphere)</td>
+                            <td>Instantaneous</td>
+                            <td>
+                                
+                                V, S, M 
                             </td>
                         </tr>
                         
@@ -974,28 +1060,28 @@
                         
                         
                   
-                        <tr data-spelllists="school-of-inquisimancy">
+                        <tr data-spelllists="fiendblade">
                             <td>
                                 
                                 <i class="fa-solid fa-star"></i>
                                 
                             </td>
-                            <td><a href="/dnd/spells/scramble/">Scramble</a></td>
+                            <td><a href="/dnd/spells/devilssight/">Devil's Sight</a></td>
                             <td>
                                 
                                 <span class="italic">3rd</span>
                                 
                             </td>
-                            <td>Enchantment</td>
+                            <td>Transmutation</td>
                             <td>
                                 
                                 1 action
                             </td>
-                            <td>60 ft. (20 ft. sphere)</td>
-                            <td>Instantaneous</td>
+                            <td>Self</td>
+                            <td>1 hour (concentration)</td>
                             <td>
                                 
-                                V, S, M 
+                                V, S
                             </td>
                         </tr>
                         
@@ -1120,26 +1206,28 @@
                         
                         
                   
-                        <tr data-spelllists="starborne">
+                        <tr data-spelllists="school-of-inquisimancy">
                             <td>
                                 
+                                <i class="fa-solid fa-star"></i>
+                                
                             </td>
-                            <td><a href="/dnd/spells/changegravity/">Change Gravity</a></td>
+                            <td><a href="/dnd/spells/freeze/">Freeze</a></td>
                             <td>
                                 
                                 <span class="italic">4th</span>
                                 
                             </td>
-                            <td>Transmutation</td>
+                            <td>Illusion</td>
                             <td>
                                 
                                 1 action
                             </td>
-                            <td>60 ft.</td>
+                            <td>30 ft.</td>
                             <td>1 minute (Concentration)</td>
                             <td>
                                 
-                                V, S
+                                V, S, M 
                             </td>
                         </tr>
                         
@@ -1178,28 +1266,26 @@
                         
                         
                   
-                        <tr data-spelllists="school-of-inquisimancy">
+                        <tr data-spelllists="starborne">
                             <td>
                                 
-                                <i class="fa-solid fa-star"></i>
-                                
                             </td>
-                            <td><a href="/dnd/spells/freeze/">Freeze</a></td>
+                            <td><a href="/dnd/spells/changegravity/">Change Gravity</a></td>
                             <td>
                                 
                                 <span class="italic">4th</span>
                                 
                             </td>
-                            <td>Illusion</td>
+                            <td>Transmutation</td>
                             <td>
                                 
                                 1 action
                             </td>
-                            <td>30 ft.</td>
+                            <td>60 ft.</td>
                             <td>1 minute (Concentration)</td>
                             <td>
                                 
-                                V, S, M 
+                                V, S
                             </td>
                         </tr>
                         
@@ -1208,16 +1294,14 @@
                         
                         
                   
-                        <tr data-spelllists="fiendblade">
+                        <tr data-spelllists="armswright">
                             <td>
-                                
-                                <i class="fa-solid fa-star"></i>
                                 
                             </td>
-                            <td><a href="/dnd/spells/demonicform/">Demonic Form</a></td>
+                            <td><a href="/dnd/spells/flyingweapon/">Flying Weapon</a></td>
                             <td>
                                 
-                                <span class="italic">5th</span>
+                                <span class="italic">4th</span>
                                 
                             </td>
                             <td>Transmutation</td>
@@ -1225,11 +1309,11 @@
                                 
                                 1 action
                             </td>
-                            <td>Self</td>
-                            <td>1 minute (concentration)</td>
+                            <td>Self (30 ft.)</td>
+                            <td>10 minutes (Concentration)</td>
                             <td>
                                 
-                                V, S
+                                V, S, M 
                             </td>
                         </tr>
                         
@@ -1298,6 +1382,36 @@
                         
                         
                   
+                        <tr data-spelllists="fiendblade">
+                            <td>
+                                
+                                <i class="fa-solid fa-star"></i>
+                                
+                            </td>
+                            <td><a href="/dnd/spells/demonicform/">Demonic Form</a></td>
+                            <td>
+                                
+                                <span class="italic">5th</span>
+                                
+                            </td>
+                            <td>Transmutation</td>
+                            <td>
+                                
+                                1 action
+                            </td>
+                            <td>Self</td>
+                            <td>1 minute (concentration)</td>
+                            <td>
+                                
+                                V, S
+                            </td>
+                        </tr>
+                        
+                        
+                        
+                        
+                        
+                  
                         <tr data-spelllists="starborne">
                             <td>
                                 
@@ -1315,6 +1429,34 @@
                             </td>
                             <td>Self (30 ft. sphere)</td>
                             <td>1 minute</td>
+                            <td>
+                                
+                                V, S, M 
+                            </td>
+                        </tr>
+                        
+                        
+                        
+                        
+                        
+                  
+                        <tr data-spelllists="armswright">
+                            <td>
+                                
+                            </td>
+                            <td><a href="/dnd/spells/immovableweapon/">Immovable Weapon</a></td>
+                            <td>
+                                
+                                <span class="italic">5th</span>
+                                
+                            </td>
+                            <td>Transmutation</td>
+                            <td>
+                                
+                                1 action
+                            </td>
+                            <td>Self</td>
+                            <td>Until Dispelled or Triggered</td>
                             <td>
                                 
                                 V, S, M 

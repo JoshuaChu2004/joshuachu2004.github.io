@@ -2,26 +2,19 @@
 layout: bare
 title: D&D House Rules
 permalink: /dnd/content/houserules
+house_rules_icon: fas fa-house fa-8x
 ---
-# House Rules
 
-Campaign-specific modifications and rulings for D&D 5e.
 
-## Creating New House Rules
+<div class="section toc no-border" markdown="1">
+<div class="section-icon {{ page.house_rules_icon }}"></div>
+<div class="house_rules-content" markdown="1">
+# House Rules 
 
-To add a new house rule:
+## [All House Rules](/dnd/house-rules/)
+- [Combat](/dnd/house-rules/?type=combat)
+- [Character Creation](/dnd/house-rules/?type=character)
+- [Crafting](/dnd/house-rules/?type=crafting)
 
-1. Create a markdown file in the house-rules collection directory:
-   - `dnd/_house-rules/rulename.md`
-2. The page will automatically be accessible at `/dnd/house-rules/rulename/`
-3. Update this overview page with a link to your new rule
-
-## House Rule Guidelines
-
-When creating house rules:
-
-- Clearly explain the rule and its purpose
-- Consider impact on game balance
-- Provide examples of how it works in practice
-- Include any necessary clarifications or exceptions
-- Explain the reasoning behind the rule
+</div>
+</div>

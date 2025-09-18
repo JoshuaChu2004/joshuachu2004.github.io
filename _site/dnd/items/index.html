@@ -1,0 +1,1116 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>All Magic Items - Joshua Chu</title>
+    <meta name="description" content="Bookmark this to keep an eye on my project updates!" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="/dnd/dndstyles.css">
+    
+    
+    
+
+</head>
+
+<body>
+    <header>
+        <div class="header-container" data-pageType="dnd" data-layout="items" data-custom_js="">
+            <nav>
+                <div style="display: flex; gap: 12px; align-items: center">
+                    <span class="pill">🎮 Joshua Chu</span>
+                    <span class="muted" style="font-size: 13px">Game Developer • Software Engineer • D&D Homebrew Creator</span>
+                </div>
+                <div class="links">
+                    <a href="/index.html">Home</a>
+                    <a href="/index.html#games" data-short="Games">Video Games</a>
+                    <a href="/index.html#software">Software</a>
+                    <a href="/dnd/">D&D</a>
+                    <a href="/index.html#about">About</a>
+                    <a href="/index.html#contact">Contact</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div id="content-container" class="content-loading">
+        <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        loadItems();
+        document.querySelectorAll('.fa-star').forEach(icon => {
+            icon.title = 'Playtested Material';
+        });
+        document.querySelector('#content-container').classList.remove('content-loading');
+    });
+
+    function loadItems() {
+        //console.log('Loading spells');
+        const urlParams = new URLSearchParams(window.location.search);
+        //console.log(urlParams.get('subclass'));
+
+        let itemTypeFilter = urlParams.get('type');
+
+        console.log(itemTypeFilter);
+
+        if (itemTypeFilter) {
+            const tbody = document.querySelector('tbody');
+
+            //debugger;
+            for (const item of tbody.querySelectorAll('tr')) {
+                //console.log(spell.dataset.spelllists);
+                const itemLists = item.dataset.itemType;
+                if (itemLists.toLowerCase().includes(itemTypeFilter.toLowerCase())) {
+                    item.classList.remove('hidden');
+                } else {
+                    item.classList.add('hidden');
+                }
+            }
+
+            itemTypeFilter = itemTypeFilter.replace(/-/g, ' ');
+
+            document.title = `${capitalize(itemTypeFilter)} Items - Joshua Chu D&D Homebrew`;
+            document.getElementById('content-title').innerHTML = `${capitalize(itemTypeFilter)} Items`;
+            document.getElementById('bread-crumb-title').innerHTML = `${capitalize(itemTypeFilter)} Items`;
+        }
+    }
+
+    function capitalize(string) {
+        // Words that should not be capitalized in titles (except when they're the first or last word)
+        const lowercaseWords = ['a', 'an', 'and', 'as', 'at', 'but', 'by', 'for', 'if', 'in', 'nor', 'of', 'on', 'or', 'per', 'so', 'the', 'to', 'up', 'via', 'yet'];
+        
+        return string
+            .toLowerCase()
+            .split(' ')
+            .map((word, index, array) => {
+                // Always capitalize first and last words
+                if (index === 0 || index === array.length - 1) {
+                    return word.charAt(0).toUpperCase() + word.slice(1);
+                }
+                // Capitalize if not in the lowercase words list
+                if (!lowercaseWords.includes(word)) {
+                    return word.charAt(0).toUpperCase() + word.slice(1);
+                }
+                // Keep lowercase for articles, prepositions, conjunctions
+                return word;
+            })
+            .join(' ');
+    }
+
+    function filterByRarity(rarity) {
+        const tbody = document.querySelector('tbody');
+        for (const item of tbody.querySelectorAll('tr')) {
+            if ((item.dataset.rarity.toLowerCase() == rarity.toLowerCase() || rarity.toLowerCase() == 'all') && !item.classList.contains('hidden')) {
+                item.style.display = 'table-row';
+            } else {
+                item.style.display = 'none';
+            }
+        }
+
+        const currentButton = document.querySelector('.tab-button.active');
+        currentButton.classList.remove('active');
+
+        const newButton = document.querySelector(`.tab-button[data-rarity="${rarity}"]`);
+        newButton.classList.add('active');
+    }
+</script>
+
+    <section class="intro-content">
+        <div class="section-content">
+            <div class="breadcrumb">
+                <a href="/dnd/">D&D Homebrew</a> &gt; 
+                
+                <a href="/dnd/#items">Items</a> &gt;
+                
+                <span id="bread-crumb-title">All Magic Items</span>
+            </div>
+            
+            <div id="content-header" class="content-header">
+                
+                <h1 id="content-title">All Magic Items</h1>
+                
+                <p id="content-type" class="content-type"> Items</p>
+            </div>
+            
+            <div id="markdown-content">
+                <div class="items-container">
+                    <div class="rarity-tabs">
+                      <button class="tab-button active" data-rarity="all" onclick="filterByRarity('all')">All Items</button>
+                      <button class="tab-button" data-rarity="common" onclick="filterByRarity('common')">Common</button>
+                      <button class="tab-button" data-rarity="uncommon" onclick="filterByRarity('uncommon')">Uncommon</button>
+                      <button class="tab-button" data-rarity="rare" onclick="filterByRarity('rare')">Rare</button>
+                      <button class="tab-button" data-rarity="very rare" onclick="filterByRarity('very rare')">Very Rare</button>
+                      <button class="tab-button" data-rarity="legendary" onclick="filterByRarity('legendary')">Legendary</button>
+                    </div>
+            
+                    <table class="table-wrapper spell-list items-list">
+                        <thead>
+                            <tr>
+                                <th><i class="fa-solid fa-star"></i></th>
+                                <th>Item Name</th>
+                                <th>Type</th>
+                                <th>Rarity</th>
+                                <th>Attuned</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                      
+                            <tr data-item-type="Wondrous Items" data-rarity="Uncommon">
+                                <td>
+                                    
+                                    <i class="fa-solid fa-star"></i>
+                                    
+                                </td>
+                                <td><a href="/dnd/items/amuletofpossibility/">Amulet of Possibility</a></td>
+                                <td>
+                                    Wondrous Items
+                                </td>
+                                <td>Uncommon</td>
+                                <td>
+                                    
+                                    <span>Attuned</span>
+                                    
+                                </td>
+                            </tr>
+                            
+                            
+                            
+                      
+                            <tr data-item-type="Weapons" data-rarity="Uncommon">
+                                <td>
+                                    
+                                </td>
+                                <td><a href="/dnd/items/ardinianhandaxe/">Ardinian Handaxe</a></td>
+                                <td>
+                                    Weapons
+                                </td>
+                                <td>Uncommon</td>
+                                <td>
+                                    
+                                    <span>Attuned</span>
+                                    
+                                </td>
+                            </tr>
+                            
+                            
+                            
+                      
+                            <tr data-item-type="Potions and Consumables" data-rarity="Uncommon">
+                                <td>
+                                    
+                                </td>
+                                <td><a href="/dnd/items/bombafruit/">Bomba Fruit</a></td>
+                                <td>
+                                    Potions and Consumables
+                                </td>
+                                <td>Uncommon</td>
+                                <td>
+                                    
+                                    <span>-</span>
+                                    
+                                </td>
+                            </tr>
+                            
+                            
+                            
+                      
+                            <tr data-item-type="Weapons" data-rarity="Uncommon">
+                                <td>
+                                    
+                                </td>
+                                <td><a href="/dnd/items/cobaltdagger/">Cobalt Dagger</a></td>
+                                <td>
+                                    Weapons
+                                </td>
+                                <td>Uncommon</td>
+                                <td>
+                                    
+                                    <span>Attuned</span>
+                                    
+                                </td>
+                            </tr>
+                            
+                            
+                            
+                      
+                            <tr data-item-type="Armor" data-rarity="Uncommon">
+                                <td>
+                                    
+                                </td>
+                                <td><a href="/dnd/items/cobaltshield/">Cobalt Shield</a></td>
+                                <td>
+                                    Armor
+                                </td>
+                                <td>Uncommon</td>
+                                <td>
+                                    
+                                    <span>Attuned</span>
+                                    
+                                </td>
+                            </tr>
+                            
+                            
+                            
+                      
+                            <tr data-item-type="Wondrous Items" data-rarity="Uncommon">
+                                <td>
+                                    
+                                </td>
+                                <td><a href="/dnd/items/criticalward/">Critical Ward</a></td>
+                                <td>
+                                    Wondrous Items
+                                </td>
+                                <td>Uncommon</td>
+                                <td>
+                                    
+                                    <span>-</span>
+                                    
+                                </td>
+                            </tr>
+                            
+                            
+                            
+                      
+                            <tr data-item-type="Weapons" data-rarity="Uncommon">
+                                <td>
+                                    
+                                </td>
+                                <td><a href="/dnd/items/flamespear/">Flame Spear</a></td>
+                                <td>
+                                    Weapons
+                                </td>
+                                <td>Uncommon</td>
+                                <td>
+                                    
+                                    <span>-</span>
+                                    
+                                </td>
+                            </tr>
+                            
+                            
+                            
+                      
+                            <tr data-item-type="Weapons" data-rarity="Uncommon">
+                                <td>
+                                    
+                                </td>
+                                <td><a href="/dnd/items/frozendagger/">Frozen Dagger</a></td>
+                                <td>
+                                    Weapons
+                                </td>
+                                <td>Uncommon</td>
+                                <td>
+                                    
+                                    <span>Attuned</span>
+                                    
+                                </td>
+                            </tr>
+                            
+                            
+                            
+                      
+                            <tr data-item-type="Weapons" data-rarity="Uncommon">
+                                <td>
+                                    
+                                </td>
+                                <td><a href="/dnd/items/frozensouldagger/">Frozen Soul Dagger</a></td>
+                                <td>
+                                    Weapons
+                                </td>
+                                <td>Uncommon</td>
+                                <td>
+                                    
+                                    <span>Attuned</span>
+                                    
+                                </td>
+                            </tr>
+                            
+                            
+                            
+                      
+                            <tr data-item-type="Weapons" data-rarity="Uncommon">
+                                <td>
+                                    
+                                </td>
+                                <td><a href="/dnd/items/handrunes/">Hand Runes</a></td>
+                                <td>
+                                    Weapons
+                                </td>
+                                <td>Uncommon</td>
+                                <td>
+                                    
+                                    <span>Attuned</span>
+                                    
+                                </td>
+                            </tr>
+                            
+                            
+                            
+                      
+                            <tr data-item-type="Armor" data-rarity="Uncommon">
+                                <td>
+                                    
+                                </td>
+                                <td><a href="/dnd/items/hiddenshield/">Hidden Shield</a></td>
+                                <td>
+                                    Armor
+                                </td>
+                                <td>Uncommon</td>
+                                <td>
+                                    
+                                    <span>Attuned</span>
+                                    
+                                </td>
+                            </tr>
+                            
+                            
+                            
+                      
+                            <tr data-item-type="Weapons" data-rarity="Uncommon">
+                                <td>
+                                    
+                                </td>
+                                <td><a href="/dnd/items/ithensfinest/">Ithen's Finest</a></td>
+                                <td>
+                                    Weapons
+                                </td>
+                                <td>Uncommon</td>
+                                <td>
+                                    
+                                    <span>Attuned</span>
+                                    
+                                </td>
+                            </tr>
+                            
+                            
+                            
+                      
+                            <tr data-item-type="Weapons" data-rarity="Uncommon">
+                                <td>
+                                    
+                                </td>
+                                <td><a href="/dnd/items/manyullynlongsword/">Manyullyn Longsword</a></td>
+                                <td>
+                                    Weapons
+                                </td>
+                                <td>Uncommon</td>
+                                <td>
+                                    
+                                    <span>Attuned</span>
+                                    
+                                </td>
+                            </tr>
+                            
+                            
+                            
+                      
+                            <tr data-item-type="Wondrous Items" data-rarity="Uncommon">
+                                <td>
+                                    
+                                </td>
+                                <td><a href="/dnd/items/maskofthevigilante/">Mask of the Vigilante</a></td>
+                                <td>
+                                    Wondrous Items
+                                </td>
+                                <td>Uncommon</td>
+                                <td>
+                                    
+                                    <span>Attuned</span>
+                                    
+                                </td>
+                            </tr>
+                            
+                            
+                            
+                      
+                            <tr data-item-type="Wondrous Items" data-rarity="Uncommon">
+                                <td>
+                                    
+                                </td>
+                                <td><a href="/dnd/items/rosescharm/">Rose's Charm</a></td>
+                                <td>
+                                    Wondrous Items
+                                </td>
+                                <td>Uncommon</td>
+                                <td>
+                                    
+                                    <span>Attuned</span>
+                                    
+                                </td>
+                            </tr>
+                            
+                            
+                            
+                      
+                            <tr data-item-type="Wondrous Items" data-rarity="Uncommon">
+                                <td>
+                                    
+                                </td>
+                                <td><a href="/dnd/items/rosethornpendant/">Rosethorn Pendant</a></td>
+                                <td>
+                                    Wondrous Items
+                                </td>
+                                <td>Uncommon</td>
+                                <td>
+                                    
+                                    <span>Attuned</span>
+                                    
+                                </td>
+                            </tr>
+                            
+                            
+                            
+                      
+                            <tr data-item-type="Weapons" data-rarity="Uncommon">
+                                <td>
+                                    
+                                </td>
+                                <td><a href="/dnd/items/scoundrelscutlass/">Scoundrel's Cutlass</a></td>
+                                <td>
+                                    Weapons
+                                </td>
+                                <td>Uncommon</td>
+                                <td>
+                                    
+                                    <span>Attuned</span>
+                                    
+                                </td>
+                            </tr>
+                            
+                            
+                            
+                      
+                            <tr data-item-type="Wondrous Items" data-rarity="Uncommon">
+                                <td>
+                                    
+                                </td>
+                                <td><a href="/dnd/items/shadowcloak/">Shadow Cloak</a></td>
+                                <td>
+                                    Wondrous Items
+                                </td>
+                                <td>Uncommon</td>
+                                <td>
+                                    
+                                    <span>Attuned</span>
+                                    
+                                </td>
+                            </tr>
+                            
+                            
+                            
+                      
+                            <tr data-item-type="Weapons" data-rarity="Uncommon">
+                                <td>
+                                    
+                                </td>
+                                <td><a href="/dnd/items/snakebite/">Snakebite</a></td>
+                                <td>
+                                    Weapons
+                                </td>
+                                <td>Uncommon</td>
+                                <td>
+                                    
+                                    <span>Attuned</span>
+                                    
+                                </td>
+                            </tr>
+                            
+                            
+                            
+                      
+                            <tr data-item-type="Wondrous Items" data-rarity="Uncommon">
+                                <td>
+                                    
+                                </td>
+                                <td><a href="/dnd/items/snipersquiver/">Sniper's Quiver</a></td>
+                                <td>
+                                    Wondrous Items
+                                </td>
+                                <td>Uncommon</td>
+                                <td>
+                                    
+                                    <span>Attuned</span>
+                                    
+                                </td>
+                            </tr>
+                            
+                            
+                            
+                      
+                            <tr data-item-type="Weapons" data-rarity="Uncommon">
+                                <td>
+                                    
+                                </td>
+                                <td><a href="/dnd/items/venalinbow/">Venalin Bow</a></td>
+                                <td>
+                                    Weapons
+                                </td>
+                                <td>Uncommon</td>
+                                <td>
+                                    
+                                    <span>Attuned</span>
+                                    
+                                </td>
+                            </tr>
+                            
+                            
+                            
+                      
+                            <tr data-item-type="Wondrous Items" data-rarity="Uncommon">
+                                <td>
+                                    
+                                </td>
+                                <td><a href="/dnd/items/witchersmedallion/">Witcher's Medallion</a></td>
+                                <td>
+                                    Wondrous Items
+                                </td>
+                                <td>Uncommon</td>
+                                <td>
+                                    
+                                    <span>Attuned</span>
+                                    
+                                </td>
+                            </tr>
+                            
+                            
+                            
+                            
+                            
+                            
+                      
+                            <tr data-item-type="Weapons" data-rarity="Rare">
+                                <td>
+                                    
+                                </td>
+                                <td><a href="/dnd/items/bowofbalance/">Bow of Balance</a></td>
+                                <td>
+                                    Weapons
+                                </td>
+                                <td>Rare</td>
+                                <td>
+                                    
+                                    <span>Attuned</span>
+                                    
+                                </td>
+                            </tr>
+                            
+                            
+                            
+                      
+                            <tr data-item-type="Wondrous Items" data-rarity="Rare">
+                                <td>
+                                    
+                                </td>
+                                <td><a href="/dnd/items/cloakofbalance/">Cloak of Balance</a></td>
+                                <td>
+                                    Wondrous Items
+                                </td>
+                                <td>Rare</td>
+                                <td>
+                                    
+                                    <span>Attuned</span>
+                                    
+                                </td>
+                            </tr>
+                            
+                            
+                            
+                      
+                            <tr data-item-type="Wondrous Items" data-rarity="Rare">
+                                <td>
+                                    
+                                </td>
+                                <td><a href="/dnd/items/deployablezipline/">Deployable Zipline</a></td>
+                                <td>
+                                    Wondrous Items
+                                </td>
+                                <td>Rare</td>
+                                <td>
+                                    
+                                    <span>Attuned</span>
+                                    
+                                </td>
+                            </tr>
+                            
+                            
+                            
+                      
+                            <tr data-item-type="Weapons" data-rarity="Rare">
+                                <td>
+                                    
+                                </td>
+                                <td><a href="/dnd/items/hiddenblade/">Hidden Blade</a></td>
+                                <td>
+                                    Weapons
+                                </td>
+                                <td>Rare</td>
+                                <td>
+                                    
+                                    <span>Attuned</span>
+                                    
+                                </td>
+                            </tr>
+                            
+                            
+                            
+                      
+                            <tr data-item-type="Weapons" data-rarity="Rare">
+                                <td>
+                                    
+                                </td>
+                                <td><a href="/dnd/items/makeshiftblunderbuss/">Makeshift Blunderbuss</a></td>
+                                <td>
+                                    Weapons
+                                </td>
+                                <td>Rare</td>
+                                <td>
+                                    
+                                    <span>Attuned</span>
+                                    
+                                </td>
+                            </tr>
+                            
+                            
+                            
+                      
+                            <tr data-item-type="Wondrous Items" data-rarity="Rare">
+                                <td>
+                                    
+                                </td>
+                                <td><a href="/dnd/items/mudbogcore/">Mudbog Core</a></td>
+                                <td>
+                                    Wondrous Items
+                                </td>
+                                <td>Rare</td>
+                                <td>
+                                    
+                                    <span>Attuned</span>
+                                    
+                                </td>
+                            </tr>
+                            
+                            
+                            
+                      
+                            <tr data-item-type="Weapons" data-rarity="Rare">
+                                <td>
+                                    
+                                </td>
+                                <td><a href="/dnd/items/mutia/">Mutia</a></td>
+                                <td>
+                                    Weapons
+                                </td>
+                                <td>Rare</td>
+                                <td>
+                                    
+                                    <span>Attuned</span>
+                                    
+                                </td>
+                            </tr>
+                            
+                            
+                            
+                      
+                            <tr data-item-type="Weapons" data-rarity="Rare">
+                                <td>
+                                    
+                                </td>
+                                <td><a href="/dnd/items/pickerang/">Pickerang</a></td>
+                                <td>
+                                    Weapons
+                                </td>
+                                <td>Rare</td>
+                                <td>
+                                    
+                                    <span>Attuned</span>
+                                    
+                                </td>
+                            </tr>
+                            
+                            
+                            
+                      
+                            <tr data-item-type="Potions and Consumables" data-rarity="Rare">
+                                <td>
+                                    
+                                </td>
+                                <td><a href="/dnd/items/potionofpotency/">Potion of Potency</a></td>
+                                <td>
+                                    Potions and Consumables
+                                </td>
+                                <td>Rare</td>
+                                <td>
+                                    
+                                    <span>-</span>
+                                    
+                                </td>
+                            </tr>
+                            
+                            
+                            
+                      
+                            <tr data-item-type="Wondrous Items" data-rarity="Rare">
+                                <td>
+                                    
+                                </td>
+                                <td><a href="/dnd/items/pouchoftheallbrewer/">Pouch of the All-Brewer</a></td>
+                                <td>
+                                    Wondrous Items
+                                </td>
+                                <td>Rare</td>
+                                <td>
+                                    
+                                    <span>Attuned</span>
+                                    
+                                </td>
+                            </tr>
+                            
+                            
+                            
+                      
+                            <tr data-item-type="Wondrous Items" data-rarity="Rare">
+                                <td>
+                                    
+                                </td>
+                                <td><a href="/dnd/items/ringofblindingradiance/">Ring of Blinding Radiance</a></td>
+                                <td>
+                                    Wondrous Items
+                                </td>
+                                <td>Rare</td>
+                                <td>
+                                    
+                                    <span>Attuned</span>
+                                    
+                                </td>
+                            </tr>
+                            
+                            
+                            
+                      
+                            <tr data-item-type="Wondrous Items" data-rarity="Rare">
+                                <td>
+                                    
+                                </td>
+                                <td><a href="/dnd/items/ringofpiercing/">Ring of Piercing</a></td>
+                                <td>
+                                    Wondrous Items
+                                </td>
+                                <td>Rare</td>
+                                <td>
+                                    
+                                    <span>Attuned</span>
+                                    
+                                </td>
+                            </tr>
+                            
+                            
+                            
+                      
+                            <tr data-item-type="Wondrous Items" data-rarity="Rare">
+                                <td>
+                                    
+                                </td>
+                                <td><a href="/dnd/items/shadoweavecloak/">Shadoweave Cloak</a></td>
+                                <td>
+                                    Wondrous Items
+                                </td>
+                                <td>Rare</td>
+                                <td>
+                                    
+                                    <span>Attuned</span>
+                                    
+                                </td>
+                            </tr>
+                            
+                            
+                            
+                      
+                            <tr data-item-type="Wondrous Items" data-rarity="Rare">
+                                <td>
+                                    
+                                </td>
+                                <td><a href="/dnd/items/soullantern/">Soul Lantern</a></td>
+                                <td>
+                                    Wondrous Items
+                                </td>
+                                <td>Rare</td>
+                                <td>
+                                    
+                                    <span>Attuned</span>
+                                    
+                                </td>
+                            </tr>
+                            
+                            
+                            
+                      
+                            <tr data-item-type="Weapons" data-rarity="Rare">
+                                <td>
+                                    
+                                </td>
+                                <td><a href="/dnd/items/spearoftheskies/">Spear of the Skies</a></td>
+                                <td>
+                                    Weapons
+                                </td>
+                                <td>Rare</td>
+                                <td>
+                                    
+                                    <span>Attuned</span>
+                                    
+                                </td>
+                            </tr>
+                            
+                            
+                            
+                      
+                            <tr data-item-type="Weapons" data-rarity="Rare">
+                                <td>
+                                    
+                                </td>
+                                <td><a href="/dnd/items/staticbow/">Static Bow</a></td>
+                                <td>
+                                    Weapons
+                                </td>
+                                <td>Rare</td>
+                                <td>
+                                    
+                                    <span>Attuned</span>
+                                    
+                                </td>
+                            </tr>
+                            
+                            
+                            
+                      
+                            <tr data-item-type="Wondrous Items" data-rarity="Rare">
+                                <td>
+                                    
+                                </td>
+                                <td><a href="/dnd/items/stealthsuit/">Stealth Suit</a></td>
+                                <td>
+                                    Wondrous Items
+                                </td>
+                                <td>Rare</td>
+                                <td>
+                                    
+                                    <span>Attuned</span>
+                                    
+                                </td>
+                            </tr>
+                            
+                            
+                            
+                      
+                            <tr data-item-type="Wondrous Items" data-rarity="Rare">
+                                <td>
+                                    
+                                </td>
+                                <td><a href="/dnd/items/thunderouslute/">Thunderous Lute</a></td>
+                                <td>
+                                    Wondrous Items
+                                </td>
+                                <td>Rare</td>
+                                <td>
+                                    
+                                    <span>Attuned</span>
+                                    
+                                </td>
+                            </tr>
+                            
+                            
+                            
+                      
+                            <tr data-item-type="Wondrous Items" data-rarity="Rare">
+                                <td>
+                                    
+                                </td>
+                                <td><a href="/dnd/items/twinringpick/">Twinring Pick</a></td>
+                                <td>
+                                    Wondrous Items
+                                </td>
+                                <td>Rare</td>
+                                <td>
+                                    
+                                    <span>Attuned</span>
+                                    
+                                </td>
+                            </tr>
+                            
+                            
+                            
+                      
+                            <tr data-item-type="Weapons" data-rarity="Rare">
+                                <td>
+                                    
+                                </td>
+                                <td><a href="/dnd/items/twinstepdaggers/">Twinstep Daggers</a></td>
+                                <td>
+                                    Weapons
+                                </td>
+                                <td>Rare</td>
+                                <td>
+                                    
+                                    <span>Attuned</span>
+                                    
+                                </td>
+                            </tr>
+                            
+                            
+                            
+                      
+                            <tr data-item-type="Weapons" data-rarity="Rare">
+                                <td>
+                                    
+                                </td>
+                                <td><a href="/dnd/items/watchmansspear/">Watchman's Spear</a></td>
+                                <td>
+                                    Weapons
+                                </td>
+                                <td>Rare</td>
+                                <td>
+                                    
+                                    <span>Attuned</span>
+                                    
+                                </td>
+                            </tr>
+                            
+                            
+                            
+                            
+                            
+                            
+                      
+                            <tr data-item-type="Weapons" data-rarity="Very Rare">
+                                <td>
+                                    
+                                </td>
+                                <td><a href="/dnd/items/bladeoftheragnar/">Blade of the Ragnar</a></td>
+                                <td>
+                                    Weapons
+                                </td>
+                                <td>Very Rare</td>
+                                <td>
+                                    
+                                    <span>Attuned</span>
+                                    
+                                </td>
+                            </tr>
+                            
+                            
+                            
+                      
+                            <tr data-item-type="Wondrous Items" data-rarity="Very Rare">
+                                <td>
+                                    
+                                </td>
+                                <td><a href="/dnd/items/knucklesofmomentum/">Knuckles of Momentum</a></td>
+                                <td>
+                                    Wondrous Items
+                                </td>
+                                <td>Very Rare</td>
+                                <td>
+                                    
+                                    <span>Attuned</span>
+                                    
+                                </td>
+                            </tr>
+                            
+                            
+                            
+                      
+                            <tr data-item-type="Weapons" data-rarity="Very Rare">
+                                <td>
+                                    
+                                </td>
+                                <td><a href="/dnd/items/mecris/">Mecris</a></td>
+                                <td>
+                                    Weapons
+                                </td>
+                                <td>Very Rare</td>
+                                <td>
+                                    
+                                    <span>Attuned</span>
+                                    
+                                </td>
+                            </tr>
+                            
+                            
+                            
+                      
+                            <tr data-item-type="Weapons" data-rarity="Very Rare">
+                                <td>
+                                    
+                                </td>
+                                <td><a href="/dnd/items/prismaticrapier/">Prismatic Rapier</a></td>
+                                <td>
+                                    Weapons
+                                </td>
+                                <td>Very Rare</td>
+                                <td>
+                                    
+                                    <span>Attuned</span>
+                                    
+                                </td>
+                            </tr>
+                            
+                            
+                            
+                            
+                            
+                            
+                      
+                            <tr data-item-type="Wondrous Items" data-rarity="Legendary">
+                                <td>
+                                    
+                                </td>
+                                <td><a href="/dnd/items/circletofprinces/">Circlet of Princes</a></td>
+                                <td>
+                                    Wondrous Items
+                                </td>
+                                <td>Legendary</td>
+                                <td>
+                                    
+                                    <span>Attuned</span>
+                                    
+                                </td>
+                            </tr>
+                            
+                            
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
+
+
+
+
+    </div>
+
+</body>
+</html>
+
+
+<script>    
+    console.log(document.querySelector('.header-container').dataset.pageType);
+    console.log(document.querySelector('.header-container').dataset.layout);
+
+    if (!document.querySelector('.header-container').dataset.custom_js) {
+        console.log('Removing content-loading class due to custom_js not being set');
+        document.querySelector('#content-container').classList.remove('content-loading');
+    }
+</script>

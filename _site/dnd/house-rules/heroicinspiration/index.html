@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Variant Rule: Heroic Inspiration - Joshua Chu</title>
+    <meta name="description" content="Bookmark this to keep an eye on my project updates!" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="/dnd/dndstyles.css">
+    
+    
+    
+    <script src="/js/advanced-content-loader.js"></script>
+    
+
+</head>
+
+<body>
+    <header>
+        <div class="header-container" data-pageType="dnd" data-layout="dnd" data-custom_js="/js/advanced-content-loader.js">
+            <nav>
+                <div style="display: flex; gap: 12px; align-items: center">
+                    <span class="pill">🎮 Joshua Chu</span>
+                    <span class="muted" style="font-size: 13px">Game Developer • Software Engineer • D&D Homebrew Creator</span>
+                </div>
+                <div class="links">
+                    <a href="/index.html">Home</a>
+                    <a href="/index.html#games" data-short="Games">Video Games</a>
+                    <a href="/index.html#software">Software</a>
+                    <a href="/dnd/">D&D</a>
+                    <a href="/index.html#about">About</a>
+                    <a href="/index.html#contact">Contact</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div id="content-container" class="content-loading">
+        <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Auto-load content from data attributes
+        loadAllContent();
+        const html = document.querySelector('html');
+        console.log('Loading content: ' + html.innerHTML);
+        html.innerHTML = convertToDivs(extractContentFromHtml(html.innerHTML));
+        console.log('Loading content: ' + html.innerHTML);
+        document.querySelectorAll('.fa-star').forEach(icon => {
+            icon.title = 'Playtested Material';
+        }); 
+        document.querySelector('#content-container').classList.remove('content-loading');
+    });
+</script>
+
+    <section class="intro-content">
+        <div class="section-content">
+            <div class="breadcrumb">
+                <a href="/dnd/">D&D Homebrew</a> &gt; 
+                <a href="/dnd/#house-rules">House rules</a> &gt; 
+                <span>Variant Rule: Heroic Inspiration</span>
+            </div>
+            
+            <div id="content-header" class="content-header">
+                
+                <h1>Variant Rule: Heroic Inspiration</h1>
+                
+                <p class="content-type"> House rules</p>
+            </div>
+            
+            <div id="markdown-content">
+                <p>You can be given Heroic Inspiration by the DM for doing something particularly interesting or in character, or by succeeding a Roll with Heroism. You can have a maximum of three Heroic Inspiration at once, though you lose all but one at the end of a session. If you have Heroic Inspiration, you can expend it any of the following ways:</p>
+
+<ul>
+  <li>When making an ability check, saving throw, or attack roll, you may choose to reroll the die, taking the higher result. This must be done before knowing the outcome of the roll.</li>
+  <li>When an ally you can see within 15 ft. fails a saving throw, you may choose to reroll their die as a reaction, taking the higher result. An ally may only benefit from this once per saving throw.</li>
+  <li>When you start your turn and are Incapacitated, you may choose to take an action but gain a level of exhaustion.</li>
+</ul>
+
+            </div>
+            
+            <div class="back-to-top">
+                <a href="#content-header">Back to Top</a>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
+
+
+
+
+    </div>
+
+</body>
+</html>
+
+
+<script>    
+    console.log(document.querySelector('.header-container').dataset.pageType);
+    console.log(document.querySelector('.header-container').dataset.layout);
+
+    if (!document.querySelector('.header-container').dataset.custom_js) {
+        console.log('Removing content-loading class due to custom_js not being set');
+        document.querySelector('#content-container').classList.remove('content-loading');
+    }
+</script>

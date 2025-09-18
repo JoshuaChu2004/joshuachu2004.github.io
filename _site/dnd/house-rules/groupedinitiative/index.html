@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Variant Rule: Grouped Initiative - Joshua Chu</title>
+    <meta name="description" content="Bookmark this to keep an eye on my project updates!" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="/dnd/dndstyles.css">
+    
+    
+    
+    <script src="/js/advanced-content-loader.js"></script>
+    
+
+</head>
+
+<body>
+    <header>
+        <div class="header-container" data-pageType="dnd" data-layout="dnd" data-custom_js="/js/advanced-content-loader.js">
+            <nav>
+                <div style="display: flex; gap: 12px; align-items: center">
+                    <span class="pill">🎮 Joshua Chu</span>
+                    <span class="muted" style="font-size: 13px">Game Developer • Software Engineer • D&D Homebrew Creator</span>
+                </div>
+                <div class="links">
+                    <a href="/index.html">Home</a>
+                    <a href="/index.html#games" data-short="Games">Video Games</a>
+                    <a href="/index.html#software">Software</a>
+                    <a href="/dnd/">D&D</a>
+                    <a href="/index.html#about">About</a>
+                    <a href="/index.html#contact">Contact</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div id="content-container" class="content-loading">
+        <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Auto-load content from data attributes
+        loadAllContent();
+        const html = document.querySelector('html');
+        console.log('Loading content: ' + html.innerHTML);
+        html.innerHTML = convertToDivs(extractContentFromHtml(html.innerHTML));
+        console.log('Loading content: ' + html.innerHTML);
+        document.querySelectorAll('.fa-star').forEach(icon => {
+            icon.title = 'Playtested Material';
+        }); 
+        document.querySelector('#content-container').classList.remove('content-loading');
+    });
+</script>
+
+    <section class="intro-content">
+        <div class="section-content">
+            <div class="breadcrumb">
+                <a href="/dnd/">D&D Homebrew</a> &gt; 
+                <a href="/dnd/#house-rules">House rules</a> &gt; 
+                <span>Variant Rule: Grouped Initiative</span>
+            </div>
+            
+            <div id="content-header" class="content-header">
+                
+                <h1>Variant Rule: Grouped Initiative</h1>
+                
+                <p class="content-type"> House rules</p>
+            </div>
+            
+            <div id="markdown-content">
+                <p>In this system, creatures act in Initiative Groups rather than on individual Initiative counts.</p>
+
+<h3 id="step-1-roll-group-initiative">Step 1: Roll Group Initiative</h3>
+<p>When Initiative is called, each creature rolls a die based on the number of player characters in the party:</p>
+<ul>
+  <li>1-3 characters: 1 group</li>
+  <li>1–6 characters: 1d4, 2 groups</li>
+  <li>7–9 characters: 1d6, 3 groups</li>
+  <li>10–12 characters: 1d8, 4 groups</li>
+  <li>13 or more characters: 1d10, 5 groups</li>
+</ul>
+
+<p>Divide the result in half, rounding up. The final number determines which Initiative Group the creature belongs to (for example, rolling a 5 on a d8 places the creature in Group 3).</p>
+
+<h3 id="step-2-initiative-modifier-and-rerolls">Step 2: Initiative Modifier and Rerolls</h3>
+<p>A creature’s Initiative modifier grants rerolls of its Group die:</p>
+<ul>
+  <li>For every +2 bonus to Initiative rolls, the creature may reroll once.</li>
+  <li>A +0 or +1 modifier grants no rerolls.</li>
+  <li>A +2 or +3 grants 1 reroll.</li>
+  <li>A +4 or +5 grants 2 rerolls, and so on.</li>
+</ul>
+
+<p>Each reroll must be kept, even if it results in a lower group number.</p>
+
+<h3 id="step-3-divide-by-side">Step 3: Divide by Side</h3>
+<p>Each Initiative Group is divided into two sides: players and enemies. A neutral or unaffiliated creature is treated as part of the enemies’ side.</p>
+
+<h3 id="step-4-determine-side-order">Step 4: Determine Side Order</h3>
+<p>If both sides are present in the same Initiative Group, each side chooses a representative creature to make an Initiative check. Compare the results for each paired contest, then count victories. The side with the most victories acts first in that group. If the contest is tied, the players act first. If only one side is present in the group, no contest is made.</p>
+
+<h3 id="step-5-resolve-the-round">Step 5: Resolve the Round</h3>
+<p>Combat begins with the highest numbered Initiative Group that contains creatures. Within that group, the winning side acts first. All creatures on that side may act in any order they choose, one at a time. When that side has finished, the opposing side in the same group takes their turns in the same way. Combat then proceeds to the next lowest Initiative Group, continuing until all groups have acted. At the end of the round, combat returns to the highest Initiative Group.</p>
+
+<h3 id="step-6-abilities-by-group">Step 6: Abilities by Group</h3>
+<p>Any ability that refers to a specific Initiative count instead refers to Initiative Groups:</p>
+<ul>
+  <li>A lair action that occurs on Initiative count 20 instead occurs before the highest Initiative Group.</li>
+  <li>A lair action that occurs on Initiative count 1 instead occurs before the lowest Initiative Group.</li>
+</ul>
+
+<h3 id="turn-order-within-a-side">Turn Order Within a Side</h3>
+<p>Creatures do not act simultaneously. One creature must complete its turn before another begins, though allies on the same side may freely decide the order in which they act.</p>
+
+            </div>
+            
+            <div class="back-to-top">
+                <a href="#content-header">Back to Top</a>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
+
+
+
+
+    </div>
+
+</body>
+</html>
+
+
+<script>    
+    console.log(document.querySelector('.header-container').dataset.pageType);
+    console.log(document.querySelector('.header-container').dataset.layout);
+
+    if (!document.querySelector('.header-container').dataset.custom_js) {
+        console.log('Removing content-loading class due to custom_js not being set');
+        document.querySelector('#content-container').classList.remove('content-loading');
+    }
+</script>

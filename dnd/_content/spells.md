@@ -14,12 +14,12 @@ spell_icon: fas fa-book-open fa-8x
 ## [All Spells](/dnd/spells/)
 {% for class in site.classes %}
 {% if class.custom_spells %}
-- [{{ class.title }} Spells](/dnd/spells/?subclass={{ class.class | downcase | replace: " ", "-" }})
+- [{{ class.title }} Spells](/dnd/spells/?type={{ class.class | downcase | replace: " ", "-" }})
 {% endif %}
 {% endfor %}
 {% for subclass in site.subclasses %}
 {% if subclass.custom_spells %}
-- [{{ subclass.title }} Spells](/dnd/spells/?subclass={{ subclass.title | downcase | replace: " ", "-" }})
+- [{{ subclass.title }} Spells](/dnd/spells/?type={{ subclass.title | downcase | replace: " ", "-" }})
 {% endif %}
 {% endfor %}
 </div>

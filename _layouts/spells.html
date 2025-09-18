@@ -17,7 +17,7 @@ page_type: 'dnd'
         const urlParams = new URLSearchParams(window.location.search);
         //console.log(urlParams.get('subclass'));
 
-        let spellListFilter = urlParams.get('subclass');
+        let spellListFilter = urlParams.get('type');
 
         if (spellListFilter) {
             const tbody = document.querySelector('tbody');

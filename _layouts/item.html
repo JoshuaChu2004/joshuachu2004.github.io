@@ -1,0 +1,69 @@
+---
+layout: base
+custom_js: /js/advanced-content-loader.js
+page_type: 'dnd'
+---
+
+<body>
+    <div id="header-placeholder"></div>
+
+    <section class="intro-content">
+        <div class="section-content">
+            <div class="breadcrumb">
+                <a href="{{ '/dnd/' | relative_url }}">D&D Homebrew</a> &gt; 
+                <a href="{{ '/dnd/' | relative_url }}#{{ page.collection }}">{{ page.collection | capitalize | replace: '-', ' ' }}</a> &gt; 
+                <span>{{ page.title }}</span>
+            </div>
+            
+            <div id="content-header" class="content-header">
+                {% if page.finished %}
+                <h1>{{ page.title }} <i class="fa-solid fa-star"></i></h1>
+                {% else %}
+                <h1>{{ page.title }}</h1>
+                {% endif %}
+                <p class="content-type">{{page.class | default: ''}} {{ page.content_type | default: page.collection | capitalize | replace: '-', ' ' }}</p>
+            </div>
+            
+            <div id="markdown-content">
+
+                <div class="item-properties">
+                    {% assign flavortext = page.item_category %}
+                    {% if page.item_subtype %}
+                    {% assign flavortext = flavortext | append: ' (' | append: page.item_subtype | append: '), ' %}
+                    {% else %}
+                    {% assign flavortext = flavortext | append: ', ' %}
+                    {% endif %}
+                    {% assign flavortext = flavortext | append: page.rarity %}
+                    {% if page.attuned %}
+                    {% assign flavortext = flavortext | append: ' (requires attunement' %}
+                    {% if page.attunement_requirement != '' %}
+                    {% assign flavortext = flavortext | append: ' ' | append: page.attunement_requirement | append: ')' %}
+                    {% else %}
+                    {% assign flavortext = flavortext | append: ')' %}
+                    {% endif %}
+                    {% endif %}
+                    <span class="italic">{{ flavortext }}</span>
+                </div>
+                <div class="break"></div>
+                {{ content }}
+            </div>
+        </div>
+    </section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Auto-load content from data attributes
+        loadAllContent();
+        const html = document.querySelector('html');
+        html.innerHTML = convertToDivs(extractContentFromHtml(html.innerHTML));
+        
+        document.querySelectorAll('.fa-star').forEach(icon => {
+            icon.title = 'Playtested Material';
+        });
+        document.querySelector('#content-container').classList.remove('content-loading');
+    });
+</script>
+</body>
+</html>
+
+

@@ -13,6 +13,8 @@
     --card-light: #1a1f2c;
     --accent: #ffd166;
     --border: rgba(0, 0, 0, 0.2);
+    --white-hover: #dadada;
+    --white-active: #d4d4d4;
 }
 
 /* ==========================================================================
@@ -158,7 +160,7 @@ nav a {
 }
 
 .section-content {
-    width: min(900px, 90vw);
+    width: min(1000px, 90vw);
     margin: 0 auto;
     padding: 0 16px;
 }
@@ -605,6 +607,42 @@ table[id] {
     font-size: 14px;
 }
 
+.table-wrapper.items-list {
+    margin: 0;
+    border-radius: 0 8px 8px 8px;
+}
+
+.table-wrapper.spell-list td:first-child,
+.table-wrapper.spell-list th:first-child {
+    margin: 0;
+    padding: 8px 0px 8px 16px;
+}
+
+.rarity-tabs {
+    display: flex;
+    gap: 0px;
+    flex-wrap: wrap;
+}
+
+.rarity-tabs .tab-button {
+    padding: 8px 16px;
+    border: 1px solid var(--border);
+    border-radius: 8px 8px 0 0;
+    background: white;
+    text-style: italic;
+    font-size: 14px;
+    transition: all 0.2s ease;
+
+}
+
+.tab-button:hover {
+    background: var(--white-hover);
+}
+
+.tab-button.active {
+    background: var(--white-active);
+}
+
 table {
     width: 100%;
     border-collapse: collapse;
@@ -635,6 +673,91 @@ tr:hover {
 
 tr:last-child td {
     border-bottom: none;
+}
+
+/* Column width controls for spells table
+========================================================================== */
+.spell-list th:nth-child(1),
+.spell-list td:nth-child(1) {
+    width: 5%; /* Star column - very narrow */
+    text-align: center;
+}
+
+.spell-list th:nth-child(2),
+.spell-list td:nth-child(2) {
+    width: 20%; /* Spell name - takes up most space */
+}
+
+.spell-list th:nth-child(3),
+.spell-list td:nth-child(3) {
+    width: 5%; /* Level column */
+}
+
+.spell-list th:nth-child(4),
+.spell-list td:nth-child(4) {
+    width: 10%; /* School column */
+    max-width: 10%;
+}
+
+.spell-list th:nth-child(5),
+.spell-list td:nth-child(5) {
+    width: 20%; /* Casting Time column */
+    max-width: 20%;
+}
+
+.spell-list th:nth-child(6),
+.spell-list td:nth-child(6) {
+    width: 20%; /* Range column */
+    max-width: 20%;
+}
+
+.spell-list th:nth-child(7),
+.spell-list td:nth-child(7) {
+    width: 15%; /* Duration column */
+    max-width: 15%;
+}
+
+.spell-list th:nth-child(8),
+.spell-list td:nth-child(8) {
+    width: 5%; /* Components column */
+    max-width: 5%;
+}
+
+/* Column width controls for items table 
+========================================================================== */
+.items-list th:nth-child(1),
+.items-list td:nth-child(1) {
+    width: 5%; /* Star column - very narrow */
+    max-width: 5%;
+    text-align: center;
+}
+
+.items-list th:nth-child(2),
+.items-list td:nth-child(2) {
+    width: 30%; /* Item name - takes up most space */
+    max-width: 30%;
+}
+
+.items-list th:nth-child(3),
+.items-list td:nth-child(3) {
+    width: 30%; /* Type column */
+    max-width: 30%;
+}
+
+.items-list th:nth-child(4),
+.items-list td:nth-child(4) {
+    width: 20%; /* Rarity column */
+    max-width: 20%;
+}
+
+.items-list th:nth-child(5),
+.items-list td:nth-child(5) {
+    width: 20%; /* Attuned column */
+    max-width: 20%;
+}
+
+tr.hidden{
+    display: none;
 }
 
 /* Responsive table */
