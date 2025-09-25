@@ -125,23 +125,23 @@
   <tbody>
     <tr>
       <td>3rd</td>
-      <td>Sanctuary, Shield of Faith</td>
+      <td><a href="https://dnd5e.wikidot.com/spell:sanctuary">Sanctuary</a>, <a href="https://dnd5e.wikidot.com/spell:shield-of-faith">Shield of Faith</a></td>
     </tr>
     <tr>
       <td>5th</td>
-      <td>Aid, Warding Bond</td>
+      <td><a href="https://dnd5e.wikidot.com/spell:aid">Aid</a>, <a href="https://dnd5e.wikidot.com/spell:warding-bond">Warding Bond</a></td>
     </tr>
     <tr>
       <td>9th</td>
-      <td>Beacon of Hope, Protection from Energy</td>
+      <td><a href="https://dnd5e.wikidot.com/spell:beacon-of-hope">Beacon of Hope</a>, <a href="https://dnd5e.wikidot.com/spell:protection-from-energy">Protection from Energy</a></td>
     </tr>
     <tr>
       <td>13th</td>
-      <td>Aura of Purity, Death Ward</td>
+      <td><a href="https://dnd5e.wikidot.com/spell:aura-of-purity">Aura of Purity</a>, <a href="https://dnd5e.wikidot.com/spell:death-ward">Death Ward</a></td>
     </tr>
     <tr>
       <td>17th</td>
-      <td>Circle of Power, Greater Restoration</td>
+      <td><a href="https://dnd5e.wikidot.com/spell:circle-of-power">Circle of Power</a>, <a href="https://dnd5e.wikidot.com/spell:greater-restoration">Greater Restoration</a></td>
     </tr>
   </tbody>
 </table>
@@ -171,9 +171,6 @@ You can end this effect on your turn as part of any other action. If the spell c
 
             </div>
             
-            <div class="back-to-top">
-                <a href="#content-header">Back to Top</a>
-            </div>
         </div>
     </section>
 </body>
@@ -183,6 +180,34 @@ You can end this effect on your turn as part of any other action. If the spell c
 
 
     </div>
+
+
+    <div id="acknowledgements" class="acknowledgements section">
+        <div class="section-content">
+            
+            
+
+            <h1>Playtested By:</h1>
+            <!-- Print the acknowledgement list -->
+            <!-- ACKNOWLEDGEMENT LIST INDEXES: -->
+            <!-- 0: display_style - realname_only, username_only, realname_username, username_realname, none -->
+            <!-- 1: playtester_name -->
+            <!-- 2: username -->
+            <!-- 3: character_name -->
+            <!-- 4: character_level -->
+            <!-- 5: notes -->
+            <!-- ACKNOWLEDGEMENT LIST INDEXES: -->
+            
+                <p>No playtesters found</p>
+            
+        </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <div id="back-to-top" class="back-to-top" style="display: none;">
+        <a href="#content-header">Back to Top</a>
+    </div>
+
 
 </body>
 </html>
@@ -195,5 +220,37 @@ You can end this effect on your turn as part of any other action. If the spell c
     if (!document.querySelector('.header-container').dataset.custom_js) {
         console.log('Removing content-loading class due to custom_js not being set');
         document.querySelector('#content-container').classList.remove('content-loading');
+    }
+
+    // Back to Top Button Logic
+    function toggleBackToTop() {
+        const backToTopButton = document.getElementById('back-to-top');
+        const windowHeight = window.innerHeight;
+        const documentHeight = document.documentElement.scrollHeight;
+        
+        // Show button if page height is more than 2 screens worth
+        if (documentHeight > windowHeight * 1.25) {
+            backToTopButton.style.display = 'block';
+        } else {
+            backToTopButton.style.display = 'none';
+        }
+    }
+
+    // Check on page load and resize
+    document.addEventListener('DOMContentLoaded', toggleBackToTop);
+    window.addEventListener('resize', toggleBackToTop);
+
+    // Toggle notes dropdown
+    function toggleNotes(arrowElement) {
+        const dropdown = arrowElement.parentElement.querySelector('.notes-dropdown');
+        const isVisible = dropdown.style.display !== 'none';
+        
+        if (isVisible) {
+            dropdown.style.display = 'none';
+            arrowElement.textContent = '▶';
+        } else {
+            dropdown.style.display = 'block';
+            arrowElement.textContent = '▼';
+        }
     }
 </script>

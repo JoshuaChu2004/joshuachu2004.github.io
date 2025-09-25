@@ -17,7 +17,7 @@ finished: false
 | 17th       | Force Projection |
 
 ### Force Techniques
-Starting when you choose this tradition at 3rd level, you can manipulate the ki of objects and opponents without touching them. You may choose two techniques. When you gain a level in Monk, you may swap out one technique for another. 
+Starting when you choose this tradition at 3rd level, you can manipulate the ki of objects and opponents without touching them. You may choose two [Force Techniques](#force-techniques-list). When you gain a level in Monk, you may swap out one technique for another. 
 <div class="break"> </div>
 As you gain levels, you will gain access to new techniques and may choose two additional techniques at 6th, 11th, and 17th level.
 
@@ -75,3 +75,146 @@ As a reaction to taking damage that would knock you unconscious, you may use 5 k
 As a bonus action, you can use 5 ki points to summon your mirage that follows and mirrors your exact movements. While your Mirage is active, all attacks against you have disadvantage as enemies must guess which is the real you. As a reaction to a creature missing an attack, you may use a Force technique.
 #### Force Phantom (Dark)
 As an action, you can use 5 ki points to summon a dark, silhouetted image of yourself in an unoccupied space within 15 ft. of you. While your phantom does not take turns, it uses your game statistics, though it only has 30 hit points. Once on your turn, your phantom may move up to your movement speed. Whenever you succeed an attack, you may use a Force technique through your phantom without using any actions.
+
+<div id="force-techniques-list" class="section beginning" markdown="1">
+
+## Force Techniques
+
+### Move
+As an action, you can pick up and move objects within 15 ft. up to 30 ft. The object can be at most 50 lbs. You must have a hand free when you use this technique. The range and move distance increases by 5 ft. for each level in Monk you have above 3rd and your carrying capacity increases by 25 lbs. For each level in Monk above 3rd. If you target an object a creature is holding, they may make a Strength saving throw to maintain their grasp.
+
+<div class="break"></div>
+
+**Using more Ki Points.** When you use this technique, you can spend two additional ki points to double your range, move distance, and carrying capacity. You must have two hands free to do so.
+
+### Push
+Spend 1 ki point to unleash a telekinetic blast as a bonus action. Every creature within a 20 ft. cone must make a Strength saving throw. Upon fail, they are pushed 10 ft. and fall prone. Upon success, they are pushed half that distance (rounded down). You must have a hand free to use this technique.
+
+<div class="break"></div>
+
+**Using more Ki Points.** When you use this technique, you can spend additional ki points to increase the range and distance pushed by 5 ft. for each additional ki point.
+
+### Pull
+Spend 1 ki point to pull a creature within 20 ft. towards you as a bonus action. The creature must make a Strength saving throw. Upon fail, they are moved by up to 10 ft. directly towards you, stopping if they meet an object or creature in the way. Upon success, they are moved by up to half the distance. You must have a hand free to use this technique.
+
+<div class="break"></div>
+
+**Using more Ki Points.** When you use this technique, you can spend additional ki points to increase the range and distance pulled by 5 ft. for each additional ki point.
+
+### Sense
+*Prerequisite: 6th level, Light side*
+
+<div class="break"></div>
+
+Spend 2 ki points to glean the location of all living creatures within 30 ft. using an action. These creatures must make a Wisdom saving throw. On a fail, they can not turn invisible or take the Hide action for 1 minute. If you spend 10 minutes to use this technique, you can send the location of all living creatures, strong sources of magic, attuned items, and your monk weapon within 300 ft.
+
+### Mind Trick
+*Prerequisite: 6th level, Light side*
+
+<div class="break"></div>
+
+Spend 2 ki points to influence the mind of a creature within 30 ft., speaking a sentence for them to follow as an action. The creature must make a Wisdom saving throw. On a fail, they are affected as if the Suggestion spell had been cast on them.
+
+<div class="break"></div>
+
+**Using more Ki Points.** When you use this technique, you can spend eight ki points in total to have the creature be affected as if the Dominate Person spell had been cast on them.
+
+### Suspend
+*Prerequisite: 6th level, Neutral side*
+
+<div class="break"></div>
+
+Spend 2 ki points to cause a creature within 30 ft. to float up into the air using an action. The creature must make a Strength saving throw. Upon fail they float up 5 ft. and are Restrained until the end of your next turn. Upon success, they suffer no effect.
+
+<div class="break"></div>
+
+**Using more Ki Points.** When you use this technique, you can spend additional ki points to increase the range and distance floated by 10 ft. for each additional ki point.
+
+### Psychometry
+*Prerequisite: 6th level, Neutral side*
+
+<div class="break"></div>
+
+Spend 2 ki points to sense echoes through Force, allowing yourself to feel and hear events that sent ripples related to an object or small area that you are touching. As an action, make a Wisdom check with advantage while touching an object to attempt to look through the Force. If you have proficiency in History, you may add your proficiency bonus to the roll. The DC is determined by the DM and at their discretion, you may learn more about events, dialogues, and actions surrounding the object and its environment. Also, a suitably high enough roll may cause you to experience visions connected to the object. Afterward, you can no longer connect with the object's history for 1 week.
+
+### Throw
+*Prerequisite: 6th level, Dark side*
+
+<div class="break"></div>
+
+Spend 2 ki points to grasp a creature within 30 ft. and throw them in any direction using a bonus action. The creature must make a Strength saving throw. Upon fail, they are thrown 15 ft. in your chosen direction and take 2d6 force damage.
+
+<div class="break"></div>
+
+This can also be used on an object weighing no more than 10 lbs. to be thrown at a creature within 30 ft. of the object. The creature must make a Dexterity saving throw. Upon fail, they take 4d6 bludgeoning damage.
+
+<div class="break"></div>
+
+**Using more Ki Points.** When you use this technique, you can spend additional ki points to increase the range and distance thrown by 5 ft. for each additional ki point. Also, the damage increases by 1d6 for each ki point spent.
+
+### Stasis
+*Prerequisite: 6th level, Dark side*
+
+<div class="break"></div>
+
+Spend 2 ki points to stop the momentum of an object within 30 ft. as a reaction to an object moving or as a bonus action to target a creature. An object can not be moved without a successful Strength check against your Ki Save DC. A creature must succeed a Strength saving throw or have their movement speed reduced to 0.
+
+<div class="break"></div>
+
+**Using more Ki Points.** When you use this technique, you can spend four ki points in total to target a creature, forcing it to make a Strength saving throw. On a fail, they are paralyzed until the end of your next turn.
+
+### Ki Flow
+*Prerequisite: 11th level, Light side*
+
+<div class="break"></div>
+
+Spend 4 ki points to the ki paths in the body of a creature within 15 ft. as an action, grainting them Advantage on all Ability Checks and Saving Throws with one ability while causing disadvantage on all Ability Checks and Saving Throws with one ability. An unwilling creature must make a Wisdom saving throw to resist the effects. The creature may roll the Wisdom saving throw at the end of their turn, ending the effect on a success.
+
+### Weapon Throw
+*Prerequisite: 11th level, Neutral side*
+
+<div class="break"></div>
+
+Spend 4 ki points to throw your monk weapon in a straight line forward and back as an action. The weapon goes up to 20 ft., making one weapon attack against every creature going forward and once more going back. If the weapon had missed a creature going forward, it has disadvantage on the attack going back.
+
+<div class="break"></div>
+
+**Using more Ki Points.** When you use this technique, you can spend additional ki points to increase the distance thrown by 5 ft. for each additional ki point.
+
+### Choke
+*Prerequisite: 11th level, Dark side*
+
+<div class="break"></div>
+
+Spend 4 ki points to channel the ki in the neck of a creature within 30 ft. to constrict and tighten, choking them as an action. The creature must make a Constitution saving throw. Upon fail, they begin to choke, taking 2d6 force damage at the start of their turn and reducing their movement to 0. They may use an action to reroll the Constitution saving throw, breaking free on a success. To maintain hold over the creature, you must concentrate on this technique similar to concentrating on a spell.
+
+<div class="break"></div>
+
+**Using more Ki Points.** When you use this technique, you can spend additional ki points to increase the range and by 5 ft. for each additional ki point. Also, the damage done at the start of their turn increases by 1d6 for each ki point spent.
+
+### Restoration
+*Prerequisite: 17th level, Light side*
+
+<div class="break"></div>
+
+Spend 5 ki points and rest your hand on a creature's wounds as an action to accelerate their body's repair process. For 1 minute at the start of their turn, the creature regains 4d4 + 4 Hit Points. This effect will end if the creature falls below 0 hit points or is restored to above half their hit point maximum.
+
+### Invigorate
+*Prerequisite: 17th level, Neutral side*
+
+<div class="break"></div>
+
+Spend 5 ki points to excite the ki of up to five creatures within 30 ft. as an action, bolstering their physical and mental attributes for a short time. Once per turn for 1 minute, affected creatures may add your Wisdom modifier to an attack roll, ability check, or saving throw.
+
+### Lightning
+*Prerequisite: 17th level, Dark side*
+
+<div class="break"></div>
+
+Spend 5 ki points to unleash a blast of pure ki in the form of forked lightning as an action. All creatures in a 20 ft. cone must make a Constitution saving throw. Upon fail, they take 6d6 lightning damage and are Stunned until the end of their next turn. Upon success, they take half as much damage.
+
+<div class="break"></div>
+
+**Using more Ki Points.** When you use this technique, you can spend additional ki points to increase the reach of the cone for each additional ki point. Also, the damage increases by 2 for each ki point spent.
+
+</div>

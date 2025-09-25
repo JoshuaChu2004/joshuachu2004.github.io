@@ -23,11 +23,11 @@ You learn additional spells when you reach certain levels in this class, as show
 
 | Sorcerer Level | Spells |
 |------------|--------|
-| 1st        | Overheat, Heat Blast, Imbue Flames |
-| 3rd        | Fire Circle |    
-| 5th        | Fire Circle |
-| 7th        | Vassal of the Sun |
-| 9th        | Meteor Strike |
+| 1st        | [Overheat](/dnd/spells/overheat), [Heat Wave](dnd/spells/heatwave), [Imbue Flames](/dnd/spells/imbueflames) |
+| 3rd        | [Fire Circle](/dnd/spells/firecircle) |    
+| 5th        | [Fire Circle](/dnd/spells/firecircle) |
+| 7th        | [Vassal of the Sun](/dnd/spells/vassalofthesun) |
+| 9th        | [Meteor Strike](/dnd/spells/meteorstrike) |
 
 
 ### Forged in Fire

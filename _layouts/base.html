@@ -49,6 +49,144 @@
         {{ content }}
     </div>
 
+
+    <div id="acknowledgements" class="acknowledgements section">
+        <div class="section-content">
+            {% assign acknowledgement_list = "" | split: ", " %}
+            {% if page.content_type == "Class" %}
+                {% assign acknowledgements = site.acknowledgements | sort: 'name' %}
+                {% for playtester in acknowledgements %}
+                    {% for character in playtester.playtests %}
+                        {% for class in character.content_tested.classes %}
+                            {% if class.title == page.class %}
+                                {% assign acknowledgement = playtester.display_style | append: " - " | append: playtester.playtester_name | append: " - " | append: playtester.username | append: " - " | append: character.character_name | append: " - " | append: character.character_level | append: " - " | append: class.notes | split: " - " %}
+                                {% assign acknowledgement_list = acknowledgement_list | push: acknowledgement %} 
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+                {% endfor %}
+            {% elsif page.content_type == "Subclass" %}
+                {% assign acknowledgements = site.acknowledgements | sort: 'name' %}
+                {% for playtester in acknowledgements %}
+                    {% for character in playtester.playtests %}
+                        {% for subclass in character.content_tested.subclasses %}
+                            {% if subclass.title == page.title %}
+                                {% assign notes = subclass.notes %}
+                                {% assign acknowledgement = playtester.display_style | append: " - " | append: playtester.playtester_name | append: " - " | append: playtester.username | append: " - " | append: character.character_name | append: " - " | append: character.character_level | append: " - " | append: notes | split: " - " %}
+                                {% assign acknowledgement_list = acknowledgement_list | push: acknowledgement %} 
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+                {% endfor %}
+            {% elsif page.content_type == "Feat" %}
+                {% assign acknowledgements = site.acknowledgements | sort: 'name' %}
+                {% for playtester in acknowledgements %}
+                    {% for character in playtester.playtests %}
+                        {% for feat in character.content_tested.feats %}
+                            {% if feat.title == page.title %}
+                                {% assign acknowledgement = playtester.display_style | append: " - " | append: playtester.playtester_name | append: " - " | append: playtester.username | append: " - " | append: character.character_name | append: " - " | append: character.character_level | append: " - " | append: feat.notes | split: " - " %}
+                                {% assign acknowledgement_list = acknowledgement_list | push: acknowledgement %} 
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+                {% endfor %}
+            {% elsif page.content_type == "Spell" %}
+                {% assign acknowledgements = site.acknowledgements | sort: 'name' %}
+                {% for playtester in acknowledgements %}
+                    {% for character in playtester.playtests %}
+                        {% for spell in character.content_tested.spells %}
+                            {% if spell.title == page.title %}
+                                {% assign acknowledgement = playtester.display_style | append: " - " | append: playtester.playtester_name | append: " - " | append: playtester.username | append: " - " | append: character.character_name | append: " - " | append: character.character_level | append: " - " | append: spell.notes | split: " - " %}
+                                {% assign acknowledgement_list = acknowledgement_list | push: acknowledgement %} 
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+                {% endfor %}
+            {% elsif page.content_type == "Item" %}
+                {% assign acknowledgements = site.acknowledgements | sort: 'name' %}
+                {% for playtester in acknowledgements %}
+                    {% for character in playtester.playtests %}
+                        {% for item in character.content_tested.items %}
+                            {% if item.title == page.title %}
+                                {% assign acknowledgement = playtester.display_style | append: " - " | append: playtester.playtester_name | append: " - " | append: playtester.username | append: " - " | append: character.character_name | append: " - " | append: character.character_level | append: " - " | append: item.notes | split: " - " %}
+                                {% assign acknowledgement_list = acknowledgement_list | push: acknowledgement %} 
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+                {% endfor %}
+            {% elsif page.content_type == "Race" %}
+                {% assign acknowledgements = site.acknowledgements | sort: 'name' %}
+                {% for playtester in acknowledgements %}
+                    {% for character in playtester.playtests %}
+                        {% for race in character.content_tested.races %}
+                            {% if race.title == page.title %}
+                                {% assign acknowledgement = playtester.display_style | append: " - " | append: playtester.playtester_name | append: " - " | append: playtester.username | append: " - " | append: character.character_name | append: " - " | append: character.character_level | append: " - " | append: race.notes | split: " - " %}
+                                {% assign acknowledgement_list = acknowledgement_list | push: acknowledgement %} 
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+                {% endfor %}
+            {% endif %}
+
+            <h1>Playtested By:</h1>
+            <!-- Print the acknowledgement list -->
+            <!-- ACKNOWLEDGEMENT LIST INDEXES: -->
+            <!-- 0: display_style - realname_only, username_only, realname_username, username_realname, none -->
+            <!-- 1: playtester_name -->
+            <!-- 2: username -->
+            <!-- 3: character_name -->
+            <!-- 4: character_level -->
+            <!-- 5: notes -->
+            <!-- ACKNOWLEDGEMENT LIST INDEXES: -->
+            {% if acknowledgement_list.size > 0 %}
+                <ul>
+                {% for acknowledgement in acknowledgement_list %}
+                    {% assign acknowledgement_name = "" %}
+                    {% case acknowledgement[0] %}
+                        {% when "realname_only" %}
+                            {% assign acknowledgement_name = acknowledgement[1] %}
+                        {% when "username_only" %}
+                            {% assign acknowledgement_name = acknowledgement[2] %}
+                        {% when "realname_username" %}
+                            {% assign acknowledgement_name = acknowledgement[1] | append: " (" | append: acknowledgement[2] | append: ")" %}
+                        {% when "username_realname" %}
+                            {% assign acknowledgement_name = acknowledgement[2] | append: " (" | append: acknowledgement[1] | append: ")" %}
+                        {% when "none" %}
+                            {% assign acknowledgement_name = "" %}
+                    {% endcase %}
+                    {% assign acknowledgement_character = acknowledgement[3] | append: " (Level " | append: acknowledgement[4] | append: ")"%}
+                     {% if acknowledgement[5].size > 0 %}
+                         <li class="acknowledgement notes">
+                             <div class="acknowledgement-item">
+                                 <span class="arrow-toggle" onclick="toggleNotes(this)">▶</span>
+                                 <span class="bold">{{ acknowledgement_name }}</span> - <span class="italic">{{ acknowledgement_character }}</span>
+                                 <div class="notes-dropdown" style="display: none;">
+                                     <div class="notes-content">{{ acknowledgement[5] }}</div>
+                                     <!-- Debug: {{ acknowledgement[5] | size }} characters -->
+                                 </div>
+                             </div>
+                         </li>
+                     {% else %}
+                         <li class="acknowledgement">
+                             <div class="acknowledgement-item">
+                                 <span class="bold">{{ acknowledgement_name }}</span> - <span class="italic">{{ acknowledgement_character }}</span>
+                             </div>
+                         </li>
+                     {% endif %}
+                {% endfor %}
+                </ul>
+            {% else %}
+                <p>No playtesters found</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <div id="back-to-top" class="back-to-top" style="display: none;">
+        <a href="#content-header">Back to Top</a>
+    </div>
+
+
 </body>
 </html>
 
@@ -60,5 +198,37 @@
     if (!document.querySelector('.header-container').dataset.custom_js) {
         console.log('Removing content-loading class due to custom_js not being set');
         document.querySelector('#content-container').classList.remove('content-loading');
+    }
+
+    // Back to Top Button Logic
+    function toggleBackToTop() {
+        const backToTopButton = document.getElementById('back-to-top');
+        const windowHeight = window.innerHeight;
+        const documentHeight = document.documentElement.scrollHeight;
+        
+        // Show button if page height is more than 2 screens worth
+        if (documentHeight > windowHeight * 1.25) {
+            backToTopButton.style.display = 'block';
+        } else {
+            backToTopButton.style.display = 'none';
+        }
+    }
+
+    // Check on page load and resize
+    document.addEventListener('DOMContentLoaded', toggleBackToTop);
+    window.addEventListener('resize', toggleBackToTop);
+
+    // Toggle notes dropdown
+    function toggleNotes(arrowElement) {
+        const dropdown = arrowElement.parentElement.querySelector('.notes-dropdown');
+        const isVisible = dropdown.style.display !== 'none';
+        
+        if (isVisible) {
+            dropdown.style.display = 'none';
+            arrowElement.textContent = '▶';
+        } else {
+            dropdown.style.display = 'block';
+            arrowElement.textContent = '▼';
+        }
     }
 </script>

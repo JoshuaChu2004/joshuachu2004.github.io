@@ -33,11 +33,11 @@ You gain oath spells at the paladin levels listed.
 
 | Paladin Level | Spells |
 |------------|--------|
-| 3rd        | Sanctuary, Shield of Faith |
-| 5th        | Aid, Warding Bond |
-| 9th        | Beacon of Hope, Protection from Energy |
-| 13th       | Aura of Purity, Death Ward |
-| 17th       | Circle of Power, Greater Restoration |
+| 3rd        | [Sanctuary](https://dnd5e.wikidot.com/spell:sanctuary), [Shield of Faith](https://dnd5e.wikidot.com/spell:shield-of-faith) |
+| 5th        | [Aid](https://dnd5e.wikidot.com/spell:aid), [Warding Bond](https://dnd5e.wikidot.com/spell:warding-bond) |
+| 9th        | [Beacon of Hope](https://dnd5e.wikidot.com/spell:beacon-of-hope), [Protection from Energy](https://dnd5e.wikidot.com/spell:protection-from-energy) |
+| 13th       | [Aura of Purity](https://dnd5e.wikidot.com/spell:aura-of-purity), [Death Ward](https://dnd5e.wikidot.com/spell:death-ward) |
+| 17th       | [Circle of Power](https://dnd5e.wikidot.com/spell:circle-of-power), [Greater Restoration](https://dnd5e.wikidot.com/spell:greater-restoration) |
 
 ### Channel Divinity
 When you take this oath at 3rd level, you gain the following two Channel Divinity options.

@@ -23,11 +23,11 @@ The Hybrid lets you choose from an expanded list of spells when you learn a warl
 
 | Warlock Level  | Spells |
 |----------------|--------|
-| 1st            | Cause Fear, Zephyr Strike |
-| 3rd            | Borrowed Knowledge, Magic Weapon |
-| 5th            | Speak with Dead, Blinding Smite |
-| 7th            | Fabricate, Staggering Smite |
-| 9th            | Modify Memory, Steel Wind Strike |
+| 1st            | [Cause Fear](https://dnd5e.wikidot.com/spell:cause-fear), [Zephyr Strike](https://dnd5e.wikidot.com/spell:zephyr-strike) |
+| 3rd            | [Borrowed Knowledge](https://dnd5e.wikidot.com/spell:borrowed-knowledge), [Magic Weapon](https://dnd5e.wikidot.com/spell:magic-weapon) |
+| 5th            | [Speak with Dead](https://dnd5e.wikidot.com/spell:speak-with-dead), [Blinding Smite](https://dnd5e.wikidot.com/spell:blinding-smite) |
+| 7th            | [Fabricate](https://dnd5e.wikidot.com/spell:fabricate), [Staggering Smite](https://dnd5e.wikidot.com/spell:staggering-smite) |
+| 9th            | [Modify Memory](https://dnd5e.wikidot.com/spell:modify-memory), [Steel Wind Strike](https://dnd5e.wikidot.com/spell:steel-wind-strike) |
 
 ### Devilish Transformation
 Starting at 1st level, your patron will occasionally take and relinquish control from you to forward its own agenda. As an Action, you may switch between your Devil form and your Original form. There is not necessarily a visual difference between the two, though your patron will almost always carry a different personality and way of thinking. Depending on your form, you will have access to different abilities and features from this class.
@@ -56,10 +56,10 @@ At 6th level, your patron needs your body intact while not being used by them. W
 At 6th level, your patron can begin placing influence on the others you surround yourself with. While in your Devil form, you can consume a Devil Charge to force a humanoid within 30 ft. you can see to make a Wisdom saving throw or be magically charmed for 1 day as an action. The charmed target obeys your spoken commands. If the target suffers any harm from you or another creature or receives a suicidal command from you, the target can repeat the saving throw, ending the effect on itself on a success. If a target's saving throw is successful, or if the effect ends for it, the creature is immune to your Fiendish Charm for the next 24 hours.
 
 ### Form to Facade
-At 10th level, while in your Original form, you learn the Mislead spell. It counts as a warlock spell for you, but it doesn’t count against the number of spells you know. You can also cast it once using a Devil Charge without consuming a spell slot, and you regain the ability to do so when you finish a long rest. 
+At 10th level, while in your Original form, you learn the [Mislead](https://dnd5e.wikidot.com/spell:mislead) spell. It counts as a warlock spell for you, but it doesn’t count against the number of spells you know. You can also cast it once using a Devil Charge without consuming a spell slot, and you regain the ability to do so when you finish a long rest. 
 
 ### Flesh to Fire
-At 10th level, while in your Devil form, you learn the Immolation spell. It counts as a warlock spell for you, but it doesn’t count against the number of spells you know. You can also cast it once using a Devil Charge without consuming a spell slot, and you regain the ability to do so when you finish a long rest. 
+At 10th level, while in your Devil form, you learn the [Immolation](https://dnd5e.wikidot.com/spell:immolation) spell. It counts as a warlock spell for you, but it doesn’t count against the number of spells you know. You can also cast it once using a Devil Charge without consuming a spell slot, and you regain the ability to do so when you finish a long rest. 
 
 ### Freedom of Mind and Body
 Starting when you reach 14th level, either you have harnessed leverage over your patron or a new, fairer deal has been struck between you, granting greater control over your abilities. While in your Original form, you may use any of your abilities limited to the Devil form, though they cost an additional Devil Charge. Also, when you are concentrating on a spell, you reduce all damage taken by your Charisma modifier.

@@ -17,6 +17,16 @@ finished: true
 | 10th         | Mind Bender |
 | 14th         | Rupture Sanity |
 
+### Inquisimancy Spells Table
+The following spells are added to the wizard spell list for you, though you still must add them to your spellbook before being able to cast them.
+
+| Wizard Level | Spells |
+|--------------|----------|
+| 1st          | [Coax Truth](/dnd/spells/coaxtruth), [Assault Mind](/dnd/spells/assaultmind) |
+| 3rd          | [Psychic Whip](/dnd/spells/psychicwhip) |
+| 5th          | [Scramble](/dnd/spells/scramble) |
+| 7th         | [Freeze](/dnd/spells/freeze) |
+
 ### Ace Detective
 Beginning when you select this school at 2nd level, when you fail an Insight, Perception, or Investigation check, you may expend a spell slot to add a d6 to the roll. You add an additional d6 for every 2 slot levels above 1st. 
 

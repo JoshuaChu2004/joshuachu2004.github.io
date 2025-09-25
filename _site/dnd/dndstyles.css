@@ -3,6 +3,7 @@
    ========================================================================== */
 
 :root {
+    --bg-light: #fcf9f4;
     --bg: #f3eee5;
     --fg: #242322;
     --hfg:#f3f1e9;
@@ -145,6 +146,19 @@ nav a {
     margin-left: calc(-50vw + 50%);
 }
 
+.section.beginning::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background-color: var(--border);
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    margin-top: 24px;
+}
+
 .section.no-border {
     border: none;
 }
@@ -177,6 +191,10 @@ nav a {
 }
 
 /* Account for sticky header when scrolling to sections */
+.section[id] {
+    scroll-margin-top: 80px;
+}
+
 section[id] {
     scroll-margin-top: 80px;
 }
@@ -255,6 +273,54 @@ table[id] {
 
 .section-content .paragraph {
     color: var(--muted);
+}
+
+.acknowledgement {
+    font-size: 18px;
+}
+
+li.acknowledgement.notes{
+    list-style-type: none;
+}
+
+/* Acknowledgement Dropdown Styles */
+.arrow-toggle {
+    cursor: pointer;
+    margin-right: 8px;
+    font-size: 12px;
+    color: #666;
+    transition: transform 0.2s ease;
+}
+
+.arrow-toggle:hover {
+    color: #333;
+}
+
+.notes-dropdown {
+    margin-top: 8px;
+    margin-left: 20px;
+    padding: 8px 12px;
+    background-color: var(--bg-light);
+    border-left: 3px solid var(--brand);
+    border-radius: 4px;
+    font-size: 14px;
+    color: var(--fg);
+    max-height: none;
+    overflow: visible;
+    white-space: normal;
+    word-wrap: break-word;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.notes-content {
+    font-style: italic;
+    white-space: normal;
+    word-wrap: break-word;
+    overflow: visible;
+}
+
+.acknowledgement-item {
+    position: relative;
 }
 
 .section-content .title {
@@ -381,8 +447,7 @@ table[id] {
 
 /* Back to Top */
 .back-to-top {
-    margin-top: 48px;
-    padding-top: 24px;
+    padding: 24px;
     text-align: center;
 }
 
@@ -552,6 +617,8 @@ table[id] {
 /* ==========================================================================
    TABLES
    ========================================================================== */
+
+/* Class table styling - removed invalid col-span property */
 
 /* D&D Stat Block Styling - Grouped borders */
 .stat-block {

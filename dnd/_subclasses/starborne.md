@@ -12,8 +12,7 @@ finished: false
 | Sorcerer Level | Features |
 |----------------|--------|
 | 1st            | Alignment of Stars, Light of the Cosmos |
-| 6th            | Star Charged, Constellations |
-| 11th           | Cosmic Omen |
+| 6th            | Star Charged, Cosmic Omen |
 | 14th           | Glow of the Universe |
 | 18th           | Celestial Charge |
 
@@ -28,16 +27,16 @@ Many Starborne spells and features will deal cosmic damage. When you gain this f
 
 | Spell Level | Spells |
 |------------|--------|
-| Cantrip | Starlight, Cosmic Beam, Pocket |
-| 1st | Astral Grasp, Gravity Well, Superposition |
-| 2nd | Stardust, Solar Flare |
-| 3rd | Light Trick, Mesmerize |
-| 4th | Change Gravity, Comet |
-| 5th | Shine |
-| 6th | Star Walk |
-| 7th | Astral Domain |
-| 8th | Black Hole |
-| 9th | Supernova |
+| Cantrip | [Starlight](/dnd/spells/starlight), [Cosmic Beam](/dnd/spells/cosmicbeam), [Pocket](/dnd/spells/pocket) |
+| 1st | [Astral Grasp](/dnd/spells/astralgrasp), [Gravity Well](/dnd/spells/gravitywell), [Superposition](/dnd/spells/superposition) |
+| 2nd | [Stardust](/dnd/spells/stardust), [Solar Flare](/dnd/spells/solarflare) |
+| 3rd | [Light Trick](/dnd/spells/lighttrick), [Mesmerize](/dnd/spells/mesmerize) |
+| 4th | [Change Gravity](/dnd/spells/changegravity), [Comet](/dnd/spells/comet) |
+| 5th | [Shine](/dnd/spells/shine) |
+| 6th | [Star Walk](/dnd/spells/starwalk) |
+| 7th | [Astral Domain](/dnd/spells/astraldomain) |
+| 8th | [Black Hole](/dnd/spells/blackhole) |
+| 9th | [Supernova](/dnd/spells/supernova) |
 
 ### Cosmic Damage Table
 
@@ -61,22 +60,10 @@ Also at 1st level, your body subtly glows with the light of distant stars. While
 ### Star Charged
 At 6th level, you are able to draw additional power from the constellations in the sky, conferring parts of their essence to you and allowing you to empower your spells. As a bonus action, you can spend two sorcery points to become Charged for 1 hour. While Charged, you may cast a Star Spell using its Charged version, spending the Charge.
 
-### Constellations
-Also at 6th level, the alignment of stars and planets affect your Light of the Cosmos ability. At the end of a long rest, you also roll on the Constellation table, which confers a unique effect.
-
-#### Constellation Table
-
-| d6 Constellation | Constellation Effect |
-|------------------|----------------------|
-| 1 - The Moon of Ill Omen | A faraway, red moon that burns with the malice of bloody history. While Light of the Cosmos is Active, whenever you roll for cosmic damage, you may take 1d6 cosmic damage to add that to the rolled damage. |
-| 2 - Star of Illiat | The brightest star in the northern area, a symbol of hope and bravery. While Light of the Cosmos is active, you can cast the Resistance spell as a reaction to a creature within 20 ft. making a Saving Throw. |
-| 3 - Przepis’ Belt | Dual lines of stars, bringing fortuitous omens to people around the world. Once while Light of the Cosmos is active, you may add a d6 to an ability check, attack roll, or saving throw. You regain this after a short rest. |
-| 4 - Ymir’s Heart | The first of the giants, immortalized in the night sky, known for his resilience to all adversity. While Light of the Cosmos is active, at the start of every round, you gain Temporary Hit Points equal to your Charisma modifier. |
-| 5 - Hammer of Valdez | A pattern of stars in the shape of a hammer, said to represent the skill and expertise of the masters that came before. Choose a skill or a tool. While Light of the Cosmos is active, you gain proficiency in that skill or tool. |
-| 6 - The Gleaming Band | A long, curved band of bright blue stars, associated with the birth of the universe. While Light of the Cosmos is active, you gain a flying speed equal to your walking speed. |
-
 ### Cosmic Omen
-At 11th level, you have begun to divine the future by looking into the stars. You now know the following Divination spells: Augury, Clairvoyance, and Divination.
+Also at 6th level, you have begun to divine the future by looking into the stars. You now know the spell [Augury](https://dnd5e.wikidot.com/spell:augury). This spell counts as a sorcerer spell for you, but it doesn’t count against the number of sorcerer spells you know.
+At 7th level, you know the [Divination](https://dnd5e.wikidot.com/spell:divination) spell and at 9th level, you know the [Commune](https://dnd5e.wikidot.com:commune) spell.
+
 
 ### Glow of the Universe
 At 14th level, your natural connection to the stars becomes nearly perfect, improving your Light of the Cosmos feature. While Light of the Cosmos is active, you now gain one of the following benefits depending on the time of day:

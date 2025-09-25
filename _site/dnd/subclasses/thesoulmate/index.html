@@ -116,29 +116,29 @@
   <tbody>
     <tr>
       <td>1st</td>
-      <td>Guiding Bolt, Feather Fall</td>
+      <td><a href="https://dnd5e.wikidot.com/spell:guiding-bolt">Guiding Bolt</a>, <a href="https://dnd5e.wikidot.com/spell:feather-fall">Feather Fall</a></td>
     </tr>
     <tr>
       <td>3rd</td>
-      <td>Augury, Enhance Ability</td>
+      <td><a href="https://dnd5e.wikidot.com/spell:augury">Augury</a>, <a href="https://dnd5e.wikidot.com/spell:enhance-ability">Enhance Ability</a></td>
     </tr>
     <tr>
       <td>5th</td>
-      <td>Fly, Spirit Guardians</td>
+      <td><a href="https://dnd5e.wikidot.com/spell:fly">Fly</a>, <a href="https://dnd5e.wikidot.com/spell:spirit-guardians">Spirit Guardians</a></td>
     </tr>
     <tr>
       <td>7th</td>
-      <td>Death Ward, Divination</td>
+      <td><a href="https://dnd5e.wikidot.com/spell:death-ward">Death Ward</a>, <a href="https://dnd5e.wikidot.com/spell:divination">Divination</a></td>
     </tr>
     <tr>
       <td>9th</td>
-      <td>Rary’s Telepathic Bond, Wall of Light</td>
+      <td><a href="https://dnd5e.wikidot.com/spell:rarys-telepathic-bond">Rary’s Telepathic Bond</a>, <a href="https://dnd5e.wikidot.com/spell:wall-of-light">Wall of Light</a></td>
     </tr>
   </tbody>
 </table>
 
 <h3 id="bonus-cantrips">Bonus Cantrips</h3>
-<p>At 1st level, you learn the Guidance and Spare the Dying cantrips. They count as warlock cantrips for you, but they don’t count against your number of cantrips known.</p>
+<p>At 1st level, you learn the <a href="https://dnd5e.wikidot.com/spell:guidance">Guidance</a> and <a href="https://dnd5e.wikidot.com/spell:spare-the-dying">Spare the Dying</a> cantrips. They count as warlock cantrips for you, but they don’t count against your number of cantrips known.</p>
 
 <h3 id="precious-keepsake">Precious Keepsake</h3>
 <p>At 1st level, you have a keepsake of some form from your soulmate that strengthens your connection to them. It could be a piece of jewelry, an article of clothing, or even a weapon. No matter its form, you may use it as a spellcasting focus for your warlock spells. The keepsake has Maximum Hit Points equal to five times your warlock level. While wearing or holding the keepsake, you gain the following benefits:</p>
@@ -163,9 +163,6 @@ When the keepsake is reduced to 0 Hit Points, it becomes damaged and you lose al
 
             </div>
             
-            <div class="back-to-top">
-                <a href="#content-header">Back to Top</a>
-            </div>
         </div>
     </section>
 </body>
@@ -175,6 +172,34 @@ When the keepsake is reduced to 0 Hit Points, it becomes damaged and you lose al
 
 
     </div>
+
+
+    <div id="acknowledgements" class="acknowledgements section">
+        <div class="section-content">
+            
+            
+
+            <h1>Playtested By:</h1>
+            <!-- Print the acknowledgement list -->
+            <!-- ACKNOWLEDGEMENT LIST INDEXES: -->
+            <!-- 0: display_style - realname_only, username_only, realname_username, username_realname, none -->
+            <!-- 1: playtester_name -->
+            <!-- 2: username -->
+            <!-- 3: character_name -->
+            <!-- 4: character_level -->
+            <!-- 5: notes -->
+            <!-- ACKNOWLEDGEMENT LIST INDEXES: -->
+            
+                <p>No playtesters found</p>
+            
+        </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <div id="back-to-top" class="back-to-top" style="display: none;">
+        <a href="#content-header">Back to Top</a>
+    </div>
+
 
 </body>
 </html>
@@ -187,5 +212,37 @@ When the keepsake is reduced to 0 Hit Points, it becomes damaged and you lose al
     if (!document.querySelector('.header-container').dataset.custom_js) {
         console.log('Removing content-loading class due to custom_js not being set');
         document.querySelector('#content-container').classList.remove('content-loading');
+    }
+
+    // Back to Top Button Logic
+    function toggleBackToTop() {
+        const backToTopButton = document.getElementById('back-to-top');
+        const windowHeight = window.innerHeight;
+        const documentHeight = document.documentElement.scrollHeight;
+        
+        // Show button if page height is more than 2 screens worth
+        if (documentHeight > windowHeight * 1.25) {
+            backToTopButton.style.display = 'block';
+        } else {
+            backToTopButton.style.display = 'none';
+        }
+    }
+
+    // Check on page load and resize
+    document.addEventListener('DOMContentLoaded', toggleBackToTop);
+    window.addEventListener('resize', toggleBackToTop);
+
+    // Toggle notes dropdown
+    function toggleNotes(arrowElement) {
+        const dropdown = arrowElement.parentElement.querySelector('.notes-dropdown');
+        const isVisible = dropdown.style.display !== 'none';
+        
+        if (isVisible) {
+            dropdown.style.display = 'none';
+            arrowElement.textContent = '▶';
+        } else {
+            dropdown.style.display = 'block';
+            arrowElement.textContent = '▼';
+        }
     }
 </script>

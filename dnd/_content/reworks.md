@@ -2,26 +2,46 @@
 layout: bare
 title: D&D Reworks
 permalink: /dnd/content/reworks
+reworks_icon: fas fa-arrows-rotate fa-8x
 ---
+<div class="section toc no-border" markdown="1">
+<div class="section-icon {{ page.reworks_icon }}"></div>
+<div class="race-content" markdown="1">
 # Reworks
 
-Modifications and improvements to existing D&D 5e content.
+## Classes
+{% for rework in site.reworks %}
+{% if rework.content_type == "Class" %}
+{% if rework.finished %}
+- [{{ rework.title }}]({{ rework.url }}) <i class="fa-solid fa-star"></i>
+{% else %}
+- [{{ rework.title }}]({{ rework.url }})
+{% endif %}
+{% else %}
+{% endif %}
+{% endfor %}
 
-## Creating New Reworks
+## Subclasses
+{% for rework in site.reworks %}
+{% if rework.content_type == "Subclass" %}
+{% if rework.finished %}
+- [{{ rework.title }}]({{ rework.url }}) <i class="fa-solid fa-star"></i>
+{% else %}
+- [{{ rework.title }}]({{ rework.url }})
+{% endif %}
+{% endif %}
+{% endfor %}
 
-To add a new rework:
-
-1. Create a markdown file in the reworks collection directory:
-   - `dnd/_reworks/reworkname.md`
-2. The page will automatically be accessible at `/dnd/reworks/reworkname/`
-3. Update this overview page with a link to your new rework
-
-## Rework Guidelines
-
-When creating reworks:
-
-- Clearly identify what you're modifying
-- Explain the reasoning behind changes
-- Maintain balance with existing content
-- Provide clear before/after comparisons
-- Include playtesting notes if available
+## Spells
+{% assign spells = site.reworks | where: "content_type", "Spell" | group_by: "level" | reverse %}
+{% for rework in spells %}
+{% for spell in rework.items %}
+{% if spell.finished %}
+- [{{ spell.title }}]({{ spell.url }}) <i class="fa-solid fa-star"></i>
+{% else %}
+- [{{ spell.title }}]({{ spell.url }})
+{% endif %}
+{% endfor %}
+{% endfor %}
+</div>
+</div>

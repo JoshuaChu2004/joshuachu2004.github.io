@@ -24,14 +24,14 @@ The Soulmate lets you choose from an expanded list of spells when you learn a wa
 
 | Warlock Level  | Spells |
 |----------------|--------|
-| 1st            | Guiding Bolt, Feather Fall |
-| 3rd            | Augury, Enhance Ability |
-| 5th            | Fly, Spirit Guardians |
-| 7th            | Death Ward, Divination |
-| 9th            | Rary's Telepathic Bond, Wall of Light |
+| 1st            | [Guiding Bolt](https://dnd5e.wikidot.com/spell:guiding-bolt), [Feather Fall](https://dnd5e.wikidot.com/spell:feather-fall) |
+| 3rd            | [Augury](https://dnd5e.wikidot.com/spell:augury), [Enhance Ability](https://dnd5e.wikidot.com/spell:enhance-ability) |
+| 5th            | [Fly](https://dnd5e.wikidot.com/spell:fly), [Spirit Guardians](https://dnd5e.wikidot.com/spell:spirit-guardians) |
+| 7th            | [Death Ward](https://dnd5e.wikidot.com/spell:death-ward), [Divination](https://dnd5e.wikidot.com/spell:divination) |
+| 9th            | [Rary's Telepathic Bond](https://dnd5e.wikidot.com/spell:rarys-telepathic-bond), [Wall of Light](https://dnd5e.wikidot.com/spell:wall-of-light) |
 
 ### Bonus Cantrips
-At 1st level, you learn the Guidance and Spare the Dying cantrips. They count as warlock cantrips for you, but they don’t count against your number of cantrips known.
+At 1st level, you learn the [Guidance](https://dnd5e.wikidot.com/spell:guidance) and [Spare the Dying](https://dnd5e.wikidot.com/spell:spare-the-dying) cantrips. They count as warlock cantrips for you, but they don’t count against your number of cantrips known.
 
 ### Precious Keepsake
 At 1st level, you have a keepsake of some form from your soulmate that strengthens your connection to them. It could be a piece of jewelry, an article of clothing, or even a weapon. No matter its form, you may use it as a spellcasting focus for your warlock spells. The keepsake has Maximum Hit Points equal to five times your warlock level. While wearing or holding the keepsake, you gain the following benefits:

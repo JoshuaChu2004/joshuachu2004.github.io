@@ -547,35 +547,55 @@
     <section id="reworks" class="section">
         <div class="section-content">
             
-            <h1 id="reworks">Reworks</h1>
+            <div class="section toc no-border">
+  <div class="section-icon fas fa-arrows-rotate fa-8x"></div>
+  <div class="race-content">
+    <h1 id="reworks">Reworks</h1>
 
-<p>Modifications and improvements to existing D&amp;D 5e content.</p>
+    <h2 id="classes">Classes</h2>
 
-<h2 id="creating-new-reworks">Creating New Reworks</h2>
-
-<p>To add a new rework:</p>
-
-<ol>
-  <li>Create a markdown file in the reworks collection directory:
     <ul>
-      <li><code class="language-plaintext highlighter-rouge">dnd/_reworks/reworkname.md</code></li>
+      <li>
+        <p><a href="/dnd/reworks/martialartist/">Martial Artist (Monk Rework)</a> <i class="fa-solid fa-star"></i></p>
+      </li>
+      <li>
+        <p><a href="/dnd/reworks/nomad/">Nomad (Ranger Substitute)</a> <i class="fa-solid fa-star"></i></p>
+      </li>
     </ul>
-  </li>
-  <li>The page will automatically be accessible at <code class="language-plaintext highlighter-rouge">/dnd/reworks/reworkname/</code></li>
-  <li>Update this overview page with a link to your new rework</li>
-</ol>
 
-<h2 id="rework-guidelines">Rework Guidelines</h2>
+    <h2 id="subclasses">Subclasses</h2>
 
-<p>When creating reworks:</p>
+    <ul>
+      <li>
+        <p><a href="/dnd/reworks/collegeofswords/">College of Swords (Bard)</a></p>
+      </li>
+      <li>
+        <p><a href="/dnd/reworks/schooloftransmutation/">School of Transmutation (Wizard)</a> <i class="fa-solid fa-star"></i></p>
+      </li>
+    </ul>
 
-<ul>
-  <li>Clearly identify what you’re modifying</li>
-  <li>Explain the reasoning behind changes</li>
-  <li>Maintain balance with existing content</li>
-  <li>Provide clear before/after comparisons</li>
-  <li>Include playtesting notes if available</li>
-</ul>
+    <h2 id="spells">Spells</h2>
+
+    <ul>
+      <li>
+        <p><a href="/dnd/reworks/curewounds/">Cure Wounds</a></p>
+      </li>
+      <li>
+        <p><a href="/dnd/reworks/healingword/">Healing Word</a></p>
+      </li>
+      <li>
+        <p><a href="/dnd/reworks/huntersmark/">Hunter’s Mark</a></p>
+      </li>
+      <li>
+        <p><a href="/dnd/reworks/silverybarbs/">Silvery Barbs</a></p>
+      </li>
+      <li>
+        <p><a href="/dnd/reworks/counterspell/">Counterspell</a></p>
+      </li>
+    </ul>
+
+  </div>
+</div>
 
             <!-- Content will be loaded automatically -->
         </div>
@@ -585,6 +605,34 @@
 </body>
 </html>
     </div>
+
+
+    <div id="acknowledgements" class="acknowledgements section">
+        <div class="section-content">
+            
+            
+
+            <h1>Playtested By:</h1>
+            <!-- Print the acknowledgement list -->
+            <!-- ACKNOWLEDGEMENT LIST INDEXES: -->
+            <!-- 0: display_style - realname_only, username_only, realname_username, username_realname, none -->
+            <!-- 1: playtester_name -->
+            <!-- 2: username -->
+            <!-- 3: character_name -->
+            <!-- 4: character_level -->
+            <!-- 5: notes -->
+            <!-- ACKNOWLEDGEMENT LIST INDEXES: -->
+            
+                <p>No playtesters found</p>
+            
+        </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <div id="back-to-top" class="back-to-top" style="display: none;">
+        <a href="#content-header">Back to Top</a>
+    </div>
+
 
 </body>
 </html>
@@ -597,5 +645,37 @@
     if (!document.querySelector('.header-container').dataset.custom_js) {
         console.log('Removing content-loading class due to custom_js not being set');
         document.querySelector('#content-container').classList.remove('content-loading');
+    }
+
+    // Back to Top Button Logic
+    function toggleBackToTop() {
+        const backToTopButton = document.getElementById('back-to-top');
+        const windowHeight = window.innerHeight;
+        const documentHeight = document.documentElement.scrollHeight;
+        
+        // Show button if page height is more than 2 screens worth
+        if (documentHeight > windowHeight * 1.25) {
+            backToTopButton.style.display = 'block';
+        } else {
+            backToTopButton.style.display = 'none';
+        }
+    }
+
+    // Check on page load and resize
+    document.addEventListener('DOMContentLoaded', toggleBackToTop);
+    window.addEventListener('resize', toggleBackToTop);
+
+    // Toggle notes dropdown
+    function toggleNotes(arrowElement) {
+        const dropdown = arrowElement.parentElement.querySelector('.notes-dropdown');
+        const isVisible = dropdown.style.display !== 'none';
+        
+        if (isVisible) {
+            dropdown.style.display = 'none';
+            arrowElement.textContent = '▶';
+        } else {
+            dropdown.style.display = 'block';
+            arrowElement.textContent = '▼';
+        }
     }
 </script>

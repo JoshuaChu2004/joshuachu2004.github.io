@@ -3,7 +3,7 @@ layout: spell
 content_type: Spell
 title: Starlight
 school: Enchantment
-level: "0"
+level: "00"
 casting_time: 1 action
 range: Self (30 ft. sphere)
 duration: 1 minute

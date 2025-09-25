@@ -115,23 +115,23 @@
   <tbody>
     <tr>
       <td>1st</td>
-      <td>Temporal Peace, Bullet Time</td>
+      <td><a href="/dnd/spells/temporalpeace">Temporal Peace</a>, <a href="/dnd/spells/bullettime">Bullet Time</a></td>
     </tr>
     <tr>
       <td>3rd</td>
-      <td>Flash of Steel, Hold Person</td>
+      <td><a href="/dnd/spells/flashofsteel">Flash of Steel</a>, <a href="https://dnd5e.wikidot.com/spell:hold-person">Hold Person</a></td>
     </tr>
     <tr>
       <td>5th</td>
-      <td>Desynchronize, Slow</td>
+      <td><a href="/dnd/spells/desynchronize">Desynchronize</a>, <a href="https://dnd5e.wikidot.com/spell:slow">Slow</a></td>
     </tr>
     <tr>
       <td>7th</td>
-      <td>Recall, Divination</td>
+      <td><a href="/dnd/spells/recall">Recall</a>, <a href="https://dnd5e.wikidot.com/spell:divination">Divination</a></td>
     </tr>
     <tr>
       <td>9th</td>
-      <td>Supercede, Temporal Shunt</td>
+      <td><a href="/dnd/spells/supercede">Supercede</a>, <a href="https://dnd5e.wikidot.com/spell:temporal-shunt">Temporal Shunt</a></td>
     </tr>
   </tbody>
 </table>
@@ -220,9 +220,6 @@
 
             </div>
             
-            <div class="back-to-top">
-                <a href="#content-header">Back to Top</a>
-            </div>
         </div>
     </section>
 </body>
@@ -232,6 +229,34 @@
 
 
     </div>
+
+
+    <div id="acknowledgements" class="acknowledgements section">
+        <div class="section-content">
+            
+            
+
+            <h1>Playtested By:</h1>
+            <!-- Print the acknowledgement list -->
+            <!-- ACKNOWLEDGEMENT LIST INDEXES: -->
+            <!-- 0: display_style - realname_only, username_only, realname_username, username_realname, none -->
+            <!-- 1: playtester_name -->
+            <!-- 2: username -->
+            <!-- 3: character_name -->
+            <!-- 4: character_level -->
+            <!-- 5: notes -->
+            <!-- ACKNOWLEDGEMENT LIST INDEXES: -->
+            
+                <p>No playtesters found</p>
+            
+        </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <div id="back-to-top" class="back-to-top" style="display: none;">
+        <a href="#content-header">Back to Top</a>
+    </div>
+
 
 </body>
 </html>
@@ -244,5 +269,37 @@
     if (!document.querySelector('.header-container').dataset.custom_js) {
         console.log('Removing content-loading class due to custom_js not being set');
         document.querySelector('#content-container').classList.remove('content-loading');
+    }
+
+    // Back to Top Button Logic
+    function toggleBackToTop() {
+        const backToTopButton = document.getElementById('back-to-top');
+        const windowHeight = window.innerHeight;
+        const documentHeight = document.documentElement.scrollHeight;
+        
+        // Show button if page height is more than 2 screens worth
+        if (documentHeight > windowHeight * 1.25) {
+            backToTopButton.style.display = 'block';
+        } else {
+            backToTopButton.style.display = 'none';
+        }
+    }
+
+    // Check on page load and resize
+    document.addEventListener('DOMContentLoaded', toggleBackToTop);
+    window.addEventListener('resize', toggleBackToTop);
+
+    // Toggle notes dropdown
+    function toggleNotes(arrowElement) {
+        const dropdown = arrowElement.parentElement.querySelector('.notes-dropdown');
+        const isVisible = dropdown.style.display !== 'none';
+        
+        if (isVisible) {
+            dropdown.style.display = 'none';
+            arrowElement.textContent = '▶';
+        } else {
+            dropdown.style.display = 'block';
+            arrowElement.textContent = '▼';
+        }
     }
 </script>

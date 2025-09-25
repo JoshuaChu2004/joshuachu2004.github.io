@@ -3,7 +3,7 @@ layout: spell
 content_type: Spell
 title: Temporal Peace
 school: Transmutation
-level: "0"
+level: "00"
 casting_time: 1 action
 range: Self (15 ft. sphere)
 duration: 1 round

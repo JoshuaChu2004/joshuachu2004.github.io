@@ -3,7 +3,7 @@ layout: spell
 content_type: Spell
 title: Overheat
 school: Evocation
-level: "0"
+level: "00"
 casting_time: 1 action
 range: Touch
 duration: 1 minute

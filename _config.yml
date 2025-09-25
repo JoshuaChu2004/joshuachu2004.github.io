@@ -7,6 +7,9 @@ permalink: pretty
 collections_dir: dnd
 
 collections:
+  acknowledgements:
+    output: true
+    permalink: /dnd/acknowledgements/:name/
   classes:
     output: true
     permalink: /dnd/classes/:name/
@@ -36,6 +39,8 @@ collections:
     permalink: /dnd/content/:name/
 
 defaults:
+  - scope: { type: acknowledgements }
+    values: { layout: dnd }
   - scope: { type: classes }
     values: { layout: dnd }
   - scope: { type: subclasses }

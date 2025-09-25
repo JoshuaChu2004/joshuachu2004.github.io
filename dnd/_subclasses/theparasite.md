@@ -24,11 +24,11 @@ The Parasite lets you choose from an expanded list of spells when you learn a wa
 
 | Warlock Level | Spells |
 |----------------|--------|
-| 1st            | Charm Person, Command |
-| 3rd            | Borrowed Knowledge, Detect Thoughts |
-| 5th            | Dispel Magic, Sending |
-| 7th            | Compulsion, Raulothim's Psychic Lance |
-| 9th            | Dominate Person, Modify Memory |
+| 1st            | [Charm Person](https://dnd5e.wikidot.com/spell:charm-person), [Command](https://dnd5e.wikidot.com/spell:command) |
+| 3rd            | [Borrowed Knowledge](https://dnd5e.wikidot.com/spell:borrowed-knowledge), [Detect Thoughts](https://dnd5e.wikidot.com/spell:detect-thoughts) |
+| 5th            | [Dispel Magic](https://dnd5e.wikidot.com/spell:dispel-magic), [Sending](https://dnd5e.wikidot.com/spell:sending) |
+| 7th            | [Compulsion](https://dnd5e.wikidot.com/spell:compulsion), [Raulothim's Psychic Lance](https://dnd5e.wikidot.com/spell:raulothims-psychic-lance) |
+| 9th            | [Dominate Person](https://dnd5e.wikidot.com/spell:dominate-person), [Modify Memory](https://dnd5e.wikidot.com/spell:modify-memory) |
 
 ### Arcane Siphon
 Your patron has taught you to siphon magic from your enemies and make it your own. When a creature you can see within 60 ft. casts a spell of a level equal or lower to your pact spell slots or uses a magical feature, you may use your reaction to force them to make a Charisma saving throw. On a failure, you siphon and copy their magic. While siphoned, you may cast the spell once without spending a pact spell slot, treating it as a warlock spell. If it was a magical feature, you may use it once as an action, using your Warlock spell save DC and your Charisma modifier. 
@@ -49,7 +49,7 @@ You may choose an additional benefit at the end of a long rest at 10th level.
 Starting at 6th level, your patron remains alert to threats to its host and a chosen ally at all times. You cannot be surprised and you gain advantage on Wisdom saving throws. You are also able to extend this protection to a willing creature you can touch as an action. While you and your chosen ally is within 1 mile with each other, you can communicate telepathically and are always aware of the other’s location. If you use this action again, the previous creature loses the protection.
 
 ### Spawn Pawn
-At 10th level, you learn the dominate person spell. It counts as a warlock spell for you, but it doesn’t count against the number of spells you know. You can also cast it once without a spell slot, and you regain the ability to do so when you finish a long rest. 
+At 10th level, you learn the [Dominate Person](https://dnd5e.wikidot.com/spell:dominate-person) spell. It counts as a warlock spell for you, but it doesn’t count against the number of spells you know. You can also cast it once without a spell slot, and you regain the ability to do so when you finish a long rest. 
 <div class="break"> </div>
 When you cast this spell, your patron enhances the magic, dealing psychic damage equal to your warlock level if the creature succeeds on a saving throw to end the spell. In addition, damage can’t break your concentration on this spell.
 

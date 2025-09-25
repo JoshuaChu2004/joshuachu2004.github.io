@@ -115,23 +115,23 @@
   <tbody>
     <tr>
       <td>1st</td>
-      <td>Charm Person, Command</td>
+      <td><a href="https://dnd5e.wikidot.com/spell:charm-person">Charm Person</a>, <a href="https://dnd5e.wikidot.com/spell:command">Command</a></td>
     </tr>
     <tr>
       <td>3rd</td>
-      <td>Borrowed Knowledge, Detect Thoughts</td>
+      <td><a href="https://dnd5e.wikidot.com/spell:borrowed-knowledge">Borrowed Knowledge</a>, <a href="https://dnd5e.wikidot.com/spell:detect-thoughts">Detect Thoughts</a></td>
     </tr>
     <tr>
       <td>5th</td>
-      <td>Dispel Magic, Sending</td>
+      <td><a href="https://dnd5e.wikidot.com/spell:dispel-magic">Dispel Magic</a>, <a href="https://dnd5e.wikidot.com/spell:sending">Sending</a></td>
     </tr>
     <tr>
       <td>7th</td>
-      <td>Compulsion, Raulothim’s Psychic Lance</td>
+      <td><a href="https://dnd5e.wikidot.com/spell:compulsion">Compulsion</a>, <a href="https://dnd5e.wikidot.com/spell:raulothims-psychic-lance">Raulothim’s Psychic Lance</a></td>
     </tr>
     <tr>
       <td>9th</td>
-      <td>Dominate Person, Modify Memory</td>
+      <td><a href="https://dnd5e.wikidot.com/spell:dominate-person">Dominate Person</a>, <a href="https://dnd5e.wikidot.com/spell:modify-memory">Modify Memory</a></td>
     </tr>
   </tbody>
 </table>
@@ -157,7 +157,7 @@
 <p>Starting at 6th level, your patron remains alert to threats to its host and a chosen ally at all times. You cannot be surprised and you gain advantage on Wisdom saving throws. You are also able to extend this protection to a willing creature you can touch as an action. While you and your chosen ally is within 1 mile with each other, you can communicate telepathically and are always aware of the other’s location. If you use this action again, the previous creature loses the protection.</p>
 
 <h3 id="spawn-pawn">Spawn Pawn</h3>
-<p>At 10th level, you learn the dominate person spell. It counts as a warlock spell for you, but it doesn’t count against the number of spells you know. You can also cast it once without a spell slot, and you regain the ability to do so when you finish a long rest.</p>
+<p>At 10th level, you learn the <a href="https://dnd5e.wikidot.com/spell:dominate-person">Dominate Person</a> spell. It counts as a warlock spell for you, but it doesn’t count against the number of spells you know. You can also cast it once without a spell slot, and you regain the ability to do so when you finish a long rest.</p>
 <div class="break"> </div>
 <p>When you cast this spell, your patron enhances the magic, dealing psychic damage equal to your warlock level if the creature succeeds on a saving throw to end the spell. In addition, damage can’t break your concentration on this spell.</p>
 
@@ -177,9 +177,6 @@
 
             </div>
             
-            <div class="back-to-top">
-                <a href="#content-header">Back to Top</a>
-            </div>
         </div>
     </section>
 </body>
@@ -189,6 +186,34 @@
 
 
     </div>
+
+
+    <div id="acknowledgements" class="acknowledgements section">
+        <div class="section-content">
+            
+            
+
+            <h1>Playtested By:</h1>
+            <!-- Print the acknowledgement list -->
+            <!-- ACKNOWLEDGEMENT LIST INDEXES: -->
+            <!-- 0: display_style - realname_only, username_only, realname_username, username_realname, none -->
+            <!-- 1: playtester_name -->
+            <!-- 2: username -->
+            <!-- 3: character_name -->
+            <!-- 4: character_level -->
+            <!-- 5: notes -->
+            <!-- ACKNOWLEDGEMENT LIST INDEXES: -->
+            
+                <p>No playtesters found</p>
+            
+        </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <div id="back-to-top" class="back-to-top" style="display: none;">
+        <a href="#content-header">Back to Top</a>
+    </div>
+
 
 </body>
 </html>
@@ -201,5 +226,37 @@
     if (!document.querySelector('.header-container').dataset.custom_js) {
         console.log('Removing content-loading class due to custom_js not being set');
         document.querySelector('#content-container').classList.remove('content-loading');
+    }
+
+    // Back to Top Button Logic
+    function toggleBackToTop() {
+        const backToTopButton = document.getElementById('back-to-top');
+        const windowHeight = window.innerHeight;
+        const documentHeight = document.documentElement.scrollHeight;
+        
+        // Show button if page height is more than 2 screens worth
+        if (documentHeight > windowHeight * 1.25) {
+            backToTopButton.style.display = 'block';
+        } else {
+            backToTopButton.style.display = 'none';
+        }
+    }
+
+    // Check on page load and resize
+    document.addEventListener('DOMContentLoaded', toggleBackToTop);
+    window.addEventListener('resize', toggleBackToTop);
+
+    // Toggle notes dropdown
+    function toggleNotes(arrowElement) {
+        const dropdown = arrowElement.parentElement.querySelector('.notes-dropdown');
+        const isVisible = dropdown.style.display !== 'none';
+        
+        if (isVisible) {
+            dropdown.style.display = 'none';
+            arrowElement.textContent = '▶';
+        } else {
+            dropdown.style.display = 'block';
+            arrowElement.textContent = '▼';
+        }
     }
 </script>

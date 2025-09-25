@@ -23,11 +23,11 @@ You learn additional spells when you reach certain levels in this class, as show
 
 | Sorcerer Level | Spells |
 |----------------|--------|
-| 1st            | Temporal Peace, Bullet Time |
-| 3rd            | Flash of Steel, Hold Person |
-| 5th            | Desynchronize, Slow |
-| 7th            | Recall, Divination |
-| 9th            | Supercede, Temporal Shunt |
+| 1st            | [Temporal Peace](/dnd/spells/temporalpeace), [Bullet Time](/dnd/spells/bullettime) |
+| 3rd            | [Flash of Steel](/dnd/spells/flashofsteel), [Hold Person](https://dnd5e.wikidot.com/spell:hold-person) |
+| 5th            | [Desynchronize](/dnd/spells/desynchronize), [Slow](https://dnd5e.wikidot.com/spell:slow) |
+| 7th            | [Recall](/dnd/spells/recall), [Divination](https://dnd5e.wikidot.com/spell:divination) |
+| 9th            | [Supercede](/dnd/spells/supercede), [Temporal Shunt](https://dnd5e.wikidot.com/spell:temporal-shunt) |
 
 ### Timeline Desynchronization
 You innately have the ability to subtly affect the flow of time, even reversing in small bursts. However, using these abilities causes destabilization of the time stream, which can lead to devastating results.  

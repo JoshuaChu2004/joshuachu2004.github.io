@@ -25,7 +25,7 @@ page_type: 'dnd'
             </div>
             
             <div id="markdown-content">
-                {% if page.level == "1" %}
+                {% if page.level == "00" %}
                 <span class="italic">{{ page.school }} Cantrip</span>
                 {% elsif page.level == "01" %}
                 <span class="italic">{{ page.school }} Sign</span>
@@ -60,11 +60,13 @@ page_type: 'dnd'
                     {% if page.spell_lists %}
                       <span class="bold">Spell Lists:</span>
                       {% assign spell_link_items = '' | split: ', ' %}
+                      {% assign known_class = false %}
                       {% for list in page.spell_lists %}
                         {% for class in site.classes %}
                           {% if class.class == list.list %}
                             {% assign link = '<a href="' | append: class.url | append: '">' | append: class.class | append: '</a>' %}
                             {% assign spell_link_items = spell_link_items | push: link %}
+                            {% assign known_class = true %}
                           {% endif %}
                         {% endfor %}
                         {% for subclass in site.subclasses %}
@@ -72,10 +74,18 @@ page_type: 'dnd'
                             {% assign link_text = subclass.class | append: ' (' | append: subclass.title | append: ')' %}
                             {% assign link = '<a href="' | append: subclass.url | append: '">' | append: link_text | append: '</a>' %}
                             {% assign spell_link_items = spell_link_items | push: link %}
+                            {% assign known_class = true %}
                           {% endif %}
                         {% endfor %}
                       {% endfor %}
-                      {{ spell_link_items | join: ', ' }}
+                      {% if known_class %}
+                        {{ spell_link_items | join: ', ' }}
+                      {% else %}
+                        {% for list in page.spell_lists %}
+                          {% assign spell_link_items = spell_link_items | push: list.list %}
+                        {% endfor %}
+                        {{ spell_link_items | join: ', ' }}
+                      {% endif %}
                     {% endif %}
                   </div>
             </div>

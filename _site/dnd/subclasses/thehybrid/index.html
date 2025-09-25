@@ -115,23 +115,23 @@
   <tbody>
     <tr>
       <td>1st</td>
-      <td>Cause Fear, Zephyr Strike</td>
+      <td><a href="https://dnd5e.wikidot.com/spell:cause-fear">Cause Fear</a>, <a href="https://dnd5e.wikidot.com/spell:zephyr-strike">Zephyr Strike</a></td>
     </tr>
     <tr>
       <td>3rd</td>
-      <td>Borrowed Knowledge, Magic Weapon</td>
+      <td><a href="https://dnd5e.wikidot.com/spell:borrowed-knowledge">Borrowed Knowledge</a>, <a href="https://dnd5e.wikidot.com/spell:magic-weapon">Magic Weapon</a></td>
     </tr>
     <tr>
       <td>5th</td>
-      <td>Speak with Dead, Blinding Smite</td>
+      <td><a href="https://dnd5e.wikidot.com/spell:speak-with-dead">Speak with Dead</a>, <a href="https://dnd5e.wikidot.com/spell:blinding-smite">Blinding Smite</a></td>
     </tr>
     <tr>
       <td>7th</td>
-      <td>Fabricate, Staggering Smite</td>
+      <td><a href="https://dnd5e.wikidot.com/spell:fabricate">Fabricate</a>, <a href="https://dnd5e.wikidot.com/spell:staggering-smite">Staggering Smite</a></td>
     </tr>
     <tr>
       <td>9th</td>
-      <td>Modify Memory, Steel Wind Strike</td>
+      <td><a href="https://dnd5e.wikidot.com/spell:modify-memory">Modify Memory</a>, <a href="https://dnd5e.wikidot.com/spell:steel-wind-strike">Steel Wind Strike</a></td>
     </tr>
   </tbody>
 </table>
@@ -167,10 +167,10 @@
 <p>At 6th level, your patron can begin placing influence on the others you surround yourself with. While in your Devil form, you can consume a Devil Charge to force a humanoid within 30 ft. you can see to make a Wisdom saving throw or be magically charmed for 1 day as an action. The charmed target obeys your spoken commands. If the target suffers any harm from you or another creature or receives a suicidal command from you, the target can repeat the saving throw, ending the effect on itself on a success. If a target’s saving throw is successful, or if the effect ends for it, the creature is immune to your Fiendish Charm for the next 24 hours.</p>
 
 <h3 id="form-to-facade">Form to Facade</h3>
-<p>At 10th level, while in your Original form, you learn the Mislead spell. It counts as a warlock spell for you, but it doesn’t count against the number of spells you know. You can also cast it once using a Devil Charge without consuming a spell slot, and you regain the ability to do so when you finish a long rest.</p>
+<p>At 10th level, while in your Original form, you learn the <a href="https://dnd5e.wikidot.com/spell:mislead">Mislead</a> spell. It counts as a warlock spell for you, but it doesn’t count against the number of spells you know. You can also cast it once using a Devil Charge without consuming a spell slot, and you regain the ability to do so when you finish a long rest.</p>
 
 <h3 id="flesh-to-fire">Flesh to Fire</h3>
-<p>At 10th level, while in your Devil form, you learn the Immolation spell. It counts as a warlock spell for you, but it doesn’t count against the number of spells you know. You can also cast it once using a Devil Charge without consuming a spell slot, and you regain the ability to do so when you finish a long rest.</p>
+<p>At 10th level, while in your Devil form, you learn the <a href="https://dnd5e.wikidot.com/spell:immolation">Immolation</a> spell. It counts as a warlock spell for you, but it doesn’t count against the number of spells you know. You can also cast it once using a Devil Charge without consuming a spell slot, and you regain the ability to do so when you finish a long rest.</p>
 
 <h3 id="freedom-of-mind-and-body">Freedom of Mind and Body</h3>
 <p>Starting when you reach 14th level, either you have harnessed leverage over your patron or a new, fairer deal has been struck between you, granting greater control over your abilities. While in your Original form, you may use any of your abilities limited to the Devil form, though they cost an additional Devil Charge. Also, when you are concentrating on a spell, you reduce all damage taken by your Charisma modifier.</p>
@@ -180,9 +180,6 @@
 
             </div>
             
-            <div class="back-to-top">
-                <a href="#content-header">Back to Top</a>
-            </div>
         </div>
     </section>
 </body>
@@ -192,6 +189,34 @@
 
 
     </div>
+
+
+    <div id="acknowledgements" class="acknowledgements section">
+        <div class="section-content">
+            
+            
+
+            <h1>Playtested By:</h1>
+            <!-- Print the acknowledgement list -->
+            <!-- ACKNOWLEDGEMENT LIST INDEXES: -->
+            <!-- 0: display_style - realname_only, username_only, realname_username, username_realname, none -->
+            <!-- 1: playtester_name -->
+            <!-- 2: username -->
+            <!-- 3: character_name -->
+            <!-- 4: character_level -->
+            <!-- 5: notes -->
+            <!-- ACKNOWLEDGEMENT LIST INDEXES: -->
+            
+                <p>No playtesters found</p>
+            
+        </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <div id="back-to-top" class="back-to-top" style="display: none;">
+        <a href="#content-header">Back to Top</a>
+    </div>
+
 
 </body>
 </html>
@@ -204,5 +229,37 @@
     if (!document.querySelector('.header-container').dataset.custom_js) {
         console.log('Removing content-loading class due to custom_js not being set');
         document.querySelector('#content-container').classList.remove('content-loading');
+    }
+
+    // Back to Top Button Logic
+    function toggleBackToTop() {
+        const backToTopButton = document.getElementById('back-to-top');
+        const windowHeight = window.innerHeight;
+        const documentHeight = document.documentElement.scrollHeight;
+        
+        // Show button if page height is more than 2 screens worth
+        if (documentHeight > windowHeight * 1.25) {
+            backToTopButton.style.display = 'block';
+        } else {
+            backToTopButton.style.display = 'none';
+        }
+    }
+
+    // Check on page load and resize
+    document.addEventListener('DOMContentLoaded', toggleBackToTop);
+    window.addEventListener('resize', toggleBackToTop);
+
+    // Toggle notes dropdown
+    function toggleNotes(arrowElement) {
+        const dropdown = arrowElement.parentElement.querySelector('.notes-dropdown');
+        const isVisible = dropdown.style.display !== 'none';
+        
+        if (isVisible) {
+            dropdown.style.display = 'none';
+            arrowElement.textContent = '▶';
+        } else {
+            dropdown.style.display = 'block';
+            arrowElement.textContent = '▼';
+        }
     }
 </script>

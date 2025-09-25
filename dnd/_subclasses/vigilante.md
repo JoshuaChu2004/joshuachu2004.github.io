@@ -30,7 +30,7 @@ You should work with your DM to determine what state your Reputation is currentl
 ### Modus Operandi
 At 3rd level, you also form a pattern of how you operate and behave.  
 
-**Operandi.** You know three Operandi. Only one Operandi may be applied to the same action. You learn an additional Operandi at 5th level (4), 9th level (5), 13th level (6), and 17th level (7). When you gain a level in this class, you may replace an Operandi you know with a different one from the list.  
+**Operandi.** You know three [Operandi](#modus-operandi-list). Only one Operandi may be applied to the same action. You learn an additional Operandi at 5th level (4), 9th level (5), 13th level (6), and 17th level (7). When you gain a level in this class, you may replace an Operandi you know with a different one from the list.  
 
 **Modus Points.** To use an Operandi, you must spend a Modus point to do so. You have a number of Modus points equal to the number of Sneak Attack dice you have (minimum 3), which are regained at the end of a short or long rest.
 
@@ -60,3 +60,55 @@ At 17th level, you have become a symbol of what you represent, able to spur reac
 - **Symbol of Fear (Fear).** Evoke dread and despair against those that stand in your way. Choose up to five creatures within 60 ft. that can see you to make a Wisdom saving throw. Upon a fail, they are frightened for 1 minute. They may reroll the saving throw at the end of its turn.
 - **Symbol of Justice (Justice).** Display unyielding determination and wavers the resolve of those that threaten others. All creatures that can see you of your choice within 60 ft. are forced to make a Charisma saving throw. Upon a fail, they have disadvantage on attacks until the end of your next turn.
 - **Symbol of Hope (Hope).** Uplift those around you with your presence. All friendly creatures within 20 ft. gain advantage on their next ability check, attack roll, or saving throw. For 1 minute, while a friendly creature is within 20 ft. of you, they may use their reaction to add your Charisma modifier to an ability check, attack roll, or saving throw.
+
+<div id="modus-operandi-list" class="section beginning" markdown="1">
+
+## Modus Operandi
+
+### Achilles Cut
+When you land your Sneak Attack, spend a Modus point and roll one less Sneak Attack die to force the target to make a Constitution saving throw. On a fail, their movement is halved for 1 minute. This condition ends when they regain Hit Points or make a successful Medicine check against your Reputation save DC as an action.
+
+### Apprehend
+When you land your Sneak Attack, spend a Modus point and roll on less Sneak Attack die to force the target to make a Strength saving throw. On a fail, they are Grappled by you.
+
+### Discombobulate
+When you land your Sneak Attack, spend a Modus point and roll one less Sneak Attack die to force the target to make a Constitution saving throw, On a fail, they are Blinded or Deafened until the end of your next turn.
+
+### Dynamic Duo
+When an ally attacks a creature that you are within 5 ft. of, spend a Modus point to make an attack against the creature with advantage as a reaction.
+
+### Ghost
+When you land your Sneak Attack on a creature that you have advantage against, spend a Modus point to reroll a number of dice up to your proficiency bonus.
+
+### Hit and Run
+When you land your Sneak Attack, spend a Modus point to force the target to make a Wisdom saving throw. On a fail, they can not take Reactions until the end of your next turn.
+
+### Investigative Adept
+When you make an Investigation or Perception check, spend a Modus point to reroll the die, taking the higher result.
+
+### Lost in the Crowd
+When making a Stealth check while surrounded by other people, spend a Modus point to gain advantage on the check.
+
+### Parkourist
+When making an Athletics or Acrobatics check to overcome a physical obstacle, spend a Modus point to gain advantage on the roll.
+
+### Quipper
+Spend a Modus point to throw a taunt or obscene gesture at a creature within 30 ft as a bonus action. It must be able to hear or see you and understand your meaning. It makes a Wisdom saving throw. On a fail, it must attempt to attack you or negatively affect you until the end of your next turn.
+
+### Reversal
+When a creature misses a melee attack against you, spend a Modus point to immediately make an attack against them as a reaction. On a hit, you may then move up to 15 ft. without provoking opportunity attacks.
+
+### Silent Takedown
+When you attack a creature that can not see you and is unaware of your presence or immediate threat, spend a Modus point to force them to make a Constitution saving throw. On a fail, they become Stunned for 1 minute or until they take damage or receive some other harmful effect. They reroll the Constitution saving throw at the end of their turn.
+
+### Talk
+When you attack a creature, spend a Modus point to treat any Intimidation roll you make against them of 8 or below as a 9 for 1 hour.
+
+### Utility Belt
+As a bonus action, retrieve and use one of the following items:
+
+- **Smoke Bomb.** Spend a Modus point to create a fog cloud at your feet with a radius of 15 ft. for 1 minute until it is dispersed by moderate winds. While the fog persists, the area is considered heavily obscured. You have advantage on your first attack while still within the fog.
+- **Grapple Hook.** Shoot out a piercing rope to strike an object within 30 ft. and pull yourself to it if it is fastened to a surface or weighs more than you. Otherwise, the object is pulled towards you. If the object is something that a creature is holding, make a contested Athletics check to wrestle it out of their hands. You may spend a Modus point to target a creature, making an attack roll using the hand crossbow statblock. On a hit, they are pierced by your hook and you treat them as an object for pulling yourself towards them. If you immediately make a melee attack against a pierced creature, you have advantage on the To Hit roll.
+- **Noise Maker.** Spend a Modus point to throw a small contraption to a point within 60 ft. that you can see. For 1 minute, the object will begin making noise, prompting an Intelligence saving throw from all creatures that can hear it. On a fail, they are compelled to move over there to investigate it. Creatures that are not actively alert or on guard have advantage on the saving throw. Creatures in combat automatically succeed the saving throw.
+
+</div>

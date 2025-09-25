@@ -3,7 +3,7 @@ layout: spell
 content_type: Spell
 title: Pocket
 school: Conjuration
-level: "0"
+level: "00"
 casting_time: 1 action
 range: Self
 duration: Instantaneous
