@@ -283,7 +283,7 @@ Additionally, when you gain a level in this class, you can choose one of the Nom
             <!-- 5: notes -->
             <!-- ACKNOWLEDGEMENT LIST INDEXES: -->
             
-                <p>No playtesters found</p>
+                <div id="no-playtesters">No playtesters found</div>
             
         </div>
     </div>
@@ -299,12 +299,17 @@ Additionally, when you gain a level in this class, you can choose one of the Nom
 
 
 <script>    
+
     console.log(document.querySelector('.header-container').dataset.pageType);
     console.log(document.querySelector('.header-container').dataset.layout);
 
     if (!document.querySelector('.header-container').dataset.custom_js) {
         console.log('Removing content-loading class due to custom_js not being set');
         document.querySelector('#content-container').classList.remove('content-loading');
+    }
+
+    if (document.querySelector('#no-playtesters')) {
+        document.querySelector('#acknowledgements').style.display = 'none';
     }
 
     // Back to Top Button Logic

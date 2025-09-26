@@ -48,7 +48,7 @@ wizard_icon: fa-solid fa-wand-sparkles fa-8x
 </div>
   {% endfor %}
 
-<div class="section toc" markdown="1">
+<div id="subclasses" class="section toc" markdown="1">
 <div class="section-icon {{ page.artificer_icon }}"></div>
 <div class="class-content" markdown="1">
 

@@ -133,7 +133,7 @@
                                  <span class="arrow-toggle" onclick="toggleNotes(this)">▶</span>
                                  <span class="bold">@sydneyry8n</span> - <span class="italic">Anthelme Sylvain (Level 9)</span>
                                  <div class="notes-dropdown" style="display: none;">
-                                     <div class="notes-content">The Amulet of Possibility was an engaging addition to Anthelme’s inventory that added some extra flare to decision-making. Not only was it useful, but it also created a fun, suspenseful moment for we players to hear of the varying potentialities. Honestly, I thought it was a base game item until I sat down to write this, as it felt like a very solid, balanced, and dependable object.</div>
+                                     <div id="notes-content" class="notes-content">The Amulet of Possibility was an engaging addition to Anthelme’s inventory that added some extra flare to decision-making. Not only was it useful, but it also created a fun, suspenseful moment for we players to hear of the varying potentialities. Honestly, I thought it was a base game item until I sat down to write this, as it felt like a very solid, balanced, and dependable object.</div>
                                      <!-- Debug: 385 characters -->
                                  </div>
                              </div>
@@ -156,12 +156,17 @@
 
 
 <script>    
+
     console.log(document.querySelector('.header-container').dataset.pageType);
     console.log(document.querySelector('.header-container').dataset.layout);
 
     if (!document.querySelector('.header-container').dataset.custom_js) {
         console.log('Removing content-loading class due to custom_js not being set');
         document.querySelector('#content-container').classList.remove('content-loading');
+    }
+
+    if (document.querySelector('#no-playtesters')) {
+        document.querySelector('#acknowledgements').style.display = 'none';
     }
 
     // Back to Top Button Logic

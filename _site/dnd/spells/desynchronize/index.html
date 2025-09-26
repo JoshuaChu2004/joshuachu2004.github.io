@@ -141,7 +141,20 @@
             <!-- 5: notes -->
             <!-- ACKNOWLEDGEMENT LIST INDEXES: -->
             
-                <p>No playtesters found</p>
+                <ul>
+                
+                    
+                    
+                    
+                     
+                         <li class="acknowledgement">
+                             <div class="acknowledgement-item">
+                                 <span class="bold">Jeremy Bach (@jeremy.bachh)</span> - <span class="italic">Micah Portus II (Level 9)</span>
+                             </div>
+                         </li>
+                     
+                
+                </ul>
             
         </div>
     </div>
@@ -157,12 +170,17 @@
 
 
 <script>    
+
     console.log(document.querySelector('.header-container').dataset.pageType);
     console.log(document.querySelector('.header-container').dataset.layout);
 
     if (!document.querySelector('.header-container').dataset.custom_js) {
         console.log('Removing content-loading class due to custom_js not being set');
         document.querySelector('#content-container').classList.remove('content-loading');
+    }
+
+    if (document.querySelector('#no-playtesters')) {
+        document.querySelector('#acknowledgements').style.display = 'none';
     }
 
     // Back to Top Button Logic

@@ -155,7 +155,7 @@
   </div>
 </div>
 
-<div class="section toc">
+<div id="subclasses" class="section toc">
   <div class="section-icon fa-solid fa-wrench fa-8x"></div>
   <div class="class-content">
 
@@ -318,7 +318,9 @@
 
     <h4 id="homebrew-subclasses-9">Homebrew Subclasses:</h4>
 
-    <p><em>None Available</em></p>
+    <ul>
+      <li><a href="/dnd/subclasses/slayerconclave/">Slayer Conclave</a></li>
+    </ul>
 
   </div>
 </div>
@@ -440,6 +442,9 @@
       </li>
       <li>
         <p><a href="/dnd/spells/?type=school-of-inquisimancy">School of Inquisimancy Spells</a></p>
+      </li>
+      <li>
+        <p><a href="/dnd/spells/?type=slayer-conclave">Slayer Conclave Spells</a></p>
       </li>
       <li>
         <p><a href="/dnd/spells/?type=starborne">Starborne Spells</a></p>
@@ -623,7 +628,7 @@
             <!-- 5: notes -->
             <!-- ACKNOWLEDGEMENT LIST INDEXES: -->
             
-                <p>No playtesters found</p>
+                <div id="no-playtesters">No playtesters found</div>
             
         </div>
     </div>
@@ -639,12 +644,17 @@
 
 
 <script>    
+
     console.log(document.querySelector('.header-container').dataset.pageType);
     console.log(document.querySelector('.header-container').dataset.layout);
 
     if (!document.querySelector('.header-container').dataset.custom_js) {
         console.log('Removing content-loading class due to custom_js not being set');
         document.querySelector('#content-container').classList.remove('content-loading');
+    }
+
+    if (document.querySelector('#no-playtesters')) {
+        document.querySelector('#acknowledgements').style.display = 'none';
     }
 
     // Back to Top Button Logic

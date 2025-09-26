@@ -257,7 +257,7 @@ At 7th level, you know the <a href="https://dnd5e.wikidot.com/spell:divination">
             <!-- 5: notes -->
             <!-- ACKNOWLEDGEMENT LIST INDEXES: -->
             
-                <p>No playtesters found</p>
+                <div id="no-playtesters">No playtesters found</div>
             
         </div>
     </div>
@@ -273,12 +273,17 @@ At 7th level, you know the <a href="https://dnd5e.wikidot.com/spell:divination">
 
 
 <script>    
+
     console.log(document.querySelector('.header-container').dataset.pageType);
     console.log(document.querySelector('.header-container').dataset.layout);
 
     if (!document.querySelector('.header-container').dataset.custom_js) {
         console.log('Removing content-loading class due to custom_js not being set');
         document.querySelector('#content-container').classList.remove('content-loading');
+    }
+
+    if (document.querySelector('#no-playtesters')) {
+        document.querySelector('#acknowledgements').style.display = 'none';
     }
 
     // Back to Top Button Logic

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Joshua's homepage</title>
+    <title>Jeremy - Joshua Chu</title>
     <meta name="description" content="Bookmark this to keep an eye on my project updates!" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -60,14 +60,14 @@
             <div class="breadcrumb">
                 <a href="/dnd/">D&D Homebrew</a> &gt; 
                 <a href="/dnd/#acknowledgements">Acknowledgements</a> &gt; 
-                <span></span>
+                <span>Jeremy</span>
             </div>
             
             <div id="content-header" class="content-header">
                 
-                <h1></h1>
+                <h1>Jeremy</h1>
                 
-                <p class="content-type"> Acknowledgements</p>
+                <p class="content-type"> Acknowledgement</p>
             </div>
             
             <div id="markdown-content">
@@ -102,7 +102,7 @@
             <!-- 5: notes -->
             <!-- ACKNOWLEDGEMENT LIST INDEXES: -->
             
-                <p>No playtesters found</p>
+                <div id="no-playtesters">No playtesters found</div>
             
         </div>
     </div>
@@ -118,12 +118,17 @@
 
 
 <script>    
+
     console.log(document.querySelector('.header-container').dataset.pageType);
     console.log(document.querySelector('.header-container').dataset.layout);
 
     if (!document.querySelector('.header-container').dataset.custom_js) {
         console.log('Removing content-loading class due to custom_js not being set');
         document.querySelector('#content-container').classList.remove('content-loading');
+    }
+
+    if (document.querySelector('#no-playtesters')) {
+        document.querySelector('#acknowledgements').style.display = 'none';
     }
 
     // Back to Top Button Logic

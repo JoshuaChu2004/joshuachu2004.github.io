@@ -161,7 +161,7 @@
                                  <span class="arrow-toggle" onclick="toggleNotes(this)">▶</span>
                                  <span class="bold">{{ acknowledgement_name }}</span> - <span class="italic">{{ acknowledgement_character }}</span>
                                  <div class="notes-dropdown" style="display: none;">
-                                     <div class="notes-content">{{ acknowledgement[5] }}</div>
+                                     <div id="notes-content" class="notes-content">{{ acknowledgement[5] }}</div>
                                      <!-- Debug: {{ acknowledgement[5] | size }} characters -->
                                  </div>
                              </div>
@@ -176,7 +176,7 @@
                 {% endfor %}
                 </ul>
             {% else %}
-                <p>No playtesters found</p>
+                <div id="no-playtesters">No playtesters found</div>
             {% endif %}
         </div>
     </div>
@@ -192,12 +192,17 @@
 
 
 <script>    
+
     console.log(document.querySelector('.header-container').dataset.pageType);
     console.log(document.querySelector('.header-container').dataset.layout);
 
     if (!document.querySelector('.header-container').dataset.custom_js) {
         console.log('Removing content-loading class due to custom_js not being set');
         document.querySelector('#content-container').classList.remove('content-loading');
+    }
+
+    if (document.querySelector('#no-playtesters')) {
+        document.querySelector('#acknowledgements').style.display = 'none';
     }
 
     // Back to Top Button Logic
