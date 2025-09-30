@@ -3,7 +3,7 @@ layout: dnd
 title: Nomad (Ranger Substitute)
 class: Nomad
 content_type: Class
-finished: true
+finished: false
 ---
 
 ***Wanderers by birth, these people venture across the world hunting dangerous creatures and monsters for gold, the safety of others, or something more mysterious. Whatever their motive, Nomads are respected and feared warriors who utilize their honed sense and nature magic to great effect.***
