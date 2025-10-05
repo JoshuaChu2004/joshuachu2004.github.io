@@ -101,8 +101,13 @@ You can spend these points to fuel various ki features. You start knowing three 
 
 <div class="break"></div>
 
-When you spend a ki point, it is unavailable until you finish a short or long rest, at the end of which you draw all of your expended ki back into yourself. You must spend at least 30 minutes of the rest meditating to regain your ki points.
+When you spend a ki point, it is unavailable until you finish a short or long rest, at the end of which you draw all of your expended ki back into yourself. You must spend at least 30 minutes of the rest meditating to regain your ki points. 
+
+<div class="break"></div>
+
 Some of your ki features require your target to make a saving throw to resist the feature's effects. The saving throw DC is calculated as follows:  
+
+<div class="break"></div>
 
 **Ki save DC** = 8 + your proficiency bonus + your Wisdom modifier
 
@@ -112,6 +117,9 @@ Some of your ki features require your target to make a saving throw to resist th
 
 ## Unarmored Movement
 Starting at 2nd level, your speed increases by 10 feet while you are not wearing armor or wielding a shield. This bonus increases when you reach certain monk levels, as shown in the Monk table.
+
+<div class="break"></div>
+
 At 9th level, you gain the ability to move along vertical surfaces and across liquids on your turn without falling during the move.
 
 ## Dedicated Weapon

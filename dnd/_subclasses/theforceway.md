@@ -76,7 +76,7 @@ As a bonus action, you can use 5 ki points to summon your mirage that follows an
 #### Force Phantom (Dark)
 As an action, you can use 5 ki points to summon a dark, silhouetted image of yourself in an unoccupied space within 15 ft. of you. While your phantom does not take turns, it uses your game statistics, though it only has 30 hit points. Once on your turn, your phantom may move up to your movement speed. Whenever you succeed an attack, you may use a Force technique through your phantom without using any actions.
 
-<div id="force-techniques-list" class="section beginning" markdown="1">
+<div id="force-techniques-list" class="section no-border beginning" markdown="1">
 
 ## Force Techniques
 

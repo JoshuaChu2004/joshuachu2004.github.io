@@ -1,11 +1,11 @@
 ---
 content_type: Acknowledgement
-title: Michael
-playtester_name: Michael Zhang
+title: Kei
+playtester_name: Kei
 username: ""
 display_style: "realname_only"  # Options: "realname_only", "username_only", "realname_username", "username_realname", "none"
 playtests:
-  - character_name: "Trugg Klugg"
+  - character_name: "Fig"
     character_level: 9
     campaign: "Inseparable Fates"
     content_tested:
@@ -15,9 +15,17 @@ playtests:
       spells: []
       races: []
       items: 
+        - title: "Scoundrel's Cutlass"
+          notes: ""
         - title: "Archdruid's Starmap"
           notes: ""
-        - title: "Amulet of Possibility"
+        - title: "Winter's Blade"
+          notes: ""
+        - title: "Rusa's Circlet"
+          notes: ""
+        - title: "Frostbound Rapier"
           notes: ""
       house_rules:
+        - title: "Focus Techniques"
+          notes: ""
 ---
