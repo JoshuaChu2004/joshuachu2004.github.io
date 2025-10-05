@@ -1,7 +1,7 @@
 ---
 layout: spell
 content_type: Spell
-title: Dying Star: Blackhole
+title: "Dying Star: Blackhole"
 school: Evocation
 level: 1st
 casting_time: 1 action

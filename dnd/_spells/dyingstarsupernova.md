@@ -1,7 +1,7 @@
 ---
 layout: spell
 content_type: Spell
-title: Dying Star: Supernova
+title: "Dying Star: Supernova"
 school: Evocation
 level: 1st
 casting_time: 1 action

@@ -84,14 +84,15 @@ header {
     z-index: 10;
 }
 
-.header-container.mobile {
-    display: none;
-}
 
 .header-container {
     width: 100vw;
     margin-inline: 24px 0 24px 0px;
     color: var(--hfg);
+}
+
+.header-container.mobile {
+    display: none;
 }
 
 .header-container .muted {
