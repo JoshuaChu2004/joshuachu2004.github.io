@@ -149,6 +149,7 @@ You have learned to expand your lungs as you breathe, circulating air through yo
 - **Improved Stamina.** You gain temporary hit points equal to twice your level.
 - **Improved Speed.** Your movement speed increases by 10 ft.
 - **Improved Strength.** You gain advantage on Strength checks and saving throws.
+
 If you use this feature again, you may gain a different benefit and refresh the duration of any benefits you already have. You may use this feature a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a short or long rest.
 
 ### Slayer’s Mark
