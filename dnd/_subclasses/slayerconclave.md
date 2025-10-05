@@ -54,6 +54,21 @@ At 3rd level, you learn two Breathing Techniques from the style’s list, which 
 | 9th  | [Waning Moonswaths](/dnd/spells/waningmoonswaths) |
 | 10th | [Moon through Bamboo Leaves](/dnd/spells/moonthroughbambooleaves) |
 
+### Star Breathing
+
+| Form | Technique |
+|------|----------|
+| 1st  | [Horizon Edge](/dnd/spells/horizonedge) |
+| 2nd  | [Cosmic Nebula](/dnd/spells/cosmicnebula) |
+| 3rd  | [Constellation: Orion](/dnd/spells/constellationorion) |
+| 4th  | [Dying Star: Supernova](/dnd/spells/dyingstarsupernova) |
+| 5th  | [Dying Star: Blackhole](/dnd/spells/dyingstarblackhole) |
+| 6th  | [Total Eclipse](/dnd/spells/totaleclipse) |
+| 7th  | [Still Sky](/dnd/spells/stillsky) |
+| 8th  | [Eternal Expansion](/dnd/spells/eternalexpansion) |
+| 9th  | [Impact Comet](/dnd/spells/impactcomet) |
+| 10th | [Constellation: Centauris](/dnd/spells/constellationcentauris) |
+
 ### Water Breathing
 
 | Form | Technique |
