@@ -13,30 +13,34 @@ icon: fa-solid fa-flask fa-8x
 
 *You must have a Dexterity score or Strength score and a Wisdom score of 13 or higher in order to multiclass in or out of this class.*
 
+<div class="class-table">
 
-| The Witcher |                   |                                                           |             |
-| ------------- | ------------------- | ----------------------------------------------------------- | ------------- |
-| Level       | Proficiency Bonus | Features                                                  | Signs Known |
-| 1st         | +2                | Mutations, Alchemy, Fighting Style                        | 2           |
-| 2nd         | +2                | Witcher Signs, Adrenaline                                 | 2           |
-| 3rd         | +2                | Witcher School feature                                    | 2           |
-| 4th         | +2                | Ability Score Improvement, Martial Versatility (Optional) | 2           |
-| 5th         | +3                | Extra Attack, Improved Witcher Signs                      | 3           |
-| 6th         | +3                | Mutagens (x2)                                             | 3           |
-| 7th         | +3                | Witcher School feature, Reactive Slip                     | 3           |
-| 8th         | +3                | Ability Score Improvement, Martial Versatility (Optional) | 4           |
-| 9th         | +4                | Improved Mutations, Improved Alchemy                      | 4           |
-| 10th        | +4                | Mutagens (x2), Improved Witcher Signs                     | 4           |
-| 11th        | +4                | Witcher School feature                                    | 5           |
-| 12th        | +4                | Ability Score Improvement, Martial Versatility (Optional) | 5           |
-| 13th        | +5                | Extra Attack (x2)                                         | 5           |
-| 14th        | +5                | Mutagens (x2), Improved Alchemy                           | 5           |
-| 15th        | +5                | Witcher School feature                                    | 5           |
-| 16th        | +5                | Ability Score Improvement, Martial Versatility (Optional) | 5           |
-| 17th        | +6                | Mutagens (x2)                                             | 5           |
-| 18th        | +6                | Witcher School feature                                    | 5           |
-| 19th        | +6                | Ability Score Improvement, Martial Versatility (Optional) | 5           |
-| 20th        | +6                | Master of the Path                                        | 5           |
+<table>
+<tr><th colspan="6">The Witcher</th></tr>
+<tr><th>Level</th><th>Proficiency Bonus</th><th>Features</th><th>Signs Known</th></tr>
+<tr><td>1st</td><td>+2</td><td>Mutations, Alchemy, Fighting Style</td><td>2</td></tr>
+<tr><td>2nd</td><td>+2</td><td>Witcher Signs, Adrenaline</td><td>2</td></tr>
+<tr><td>3rd</td><td>+2</td><td>Witcher School feature</td><td>2</td></tr>
+<tr><td>4th</td><td>+2</td><td>Ability Score Improvement, Martial Versatility (Optional)</td><td>2</td></tr>
+<tr><td>5th</td><td>+3</td><td>Extra Attack, Improved Witcher Signs</td><td>3</td></tr>
+<tr><td>6th</td><td>+3</td><td>Mutagens (x2)</td><td>3</td></tr>
+<tr><td>7th</td><td>+3</td><td>Witcher School feature, Reactive Slip</td><td>3</td></tr>
+<tr><td>8th</td><td>+3</td><td>Ability Score Improvement, Martial Versatility (Optional)</td><td>4</td></tr>
+<tr><td>9th</td><td>+4</td><td>Improved Mutations, Improved Alchemy</td><td>4</td></tr>
+<tr><td>10th</td><td>+4</td><td>Mutagens (x2), Improved Witcher Signs</td><td>4</td></tr>
+<tr><td>11th</td><td>+4</td><td>Witcher School feature</td><td>5</td></tr>
+<tr><td>12th</td><td>+4</td><td>Ability Score Improvement, Martial Versatility (Optional)</td><td>5</td></tr>
+<tr><td>13th</td><td>+5</td><td>Extra Attack (x2)</td><td>5</td></tr>
+<tr><td>14th</td><td>+5</td><td>Mutagens (x2), Improved Alchemy</td><td>5</td></tr>
+<tr><td>15th</td><td>+5</td><td>Witcher School feature</td><td>5</td></tr>
+<tr><td>16th</td><td>+5</td><td>Ability Score Improvement, Martial Versatility (Optional)</td><td>5</td></tr>
+<tr><td>17th</td><td>+6</td><td>Mutagens (x2)</td><td>5</td></tr>
+<tr><td>18th</td><td>+6</td><td>Witcher School feature</td><td>5</td></tr>
+<tr><td>19th</td><td>+6</td><td>Ability Score Improvement, Martial Versatility (Optional)</td><td>5</td></tr>
+<tr><td>20th</td><td>+6</td><td>Master of the Path</td><td>5</td></tr>
+</table>
+
+</div>
 
 ## Class Features
 

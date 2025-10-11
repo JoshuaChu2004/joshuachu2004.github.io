@@ -802,8 +802,20 @@ tr:last-child td {
         -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
     }
 
-    table {
+    .class-table table {
         min-width: 900px;
+    }
+
+    .class-table table th:nth-child(1),
+    .class-table table td:nth-child(1) {
+        width: 75px;
+    }
+    .class-table table th:nth-child(2),
+    .class-table table td:nth-child(2) {
+        width: 170px;
+    }
+    th, td {
+        font-size: 12px;
     }
 }
 
