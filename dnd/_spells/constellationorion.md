@@ -5,7 +5,7 @@ title: "Constellation: Orion"
 school: Divination
 level: 1st
 casting_time: 1 bonus action
-range: 60 ft.
+range: Self
 duration: 1 minute (Concentration)
 components: V, S
 ritual: false

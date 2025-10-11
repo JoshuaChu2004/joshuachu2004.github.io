@@ -5,7 +5,7 @@ title: Eternal Expansion
 school: Evocation
 level: 1st
 casting_time: 1 action
-range: Self (30 ft. line)
+range: Self
 duration: 1 minute (Concentration)
 components: V, S
 ritual: false

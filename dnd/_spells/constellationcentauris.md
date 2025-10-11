@@ -5,7 +5,7 @@ title: "Constellation: Centauris"
 school: Evocation
 level: 1st
 casting_time: 1 action
-range: Self (30 ft. line)
+range: Range 30 ft.
 duration: Instantaneous
 components: V, S
 ritual: false
