@@ -1,6 +1,6 @@
 ---
 layout: dnd
-title: Martial Artist (Monk Rework)
+title: Martial Artist (Monk)
 content_type: Class
 finished: true
 class: Martial Artist

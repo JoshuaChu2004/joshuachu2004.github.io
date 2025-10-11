@@ -1,3 +1,7 @@
+/* ==========================================================================
+   CSS VARIABLES
+   ========================================================================== */
+
 :root {
     --bg: #0b0d10;
     --fg: #e9eef3;
@@ -9,12 +13,17 @@
     --border: rgba(255, 255, 255, 0.09);
 }
 
+/* ==========================================================================
+   RESET & BASE STYLES
+   ========================================================================== */
+
 * {
     box-sizing: border-box;
 }
 
 html, body {
     margin: 0;
+    scroll-behavior: smooth;
 }
 
 body {
@@ -23,6 +32,10 @@ body {
     color: var(--fg);
     line-height: 1.6;
 }
+
+/* ==========================================================================
+   TYPOGRAPHY
+   ========================================================================== */
 
 a {
     color: var(--brand);
@@ -33,15 +46,50 @@ a:hover {
     text-decoration: underline;
 }
 
+ul {
+    margin-block-start: 0.5em;
+    margin-block-end: 0.5em;
+}
+
+li {
+    color: var(--fg);
+    font-size: 14px;
+}
+
+.muted {
+    color: var(--muted);
+}
+
+.sr-only {
+    position: absolute;
+    left: -9999px;
+}
+
+/* ==========================================================================
+   LAYOUT COMPONENTS
+   ========================================================================== */
+
+/* Container */
 .container {
     width: min(1100px, 92vw);
     margin-inline: auto;
 }
+
 .header-container {
-    width: min(1100px, 92vw);
-    margin-inline: 24px 0;
+    width: 100vw;
+    margin-inline: 24px 0 24px 0px;
+    color: var(--fg);
 }
 
+.header-container.mobile {
+    display: none;
+}
+
+.header-container .muted {
+    color: var(--muted);
+}
+
+/* Header & Navigation */
 header {
     position: sticky;
     top: 0;
@@ -53,6 +101,7 @@ header {
 
 nav {
     display: flex;
+    flex-direction: row;
     align-items: center;
     justify-content: space-between;
     padding: 14px 0;
@@ -63,6 +112,11 @@ nav .links {
     gap: 18px;
     flex-wrap: wrap;
     font-size: 14px;
+}
+
+nav a {
+    color: var(--fg);
+    opacity: 0.9;
 }
 
 /* Responsive navigation text */
@@ -81,23 +135,161 @@ nav .links {
 }
 
 @media (max-width: 900px) {
-    nav .links {
+    nav {
+        flex-direction: column;
+    }
+    
+    .header-container.mobile {
+        display: block;
+    }
+
+    .header-container {
         display: none;
     }
 }
 
-nav a {
-    color: var(--fg);
-    opacity: 0.9;
+/* Sections */
+.section {
+    padding: 16px 0;
+    position: relative;
 }
 
-.pill {
-    border: 1px solid var(--border);
-    padding: 6px 10px;
-    border-radius: 999px;
-    font-size: 13px;
-    background: rgba(255, 255, 255, 0.02);
+.section::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background-color: var(--border);
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
 }
+
+.section.beginning::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background-color: var(--border);
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    margin-top: 24px;
+}
+
+.section.no-border {
+    border: none;
+}
+
+.section.no-border::after {
+    display: none;
+}
+
+.section.toc {
+    display: flex;
+    flex-direction: row;
+    gap: 88px;
+}
+
+.section-content {
+    width: min(1000px, 90vw);
+    margin: 0 auto;
+    padding: 0 16px;
+}
+
+/* Section Icons */
+.section-icon {
+    align-self: center;
+    width: 128px;
+    height: 128px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+/* Account for sticky header when scrolling to sections */
+.section[id] {
+    scroll-margin-top: 80px;
+}
+
+section[id] {
+    scroll-margin-top: 80px;
+}
+
+table[id] {
+    scroll-margin-top: 80px;
+}
+
+/* Account for sticky header when scrolling to table wrappers */
+.table-wrapper[id] {
+    scroll-margin-top: 80px;
+}
+
+/* ==========================================================================
+   CONTENT COMPONENTS
+   ========================================================================== */
+
+/* Intro Content */
+.intro-content {
+    width: 100%;
+    border-bottom: 1px solid var(--border);
+    padding: 24px 0;
+}
+
+/* Table of Contents */
+.toc-container {
+    display: flex;
+    flex-direction: column;
+    gap: px;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 32px 16px;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+    gap: 48px;
+    flex-wrap: wrap;
+}
+
+.content-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 12px;
+    padding: 16px;
+    border-radius: 12px;
+    transition: transform 0.2s ease;
+}
+
+.content-container:hover {
+    transform: translateY(-2px);
+}
+
+.content-container a {
+    color: var(--fg);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.content-container a:hover {
+    color: var(--brand);
+}
+
+.content-icon {
+    color: var(--fg);
+    margin-bottom: 8px;
+}
+
+/* ==========================================================================
+   HERO SECTION
+   ========================================================================== */
 
 .hero {
     display: grid;
@@ -126,6 +318,10 @@ nav a {
     margin-top: 10px;
 }
 
+/* ==========================================================================
+   BUTTONS & INTERACTIVE ELEMENTS
+   ========================================================================== */
+
 .btn {
     display: inline-flex;
     align-items: center;
@@ -148,12 +344,50 @@ nav a {
     transform: translateY(-1px);
 }
 
+/* ==========================================================================
+   CARDS & COMPONENTS
+   ========================================================================== */
+
 .card {
     background: var(--card);
     border: 1px solid var(--border);
     border-radius: 18px;
     padding: 18px;
 }
+
+.pill {
+    border: 1px solid var(--border);
+    padding: 6px 10px;
+    border-radius: 999px;
+    font-size: 13px;
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.badge {
+    font-size: 12px;
+    border: 1px solid var(--border);
+    padding: 6px 10px;
+    border-radius: 12px;
+    background: #0f1218;
+}
+
+.badges {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+/* Break Elements */
+.break {
+    display: block;
+    height: 1em;
+    width: 100%;
+    clear: both;
+}
+
+/* ==========================================================================
+   GRID LAYOUTS
+   ========================================================================== */
 
 .grid {
     display: grid;
@@ -164,6 +398,17 @@ nav a {
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
 }
 
+.two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+/* ==========================================================================
+   CONTENT SECTIONS
+   ========================================================================== */
+
+/* Section Headers */
 .h2 {
     display: flex;
     align-items: center;
@@ -177,90 +422,10 @@ h2 {
     margin: 0;
 }
 
-.tag {
-    border: 1px solid var(--border);
-    padding: 3px 8px;
-    border-radius: 999px;
-    font-size: 12px;
-    color: var(--muted);
-}
-
-.tags {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-    margin-top: 8px;
-}
-
-.thumb {
-    aspect-ratio: 16/9;
-    border-radius: 12px;
-    background: #0f1218;
-    border: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 12px;
-    color: var(--muted);
+.section-header {
+    font-size: 24px;
+    font-weight: 600;
     margin-bottom: 12px;
-}
-
-.kicker {
-    color: var(--accent);
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    font-size: 12px;
-    text-transform: uppercase;
-}
-
-.muted {
-    color: var(--muted);
-}
-
-.two-col {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-}
-
-footer {
-    border-top: 1px solid var(--border);
-    margin-top: 32px;
-    padding: 24px 0;
-    color: var(--muted);
-}
-
-.section {
-    padding: 16px 0;
-}
-
-.badges {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-}
-
-.badge {
-    font-size: 12px;
-    border: 1px solid var(--border);
-    padding: 6px 10px;
-    border-radius: 12px;
-    background: #0f1218;
-}
-
-.sr-only {
-    position: absolute;
-    left: -9999px;
-}
-
-/* Smooth scrolling for anchor links */
-html {
-    scroll-behavior: smooth;
-}
-
-/* Account for sticky header when scrolling to sections */
-section[id] {
-    scroll-margin-top: 60px;
 }
 
 /* About and Contact sections */
@@ -286,9 +451,67 @@ section[id] {
     line-height: 1.7;
 }
 
-/* Styles for markdown-generated content with semantic classes */
+.contact-links {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 24px;
+}
+
+/* ==========================================================================
+   MARKDOWN CONTENT STYLES
+   ========================================================================== */
+
 .section-content .paragraph {
     color: var(--muted);
+}
+
+.acknowledgement {
+    font-size: 18px;
+}
+
+li.acknowledgement.notes{
+    list-style-type: none;
+}
+
+/* Acknowledgement Dropdown Styles */
+.arrow-toggle {
+    cursor: pointer;
+    margin-right: 8px;
+    font-size: 12px;
+    color: #666;
+    transition: transform 0.2s ease;
+}
+
+.arrow-toggle:hover {
+    color: #333;
+}
+
+.notes-dropdown {
+    margin-top: 8px;
+    margin-left: 20px;
+    padding: 8px 12px;
+    background-color: var(--bg);
+    border-left: 3px solid var(--brand);
+    border-radius: 4px;
+    font-size: 14px;
+    color: var(--fg);
+    max-height: none;
+    overflow: visible;
+    white-space: normal;
+    word-wrap: break-word;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.notes-content {
+    font-style: italic;
+    white-space: normal;
+    word-wrap: break-word;
+    overflow: visible;
+}
+
+.acknowledgement-item {
+    position: relative;
 }
 
 .section-content .title {
@@ -296,7 +519,6 @@ section[id] {
     font-size: 28px;
     font-weight: 700;
     margin-top: 24px;
-    margin-bottom: 16px;
 }
 
 .section-content .header {
@@ -313,6 +535,14 @@ section[id] {
     font-weight: 600;
     margin-top: 20px;
     margin-bottom: 12px;
+}
+
+.section-content .subsubheader {
+    color: var(--fg);
+    font-size: 18px;
+    font-weight: 550;
+    margin-top: 12px;
+    margin-bottom: 8px;
 }
 
 .section-content .title:first-child,
@@ -339,37 +569,144 @@ section[id] {
     text-decoration: underline;
 }
 
-.contact-links {
+@media (max-width: 900px) {
+    .section-icon {
+        display: none;
+    }
+
+    .section.toc {
+        gap: 24px;
+    }
+
+    .section-icon {
+        width: 96px;
+        height: 96px;
+        scale: 0.65;
+    }
+
+    .section-content .title {
+        font-size: 24px;
+        margin-top: 20px;
+        margin-bottom: 16px;
+    }
+
+    .section-content .header {
+        font-size: 20px;
+        margin-top: 20px;
+        margin-bottom: 12px;
+    }
+
+    .section-content .subheader {
+        font-size: 18px;
+        margin-top: 16px;
+        margin-bottom: 8px;
+    }
+
+    .section-content .subsubheader {
+        font-size: 16px;
+        margin-top: 8px;
+        margin-bottom: 8px;
+    }
+
+    .section-content {
+        font-size: 14px;
+    }
+}
+
+/* ==========================================================================
+   DYNAMIC CONTENT PAGE STYLES
+   ========================================================================== */
+
+/* Breadcrumbs */
+.breadcrumb {
     display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-    margin-top: 24px;
-}
-
-.slogan {
-    font-size: 32px;
-    font-weight: 1000;
-    font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-}
-
-.about {
-    font-size: 16px;
-    font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 24px;
+    font-size: 14px;
     color: var(--muted);
-    margin: 0 0 18px;
 }
 
-.section-header {
-    font-size: 24px;
+.breadcrumb a {
+    color: var(--brand);
+    text-decoration: none;
+}
+
+.breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+.breadcrumb span {
+    color: var(--fg);
     font-weight: 600;
-    margin-bottom: 12px;
 }
 
-.intro-content {
-        width: 50vw;
-        padding: 0 16px;
-        margin: 0 auto;
+/* Content Headers */
+.content-header {
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
 }
+
+.content-header h1 {
+    font-size: 36px;
+    font-weight: 800;
+    margin: 0 0 8px 0;
+    color: var(--fg);
+}
+
+.content-type {
+    font-size: 16px;
+    color: var(--muted);
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+}
+
+/* Back to Top */
+.back-to-top {
+    padding: 24px;
+    text-align: center;
+}
+
+.back-to-top a {
+    color: var(--brand);
+    text-decoration: none;
+    font-weight: 600;
+    padding: 12px 24px;
+    border: 2px solid var(--brand);
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.back-to-top a:hover {
+    background-color: var(--brand);
+    color: white;
+}
+
+/* Loading States */
+.loading {
+    text-align: center;
+    padding: 48px 16px;
+    color: var(--muted);
+    font-style: italic;
+}
+
+/* Hide content initially to prevent pop-in effect */
+.content-loading {
+    visibility: hidden;
+}
+
+@media (max-width: 900px) {
+    .breadcrumb {
+        font-size: 12px;
+    }
+}
+
+/* ==========================================================================
+   PROJECT CARDS
+   ========================================================================== */
 
 .project-card {
     display: flex;
@@ -405,8 +742,54 @@ section[id] {
     background: var(--card-light);
 }
 
+/* ==========================================================================
+   TAGS & LABELS
+   ========================================================================== */
 
-/* Image Carousel Styles */
+.tag {
+    border: 1px solid var(--border);
+    padding: 3px 8px;
+    border-radius: 999px;
+    font-size: 12px;
+    color: var(--muted);
+}
+
+.tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+}
+
+.kicker {
+    color: var(--accent);
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+/* ==========================================================================
+   MEDIA ELEMENTS
+   ========================================================================== */
+
+.thumb {
+    aspect-ratio: 16/9;
+    border-radius: 12px;
+    background: #0f1218;
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 12px;
+}
+
+/* ==========================================================================
+   IMAGE CAROUSEL
+   ========================================================================== */
+
 .image-carousel {
     position: relative;
     width: 400px;
@@ -508,21 +891,62 @@ section[id] {
     background: rgba(255, 255, 255, 0.8);
 }
 
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+
+footer {
+    border-top: 1px solid var(--border);
+    margin-top: 32px;
+    padding: 24px 0;
+    color: var(--muted);
+}
+
+/* ==========================================================================
+   UTILITY CLASSES
+   ========================================================================== */
+
+.slogan {
+    font-size: 32px;
+    font-weight: 1000;
+    font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+.about {
+    font-size: 16px;
+    font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    color: var(--muted);
+    margin: 0 0 18px;
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN
+   ========================================================================== */
+
 @media (max-width: 1120px) {
     .hero {
         grid-template-columns: 1fr;
         gap: 24px;
     }
+    
     .two-col {
         grid-template-columns: 1fr;
     }
+    
     .image-carousel {
         width: 100%;
         max-width: 500px;
         height: 350px;
         margin: 0 auto;
     }
+    
     .slogan {
         font-size: 24px;
+    }
+}
+
+@media (max-width: 900px) {
+    .pill.mobile {
+        
     }
 }

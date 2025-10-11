@@ -3,22 +3,62 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Joshua Chu – Portfolio</title>
-    <meta name="description" content="Games, D&D homebrew, and engineering projects by Joshua Chu." />
+    <title>Joshua's homepage</title>
+    <meta name="description" content="Bookmark this to keep an eye on my project updates!" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    <script src="js/components.js"></script>
-    <script src="js/advanced-content-loader.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/styles.css">
+    
+    
+    <script src="/js/advanced-content-loader.js"></script>
+    
+
 </head>
+
 <body>
+    <header>
+        <div class="header-container" data-pageType="" data-layout="portfoliobase" data-custom_js="/js/advanced-content-loader.js">
+            <nav>
+                <div style="display: flex; gap: 12px; align-items: center">
+                    <span class="pill">🎮 Joshua Chu</span>
+                    <span class="muted" style="font-size: 13px">Game Developer • Software Engineer • D&D Homebrew Creator</span>
+                </div>
+                <div class="links">
+                    <a href="/index.html">Home</a>
+                    <a href="/index.html#games" data-short="Games">Video Games</a>
+                    <a href="/index.html#software">Software</a>
+                    <a href="/dnd/">D&D</a>
+                    <a href="/index.html#about">About</a>
+                    <a href="/index.html#contact">Contact</a>
+                </div>
+            </nav>
+        </div>
+        <div class="header-container mobile" data-pageType="" data-layout="portfoliobase" data-custom_js="/js/advanced-content-loader.js">
+
+            <nav>
+                <div class="pill mobile">🎮 Joshua Chu</div>
+                <div class="links">
+                    <a href="/index.html">Home</a>
+                    <a href="/index.html#games" data-short="Games">Video Games</a>
+                    <a href="/index.html#software">Software</a>
+                    <a href="/dnd/">D&D</a>
+                    <a href="/index.html#about">About</a>
+                    <a href="/index.html#contact">Contact</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div id="content-container" class="content-loading">
+        <body>
     <div id="header-placeholder"></div>
 
     <main class="container">
         <!-- HERO -->
-        <section class="hero">
-            <div class="intro-content">
+        <section class="intro-content">
+            <div class="section-content">
                 <span class="kicker">Portfolio</span>
                 <div class="slogan">Crafting Immersive Gameplay,<br>
                     Building Solutions,<br>
@@ -118,16 +158,18 @@
         <!-- About Section -->
         <section id="about" class="section">
             <div class="section-header">About Me</div>
-            <div class="section-content" data-content="/content/about.md">
-                <!-- Content will be loaded automatically -->
+            <div class="section-content">
+                
+                
             </div>
         </section>
 
         <!-- Contact Section -->
         <section id="contact" class="section">
             <div class="section-header">Get In Touch</div>
-            <div class="section-content" data-content="/content/contact.md">
-                <!-- Content will be loaded automatically -->
+            <div class="section-content">
+                
+                
             </div>
             <div class="contact-links">
                 <a class="btn" href="mailto:chujoshua2004@gmail.com">Email Me</a>
@@ -231,4 +273,72 @@
         startAutoAdvance();
     </script>
 </body>
+    </div>
+
+    <!-- Back to Top Button -->
+    <div id="back-to-top" class="back-to-top" style="display: none;">
+        <a href="#content-header">Back to Top</a>
+    </div>
+
+
+</body>
 </html>
+
+
+<script>    
+
+    console.log(document.querySelector('.header-container').dataset.pageType);
+    console.log(document.querySelector('.header-container').dataset.layout);
+
+    if (!document.querySelector('.header-container').dataset.custom_js) {
+        console.log('Removing content-loading class due to custom_js not being set');
+        document.querySelector('#content-container').classList.remove('content-loading');
+    }
+
+    if (document.querySelector('#no-playtesters')) {
+        document.querySelector('#acknowledgements').style.display = 'none';
+    }
+
+    // Back to Top Button Logic
+    function toggleBackToTop() {
+        const backToTopButton = document.getElementById('back-to-top');
+        const windowHeight = window.innerHeight;
+        const documentHeight = document.documentElement.scrollHeight;
+        
+        // Show button if page height is more than 2 screens worth
+        if (documentHeight > windowHeight * 1.25) {
+            backToTopButton.style.display = 'block';
+        } else {
+            backToTopButton.style.display = 'none';
+        }
+    }
+
+    // Check on page load and resize
+    document.addEventListener('DOMContentLoaded', toggleBackToTop);
+    window.addEventListener('resize', toggleBackToTop);
+
+    // Toggle notes dropdown
+    function toggleNotes(arrowElement) {
+        const dropdown = arrowElement.parentElement.querySelector('.notes-dropdown');
+        const isVisible = dropdown.style.display !== 'none';
+        
+        if (isVisible) {
+            dropdown.style.display = 'none';
+            arrowElement.textContent = '▶';
+        } else {
+            dropdown.style.display = 'block';
+            arrowElement.textContent = '▼';
+        }
+    }
+
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        // Auto-load content from data attributes
+        loadAllContent();
+        const html = document.querySelector('html');
+        console.log('Loading content: ' + html.innerHTML);
+        html.innerHTML = convertToDivs(extractContentFromHtml(html.innerHTML));
+        console.log('Loading content: ' + html.innerHTML);
+        document.querySelector('#content-container').classList.remove('content-loading');
+    });
+</script>

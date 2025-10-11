@@ -797,17 +797,26 @@ tr:last-child td {
 }
 
 @media (max-width: 900px) {
-    .table-wrapper {
+    .large-table .table-wrapper {
         overflow-x: auto;
         -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+        position: relative;
     }
 
     .class-table table {
         min-width: 900px;
+        border-collapse: separate;
+        overflow: visible;         /* overrides your global overflow:hidden on table */
+        border-spacing: 0;
     }
 
     .class-table table th:nth-child(1),
     .class-table table td:nth-child(1) {
+        position: sticky;
+        left: 0;
+        z-index: 2;                  /* above scrolled cells */
+        background: white;           /* cover row hover bg behind it */
+        box-shadow: 1px 0 0 var(--border); /* divider at the right edge */
         width: 75px;
     }
     .class-table table th:nth-child(2),

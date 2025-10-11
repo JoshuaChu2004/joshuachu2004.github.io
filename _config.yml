@@ -4,9 +4,19 @@ description: Bookmark this to keep an eye on my project updates!
 
 permalink: pretty
 
-collections_dir: dnd
-
 collections:
+# Portfolio Collections ---------------
+  projects:
+    output: true
+    permalink: /projects/:name/
+  software:
+    output: true
+    permalink: /software/:name/
+  homepage:
+    output: false
+    permalink: /homepage/:name/
+
+# D&D Collections ---------------
   acknowledgements:
     output: true
     permalink: /dnd/acknowledgements/:name/
@@ -37,8 +47,18 @@ collections:
   content:
     output: true
     permalink: /dnd/content/:name/
+    
 
 defaults:
+  # Portfolio Defaults ---------------
+  - scope: { type: projects }
+    values: { layout: portfoliobase }
+  - scope: { type: software }
+    values: { layout: portfoliobase }
+  - scope: { type: homepage }
+    values: { layout: portfoliobase }
+
+  # D&D Defaults ---------------
   - scope: { type: acknowledgements }
     values: { layout: dnd }
   - scope: { type: classes }
