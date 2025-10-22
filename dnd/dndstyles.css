@@ -29,7 +29,6 @@
 html, body {
     margin: 0;
     scroll-behavior: smooth;
-    overflow-x: hidden;
 }
 
 body {
@@ -85,14 +84,15 @@ header {
     z-index: 10;
     width: 100%;
     box-sizing: border-box;
-    padding: 0 24px;
 }
 
 
 .header-container {
+    margin: 0 auto;
     width: 100%;
     color: var(--hfg);
     box-sizing: border-box;
+    max-width: calc(100vw - 48px);
 }
 
 .header-container.mobile {
@@ -140,11 +140,24 @@ nav a {
     nav .links a[data-short]::before {
         font-size: 14px;
     }
+
+    nav .muted[data-short]::before {
+        content: attr(data-short) !important;
+    }
+    
+    nav .muted[data-short] { 
+        font-size: 0 !important;
+    }
+    
+    nav .muted[data-short]::before {
+        font-size: 13px;
+    }
 }
 
 @media (max-width: 900px) {
     nav {
         flex-direction: column;
+        gap: 8px;
     }
     
     .header-container.mobile {
@@ -153,9 +166,6 @@ nav a {
 
     .header-container {
         display: none;
-    }
-    nav .links {
-        align-items: center;
     }
 }
 
@@ -791,7 +801,6 @@ th, td {
 }
 
 th {
-    background-color: var(--bg-secondary);
     font-weight: 600;
     color: var(--fg);
     font-size: 14px;

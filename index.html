@@ -20,9 +20,7 @@ page_type: homepage
                     {{ kicker.content }}
                 </div>
                 <div class="cta">
-                    <a class="btn primary" href="#games">See my work</a>
                     <a class="btn" href="assets/Joshua_Chu_Resume.pdf" target="_blank" rel="noopener">Download résumé</a>
-                    <a class="btn" href="https://github.com/chujoshua2004" target="_blank" rel="noopener">GitHub</a>
                     <a class="btn" href="https://spiritboundstudios.itch.io" target="_blank" rel="noopener">itch.io</a>
                     <a class="btn" href="https://www.linkedin.com/in/chujoshua2004" target="_blank" rel="noopener">LinkedIn</a>
                 </div>
@@ -41,7 +39,7 @@ page_type: homepage
                             <img src="assets/volley.png" alt="Project 2" />
                         </div>
                         <div class="carousel-slide">
-                            <img src="assets/seatmap.png" alt="Project 3" />
+                            <img src="assets/vbo/vbo.png" alt="Project 3" />
                         </div>
                         <div class="carousel-slide">
                             <img src="assets/WayOfTheRisingStorm/WayOfTheRisingStorm-1.png" alt="Project 4" />
@@ -73,8 +71,8 @@ page_type: homepage
                     {% for project in site.projects %}
                     <div class="project-card">
                         <a class="project-title" href="{{ project.url }}" target="_blank" rel="noopener">{{ project.title }}</a>
-                        <div class="project-description">{{ project.description }}</div>
-                        <img src="{{ project.image }}" alt="{{ project.title }}" />
+                        <div class="project-description">{{ project.short_description }}</div>
+                        <img class="project-image" src="{{ project.image }}" alt="{{ project.title }}" />
                         <a class="project-link" href="{{ project.url }}" target="_blank" rel="noopener">View Project</a>
                     </div>
                     {% endfor %}
@@ -85,15 +83,17 @@ page_type: homepage
         <!-- Software Section -->
         <section id="software" class="section">
             <div class="section-content">
-            <div class="section-header">Software Projects</div>
+            <div class="section-header">Internships</div>
             <div class="grid projects">
+                {% for software in site.software %}
                 <div class="project-card">
-                    <a class="project-title" href="#" target="_blank" rel="noopener">Seat Map Application</a>
-                    <div class="project-description">Frontend engineering work for VBO Tickets, developing interactive seat maps for event ticketing.</div>
-                    <img src="assets/seatmap.png" alt="Seat Map Application" />
-                    <a class="project-link" href="#" target="_blank" rel="noopener">View Project</a>
+                    <a class="project-title" href="{{ software.url }}" target="_blank" rel="noopener">{{ software.title }}</a>
+                    <div class="project-description">{{ software.short_description }}</div>
+                    <img class="project-image" src="{{ software.image }}" alt="{{ software.title }}" />
+                    <a class="project-link" href="{{ software.url }}" target="_blank" rel="noopener">View Project</a>
                     </div>
                 </div>
+                {% endfor %}
             </div>
         </section>
 
@@ -101,14 +101,13 @@ page_type: homepage
         <section id="homebrew" class="section">
             <div class="section-content">
             <div class="section-header">D&D Homebrew Content</div>
-            <div class="grid projects">
-                <div class="project-card">
-                    <a class="project-title" href="#" target="_blank" rel="noopener">Way of the Rising Storm</a>
-                    <div class="project-description">A custom D&D 5e monk subclass focused on lightning and storm abilities.</div>
-                    <img src="assets/WayOfTheRisingStorm/WayOfTheRisingStorm-1.png" alt="Way of the Rising Storm" />
-                    <a class="project-link" href="#" target="_blank" rel="noopener">View Content</a>
-                    </div>
-                </div>
+            <div class="project-card"> 
+                {% assign dnd = site.homepage | where: "title", "D&D" | first %}
+                <a class="project-title" href="/dnd/" target="_blank" rel="noopener">D&D Wiki</a>
+                <p>{{ dnd.short_description }}</p>
+                <img class="project-image" src="assets\WayOfTheRisingStorm\WayOfTheRisingStorm-2.png" alt="D&D" />
+                <a class="project-link" href="/dnd/" target="_blank" rel="noopener">View Wiki</a>
+            </div>
             </div>
         </section>
 

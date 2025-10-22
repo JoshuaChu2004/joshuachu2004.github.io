@@ -3,8 +3,8 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Volley! - Joshua Chu</title>
-    <meta name="description" content="A 2D volleyball game where you play as a volleyball player trying to win matches. It was created over the course of a weekend as an exercise in fast-paced development. It bears very simple mechanics but can be very challenging to master working with the physics of the ball and finding opportunities to score against the opponent." />
+    <title>VBO Tickets - Joshua Chu</title>
+    <meta name="description" content="During the summer of 2025, I worked as a Software Engineer Intern at VBO Tickets, where I developed a high-performance WebGL seat map display system for VBO Tickets, enabling real-time rendering of up to 100,000 seats with smooth performance for large venues. Built dynamic seat-sorting functionality and integrated with backend systems for real-time updates." />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
@@ -19,7 +19,7 @@
 
 <body>
     <header>
-        <div class="header-container" data-pageType="project" data-layout="project" data-custom_js="/js/advanced-content-loader.js">
+        <div class="header-container" data-pageType="project" data-layout="software" data-custom_js="/js/advanced-content-loader.js">
             <nav>
                 <div style="display: flex; gap: 12px; align-items: center">
                     <span class="pill">🎮 Joshua Chu</span>
@@ -35,7 +35,7 @@
                 </div>
             </nav>
         </div>
-        <div class="header-container mobile" data-pageType="project" data-layout="project" data-custom_js="/js/advanced-content-loader.js">
+        <div class="header-container mobile" data-pageType="project" data-layout="software" data-custom_js="/js/advanced-content-loader.js">
 
             <nav>
                 <div class="pill mobile">🎮 Joshua Chu</div>
@@ -71,16 +71,15 @@
         <div class="section-content">
             <div class="breadcrumb">
                 <a href="/index.html">Home</a> &gt; 
-                <span>Volley!</span>
+                <span>VBO Tickets</span>
             </div>
             <div class="content-header project">
                 <div class="project-header">
-                    <h1>Volley!</h1>
-                    <p> A 2D volleyball game where you play as a volleyball player trying to win matches. It was created over the course of a weekend as an exercise in fast-paced development. It bears very simple mechanics but can be very challenging to master working with the physics of the ball and finding opportunities to score against the opponent.  </p>
-                    <a class="project-link" href="https://spiritboundstudios.itch.io/volley" target="_blank" rel="noopener">Play Now</a>
+                    <a class="project-title" href="/software/vbo/" target="_blank" rel="noopener">VBO Tickets</a>
+                    <p> During the summer of 2025, I worked as a Software Engineer Intern at VBO Tickets, where I developed a high-performance WebGL seat map display system for VBO Tickets, enabling real-time rendering of up to 100,000 seats with smooth performance for large venues. Built dynamic seat-sorting functionality and integrated with backend systems for real-time updates.  </p>
                 </div>
                 <div class="project-image">
-                    <img src="http://localhost:4000/assets/volley.png" alt="Volley!" />
+                    <img src="http://localhost:4000/assets/vbo/vbologo.png" alt="VBO Tickets" />
                 </div>
                 </div>
             </div>
@@ -90,7 +89,40 @@
     <section class="content-section">
         <div class="section-content">
             <div id="content-body">
-                
+                <div class="project-feature">
+<div>
+    <h2 id="webgl-seat-map-display">WebGL Seat Map Display</h2>
+    <p>The core of the project involved developing a high-performance WebGL seat map display using PixiJS, capable of rendering up to 100,000 seats in real-time with smooth performance. This system was specifically optimized for large venues such as stadiums and concert halls, where traditional rendering methods would struggle with the scale and complexity. The interactive seat selection system provides users with real-time seat availability and selection capabilities, with live updates showing when other customers place seats in their carts, ensuring a seamless booking experience even during high-traffic periods.</p>
+
+  </div>
+<img class="project-image" src="/assets/vbo/seatmapdisplay.jpg" alt="WebGL Seat Map Display" />
+</div>
+
+<div class="project-feature">
+<div>
+    <h2 id="dynamic-seat-filtering">Dynamic Seat Filtering</h2>
+    <p>I implemented a comprehensive dynamic seat-sorting sidebar that allows users to filter seats by multiple criteria including price, value, and availability. The system provides real-time updates as users interact with the map, dynamically updating the sidebar to reflect current selections and availability. This feature was seamlessly integrated with the platform’s backend to deliver live data updates and maintain consistency across all user interactions.</p>
+
+  </div>
+<img class="project-image" src="/assets/vbo/dynamicseat.jpg" alt="Dynamic Seat Filtering" />
+</div>
+
+<div class="project-feature">
+<div>
+    <h2 id="technical-implementation">Technical Implementation</h2>
+    <p>The frontend was built using JavaScript, HTML, and CSS to create an intuitive user interface that works across different devices and screen sizes. Backend integration was handled through C# components that manage server communication and data synchronization. The entire system was optimized for performance using WebGL rendering techniques, ensuring smooth user experience even when dealing with complex venue layouts and high user loads.</p>
+
+  </div>
+<img class="project-image" src="/assets/vbo/pixijs.svg" alt="Technical Implementation" style="padding: 12px;" />
+</div>
+
+<h2 id="impact">Impact</h2>
+
+<p>The WebGL seat map system significantly enhanced the user experience for large venue ticket sales by providing smooth, interactive seat selection even for the most complex venue layouts. The performance improvements enabled the platform to handle high-traffic events without degradation, supporting thousands of concurrent users during peak ticket sales periods. This project was a key component of the platform-wide UI/UX overhaul, contributing to a more modern and user-friendly interface. The real-time customer interaction capabilities transformed how users engage with venue layouts, making the ticket purchasing process more intuitive and efficient.</p>
+
+<h2 id="collaboration--process">Collaboration &amp; Process</h2>
+
+<p>Throughout the internship, I actively participated in daily standup meetings where I reported on progress and gathered feedback for next steps, ensuring alignment with team goals and project requirements. I collaborated closely with both front-end and back-end teams as part of the platform-wide UI/UX overhaul, contributing to cross-functional discussions and technical decision-making processes. The development followed agile methodologies, with regular sprint planning sessions and iterative development cycles that allowed for continuous improvement and adaptation to changing requirements.</p>
 
             </div>  
         </div>

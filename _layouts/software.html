@@ -27,9 +27,8 @@ page_type: 'project'
             </div>
             <div class="content-header project">
                 <div class="project-header">
-                    <h1>{{ page.title }}</h1>
+                    <a class="project-title" href="{{ page.url }}" target="_blank" rel="noopener">{{ page.title }}</a>
                     <p> {{ page.description }}  </p>
-                    <a class="project-link" href="{{ page.projectlink }}" target="_blank" rel="noopener">Play Now</a>
                 </div>
                 <div class="project-image">
                     <img src="{{ site.url }}{{ page.image }}" alt="{{ page.title }}" />

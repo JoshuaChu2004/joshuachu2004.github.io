@@ -1,0 +1,1 @@
+I grew up inspired by the passion behind video games, from indie developers behind Minecraft to the AAA studios behind The Legend of Zelda. I've always been fascinated by the stories and worlds that these games create, and I've always wanted to be a part of that.

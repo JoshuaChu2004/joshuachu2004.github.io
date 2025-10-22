@@ -1,3 +1,9 @@
+---
+title: About Me
+short_description: I'm Joshua Chu, a Computer Science student at UCSB, game developer, and TTRPG designer. I create engaging systems, polished user experiences, and collaborative stories—whether that’s through building video games, designing tabletop mechanics, or developing tools as a frontend engineering intern at VBO Tickets.
+description: I'm Joshua Chu, a Computer Science student at UCSB, game developer, and TTRPG designer. I create engaging systems, polished user experiences, and collaborative stories—whether that’s through building video games, designing tabletop mechanics, or developing tools as a frontend engineering intern at VBO Tickets.
+---
+
 Born in San Jose to immigrant parents, I grew up immersed in technology — but it was the **interactivity of computer games** that first inspired me. By third grade, I had already set my sights on becoming a game developer.
 
 I'm currently pursuing a B.S. in Computer Science at UC Santa Barbara, where I serve as an officer in the **UCSB Game Development Club**. I lead projects ranging from narrative experiments to mechanics-driven prototypes, organize events, and mentor new members in game design and development.

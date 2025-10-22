@@ -76,7 +76,7 @@ li {
 
 .header-container {
     width: 100%;
-    margin: 0 24px;
+    margin: 0 auto;
     color: var(--fg);
     box-sizing: border-box;
     max-width: calc(100vw - 48px);
@@ -156,6 +156,7 @@ nav a {
 @media (max-width: 900px) {
     nav {
         flex-direction: column;
+        gap: 8px;
     }
     
     .header-container.mobile {
@@ -785,11 +786,11 @@ li.acknowledgement.notes{
 
 .project-image {
     aspect-ratio: 4/3;
-    max-width: 600px;
     min-width: 400px;
     border-radius: 18px;
     background: var(--card);
     border: 1px solid var(--border);
+    object-fit: cover;
     overflow: hidden;
 }
 
@@ -806,6 +807,26 @@ li.acknowledgement.notes{
     gap: 24px;
     justify-content: space-between;
     padding: 24px;
+}
+
+.project-feature img {
+    object-fit: scale-down;
+}
+
+.project-header {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+@media (max-width: 900px) {
+    .project-feature {
+        flex-direction: column;
+    }
+
+    .project-image {
+        min-width: 200px;
+    }
 }
 
 /* ==========================================================================
