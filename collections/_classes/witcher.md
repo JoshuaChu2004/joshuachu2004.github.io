@@ -16,7 +16,7 @@ icon: fa-solid fa-flask fa-8x
 <div class="class-table">
 
 <table>
-<tr><th colspan="6">The Witcher</th></tr>
+<tr><th colspan="2">The Witcher</th></tr>
 <tr><th>Level</th><th>Proficiency Bonus</th><th>Features</th><th>Signs Known</th></tr>
 <tr><td>1st</td><td>+2</td><td>Mutations, Alchemy, Fighting Style</td><td>2</td></tr>
 <tr><td>2nd</td><td>+2</td><td>Witcher Signs, Adrenaline</td><td>2</td></tr>

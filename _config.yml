@@ -4,6 +4,8 @@ description: Bookmark this to keep an eye on my project updates!
 
 permalink: pretty
 
+collections_dir: collections
+
 collections:
 # Portfolio Collections ---------------
   projects:
@@ -47,7 +49,6 @@ collections:
   content:
     output: true
     permalink: /dnd/content/:name/
-    
 
 defaults:
   # Portfolio Defaults ---------------

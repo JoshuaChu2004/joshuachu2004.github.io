@@ -1,0 +1,48 @@
+---
+layout: portfoliobase
+custom_js: /js/advanced-content-loader.js
+page_type: 'project'
+---
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Auto-load content from data attributes
+        loadAllContent();
+        const html = document.querySelector('html');
+        console.log('Loading content: ' + html.innerHTML);
+        html.innerHTML = convertToDivs(extractContentFromHtml(html.innerHTML));
+        console.log('Loading content: ' + html.innerHTML);
+        document.querySelector('#content-container').classList.remove('content-loading');
+        console.log('Content loaded: ' + document.querySelector('#content-container').innerHTML);
+    });
+</script>
+
+<body>
+    <div id="header-placeholder"></div>
+    <section class="intro-content">
+        <div class="section-content">
+            <div class="breadcrumb">
+                <a href="{{ '/index.html' | relative_url }}">Home</a> &gt; 
+                <span>{{ page.title }}</span>
+            </div>
+            <div class="content-header project">
+                <div class="project-header">
+                    <h1>{{ page.title }}</h1>
+                    <p> {{ page.description }}  </p>
+                </div>
+                <div class="project-image">
+                    <img src="{{ site.url }}{{ page.image }}" alt="{{ page.title }}" />
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="content-section">
+        <div class="section-content">
+            <div id="content-body">
+                {{ content }}
+            </div>  
+        </div>
+    </section>
+    <div id="footer-placeholder"></div>
+</body>

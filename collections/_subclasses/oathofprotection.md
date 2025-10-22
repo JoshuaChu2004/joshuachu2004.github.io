@@ -43,7 +43,7 @@ You gain oath spells at the paladin levels listed.
 When you take this oath at 3rd level, you gain the following two Channel Divinity options.
 - **Extend Protection.** When you cast a spell or use a paladin feature that positively affects a creature, you may expend your Channel Divinity to extend the effect to allies within 30 ft. of you. You can select a number of creatures up to your Charisma modifier. If the effect restores hit points, the hit points restored to each creature is halved.
 You can end this effect on your turn as part of any other action. If the spell cast is Concentration, you have disadvantage on all Constitution saving throws made to maintain Concentration.
-- **Death Defiance.** When a friendly creature you can see within 10 ft. falls to 0 Hit Points, you may expend your Channel Divinity as a reaction to shout a cry of self-sacrifice. You then take all of the residual damage the target took from the attack that brought them to 0 Hit Points, and the target regains Hit Points equal to your paladin level.
+- **Death Defiance.** When a friendly creature you can see within 15 ft. falls to 0 Hit Points, you may expend your Channel Divinity as a reaction to shout a cry of self-sacrifice. You then take all of the residual damage the target took from the attack that brought them to 0 Hit Points, and the target regains Hit Points equal to your paladin level.
 
 ### Guardian’s Aura
 Starting at 7th level, you emanate a golden glow that shields those around you. When a creature is within 10 ft. of you, it may choose to have advantage on saving throws or have incoming attacks be at disadvantage. This effect remains as long as they are still within range, and they may only change their choice on their turn.
