@@ -115,7 +115,7 @@ page_type: homepage
         <section id="about" class="section">
             <div class="section-content">
             <div class="section-header">About Me</div>
-            <div class="section-content">
+            <div class="section-content" style="padding: 0;">
                 {% assign about = site.homepage | where: "title", "About" | first %}
                 {{ about.content }}
                 </div>
@@ -126,14 +126,14 @@ page_type: homepage
         <section id="contact" class="section">
             <div class="section-content">
             <div class="section-header">Get In Touch</div>
-            <div class="section-content">
+            <div class="section-content" style="padding: 0;">
                 {% assign contact = site.homepage | where: "title", "Contact" | first %}
                 {{ contact.content }}
                 </div>
-            </div>
-            <div class="contact-links">
-                <a class="btn" href="mailto:chujoshua2004@gmail.com">Email Me</a>
-                <a class="btn" href="https://www.linkedin.com/in/chujoshua2004" target="_blank" rel="noopener">LinkedIn</a>
+                <div class="contact-links">
+                    <a class="btn" href="mailto:chujoshua2004@gmail.com">Email Me</a>
+                    <a class="btn" href="https://www.linkedin.com/in/chujoshua2004" target="_blank" rel="noopener">LinkedIn</a>
+                    </div>
                 </div>
             </div>
         </section>
