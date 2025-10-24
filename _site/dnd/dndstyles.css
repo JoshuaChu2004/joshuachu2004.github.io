@@ -93,6 +93,7 @@ header {
     color: var(--hfg);
     box-sizing: border-box;
     max-width: calc(100vw - 48px);
+    padding: 0 24px;
 }
 
 .header-container.mobile {
@@ -115,7 +116,7 @@ nav {
 
 nav .links {
     display: flex;
-    gap: 18px;
+    gap: 20px;
     flex-wrap: wrap;
     font-size: 14px;
     justify-content: center;

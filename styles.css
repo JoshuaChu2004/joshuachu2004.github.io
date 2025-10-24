@@ -5,7 +5,7 @@
 :root {
     --bg: #0b0d10;
     --fg: #e9eef3;
-    --muted: #a8b3c2;
+    --muted: #bcc6d4;
     --brand: #58c4ff;
     --card: #131720;
     --card-light: #1a1f2c;
@@ -31,6 +31,8 @@ body {
     background: var(--bg);
     color: var(--fg);
     line-height: 1.6;
+    scrollbar-gutter: stable;
+    overflow: auto;
 }
 
 /* ==========================================================================
@@ -80,6 +82,7 @@ li {
     color: var(--fg);
     box-sizing: border-box;
     max-width: calc(100vw - 48px);
+    padding: 0 24px;
 }
 
 .header-container.mobile {
@@ -114,7 +117,7 @@ nav {
 
 nav .links {
     display: flex;
-    gap: 18px;
+    gap: 20px;
     flex-wrap: wrap;
     font-size: 14px;
     justify-content: center;
@@ -261,6 +264,10 @@ table[id] {
     display: flex;
     flex-direction: row;
     gap: 24px;
+}
+
+section.intro-content {
+    padding-right: 32px;
 }
 
 /* Table of Contents */
@@ -744,6 +751,11 @@ li.acknowledgement.notes{
     .breadcrumb {
         font-size: 12px;
     }
+
+    .content-header.project {
+        flex-direction: column;
+        gap: 12px;
+    }
 }
 
 /* ==========================================================================
@@ -759,6 +771,7 @@ li.acknowledgement.notes{
     border-radius: 18px;
     padding: 18px;
     max-height: 550px;
+    max-width: 600px;
     overflow: hidden;
 }
 
