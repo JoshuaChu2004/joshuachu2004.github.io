@@ -37,8 +37,6 @@ function convertToDivs(markdown) {
         .replace(/<em>(.*?)<\/em>/gim, '<span class="italic">$1</span>')
         // Links
         .replace(/<a href="([^"]+)">([^<]+)<\/a>/gim, '<a href="$1" class="link">$2</a>')
-        // Wrap in paragraphs
-        .replace(/<p>(.*?)<\/p>/gim, '<div class="paragraph">$1</div>')
         // Clean up empty paragraphs
         .replace(/<div class="paragraph"><\/div>/gim, '')
          // Clean up consecutive <br> tags
@@ -47,6 +45,8 @@ function convertToDivs(markdown) {
         // Remove standalone <br> tags that are causing issues
         .replace(/<div class="paragraph"><br><\/div>/gim, '')
         .replace(/<br>/gim, '')
+        // Wrap in paragraphs
+        .replace(/<p>(.*?)<\/p>/gim, '<div class="paragraph">$1</div>')
          
          // Tables
          .replace(/<table([^>]*)>/gim, function(match, attributes) {
