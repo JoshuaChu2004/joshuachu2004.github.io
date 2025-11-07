@@ -3,24 +3,10 @@ layout: dnd
 content_type: Tool
 title: Shop Loot Generator
 ---
-
-# Shop Loot Generator
-
 Generate random loot for shops based on location, shop type, and rarity preferences.
+<div class="shop-container">
 
 <form id="shop-generator-form" class="shop-generator-form">
-
-<div class="form-field-group">
-    <label for="location" class="form-label">Location:</label>
-    <select id="location" name="location" class="form-select">
-        <option value="metropolis">Metropolis</option>
-        <option value="city">City</option>
-        <option value="town">Town</option>
-        <option value="village">Village</option>
-        <option value="hamlet">Hamlet</option>
-        <option value="outpost">Outpost</option>
-    </select>
-</div>
 
 <div id="item-type-section" class="slider-section">
 <h3 class="slider-section-title">Set Item Type Weight</h3>
@@ -31,6 +17,10 @@ Generate random loot for shops based on location, shop type, and rarity preferen
         <span class="slider-value" id="armor-weight-value">0</span>
     </label>
     <input type="range" id="armor-weight" name="armor-weight" class="form-slider" min="0" max="100" value="0">
+    <label class="repeat-checkbox-label">
+        <input type="checkbox" id="armor-allow-repeats" name="armor-allow-repeats">
+        <span>Allow repeats</span>
+    </label>
 </div>
 
 <div class="slider-group">
@@ -39,6 +29,10 @@ Generate random loot for shops based on location, shop type, and rarity preferen
         <span class="slider-value" id="weapon-weight-value">0</span>
     </label>
     <input type="range" id="weapon-weight" name="weapon-weight" class="form-slider" min="0" max="100" value="0">
+    <label class="repeat-checkbox-label">
+        <input type="checkbox" id="weapon-allow-repeats" name="weapon-allow-repeats">
+        <span>Allow repeats</span>
+    </label>
 </div>
 
 <div class="slider-group">
@@ -47,6 +41,10 @@ Generate random loot for shops based on location, shop type, and rarity preferen
         <span class="slider-value" id="wondrous-weight-value">0</span>
     </label>
     <input type="range" id="wondrous-weight" name="wondrous-weight" class="form-slider" min="0" max="100" value="0">
+    <label class="repeat-checkbox-label">
+        <input type="checkbox" id="wondrous-allow-repeats" name="wondrous-allow-repeats">
+        <span>Allow repeats</span>
+    </label>
 </div>
 
 <div class="slider-group">
@@ -55,6 +53,10 @@ Generate random loot for shops based on location, shop type, and rarity preferen
         <span class="slider-value" id="consumable-weight-value">0</span>
     </label>
     <input type="range" id="consumable-weight" name="consumable-weight" class="form-slider" min="0" max="100" value="0">
+    <label class="repeat-checkbox-label">
+        <input type="checkbox" id="consumable-allow-repeats" name="consumable-allow-repeats" checked>
+        <span>Allow repeats</span>
+    </label>
 </div>
 </div>
 
@@ -100,15 +102,29 @@ Generate random loot for shops based on location, shop type, and rarity preferen
     </label>
     <input type="range" id="legendary-count" name="legendary-count" class="form-slider" min="0" max="20" value="0">
 </div>
+
 </div>
 
 <button type="submit" class="form-button">Generate Shop Loot</button>
-
 </form>
 
 <div id="results" class="shop-results">
-    <h2>Generated Loot</h2>
+    <h3>Generated Loot</h3>
     <ul id="loot-list" class="loot-list"></ul>
+    <table id="loot-table" class="loot-table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Rarity</th>
+                <th>Type</th>
+                <th>Attuned</th>
+                <th>Replace</th>
+            </tr>
+        </thead>
+        <tbody id="loot-table-body">
+        </tbody>
+    </table>
 </div>
 
 <script src="/js/shop-loot-generator.js"></script>
+</div>

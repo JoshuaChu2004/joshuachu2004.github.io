@@ -798,6 +798,9 @@ table {
 th, td {
     padding: 12px 16px;
     text-align: left;
+}
+
+td {
     border-top: 1px solid var(--border);
 }
 
@@ -959,12 +962,20 @@ tr.hidden{
    SHOP GENERATOR FORM
    ========================================================================== */
 
+.shop-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 24px;
+}
+
 .shop-generator-form {
     background: white;
-    padding: 24px;
+    padding: 0px 24px 24px 24px;
     border-radius: 8px;
     border: 1px solid var(--border);
-    max-width: 600px;
+    max-width: 400px;
+    width: 100%;
     margin: 24px 0;
 }
 
@@ -1023,12 +1034,13 @@ tr.hidden{
 }
 
 .shop-results {
-    display: none;
     background: white;
-    padding: 24px;
+    padding: 0px 24px 24px 24px;
     border-radius: 8px;
     border: 1px solid var(--border);
-    margin-top: 24px;
+    max-width: 800px;
+    width: 100%;
+    margin: 24px 0;
 }
 
 .shop-results h2 {
@@ -1051,15 +1063,94 @@ tr.hidden{
     border-bottom: none;
 }
 
+.loot-table {
+    width: 100%;
+    margin-top: 16px;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+
+.loot-table th {
+    background: var(--bg);
+    font-weight: 600;
+    padding: 12px 16px;
+    text-align: left;
+}
+
+.loot-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+}
+
+.loot-item-row {
+    cursor: default;
+}
+
+.loot-item-row:hover {
+    background: rgba(119, 105, 54, 0.05);
+}
+
+.loot-item-row.has-description {
+    cursor: pointer;
+}
+
+.description-toggle {
+    margin-right: 8px;
+    cursor: pointer;
+    font-size: 12px;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+    user-select: none;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.description-toggle:hover {
+    opacity: 1;
+}
+
+.loot-description-row {
+    background: var(--bg-light);
+}
+
+.loot-description-cell {
+    padding: 16px 24px !important;
+    border-bottom: 1px solid var(--border);
+}
+
+.loot-description-content {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.loot-description-content .paragraph {
+    margin-bottom: 12px;
+}
+.loot-description-content .paragraph:last-child {
+    margin-bottom: 0;
+}
+
+.loot-description-content strong {
+    color: var(--fg);
+    font-weight: 600;
+}
+
+.item-table {
+    font-size: 14px;
+}
+
 .slider-group {
-    margin-bottom: 24px;
+    margin-bottom: 8px;
 }
 
 .slider-label {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 8px;
     font-weight: 600;
     color: var(--fg);
 }
@@ -1069,6 +1160,22 @@ tr.hidden{
     color: var(--brand);
     min-width: 30px;
     text-align: right;
+}
+
+.repeat-checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 4px;
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--muted);
+    cursor: pointer;
+}
+
+.repeat-checkbox-label input[type="checkbox"] {
+    cursor: pointer;
+    margin: 0;
 }
 
 .form-slider {
@@ -1121,4 +1228,18 @@ tr.hidden{
     margin-bottom: 16px;
     padding-bottom: 8px;
     border-bottom: 2px solid var(--border);
+}
+
+@media (max-width: 900px) {
+    .shop-container {
+        flex-direction: column;
+    }
+
+    .shop-generator-form {
+        max-width: 100%;
+    }
+
+    .shop-results {
+        max-width: 100%;
+    }
 }

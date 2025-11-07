@@ -1,5 +1,25 @@
 import json
 import re
+import requests
+from bs4 import BeautifulSoup
+
+def get_html_content(url):
+    response = requests.get(url)
+    html_content = response.text
+    return html_content
+
+def parse_html_for_description(html_content):
+    soup = BeautifulSoup(html_content, 'html.parser')
+    page_content = soup.find(attrs={'id': 'page-content'})
+    children = page_content.findChildren(recursive=False)
+    children.pop()
+    children.remove(children[0])
+    children.remove(children[0])
+    description = ""
+    for child in children:
+        description += str(child) + "\n"
+    return description
+
 
 def parse_html_file(filename):
     with open(filename, 'r', encoding='utf-8') as f:
@@ -7,11 +27,36 @@ def parse_html_file(filename):
     
     # Initialize dictionaries for each rarity
     items_by_rarity = {
-        'common': [],
-        'uncommon': [],
-        'rare': [],
-        'very-rare': [],
-        'legendary': []
+        'common': {
+            'wondrous': [],
+            'consumable': [],
+            'weapon': [],
+            'armor': [],
+        },
+        'uncommon': {
+            'wondrous': [],
+            'consumable': [],
+            'weapon': [],
+            'armor': [],
+        },
+        'rare': {
+            'wondrous': [],
+            'consumable': [],
+            'weapon': [],
+            'armor': [],
+        },
+        'very-rare': {
+            'wondrous': [],
+            'consumable': [],
+            'weapon': [],
+            'armor': [],
+        },
+        'legendary': {
+            'wondrous': [],
+            'consumable': [],
+            'weapon': [],
+            'armor': [],
+        }
     }
     
     # Map rarity indices to rarity names
@@ -21,6 +66,7 @@ def parse_html_file(filename):
     # Pattern: <div id="wiki-tab-0-(\d+)"[^>]*>(.*?)(?=<div id="wiki-tab-0-|</div>\s*</div>\s*</div>\s*</div>)
     tab_pattern = r'<div id="wiki-tab-0-(\d+)"[^>]*>(.*?)(?=<div id="wiki-tab-0-\d+|</div>\s*</div>\s*</div>\s*</div>\s*</div>\s*</div>)'
     
+    item_count = 0
     for tab_match in re.finditer(tab_pattern, content, re.DOTALL):
         rarity_index = int(tab_match.group(1))
         section_content = tab_match.group(2)
@@ -73,6 +119,9 @@ def parse_html_file(filename):
             else:
                 url_formatted = f"https://dnd5e.wikidot.com/{category}:{item_slug}"
             
+            html_content = get_html_content(url_formatted)
+            description = parse_html_for_description(html_content)
+
             item = {
                 "name": name,
                 "item_type": item_type,
@@ -80,11 +129,13 @@ def parse_html_file(filename):
                 "rarity_rank": rarity_rank,
                 "attuned": attuned,
                 "attunement_requirement": "",
-                "description": "",
+                "description": description,
                 "homebrew": False,
                 "url": url_formatted
             }
-            items_by_rarity[rarity].append(item)
+            items_by_rarity[rarity][item_type].append(item)
+            item_count += 1
+            print(f"Extracted {item_count} items: {item.get('name')}")
     
     return items_by_rarity
 
@@ -93,7 +144,8 @@ if __name__ == '__main__':
     
     # Sort items alphabetically within each rarity
     for rarity in items_by_rarity:
-        items_by_rarity[rarity].sort(key=lambda x: x['name'].lower())
+        for item_type in items_by_rarity[rarity]:
+            items_by_rarity[rarity][item_type].sort(key=lambda x: x['name'].lower())
     
     # Count total items
     total_items = sum(len(items) for items in items_by_rarity.values())
@@ -103,5 +155,8 @@ if __name__ == '__main__':
     
     print(f"Extracted {total_items} items")
     for rarity, items in items_by_rarity.items():
-        print(f"  {rarity}: {len(items)} items")
+        print(f"  {rarity}:")
+        for item_type, items in items.items():
+            for item in items:
+                print(f"    {item_type}: {item.get('name')}")
 
