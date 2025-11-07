@@ -46,6 +46,9 @@ collections:
   reworks:
     output: true
     permalink: /dnd/reworks/:name/
+  tools:
+    output: true
+    permalink: /dnd/tools/:name/
   content:
     output: true
     permalink: /dnd/content/:name/
@@ -77,6 +80,8 @@ defaults:
   - scope: { type: house-rules }
     values: { layout: dnd }
   - scope: { type: reworks }
+    values: { layout: dnd }
+  - scope: { type: tools }
     values: { layout: dnd }
   - scope: { type: content }
     values: { layout: dnd }

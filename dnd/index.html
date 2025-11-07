@@ -61,6 +61,10 @@ page_type: dnd
                          <div class="content-icon fas fa-arrows-rotate fa-4x"></div>
                          <a href="/dnd/#reworks">Reworks</a>
                      </div>
+                     <div class="content-container">
+                         <div class="content-icon fas fa-screwdriver fa-4x"></div>
+                         <a href="/dnd/#tools">Tools</a>
+                     </div>
                  </div>
              </div>
         </div>
@@ -115,7 +119,13 @@ page_type: dnd
             <!-- Content will be loaded automatically -->
         </div>
     </section>
-
+    <section id="tools" class="section">
+        <div class="section-content">
+            {% assign tools = site.content | where: "title", "D&D Tools" | first %}
+            {{ tools.content }}
+            <!-- Content will be loaded automatically -->
+        </div>
+    </section>
     
 </body>
 </html>
