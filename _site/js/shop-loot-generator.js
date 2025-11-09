@@ -139,6 +139,12 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Display results
         displayLoot(loot);
+
+        console.log(lootList);
+
+        Object.keys(lootList).forEach(item => {
+            console.log(item);
+        });
     });
 });
 
@@ -149,7 +155,7 @@ function displayLoot(loot) {
     if (loot.length === 0) {
         lootList.innerHTML = '<li class="loot-list-item">No items selected. Please adjust the sliders to generate loot.</li>';
     } else {
-        lootTableBody.innerHTML = loot.map((item, index) => displayItemTable(item, index)).join('');
+        lootTableBody.innerHTML = Object.values(loot).map((item, index) => displayItemTable(item, index)).join('');
         
         // Add click handlers for description toggles
         lootTableBody.querySelectorAll('.loot-item-row.has-description').forEach(row => {
@@ -239,9 +245,10 @@ function generateShopLoot(itemTypeWeights, rarities, allowRepeats = {}) {
 
     if (lootList.length > 0) {
         Object.values(lootList).forEach(item => {
-            if (item.replace) {
+            if (!item.replace) {
                 rarities[item.rarity]--;
-            }
+                lootDictionary[item.name + item.rarity_rank] = item;
+            } 
         });
     }
     
@@ -313,7 +320,8 @@ function generateShopLoot(itemTypeWeights, rarities, allowRepeats = {}) {
         }
     });
     
-    return Object.values(lootDictionary);
+    //return Object.values(lootDictionary);
+    return lootDictionary;
 }
 
 function generatePlaceholderLoot(itemTypeWeights, rarities) {
