@@ -1,5 +1,6 @@
 // Shop Loot Generator JavaScript
 let lootTable = null; // Store loaded items data
+let homebrewTable = null; // Store homebrew items data
 let lootList = {}; // Store generated loot list
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -17,6 +18,20 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .catch(error => {
             console.error('Error loading items:', error);
+        });
+    fetch('/dnd/loot/homebrewitems.json')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to load homebrew items data');
+            }
+            return response.json();
+        })
+        .then(data => {
+            homebrewTable = data;
+            console.log('Homebrew items data loaded successfully: ', homebrewTable);
+        })
+        .catch(error => {
+            console.error('Error loading homebrew items:', error);
         });
 });
 
@@ -112,11 +127,11 @@ document.addEventListener('DOMContentLoaded', function() {
             legendary: parseInt(document.getElementById('legendary-count').value) || 0
         };
 
-        if (lootList.length > 0) {
+        if (Object.keys(lootList).length > 0) {
             const itemElements = document.querySelectorAll('.loot-item-row');
             itemElements.forEach(item => {
-                const replaceCheckbox = item.querySelector('.loot-item-replace');
-                if (replaceCheckbox.checked) {
+                const keepCheckbox = item.querySelector('.loot-item-keep');
+                if (keepCheckbox.checked) {
                     const itemName = item.querySelector('a').textContent;
                     const itemRarity = item.querySelector('td:nth-child(2)').textContent;
 
@@ -127,24 +142,23 @@ document.addEventListener('DOMContentLoaded', function() {
                         'very-rare': 4,
                         'legendary': 5
                     }
-                    const itemRarityRank = rarity_rank_map[itemRarity];
+                    const itemRarityRank = rarity_rank_map[itemRarity.toLowerCase()];
                     
-                    lootList[itemName + itemRarityRank].replace = true;
+                    const itemKey = itemName + itemRarityRank;
+                    if (lootList[itemKey]) {
+                        lootList[itemKey].keep = true;
+                    }
                 }
             });
         }
+
+        const allowHomebrew = document.getElementById('allow-homebrew').checked;
         // Generate loot based on slider values
-        const loot = generateShopLoot(itemTypeWeights, rarities, allowRepeats);
+        const loot = generateShopLoot(itemTypeWeights, rarities, allowRepeats, allowHomebrew);
         lootList = loot;
         
         // Display results
         displayLoot(loot);
-
-        console.log(lootList);
-
-        Object.keys(lootList).forEach(item => {
-            console.log(item);
-        });
     });
 });
 
@@ -194,14 +208,14 @@ function displayItemTable(item, index) {
     return `<tr class="loot-item-row ${hasDescription ? 'has-description' : ''}" data-index="${index}">
         <td>
             ${hasDescription ? '<span class="description-toggle" title="Click to show/hide description">▶</span>' : ''}
-            <a href="${item.url}" target="_blank" rel="noopener">${item.name}</a> <span class="loot-item-count">${item.count > 1 ? `x${item.count}` : ''}</span>
+            <a href="${item.url}" target="_blank" rel="noopener">${item.name}<sup>${item.homebrew ? ' (PNE)' : ''}</sup></a> <span class="loot-item-count">${item.count > 1 ? `x${item.count}` : ''}</span>
         </td>
         <td>${capitalizeFirstLetter(item.rarity)}</td>
         <td>${capitalizeFirstLetter(item.item_type)}</td>
         <td>
             ${item.attuned ? 'Attuned' : '-'}
         </td>
-        <td><input type="checkbox" class="loot-item-replace" data-index="${index}"></td>
+        <td><input type="checkbox" class="loot-item-keep" data-index="${index}" ${item.keep ? 'checked' : ''}></td>
     </tr>${descriptionRow}`;
 }
 
@@ -232,9 +246,9 @@ function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-function generateShopLoot(itemTypeWeights, rarities, allowRepeats = {}) {
+function generateShopLoot(itemTypeWeights, rarities, allowRepeats = {}, allowHomebrew = false) {
     const loot = [];
-    const lootDictionary = { };
+    let lootDictionary = { };
     
     // Check if items data is loaded
     if (!lootTable) {
@@ -243,9 +257,31 @@ function generateShopLoot(itemTypeWeights, rarities, allowRepeats = {}) {
         return generatePlaceholderLoot(itemTypeWeights, rarities);
     }
 
-    if (lootList.length > 0) {
+    let fullLootTable = lootTable;
+
+    if (allowHomebrew && homebrewTable) {
+        // Deep merge: combine arrays for each rarity/type combination
+        fullLootTable = {};
+        const allRarities = new Set([...Object.keys(lootTable || {}), ...Object.keys(homebrewTable || {})]);
+        
+        allRarities.forEach(rarity => {
+            fullLootTable[rarity] = {};
+            const allTypes = new Set(['wondrous', 'consumable', 'weapon', 'armor']);
+            
+            allTypes.forEach(type => {
+                const lootItems = lootTable?.[rarity]?.[type] || [];
+                const homebrewItems = homebrewTable?.[rarity]?.[type] || [];
+                fullLootTable[rarity][type] = [...lootItems, ...homebrewItems];
+            });
+        });
+    }
+
+    console.log(fullLootTable);
+
+    if (Object.keys(lootList).length > 0) {
+        console.log(lootList);
         Object.values(lootList).forEach(item => {
-            if (!item.replace) {
+            if (item.keep) {
                 rarities[item.rarity]--;
                 lootDictionary[item.name + item.rarity_rank] = item;
             } 
@@ -256,7 +292,7 @@ function generateShopLoot(itemTypeWeights, rarities, allowRepeats = {}) {
     const totalItems = Object.values(rarities).reduce((sum, count) => sum + count, 0);
     
     if (totalItems === 0) {
-        return loot;
+        return lootDictionary;
     }
     
     // Calculate total weight for probability distribution
@@ -288,7 +324,7 @@ function generateShopLoot(itemTypeWeights, rarities, allowRepeats = {}) {
             }
             
             // Get items of the selected type and rarity from loot table
-            const rarityData = lootTable[rarity];
+            const rarityData = fullLootTable[rarity];
             if (rarityData && rarityData[selectedType] && rarityData[selectedType].length > 0) {
                 // Randomly select an item from the available items
                 const availableItems = JSON.parse(JSON.stringify(rarityData[selectedType]));
@@ -319,6 +355,33 @@ function generateShopLoot(itemTypeWeights, rarities, allowRepeats = {}) {
             }
         }
     });
+    // Sort by rarity first, then by type (armor -> weapon -> wondrous -> consumable)
+    const typeOrder = {
+        'armor': 1,
+        'weapon': 2,
+        'wondrous': 3,
+        'consumable': 4
+    };
+    
+    const rarityOrder = {
+        'common': 1,
+        'uncommon': 2,
+        'rare': 3,
+        'very-rare': 4,
+        'legendary': 5
+    };
+    
+    lootDictionary = Object.fromEntries(
+        Object.entries(lootDictionary).sort(([, itemA], [, itemB]) => {
+            // First compare by rarity
+            const rarityDiff = (rarityOrder[itemA.rarity] || 0) - (rarityOrder[itemB.rarity] || 0);
+            if (rarityDiff !== 0) {
+                return rarityDiff;
+            }
+            // Then compare by type
+            return (typeOrder[itemA.item_type] || 99) - (typeOrder[itemB.item_type] || 99);
+        })
+    );
     
     //return Object.values(lootDictionary);
     return lootDictionary;

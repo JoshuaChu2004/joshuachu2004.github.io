@@ -104,6 +104,10 @@ Generate random loot for shops based on location, shop type, and rarity preferen
 </div>
 
 </div>
+<label class="repeat-checkbox-label">
+    <input type="checkbox" id="allow-homebrew" name="allow-homebrew" checked>
+    <span>Allow Phoenix's Nest of Everything Items</span>
+</label>
 
 <button type="submit" class="form-button">Generate Shop Loot</button>
 </form>
@@ -118,7 +122,7 @@ Generate random loot for shops based on location, shop type, and rarity preferen
                 <th>Rarity</th>
                 <th>Type</th>
                 <th>Attuned</th>
-                <th>Replace</th>
+                <th>Keep</th>
             </tr>
         </thead>
         <tbody id="loot-table-body">

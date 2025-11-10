@@ -974,7 +974,7 @@ tr.hidden{
     padding: 0px 24px 24px 24px;
     border-radius: 8px;
     border: 1px solid var(--border);
-    max-width: 400px;
+    max-width: 250px;
     width: 100%;
     margin: 24px 0;
 }
@@ -1018,7 +1018,7 @@ tr.hidden{
     color: white;
     border: none;
     border-radius: 4px;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 600;
     cursor: pointer;
     transition: background 0.2s ease;
@@ -1083,6 +1083,31 @@ tr.hidden{
 .loot-table td {
     padding: 12px 16px;
     border-bottom: 1px solid var(--border);
+}
+
+.loot-table th:nth-child(1),
+.loot-table td:nth-child(1) {
+    width: 40%;
+}
+
+.loot-table th:nth-child(2),
+.loot-table td:nth-child(2) {
+    width: 15%;
+}
+
+.loot-table th:nth-child(3),
+.loot-table td:nth-child(3) {
+    width: 15%;
+}
+
+.loot-table th:nth-child(4),
+.loot-table td:nth-child(4) {
+    width: 15%;
+}
+
+.loot-table th:nth-child(5),
+.loot-table td:nth-child(5) {
+    width: 15%;
 }
 
 .loot-item-row {
@@ -1229,6 +1254,12 @@ tr.hidden{
     padding-bottom: 8px;
     border-bottom: 2px solid var(--border);
 }
+
+.slider-section .subheader {
+    font-size: 16px;
+}
+
+
 
 @media (max-width: 900px) {
     .shop-container {

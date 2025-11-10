@@ -1,0 +1,570 @@
+{
+  "common": {
+    "wondrous": [],
+    "consumable": [],
+    "weapon": [],
+    "armor": []
+  },
+  "uncommon": {
+    "wondrous": [
+      {
+        "name": "Amulet of Possibility",
+        "item_type": "wondrous",
+        "rarity": "uncommon",
+        "rarity_rank": 2,
+        "attuned": true,
+        "attunement_requirement": "",
+        "description": "A necklace with a cracked piece of glass as its gemstone. When you look within, you can see glimpses of different possibilities. This amulet has 3 charges. When a creature makes an ability check, attack roll, damage roll, or saving throw, you may expend a charge to reduce or increase the roll by a d8 (to a minimum of 1 and a maximum equal to the roll’s highest possible value) as a reaction. You may use this after knowing the outcome of the roll. The amulet regains 1 charge at dawn.",
+        "homebrew": true,
+        "url": "/dnd/items/amuletofpossibility/"
+      },
+      {
+        "name": "Critical Ward",
+        "item_type": "wondrous",
+        "rarity": "uncommon",
+        "rarity_rank": 2,
+        "attuned": false,
+        "attunement_requirement": "",
+        "description": "An amulet worn by adventures around the world that is able to protect the user from an enemy's most powerful attacks. When an attack against you is a critical hit, the attacker is forced to reroll its attack roll. If the new roll is also a critical hit, the amulet shatters. An attack can only be affected by a Critical Ward once.",
+        "homebrew": true,
+        "url": "/dnd/items/criticalward/"
+      },
+      {
+        "name": "Mask of the Vigilante",
+        "item_type": "wondrous",
+        "rarity": "uncommon",
+        "rarity_rank": 2,
+        "attuned": true,
+        "attunement_requirement": "by a Vigilante",
+        "description": "A mask crafted or forged out of a durable material, bearing the symbol to represent the Vigilante who wears it. While you wear the mask, you gain a bonus to Vigilante save DC of your Vigilante abilities. The bonus is determined by the mask's rarity.\n\n<div class=\"break\"></div>\n\nYou can also restore up to half (rounded down) of your Modus Points as a bonus action. Once used, this feature can not be used again until the end of your next long rest.",
+        "homebrew": true,
+        "url": "/dnd/items/maskofthevigilante/"
+      },
+      {
+        "name": "Rose's Charm",
+        "item_type": "wondrous",
+        "rarity": "uncommon",
+        "rarity_rank": 2,
+        "attuned": true,
+        "attunement_requirement": "",
+        "description": "A small rose-shaped medallion is connected by a small chain to form a necklace, given to you by Rose. It's said to be one of the last magical items in legal possession by a citizen of Avernoth. The charm is meant to protect to user from death or severe injury. Once per long rest, when the user drops to below 0 Hit Points, they stand back up with 1 Hit Point. Roll a d20. On a 1, the medallion shatters and loses its magic. The roll required to break the medallion increases by 1 each time it is used.",
+        "homebrew": true,
+        "url": "/dnd/items/rosescharm/"
+      },
+      {
+        "name": "Rosethorn Pendant",
+        "item_type": "wondrous",
+        "rarity": "uncommon",
+        "rarity_rank": 2,
+        "attuned": true,
+        "attunement_requirement": "",
+        "description": "A pendant shaped like a rose, the holy symbol of the god of love. It is said to create an air of love and calm around the one wearing it. Once per long rest, when a creature you can see makes a WIS Save or Insight check against a charm or sniffs out lies/exterior motives, you may use up a charge and impose disadvantage on that roll. You may also use a charge to give yourself advantage on a persuasion or deception check. A charge can only be used before you know the roll's outcome.",
+        "homebrew": true,
+        "url": "/dnd/items/rosethornpendant/"
+      },
+      {
+        "name": "Shadow Cloak",
+        "item_type": "wondrous",
+        "rarity": "uncommon",
+        "rarity_rank": 2,
+        "attuned": true,
+        "attunement_requirement": "",
+        "description": "A thin, black cloak with a collar that rises up around the neck, it seems to absorb light around it, obfuscating the wearer slightly. The wearer is always considered Lightly Obscured, unless the Daylight spell or other radiant sources of light is shone upon them.",
+        "homebrew": true,
+        "url": "/dnd/items/shadowcloak/"
+      },
+      {
+        "name": "Sniper's Quiver",
+        "item_type": "wondrous",
+        "rarity": "uncommon",
+        "rarity_rank": 2,
+        "attuned": true,
+        "attunement_requirement": "",
+        "description": "A quiver that magically augments its ammunition to fly straighter and faster. Once per short rest, you may activate the augmentation as a bonus action, granting you advantage on attacks with the ammunition until the end of your turn.",
+        "homebrew": true,
+        "url": "/dnd/items/snipersquiver/"
+      },
+      {
+        "name": "Witcher's Medallion",
+        "item_type": "wondrous",
+        "rarity": "uncommon",
+        "rarity_rank": 2,
+        "attuned": true,
+        "attunement_requirement": "by a Witcher",
+        "description": "This amulet bears the symbol of an animal, representing the Witcher school it was forged for. While you wear the witcher's symbol, you gain a bonus to Adrenaline save DC of your Witcher abilities. The bonus is determined by the medallion's rarity.\n\n<div class=\"break\"></div>\n\nWhile you wear this medallion, it hums to arcane auras. You can sense the presence of non-Humanoid creatures within 30 ft. You can also detect the presence of magic (as per the detect magic spell) within 30 feet. This does not reveal the school of magic or the source unless you can see it.",
+        "homebrew": true,
+        "url": "/dnd/items/witchersmedallion/"
+      }
+    ],
+    "consumable": [
+      {
+        "name": "Bomba Fruit",
+        "item_type": "consumable",
+        "rarity": "uncommon",
+        "rarity_rank": 2,
+        "attuned": false,
+        "attunement_requirement": "",
+        "description": "A bright yellow, small, and spiky fruit that is well known for its ability to revitalise any who eat it. As an action, consume the fruit to gain 1d10 + 3 temporary hitpoints for 1 hour.",
+        "homebrew": true,
+        "url": "/dnd/items/bombafruit/"
+      }
+    ],
+    "weapon": [
+      {
+        "name": "Ardinian Handaxe",
+        "item_type": "weapon",
+        "rarity": "uncommon",
+        "rarity_rank": 2,
+        "attuned": true,
+        "attunement_requirement": "'' # ex: by a sorcerer",
+        "description": "A handaxe made out of Ardite, a metal said to be blessed by a god. It is heavily sought after for its superior cutting edge over standard blades. The axe has 3 charges, which are regained at the end of a long rest.\n\n<div class=\"break\"></div>\n\n**Bleeding Bite.** When you succeed an attack against a creature with this weapon, you may consume a charge to force the creature to make a Constitution saving throw with DC 14. On a fail, the wound ruptures open, causing them to Bleed for 1 minute.",
+        "homebrew": true,
+        "url": "/dnd/items/ardinianhandaxe/"
+      },
+      {
+        "name": "Cobalt Dagger",
+        "item_type": "weapon",
+        "rarity": "uncommon",
+        "rarity_rank": 2,
+        "attuned": true,
+        "attunement_requirement": "",
+        "description": "A dagger made out of Cobalt, a metal said to be blessed by a god. It is heavily sought after for its lightweight and similar cutting power. The dagger has 3 charges, which are regained at the end of a long rest.\n\n<div class=\"break\"></div>\n\n**Swift Strike.** When you make an attack, you may consume a charge to make an additional attack with this weapon as a bonus action.",
+        "homebrew": true,
+        "url": "/dnd/items/cobaltdagger/"
+      },
+      {
+        "name": "Flame Spear",
+        "item_type": "weapon",
+        "rarity": "uncommon",
+        "rarity_rank": 2,
+        "attuned": false,
+        "attunement_requirement": "",
+        "description": "A spear that has been imbued with the might of volcanic fire. Once per round when you make a weapon attack, you may choose to expel stored fire, dealing 1d6 fire damage to the target, even if the attack missed.",
+        "homebrew": true,
+        "url": "/dnd/items/flamespear/"
+      },
+      {
+        "name": "Frozen Dagger",
+        "item_type": "weapon",
+        "rarity": "uncommon",
+        "rarity_rank": 2,
+        "attuned": true,
+        "attunement_requirement": "",
+        "description": "A dagger with a leather grip and a hilt in the shape of a snowflake. Its blade is also coated in a layer of sharp ice. Once per long rest, you can cast Ice Knife at will, with 13 as the DC.",
+        "homebrew": true,
+        "url": "/dnd/items/frozendagger/"
+      },
+      {
+        "name": "Frozen Soul Dagger",
+        "item_type": "weapon",
+        "rarity": "uncommon",
+        "rarity_rank": 2,
+        "attuned": true,
+        "attunement_requirement": "",
+        "description": "A dagger made from the soul of a frozen person. The art of soul-catching is rather mysterious and heavily guarded by the guilds that know how to contain a soul inside of material. Depending on the nature of the soul's death, it is said that these souls contain great elemental power. A frozen soul embodies the sheer cold of the snowy mountains. At its very weakest, it can freeze those that are struck by the material, consuming their soul should they perish while they are encased in ice.\n\n**Frost DC.** Many of the weapon's features involve a Frost DC Save. At its current state, the Frost DC is 14.\n\n<div class=\"break\"></div>\n\n**Freeze.** Upon attacking a creature, you may expend a charge to encase a creature in ice. The creature must make a CON Save against your Frost DC. Upon fail, they are Petrified until the end of your next turn.\n\n<div class=\"break\"></div>\n\n**Cracked Ice.** Petrified creatures that have been frozen do not have resistance against your attacks with this weapon.\n\n<div class=\"break\"></div>\n\n**Consume Soul.** When you engage in combat against a powerful creature, the knife will shudder with hunger. Should you bring that creature below 0 Hit Points while they are Frozen, their soul will be consumed, strengthening the magic within the weapon, potentially unlocking new abilities and power.\n\n<div class=\"break\"></div>\n\n**Cursed.** This item is cursed by those who attune to it. When you attune to the blade and do not feed it souls for some time, it will begin to consume your own. After a certain amount of time, usually around a week, you will begin gaining points of exhaustion that can not be recovered from in any way except for consuming a soul.",
+        "homebrew": true,
+        "url": "/dnd/items/frozensouldagger/"
+      },
+      {
+        "name": "Hand Runes",
+        "item_type": "weapon",
+        "rarity": "uncommon",
+        "rarity_rank": 2,
+        "attuned": true,
+        "attunement_requirement": "by a wizard",
+        "description": "Two jade bracelets that when activated, burst into circular discs made of arcane runes. These discs can be used as weapons, dealing force damage and using the wielder's Intelligence instead of Strength.",
+        "homebrew": true,
+        "url": "/dnd/items/handrunes/"
+      },
+      {
+        "name": "Ithen's Finest",
+        "item_type": "weapon",
+        "rarity": "uncommon",
+        "rarity_rank": 2,
+        "attuned": true,
+        "attunement_requirement": "",
+        "description": "A highly engineered weapon, consisting of both a longsword and a pistol, allowing the user to wield them together as a single weapon or break them apart for two-weapon fighting. Only four of these weapons were every created, owned by the original designers, the Princes and Princesses of Ithen.\n\n<div class=\"break\"></div>\n\n**Longsword.** A well-forged steel longsword, bearing the crest of Ithen. Heavily modified from a traditional longsword design, this weapon features an insert beneath the hilt for the sword's companion pistol.\n\n<div class=\"break\"></div>\n\n**Pistol.** A handcrafted pistol, sporting a three-shot cyclic chamber. Ahead of its time, it utilizes bullets with a break-action design rather than a front-loading design. There is a specialized mechanism where the handle can be folded in to be inserted into its companion longsword. In front of the chamber, there are four sets of arcane runes that run along the barrel. However, three of them seem to be broken.\n\n<div class=\"break\"></div>\n\nThis weapon has two charges, which can be expended to augment a bullet as it leaves the chamber. When making a weapon attack with this pistol, you may expend a charge to use the following shot.\n\n<div class=\"break\"></div>\n\n**Atlas's Orders.** On a hit, the target becomes marked with deadly energies until the start of your next turn. Once on each creature's turn, the target takes an additional d6 of damage when they take damage.\n\n<div class=\"break\"></div>\n\nThis pistol regains charges at the end of a long rest.",
+        "homebrew": true,
+        "url": "/dnd/items/ithensfinest/"
+      },
+      {
+        "name": "Manyullyn Longsword",
+        "item_type": "weapon",
+        "rarity": "uncommon",
+        "rarity_rank": 2,
+        "attuned": true,
+        "attunement_requirement": "",
+        "description": "A longsword made out of Manyullyn, a metal said to be blessed by a goddess. It is heavily sought after for its consistency and lightweight form.\n\n<div class=\"break\"></div>\n\n**Sweeping Strike.** Using the power of the blessed metal, magically extend your weapon's reach so it hits all creatures within 5 ft. of the target.",
+        "homebrew": true,
+        "url": "/dnd/items/manyullynlongsword/"
+      },
+      {
+        "name": "Scoundrel's Cutlass",
+        "item_type": "weapon",
+        "rarity": "uncommon",
+        "rarity_rank": 2,
+        "attuned": true,
+        "attunement_requirement": "by a creature with proficiency in Vehicles (Water)",
+        "description": "A curved, one-sided sword with a ruby embedded into the crossguard. When wielded, the user can hear the subtle sounds of water slapping the side of a ship. The cutlass has two charges. When you succeed a weapon attack with the sword, you may force the target to make a Constitution saving throw with a DC of 8 + your proficiency + your Dexterity. Upon fail, they are Blinded until the end of your next turn. You regain expended charges at the end of a long rest.",
+        "homebrew": true,
+        "url": "/dnd/items/scoundrelscutlass/"
+      },
+      {
+        "name": "Snakebite",
+        "item_type": "weapon",
+        "rarity": "uncommon",
+        "rarity_rank": 2,
+        "attuned": true,
+        "attunement_requirement": "",
+        "description": "A very unique design for a weapon. A small snake is seen coiling around the handle that acts as a grip. It is not magical, but actually uses clever contraptions that keeps the edge of the blade tipped with poison. A small hole at the bottom of its handle can bold a 1 oz bottle of any liquid. The liquid must have some effect when injected or ingested in order for it to work with this weapon. Whenever landing a hit, the target must make a CON save with DC determined by the liquid in order for it to have its intended effect. \n\n<div class=\"break\"></div>\n\nFor each 1 oz. bottle of liquid, the weapon has 5 uses before it uses up all the liquid, and then a new bottle must be placed in.\n\n<div class=\"break\"></div>\n\nThis weapon is very well made, granting it bonuses equal to a +1 weapon.",
+        "homebrew": true,
+        "url": "/dnd/items/snakebite/"
+      },
+      {
+        "name": "Venalin Bow",
+        "item_type": "weapon",
+        "rarity": "uncommon",
+        "rarity_rank": 2,
+        "attuned": true,
+        "attunement_requirement": "",
+        "description": "A magical shortbow crafted from Venalin, a metal said to be blessed by a god.. It is commonly seen among the ranks of archers, but it is also seen in the hands of basic adventurers, who either bought the sacred weapon or looted it from another location. It is famous for its ability to fire arrows straighter and faster than any standard bow.\n\n<div class=\"break\"></div>\n\n**Moonlit Arrow.** Once per long rest, a nocked arrow can be infused with the light of the Moon, increasing its speed and strength. The user has advantage on their shot while also dealing an extra 1d6 radiant damage. The damage is increased by 5 if it is used at night.",
+        "homebrew": true,
+        "url": "/dnd/items/venalinbow/"
+      }
+    ],
+    "armor": [
+      {
+        "name": "Cobalt Shield",
+        "item_type": "armor",
+        "rarity": "uncommon",
+        "rarity_rank": 2,
+        "attuned": true,
+        "attunement_requirement": "",
+        "description": "A very beautifully made shield blessed with divine energy. When the user plants to shield into the ground and speaks its command word, the shield produces a transparent wall that is 20 ft. wide and 15 ft. tall. The wall has an AC of 15, has 30 hit points, and provides full cover to creatures behind it. After 1 minute or if the wall loses all of its hit points, the wall shatters and the shield returns to the wrist of the user. This feature can only be used once per long rest.",
+        "homebrew": true,
+        "url": "/dnd/items/cobaltshield/"
+      },
+      {
+        "name": "Hidden Shield",
+        "item_type": "armor",
+        "rarity": "uncommon",
+        "rarity_rank": 2,
+        "attuned": true,
+        "attunement_requirement": "",
+        "description": "A hidden shield magically compacted and concealed within a form of wristwear (bracelet, watch, etc.). When the mechanism is activated, the shield expands to protect the user from attack. The shield has a center of bronze with the outside rim made of a transparent magical force to decrease blindspots. The mechanism can be activated as a bonus action or as a reaction, adding 2 to the user's AC.",
+        "homebrew": true,
+        "url": "/dnd/items/hiddenshield/"
+      }
+    ]
+  },
+  "rare": {
+    "wondrous": [
+      {
+        "name": "Cloak of Balance",
+        "item_type": "wondrous",
+        "rarity": "rare",
+        "rarity_rank": 3,
+        "attuned": true,
+        "attunement_requirement": "",
+        "description": "A cloak made out of a fine cloth that is a deep purple. It is accented in black with holy symbols of Ianite. The cloak itself is blessed by Ianite to bear a fraction of her divine might. The cloak was once very common when Ruxomar was still a kingdom but has slowly become rarer and rarer as time passes.\n\n<div class=\"break\"></div>\n\nYou can now cast the Judgement and Repulse spell at will.",
+        "homebrew": true,
+        "url": "/dnd/items/cloakofbalance/"
+      },
+      {
+        "name": "Deployable Zipline",
+        "item_type": "wondrous",
+        "rarity": "rare",
+        "rarity_rank": 3,
+        "attuned": true,
+        "attunement_requirement": "",
+        "description": "A large metal tube with a trigger. It was originally meant for a special task force in Averon, though the project was canceled after it was deemed a failure. Upon pulling the trigger, a large arrow-like bolt attached to a metal rope shoots out the front and impales into practically anything within 150 ft. After being connected, the rope will naturally make itself taut and plant a spike into the ground below where it was shot. The tube will then eject eight handheld grips that attach and accelerate the user along the rope, even vertically upwards.\n\n<div class=\"break\"></div>\n\nThe zipline can be used as a weapon and any creature impaled is restricted in movement (cannot move out of the rope range until the spike is taken out or rope is cut).",
+        "homebrew": true,
+        "url": "/dnd/items/deployablezipline/"
+      },
+      {
+        "name": "Mudbog Core",
+        "item_type": "wondrous",
+        "rarity": "rare",
+        "rarity_rank": 3,
+        "attuned": true,
+        "attunement_requirement": "",
+        "description": "A core of pure elemental power, taken from the heart of a Mudbog. This small, rock-like trinket is able to grant the user control over the very ground they stand on.\n\n<div class=\"break\"></div>\n\nThe attuned user has access to the cantrip Mold Earth, and the spells Earth Tremor, Earth Bind, and Erupting Earth. These spells have a Save DC of 15. The core has 5 charges and casting a levelled spell uses a number of charges equal to the spells level. The core regains a d4 of charges at every dawn.",
+        "homebrew": true,
+        "url": "/dnd/items/mudbogcore/"
+      },
+      {
+        "name": "Pouch of the All-Brewer",
+        "item_type": "wondrous",
+        "rarity": "rare",
+        "rarity_rank": 3,
+        "attuned": true,
+        "attunement_requirement": "",
+        "description": "You can pull a random potion out of your bag and choose to either drink it or toss it to another creature. Said creature can then drink the vial as a reaction. The vial will disappear after 5 minutes. Upon further investigation, it is impossible to determine the potions.\n\n<div class=\"break\"></div>\n\nAs a bonus action, pull out a random potion from your bag and roll a 1d6 to determine what type of potion it is.\n\n<div class=\"break\"></div>\n\n**Potion Table (1d6):**\n\n| d6 | Potion | Effect |\n|-----|--------|--------|\n|1| **Dud potion.** | No effect.|\n|2| **Potion of Guidance.** | Gain a 1d4 to the creature's next roll.|\n|3| **Potion of the Wind.** | Gain +10 movement speed and +1 to Dexterity Modifier until the end of their next turn.|\n|4| **Potion of Healing.** | Gain 3d4 + 3 Hit Points.|\n|5| **Potion of Weakness.** | Gain Improved Critical until the end of their next turn.|\n|6| **Potion of Inspiration.** | Gain Inspiration.|",
+        "homebrew": true,
+        "url": "/dnd/items/pouchoftheallbrewer/"
+      },
+      {
+        "name": "Ring of Blinding Radiance",
+        "item_type": "wondrous",
+        "rarity": "rare",
+        "rarity_rank": 3,
+        "attuned": true,
+        "attunement_requirement": "",
+        "description": "A simple platinum ring, with runes of topaz dust carved on the outside, it carries the power of the celestial light. While attuned, any creature struck by a Divine Smite must make a CON Save against the user's paladin Spell Save DC. Upon fail, they are blinded until the end of the user's next turn.\n\n<div class=\"break\"></div>\n\nThis feature may be used three times before needing to recharge at the next dawn.",
+        "homebrew": true,
+        "url": "/dnd/items/ringofblindingradiance/"
+      },
+      {
+        "name": "Ring of Piercing",
+        "item_type": "wondrous",
+        "rarity": "rare",
+        "rarity_rank": 3,
+        "attuned": true,
+        "attunement_requirement": "",
+        "description": "A large ring made for a person much bigger than normal. For a medium or small creature, this is more like a bracelet. The gemstone is a large, thin ruby with very sharp points. The ring has 3 charges. When you make an attack or cast a spell that does piercing damage while wearing this ring, you can expend 1 of its charges to reroll up to 3 dice and must use the new rolls. The ring regains 1d3 charges at the end of a long rest.",
+        "homebrew": true,
+        "url": "/dnd/items/ringofpiercing/"
+      },
+      {
+        "name": "Shadoweave Cloak",
+        "item_type": "wondrous",
+        "rarity": "rare",
+        "rarity_rank": 3,
+        "attuned": true,
+        "attunement_requirement": "",
+        "description": "A thin, black cloak with a collar that rises up around the neck, it not only absorbs light, but it also exudes darkness around the wearer. The user is always considered Lightly Obscured unless the Daylight spell or other forms of radiant light is shone upon it.\n\n<div class=\"break\"></div>\n\nThe attuned user also gains the Darkness spell, which they are able to see through when they cast it. Once casted, this feature of the cloak can not be used until the next Dawn.",
+        "homebrew": true,
+        "url": "/dnd/items/shadoweavecloak/"
+      },
+      {
+        "name": "Soul Lantern",
+        "item_type": "wondrous",
+        "rarity": "rare",
+        "rarity_rank": 3,
+        "attuned": true,
+        "attunement_requirement": "",
+        "description": "The lantern you took from Galaerd and gave to SiDi is now empty, and its flame has snuffed out. With a special ritual spell, you can capture souls and place them into the lantern, upon which the green flame will relight. The lantern can hold up to four souls simultaneously, represented by a charge. As an action, you may consume a soul to roll on the Soul Table. Depending on the power of the soul consumed, it may grant you a modifier.\n\n<div class=\"break\"></div>\n\n**Soul Table (1d10):**\n\n| d10 | Effect |\n|-----|--------|\n|1| A creature within 30 ft. that can see the lantern gains 1d4 temporary hit points.|\n|3| A creature within 30 ft. that can see the lantern gains advantage on its next attack roll, saving throw, or ability check.|\n|4| Cause the soul to explode in a sonic shriek, casting Shatter within range.|\n|5| The soul corrupts the heart of a creature, which must make a Wisdom saving throw with DC 14. Upon failure, they are affected as if by the Confusion spell.|\n|6| A creature within 30 ft. is haunted by the soul you summoned and must make a Wisdom saving throw with DC 14 or be frightened until the end of your next turn.|\n|7| Up to 3 creatures within 30 ft. that can see the lantern regain 1d8 hit points.|\n|8| You tug on a number of souls' Direction equal to the modifier (min. 1), casting Command on all of them.|\n|9| A creature within 30 ft. that can see the lantern upcasts their next spell by 1 level.|\n|10| The soul projects itself in a location within 20 ft. of you for 1 minute. As a bonus action, you may swap places with it. On your turn, you may command the soul to move up to 15 ft.|\n|11| The soul latches onto a creature within 30 ft. which must make a Strength saving throw with DC 15 or be restrained until the end of your next turn.|\n|12| The soul expels its energy towards a creature, casting Blight within range.|\n|13| A creature's Direction is empowered for 1 minute, granting them advantage on all attack rolls and ability checks.|\n|14| The soul attempts to possess a creature, casting Dominate Person within range.|\n|15| A creature within 30 ft. is invigorated, gaining the effects of the Haste spell for 3 rounds.|\n|16| The soul shares the burden of a creature's Mind within 30 ft. for 1 minute. While they share a burden, the creature may hold concentration on 2 spells at once and has resistance to Psychic damage. However, taking Psychic damage instantly dispels the soul and one of the spells.|\n|17| A creature within 30 ft. that can see the lantern has their Mind strengthened, giving it advantage on Wisdom, Intelligence, and Charisma saving throws for 1 minute.|\n|18| A creature within 30 ft. that can see the lantern deals maximum damage on its next attack or spell.|\n|19| The soul tears at the essence of a creature, casting Disintegrate.|\n|20| Assume the statblock of the soul you captured until the end of your next turn. After the transformation ends, you are stunned for 1 round.|",
+        "homebrew": true,
+        "url": "/dnd/items/soullantern/"
+      },
+      {
+        "name": "Stealth Suit",
+        "item_type": "wondrous",
+        "rarity": "rare",
+        "rarity_rank": 3,
+        "attuned": true,
+        "attunement_requirement": "",
+        "description": "A thin, nearly skin-tight suit that is meant to enhance the stealthy capabilities of the wearer. It was originally meant for a special task force in Averon, though the project was canceled after it was deemed a failure. Anyone who wears this suit will no longer have their clothes rustle or weapons make a sound when they move around, providing a +2 bonus to all Stealth rolls.",
+        "homebrew": true,
+        "url": "/dnd/items/stealthsuit/"
+      },
+      {
+        "name": "Thunderous Lute",
+        "item_type": "wondrous",
+        "rarity": "rare",
+        "rarity_rank": 3,
+        "attuned": true,
+        "attunement_requirement": "",
+        "description": "A magical lute whose strings were struck by lightning on an ever stormy landmass to the west. Or so the tale goes anyway. Whenever anyone attempts to play the lute, they would feel very minor shocks whenever they touched the strings. Not strong enough to waver the concentration of a trained musician but enough to be noticeable. The Thunderous Lute has three charges, which reset after a long rest.\n\n<div class=\"break\"></div>\n\n**Shock Field.** Consuming one of the charges, the attuned user can cause a field of electricity to surround a single creature. The field will automatically morph so that the target is not harmed by the field. When any other creature makes contact with the field (touch spell, melee attack, etc.), they must make a Constitution Save with DC equal to the user's Spell Save DC. On a fail, the creature takes 2d4 lightning damage. If rolled a NAT 1, the creature is paralyzed for 1 round.\n\n<div class=\"break\"></div>\n\n**Call to the Heavens.** Consuming two of the charges, the attuned user can summon down lightning from above as an action, striking a single creature. The creature must make a Dexterity Save with DC 14. On a fail, the creature takes 4d8 lightning damage and is stunned until the start of their next turn or half as much damage on a successful save.",
+        "homebrew": true,
+        "url": "/dnd/items/thunderouslute/"
+      },
+      {
+        "name": "Twinring Pick",
+        "item_type": "wondrous",
+        "rarity": "rare",
+        "rarity_rank": 3,
+        "attuned": true,
+        "attunement_requirement": "",
+        "description": "A pick for a stringed instrument with two rings to insert the user's fingers. The pick is charged with sonic energy that allows it to split sound waves in two. When you cast a bard spell that targets a single creature or use bardic inspiration, you may use a charge to target an additional creature. This magical item regains its charges at the end of a long rest.",
+        "homebrew": true,
+        "url": "/dnd/items/twinringpick/"
+      }
+    ],
+    "consumable": [
+      {
+        "name": "Potion of Potency",
+        "item_type": "consumable",
+        "rarity": "rare",
+        "rarity_rank": 3,
+        "attuned": false,
+        "attunement_requirement": "",
+        "description": "An ethereal blue liquid swirls within the glass and small wisps of lightning, fire, and other magical effects can be seen. This concentrated liquid of pure source that Galaerd has concocted produces powerful, but inconsistent effects.\n\n<div class=\"break\"></div>\n\nFor 1 minute after drinking, roll on the Potency table to determine your effect.\n\n<div class=\"break\"></div>\n\n**Potency Table (1d6):**\n\n| d6 | Effect |\n|-----|--------|\n|1| You gain a +1 bonus to your saving throws.|\n|2| Your speed is increased by 10 ft.|\n|3| An illusory copy appears and begins mimicking your movements, granting you the effects of Mirror Image with 1 copy.|\n|4| You gain 3 temporary hit points at the start of your turn.|\n|5| The air around you begins to heat up and burn, dealing 1d6 fire damage to every creature that starts its turn or enters within 10 ft. of you.|\n|6| You can reroll up to 3 damage die when you cast a damaging spell or make an attack.|",
+        "homebrew": true,
+        "url": "/dnd/items/potionofpotency/"
+      }
+    ],
+    "weapon": [
+      {
+        "name": "Bow of Balance",
+        "item_type": "weapon",
+        "rarity": "rare",
+        "rarity_rank": 3,
+        "attuned": true,
+        "attunement_requirement": "",
+        "description": "A beautifully crafted bow made of elven wood and a blessed metal core. It is well used amongst followers as a weapon of war and a tool to hunt. It boasts extreme accuracy and consistency while also having magical properties for more devout followers.\n\n<div class=\"break\"></div>\n\n**Split Arrow.** Upon hitting an attack with the bow, consume a charge to cause the arrows to dissolve into two glowing bolts that act similarly to magic missiles, dealing an additional 1d4+1 force damage for each missile on any creature within 20 ft. of the target.\n\n<div class=\"break\"></div>\n\n**Guided Arrow.** When attacking with the bow, consume a charge to bless it with divine energy so that it automatically seeks the opponent, giving you advantage on the hit.\n\n<div class=\"break\"></div>\n\nThis weapon is a +2 magical weapon.",
+        "homebrew": true,
+        "url": "/dnd/items/bowofbalance/"
+      },
+      {
+        "name": "Hidden Blade",
+        "item_type": "weapon",
+        "rarity": "rare",
+        "rarity_rank": 3,
+        "attuned": true,
+        "attunement_requirement": "",
+        "description": "A strange contraption that fits around your wrist. When you flick your hand back, a small blade shoots forward, extending past your hand. Another flick and the blade disappears once more. When the attuned user wears it, the item will magically change shape and color to blend in with your sleeve (or skin). A creature investigating the wrist must roll Investigation DC 16 to notice the blade, having disadvantage if the attuned user is wearing it.\n\n<div class=\"break\"></div>\n\nWhile this weapon acts as a normal dagger, it can also be used to easily assassinate or severely damage targets when in hiding.\n\n<div class=\"break\"></div>\n\n**Sneak Strike.** When an attack is made while you are hidden, you may add 4d6 piercing damage to the attack. If you are hidden but the target is aware of your presence Sneak Strike deals half damage.\n\n<div class=\"break\"></div>\n\n**Assassinate.** When you are hidden, you may attempt to assassinate a target. By plunging the blade in a critical area, most targets are likely to instantly die by the attack. First, the user must roll a Stealth check with DC equal to the enemy's passive perception. Upon success, the user can then make an attack with the weapon (without advantage from stealth). If the Hit succeeds and is greater than or equal to 16 + (2*CR), the creature will automatically die. If the Hit is lower but still succeeds, the attack is a critical hit, and Sneak Strike is added. If the user fails the initial Stealth check, the attack is still made but without advantage or Sneak Strike.",
+        "homebrew": true,
+        "url": "/dnd/items/hiddenblade/"
+      },
+      {
+        "name": "Makeshift Blunderbuss",
+        "item_type": "weapon",
+        "rarity": "rare",
+        "rarity_rank": 3,
+        "attuned": true,
+        "attunement_requirement": "",
+        "description": "A very crude and unreliable invention. It simply consists a steel tube with a hole to insert a fuse. Ammunition and gunpowder is loaded through the bore.\n\n<div class=\"break\"></div>\n\nUpon misfiring, the gun completely explodes, dealing 2d6 Fire damage to the user and sending all projectiles in random directions. If using ball bearings (or many projectiles), all creatures within 15 ft. take 1d6 piercing damage (including the user). If using only a few projectiles, they fire off in random directions at the DM's choice. Any targetted creatures must make a DEX save with DC 18 to avoid the shot.",
+        "homebrew": true,
+        "url": "/dnd/items/makeshiftblunderbuss/"
+      },
+      {
+        "name": "Mutia",
+        "item_type": "weapon",
+        "rarity": "rare",
+        "rarity_rank": 3,
+        "attuned": true,
+        "attunement_requirement": "",
+        "description": "A revolver once belonging to Fandango. With a six-shot cylinder and magic imbued into its metal, it is able to augment the bullet in the chamber. Without an action, you may consume a charge and change the current bullet to one of the following shots.\n\n<div class=\"break\"></div>\n\n**Flare Shot.** The bullet is transmutated to become a small bolt of fire, causing every creature within 10 ft of the target (and the target) to be set on fire. At the start of their turn, they take 8 Fire damage until they are put out.\n\n<div class=\"break\"></div>\n\n**Pin Shot.** The bullet is made to stick the target into a nearby surface. When hit, the creature is sent backward 15 ft. sticking to any wall or hard surface encountered along the way, forcing them to make a Strength Save with DC 16. Upon fail, they are restrained. If there is no wall, they instead make a DEX Save with DC 14. Upon fail they are proned. The creature may reroll the save at the end of its turn.\n\n<div class=\"break\"></div>\n\n**Fan the Hammer.** Continuously slam your palm on the hammer of the revolver to rapidly but inaccurately shoot multiple rounds. Make a number of attack rolls equal to how many shots you wish to fire, with a maximum being how many bullets are left in the cylinder. However, each subsequent shot after the first has an additional -1 to the hit (+0 on the first, -1 on the second, -2 on the third, etc.).\n\n<div class=\"break\"></div>\n\nYou have a +1 bonus to attack and damage rolls made with this magic weapon.",
+        "homebrew": true,
+        "url": "/dnd/items/mutia/"
+      },
+      {
+        "name": "Pickerang",
+        "item_type": "weapon",
+        "rarity": "rare",
+        "rarity_rank": 3,
+        "attuned": true,
+        "attunement_requirement": "",
+        "description": "This pickaxe has a strange detachable head that is imbued with Aeromancy, allowing it to curve along the air like a boomerang. Whenever you fling the head, you may target 2 additional creatures if you can make a reasonable boomerang arc. This also allows you to strike targets around cover, though with disadvantage. The dagger will always find its way back to you if another creature has not caught it mid-flight.\n\n<div class=\"break\"></div>\n\nThis is also a +1 Magical Weapon.",
+        "homebrew": true,
+        "url": "/dnd/items/pickerang/"
+      },
+      {
+        "name": "Spear of the Skies",
+        "item_type": "weapon",
+        "rarity": "rare",
+        "rarity_rank": 3,
+        "attuned": true,
+        "attunement_requirement": "",
+        "description": "The Valkyries are said to scour battlefields and places of conflict in search of souls who fell in honorable combat.\n\n<div class=\"break\"></div>\n\nThis spear was found stuck in the center of an ancient tree stump. It had a string of Sylvan words around the tip that read out \"Warriors, heed the Valkyrie's call. Wield the spear of skies as your companions lay their arms to rest, and face your final test\". Upon defeating the Spirit Valkyrie that appeared, it left behind the spear as a reward.\n\n<div class=\"break\"></div>\n\nThe spear is full sized, constructed out of a Sisterine Oak handle and a Asgrian Steel tip. The spear blade is constructed in a V-shape with a triangular symbol engraved on both sides. It is quite light and seems to have a certain control over lightning.\n\n<div class=\"break\"></div>\n\n**Wide Sweep.** Using up a charge, you can make change your attack action to perform a sweep that strikes all creatures in a semi-circle with radius of 10 ft. in any direction of your choosing. All creatures caught within the radius much make a DEX save with DC equal to your To Hit Roll. On fail, they are hit with the spear. On success, they take no damage.\n\n<div class=\"break\"></div>\n\n**Skyward Crash.** Using up a charge, you may electrify your spear as an action. All subsequent hits with the spear for the next minute have an added 1d6 Lightning damage.\n\n<div class=\"break\"></div>\n\n**Recall.** Upon throwing the spear, you may call it back into your hand as a bonus action.\n\n<div class=\"break\"></div>\n\nThe spear is also a +1 magical weapon.",
+        "homebrew": true,
+        "url": "/dnd/items/spearoftheskies/"
+      },
+      {
+        "name": "Static Bow",
+        "item_type": "weapon",
+        "rarity": "rare",
+        "rarity_rank": 3,
+        "attuned": true,
+        "attunement_requirement": "",
+        "description": "A short bow made of wood from a far-off land, it has been imported into nations around the world. Its string is enchanted to release extreme shocks of electricity, making it an excellent tool in restraining targets.\n\n<div class=\"break\"></div>\n\n**Static Charge.** After hitting a target, the arrow releases forks of lighting dealing 1d6 lightning damage and making the target roll a Constitution save with DC 14, or else it is left Paralyzed. The lightning will then attempt to find other targets. The attuned may choose another target within 10 ft. who also takes 1d6 lightning damage and makes a Constitution save or be Paralyzed. This can be repeated once more to Paralyze a total of 3 targets. At the start of the target's turn, it must make another Constitution save to end the Paralysis, with the DC lowering by 1 for every subsequent roll (14, 13, 12...).\n\n<div class=\"break\"></div>\n\n**Lightningrod.** The bow gains 1 extra charge if the user is struck with lightning damage.",
+        "homebrew": true,
+        "url": "/dnd/items/staticbow/"
+      },
+      {
+        "name": "Twinstep Daggers",
+        "item_type": "weapon",
+        "rarity": "rare",
+        "rarity_rank": 3,
+        "attuned": true,
+        "attunement_requirement": "",
+        "description": "These twin daggers have a unique curviness to their design as well as Aeromancy imbued into their metal, allowing them to curve along the air like a boomerang. Whenever you throw the dagger, you may target 1 additional creature if you can make a reasonable boomerang arc. This also allows you to strike targets around cover, though with disadvantage. The dagger will always find its way back to you if another creature has not caught it mid-flight.\n\n<div class=\"break\"></div>\n\nThis is also a +1 Magical Weapon.",
+        "homebrew": true,
+        "url": "/dnd/items/twinstepdaggers/"
+      },
+      {
+        "name": "Watchman's Spear",
+        "item_type": "weapon",
+        "rarity": "rare",
+        "rarity_rank": 3,
+        "attuned": true,
+        "attunement_requirement": "by a guard or soldier",
+        "description": "A spear constructed out of a bronze allow with a steel tip, this weapon is commonly found in the hands of city guards or soldiers who protect their fellow comrades or citizens.\n\n<div class=\"break\"></div>\n\nUpon a successful hit, you may choose to Restrain the targeted creature by leaving your spear inside of them. The creature must make a DC 16 STR Save. The creature may reroll this Save as an action to remove the spear. Upon a success, the spear is returned to the user's hand (or feet if no hands are free).\n\n<div class=\"break\"></div>\n\nThis weapon is a +1 magical weapon.",
+        "homebrew": true,
+        "url": "/dnd/items/watchmansspear/"
+      }
+    ],
+    "armor": []
+  },
+  "very-rare": {
+    "wondrous": [
+      {
+        "name": "Knuckles of Momentum",
+        "item_type": "wondrous",
+        "rarity": "very-rare",
+        "rarity_rank": 4,
+        "attuned": true,
+        "attunement_requirement": "",
+        "description": "Knuckles infused with the essence of wind, allowing the user to imbue their fists with the momentum of their speed, causing destructive effects on their targets.\n\n<div class=\"break\"></div>\n\nWhile attuned, the user's speed increases by 10 ft. Your unarmed strikes become +2.\n\n<div class=\"break\"></div>\n\n**Consume Momentum.** You may use up some of your movement in exchange for more damage when making an unarmed strike. For every 5 ft. of movement used, your unarmed strike deals an additional d4 of bludgeoning damage.\n\n<div class=\"break\"></div>\n\n**Wind Cloak.** Stir up massive winds that kick up dust and debris around you, allowing you to make the Hide action as a bonus action. You stay hidden until you choose to dispel the winds or make an Attack action.",
+        "homebrew": true,
+        "url": "/dnd/items/knucklesofmomentum/"
+      }
+    ],
+    "consumable": [],
+    "weapon": [
+      {
+        "name": "Blade of the Ragnar",
+        "item_type": "weapon",
+        "rarity": "very-rare",
+        "rarity_rank": 4,
+        "attuned": true,
+        "attunement_requirement": "",
+        "description": "A large longsword made of high-quality steel and leather. The soul of Ragnar rests within his old blade. While holding the sword, any creature may telepathically communicate with Ragnar, so long as they speak Common or Dwarvish. The sword has 3 charges that reset after a long rest which can be used for the following effect:\n\n<div class=\"break\"></div>\n\n**Burning Blade.** You may cast the Imbue Flames spell by consuming a charge.\n\n<div class=\"break\"></div>\n\n**Frenzied Strike.** When you reduce a creature to 0 hit points, you may consume a charge to make an additional attack as a bonus action.\n\n<div class=\"break\"></div>\n\nYou gain a +2 bonus to attack and damage rolls made with this magic weapon.\n\n<div class=\"break\"></div>\n\n**Cursed - Ragnar's Soul.** While attuned to this sword, the spirit of Ragnar influences you. You are unable to run away or back down from combat or challenge.\n\n<div class=\"break\"></div>\n\n**Cursed - Soulbound.** While attuned to this sword, you are unwilling to part with it and any attempts to have it be taken away from you are met with hostility.",
+        "homebrew": true,
+        "url": "/dnd/items/bladeoftheragnar/"
+      },
+      {
+        "name": "Mecris",
+        "item_type": "weapon",
+        "rarity": "very-rare",
+        "rarity_rank": 4,
+        "attuned": true,
+        "attunement_requirement": "",
+        "description": "A slim staff carved from a grey wood which originates from the Fey Wilds. According to The Merchant, it is one of the last artifacts from the locked land. Sitting at the top of the staff is a small green gem, which has markings within it that makes it look like an eye. The staff uses the wielder's mind to swing the weapon, rather than their strength or dexterity. Furthermore, the user is able to channel the lost power of the Fey Wild through the weapon in the form of casting spells after a successful hit. The staff can be strengthened after being dipped in springs that leaked into the material plane from the Fey Wild ages ago.\n\n<div class=\"break\"></div>\n\n**Mind Feed.** Whenever you successfully attack a hostile creature, you gain a +1 bonus to spell attack rolls and saving throw DCs of your druid spells. This stacks to a maximum of 3. Any bonuses past +1 only last for 1 minute.\n\n<div class=\"break\"></div>\n\n**Channel Fey.** Upon a successful attack, you may cast any of these spells for no action, consuming a number of charges equal to the spell's level.\n\n<div class=\"break\"></div>\n\n**Channel Fey Spells:**\n- **Maddening Forest.** 1st level\n- **Whisper of Nature.** 1st level\n- **Leech Life.** 2nd level\n- **Mark of Ceres.** 3rd level\n\n<div class=\"break\"></div>\n\nThis weapon is a +1 Magical Weapon.",
+        "homebrew": true,
+        "url": "/dnd/items/mecris/"
+      },
+      {
+        "name": "Prismatic Rapier",
+        "item_type": "weapon",
+        "rarity": "very-rare",
+        "rarity_rank": 4,
+        "attuned": true,
+        "attunement_requirement": "",
+        "description": "A rapier forged from chalcum crystals, making the blade gleam and shine a dim light with a 10 ft. radius. The chalcum crystals also grant the rapier several magical abilities.\n\n<div class=\"break\"></div>\n\n**Translucent Attacker.** Whenever you land a hit, you may use up a charge to become semi-transparent and make the Hide action with advantage for free. This translucence ends whenever you make an attack or cast a spell.\n\n<div class=\"break\"></div>\n\n**Blinding Strike.** Whenever you land a hit, you may use up a charge to cause a bright light to be focused onto a creature's eyes, forcing them to make a CON save with DC 15 or be blinded. Creatures who have blindsight or do not rely on sight are immune to this effect.\n\n<div class=\"break\"></div>\n\n**Critical Flash.** When landing a critical hit, the rapier suddenly unleashes a large amount of energy, dealing 1d8 radiant damage to the target.\n\n<div class=\"break\"></div>\n\nThis weapon is a +1 magical weapon.",
+        "homebrew": true,
+        "url": "/dnd/items/prismaticrapier/"
+      }
+    ],
+    "armor": []
+  },
+  "legendary": {
+    "wondrous": [
+      {
+        "name": "Circlet of Princes",
+        "item_type": "wondrous",
+        "rarity": "legendary",
+        "rarity_rank": 5,
+        "attuned": true,
+        "attunement_requirement": "",
+        "description": "A platinum circlet with a wreath of leaves, created by Pendragon, God of Kings, as a holy relic. Its power grants you the ability to gain the respect of those around you and be treated as a leader. The amount of charges directly scales with the amount of people under your will.\n\n<div class=\"break\"></div>\n\n**Charismatic Leader.** Your Charisma score is increased by 1.\n\n<div class=\"break\"></div>\n\n**Command DC.** Your Command DC is equal to your Charisma Score - 2.\n\n<div class=\"break\"></div>\n\n**Followers.** Humanoid/Sentient creatures that either trust you/see you as an ally or are under the effects of Command Respect. The number of charges in the circlet is equal to the number of followers you have, which unlocks certain abilities under the pillars of rulership. Followers not under the effects of Command Respect are not forced to follow your orders but are still susceptible to Command Respect.\n\n<div class=\"break\"></div>\n\n**Command Respect.** You are able to attempt to magically influence a creature to have an immense amount of respect for you. A creature can intentionally fall under this effect, but if it chooses to resist, they must pass a Wisdom save with DC equal to your Charisma Score. While under your command, they will follow orders that are reasonable and somewhat in line with their own morals (they are unlikely to commit murder or steal when they otherwise would not do so). Creatures who are hostile, harbor strong dislike towards you, or are keenly aware of the circlet, have advantage on the Wisdom save. A creature can attempt to break free from your will once a day, requiring the same Charisma score. You may only attempt this feature on the same creature once a day.\n\n<div class=\"break\"></div>\n\n**NOTE:** This effect is much greater than a simple charm, so Elves and similar creatures are still affected.\n\n<div class=\"break\"></div>\n\n**Pillar of Rulership.** There are three pillars of rulership, all of which are critical to becoming an excellent monarch. Them being Strength, Bravery, and Intellect. At the end of each long rest, you may choose one pillar to focus on. Each pillar grants you additional abilities that affect those under your command. Additional abilities are usable once you acquire enough subjects.\n\n<div class=\"break\"></div>\n\n**Strength.** Every ruler must show strength so that their power remains unchallenged.\n\n<div class=\"break\"></div>\n\n**Empowered Strike (1 Follower, 1 Charge).** As a bonus action, you strengthen a follower's or your next attack, giving it advantage on the hit roll.\n\n<div class=\"break\"></div>\n\n**Death Sentence (5 Followers, 4 Charges).** As an action, you mark a certain target for death. For the next round, any attacks against that target have advantage on the damage roll and Hit Rolls have Improved Critical (19-20). Creatures that already have Improved Critical have their crit. range extended by 1.\n\n<div class=\"break\"></div>\n\n**Bravery.** Every ruler must show bravery so that those around them may fight with as much courage.\n\n<div class=\"break\"></div>\n\n**Unyielding Courage (1 Follower, N Charges).** As a bonus action, you give a number of creatures equal to the number of charges you choose immense courage, which gives them advantage on any saves made against the Frightened condition and all Intimidation checks for the next minute.\n\n<div class=\"break\"></div>\n\n**Rally (4 Followers, 3 Charges).** As an action, you give a war shout and instill courage into your followers. Any followers that are within 60 ft. and can hear you gain Temp HP equal to your Charisma modifier and any creature below half-HP gain Inspiration every turn for 1 minute. Rally only works in life-or-death combat, meaning it does not work outside of initiative.\n\n<div class=\"break\"></div>\n\n**Intellect.** Every ruler must show intellect so that their decisions are sound and are trusted by their subjects.\n\n<div class=\"break\"></div>\n\n**Judgement (2 Followers, 2 Charge).** You look into the heart of a creature of your choice and can determine their general feelings/thoughts at the moment.\n\n<div class=\"break\"></div>\n\n**Settle Conflict (6 Followers, 4 Charges).** You influence other creatures to view you as extremely wise. Non-followers must make a Wisdom Save equal to your Will DC. Upon fail, they agree to allow you be the judge in a conflict or dispute that is happening. Whichever side you choose or however you make a compromise (within reason), both parties will be satisfied and agree to the terms.",
+        "homebrew": true,
+        "url": "/dnd/items/circletofprinces/"
+      }
+    ],
+    "consumable": [],
+    "weapon": [],
+    "armor": []
+  }
+}
