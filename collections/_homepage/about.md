@@ -16,7 +16,7 @@ In Fall 2025, I released **Into the Depths**, a solo-developed roguelike deckbui
 
 <div class="break"></div>
 
-Currently, I'm a **Software Engineering Intern** at VBO Tickets, contributing to a platform-wide front-end upgrade. I developed a new WebGL-powered seat map using PixiJS, designed to render up to 100,000 seats simultaneously with smooth performance — a major scalability improvement for large venues. I also implemented a dynamic sidebar using JavaScript, C#, HTML, and CSS, enabling users to sort and select seats in real time by price, value, or availability.
+In the Summer of 2025, I was a **Software Engineering Intern** at VBO Tickets, contributing to a platform-wide front-end upgrade. I developed a new WebGL-powered seat map using PixiJS, designed to render up to 100,000 seats simultaneously with smooth performance — a major scalability improvement for large venues. I also implemented a dynamic sidebar using JavaScript, C#, HTML, and CSS, enabling users to sort and select seats in real time by price, value, or availability.
 
 <div class="break"></div>
 
