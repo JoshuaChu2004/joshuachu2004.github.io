@@ -1,0 +1,489 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Ash and Fire Character Sheet - Joshua Chu</title>
+    <meta name="description" content="Bookmark this to keep an eye on my project updates!" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="/dnd/dndstyles.css">
+    
+    
+    
+
+</head>
+
+<body>
+    <header>
+        <div class="header-container" data-pageType="charactersheet" data-layout="charactersheet" data-custom_js="">
+            <nav>
+                <div style="display: flex; gap: 12px; align-items: center">
+                    <span class="pill">🎮 Joshua Chu</span>
+                    <span class="muted" style="font-size: 13px" data-short="Game Dev • Software Engineer • D&D Homebrew">Game Developer • Software Engineer • D&D Homebrew Creator</span>
+                </div>
+                <div class="links">
+                    <a href="/index.html">Home</a>
+                    <a href="/index.html#games" data-short="Games">Video Games</a>
+                    <a href="/index.html#software">Software</a>
+                    <a href="/dnd/">D&D</a>
+                    <a href="/index.html#about">About</a>
+                    <a href="/index.html#contact">Contact</a>
+                </div>
+            </nav>
+        </div>
+        <div class="header-container mobile" data-pageType="charactersheet" data-layout="charactersheet" data-custom_js="">
+
+            <nav>
+                <div class="pill mobile">🎮 Joshua Chu</div>
+                <div class="links">
+                    <a href="/index.html">Home</a>
+                    <a href="/index.html#games" data-short="Games">Video Games</a>
+                    <a href="/index.html#software">Software</a>
+                    <a href="/dnd/">D&D</a>
+                    <a href="/index.html#about">About</a>
+                    <a href="/index.html#contact">Contact</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div id="content-container" class="content-loading">
+        <body>
+    <div class="cs">
+        <div class="cs-header">
+            <div class="cs-character-info">
+                <div class="cs-character-name">Character Name</div>
+            </div>
+            <div class="cs-rest-options">
+                <button class="cs-rest-button">Long Rest</button>
+                <button class="cs-rest-button">Short Rest</button>
+            </div>
+        </div>
+
+        <div class="cs-character-traits">
+            <div class="cs-traits-column">
+                <div id="cs-vitals" class="cs-vitals">
+                    <div class="cs-hit-points">
+                        <div class="cs-hp-adjust">
+                            <button class="cs-hp-heal-button">Heal</button>
+                            <input type="number" class="cs-hp-adjust-input" min="0" value="0">
+                            <button class="cs-hp-damage-button">Damage</button>
+                        </div>
+                        <div id="cs-hp-current" class="cs-hp">
+                            <div class="cs-trait-name">Current</div>
+                            <div class="cs-value">10</div>
+                        </div>
+                        <div class="cs-hp-divider">/</div>
+                        <div id="cs-hp-max" class="cs-hp">
+                            <div class="cs-trait-name">Max</div>
+                            <div class="cs-value">10</div>
+                        </div>
+                        <div class="cs-temp-hp-adjust">
+                            <div class="cs-trait-name">Temp</div>
+                            <button class="cs-temp-hp-button">--</button>
+                        </div>
+                        <div class="cs-trait-name absolute">Hit Points</div>
+                    </div>
+                    <div class="cs-stress cs-adjustable-trait">
+                        <button class="cs-adjust-button fa-solid fa-minus"></button>
+                        <div class="cs-slots">
+                            <div class="cs-slot"></div>
+                            <div class="cs-slot"></div>
+                        </div>
+                        <button class="cs-adjust-button fa-solid fa-plus"></button>
+                        <div class="cs-trait-name absolute">Stress Slots</div>
+                    </div>
+                </div>
+                <div id="cs-core-traits" class="cs-traits-row">
+                    <div class="cs-trait">
+                        <div class="cs-trait-name">Absorb</div>
+                        <div class="cs-value">0</div>
+                        <div class="cs-trait-name">Value</div>
+                    </div>
+                    <div class="cs-trait">
+                        <div class="cs-trait-name">Armor</div>
+                        <div class="cs-value">10</div>
+                        <div class="cs-trait-name">Class</div>
+                    </div>
+                    <div class="cs-trait">
+                        <div class="cs-trait-name">Initiative</div>
+                        <div class="cs-value">+0</div>
+                    </div>
+                </div>
+                <div id="cs-saving-throws" class="cs-trait fill" style="padding-bottom: 16px;">
+                    <div class="cs-saving-throw">
+                        <div class="cs-saving-throw-modifier">+0</div>
+                        <div class="cs-saving-throw-name">Fortitude</div>
+                    </div>
+                    <div class="cs-saving-throw">
+                        <div class="cs-saving-throw-modifier">+0</div>
+                        <div class="cs-saving-throw-name">Reflex</div>
+                    </div>
+                    <div class="cs-saving-throw">
+                        <div class="cs-saving-throw-modifier">+0</div>
+                        <div class="cs-saving-throw-name">Will</div>
+                    </div>
+                    <div class="cs-trait-name absolute">Saving Throws</div>
+                </div>
+                <div id="cs-defenses" class="cs-trait fill">
+                    <div class="cs-trait-list two-column">
+                        <div class="cs-trait-list-item">
+                            <div class="cs-trait-name">Defenses</div>
+                            <div class="cs-description center-align">Resistance - Radiant</div>
+                        </div>
+                        <div class="cs-trait-list-item">
+                            <div class="cs-trait-name">Conditions</div>
+                            <div class="cs-description center-align">Prone</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="cs-traits-column">
+                <div id="cs-abilities" class="cs-traits-row">
+                    <div class="cs-trait">
+                        <div class="cs-trait-name">Strength</div>
+                        <div class="cs-value">+0</div>
+                    </div>
+                    <div class="cs-trait">
+                        <div class="cs-trait-name">Dexterity</div>
+                        <div class="cs-value">+0</div>
+                    </div>
+                    <div class="cs-trait">
+                        <div class="cs-trait-name">Constitution</div>
+                        <div class="cs-value">+0</div>
+                    </div>
+                    <div class="cs-trait">
+                        <div class="cs-trait-name">Intelligence</div>
+                        <div class="cs-value">+0</div>
+                    </div>
+                    <div class="cs-trait">
+                        <div class="cs-trait-name">Wisdom</div>
+                        <div class="cs-value">+0</div>
+                    </div>
+                    <div class="cs-trait">
+                        <div class="cs-trait-name">Charisma</div>
+                        <div class="cs-value">+0</div>
+                    </div>
+                </div>
+                <div id="cs-skills" class="cs-trait fill">
+                    <ul id="cs-skills" class="cs-skills">
+                        <li class="cs-skill">
+                            <i class="cs-skill-proficiency fa-regular fa-circle"></i>
+                            <div class="cs-skill-ability">DEX</div>
+                            <div class="cs-skill-name">Acrobatics</div>
+                            <div class="cs-skill-modifier">+0</div>
+                            <div class="cs-skill-passive">10</div>
+                        </li>
+                        <li class="cs-skill">
+                            <i class="cs-skill-proficiency fa-regular fa-circle"></i>
+                            <div class="cs-skill-ability">WIS</div>
+                            <div class="cs-skill-name">Animal Handling</div>
+                            <div class="cs-skill-modifier">+0</div>
+                            <div class="cs-skill-passive">10</div>
+                        </li>
+                        <li class="cs-skill">
+                            <i class="cs-skill-proficiency fa-regular fa-circle"></i>
+                            <div class="cs-skill-ability">INT</div>
+                            <div class="cs-skill-name">Arcana</div>
+                            <div class="cs-skill-modifier">+0</div>
+                            <div class="cs-skill-passive">10</div>
+                        </li>
+                        <li class="cs-skill">
+                            <i class="cs-skill-proficiency fa-regular fa-circle"></i>
+                            <div class="cs-skill-ability">STR</div>
+                            <div class="cs-skill-name">Athletics</div>
+                            <div class="cs-skill-modifier">+0</div>
+                            <div class="cs-skill-passive">10</div>
+                        </li>
+                        <li class="cs-skill">
+                            <i class="cs-skill-proficiency fa-regular fa-circle"></i>
+                            <div class="cs-skill-ability">CHA</div>
+                            <div class="cs-skill-name">Deception</div>
+                            <div class="cs-skill-modifier">+0</div>
+                            <div class="cs-skill-passive">10</div>
+                        </li>
+                        <li class="cs-skill">
+                            <i class="cs-skill-proficiency fa-regular fa-circle"></i>
+                            <div class="cs-skill-ability">INT</div>
+                            <div class="cs-skill-name">History</div>
+                            <div class="cs-skill-modifier">+0</div>
+                            <div class="cs-skill-passive">10</div>
+                        </li>
+                        <li class="cs-skill">
+                            <i class="cs-skill-proficiency fa-regular fa-circle"></i>
+                            <div class="cs-skill-ability">WIS</div>
+                            <div class="cs-skill-name">Insight</div>
+                            <div class="cs-skill-modifier">+0</div>
+                            <div class="cs-skill-passive">10</div>
+                        </li>
+                        <li class="cs-skill">
+                            <i class="cs-skill-proficiency fa-regular fa-circle"></i>
+                            <div class="cs-skill-ability">CHA</div>
+                            <div class="cs-skill-name">Intimidation</div>
+                            <div class="cs-skill-modifier">+0</div>
+                            <div class="cs-skill-passive">10</div>
+                        </li>
+                        <li class="cs-skill">
+                            <i class="cs-skill-proficiency fa-regular fa-circle"></i>
+                            <div class="cs-skill-ability">INT</div>
+                            <div class="cs-skill-name">Investigation</div>
+                            <div class="cs-skill-modifier">+0</div>
+                            <div class="cs-skill-passive">10</div>
+                        </li>
+                        <li class="cs-skill">
+                            <i class="cs-skill-proficiency fa-regular fa-circle"></i>
+                            <div class="cs-skill-ability">WIS</div>
+                            <div class="cs-skill-name">Medicine</div>
+                            <div class="cs-skill-modifier">+0</div>
+                            <div class="cs-skill-passive">10</div>
+                        </li>
+                        <li class="cs-skill">
+                            <i class="cs-skill-proficiency fa-regular fa-circle"></i>
+                            <div class="cs-skill-ability">INT</div>
+                            <div class="cs-skill-name">Nature</div>
+                            <div class="cs-skill-modifier">+0</div>
+                            <div class="cs-skill-passive">10</div>
+                        </li>
+                        <li class="cs-skill">
+                            <i class="cs-skill-proficiency fa-regular fa-circle"></i>
+                            <div class="cs-skill-ability">WIS</div>
+                            <div class="cs-skill-name">Perception</div>
+                            <div class="cs-skill-modifier">+0</div>
+                            <div class="cs-skill-passive">10</div>
+                        </li>
+                        <li class="cs-skill">
+                            <i class="cs-skill-proficiency fa-regular fa-circle"></i>
+                            <div class="cs-skill-ability">CHA</div>
+                            <div class="cs-skill-name">Performance</div>
+                            <div class="cs-skill-modifier">+0</div>
+                            <div class="cs-skill-passive">10</div>
+                        </li>
+                        <li class="cs-skill">
+                            <i class="cs-skill-proficiency fa-regular fa-circle"></i>
+                            <div class="cs-skill-ability">CHA</div>
+                            <div class="cs-skill-name">Persuasion</div>
+                            <div class="cs-skill-modifier">+0</div>
+                            <div class="cs-skill-passive">10</div>
+                        </li>
+                        <li class="cs-skill">
+                            <i class="cs-skill-proficiency fa-regular fa-circle"></i>
+                            <div class="cs-skill-ability">INT</div>
+                            <div class="cs-skill-name">Religion</div>
+                            <div class="cs-skill-modifier">+0</div>
+                            <div class="cs-skill-passive">10</div>
+                        </li>
+                        <li class="cs-skill">
+                            <i class="cs-skill-proficiency fa-regular fa-circle"></i>
+                            <div class="cs-skill-ability">DEX</div>
+                            <div class="cs-skill-name">Sleight of Hand</div>
+                            <div class="cs-skill-modifier">+0</div>
+                            <div class="cs-skill-passive">10</div>
+                        </li>
+                        <li class="cs-skill">
+                            <i class="cs-skill-proficiency fa-regular fa-circle"></i>
+                            <div class="cs-skill-ability">DEX</div>
+                            <div class="cs-skill-name">Stealth</div>
+                            <div class="cs-skill-modifier">+0</div>
+                            <div class="cs-skill-passive">10</div>
+                        </li>
+                        <li class="cs-skill">
+                            <i class="cs-skill-proficiency fa-regular fa-circle"></i>
+                            <div class="cs-skill-ability">WIS</div>
+                            <div class="cs-skill-name">Survival</div>
+                            <div class="cs-skill-modifier">+0</div>
+                            <div class="cs-skill-passive">10</div>
+                        </li>
+                    </ul>
+                    <div class="cs-trait-name absolute">Skills</div>
+                </div>
+            </div>
+            <div class="cs-traits-column">
+                <div id="cs-initiative-inspiration" class="cs-traits-row">
+                    <div class="cs-trait"> 
+                        <div class="cs-trait-name">Proficiency</div>
+                        <div class="cs-value">+0</div>
+                        <div class="cs-trait-name">Bonus</div>
+                    </div>
+                    <div class="cs-trait cs-inspiration cs-adjustable-trait">
+                        <div class="cs-trait-name absolute">Heroic Inspiration</div>
+                        <button class="cs-adjust-button fa-solid fa-minus"></button>
+                        <div class="cs-slots">
+                            <div class="cs-slot"></div>
+                            <div class="cs-slot"></div>
+                        </div>
+                        <button class="cs-adjust-button fa-solid fa-plus"></button>
+                    </div>
+                </div>
+                <div id="cs-physical-traits" class="cs-traits-row">
+                    <div class="cs-trait fill">
+                        <div class="cs-trait-list two-column">
+                            <div class="cs-trait-list-item">
+                                <div class="cs-trait-name">Senses</div>
+                                <div class="cs-description center-align">Darkvision 60 ft.</div>
+                            </div>
+                            <div class="cs-trait-list-item">
+                                <div class="cs-trait-name">Movement</div>
+                                <div class="cs-description center-align">Walking 30 ft.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="cs-proficiencies" class="cs-trait fill">
+                    <div class="cs-trait-list">
+                        <div class="cs-trait-list-item">
+                            <div class="cs-trait-name left-align">Armor</div>
+                            <div class="cs-description">Light, medium, and heavy</div>
+                        </div>
+                        <div class="cs-trait-list-item">
+                            <div class="cs-trait-name left-align">Weapons</div>
+                            <div class="cs-description">Simple and martial</div>
+                        </div>
+                        <div class="cs-trait-list-item">
+                            <div class="cs-trait-name left-align">Tools</div>
+                            <div class="cs-description">Flute</div>
+                        </div>
+                        <div class="cs-trait-list-item">
+                            <div class="cs-trait-name left-align">Languages</div>
+                            <div class="cs-description">Common, Elvish</div>
+                        </div>
+                    </div>
+                    <div class="cs-trait-name absolute">Proficiencies</div>
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="cs-sections">
+            <div id="cs-actions-and-features"class="cs-section active">
+                <div id="cs-section-column" class="cs-section-column active">
+                    <div id="cs-combat-title" class="cs-section-title">Combat</div>
+                    <div id="cs-combat-content" class="cs-column-content">
+                        <div id="cs-combat-title" class="cs-column-title">Attacks</div>
+                        <div id="cs-combat-attacks" class="cs-attack-list">
+                            <div class="cs-attack">
+                                <div class="cs-column-attack-title">Crossbow, Light</div>
+                                <div class="cs-column-attack-range">80/320</div>
+                                <div class="cs-column-attack-to-hit">+0</div>
+                                <div class="cs-column-attack-damage">1d8+0</div>
+                                <!-- <div class="cs-column-attack-notes">Simple, Ammunition, Loading, Range, Two-Handed, Slow, Range (80/320)</div> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="cs-section-column" class="cs-section-column active">
+                    <div id="cs-martial-prowesses-title" class="cs-section-title">Martial Prowesses</div>
+                    <div id="cs-martial-prowesses-content" class="cs-column-content">
+                        
+                    </div>
+                </div>
+                <div id="cs-section-column" class="cs-section-column active">
+                    <div id="cs-spells-title" class="cs-section-title">Spells</div>
+                    <div id="cs-spells-content" class="cs-column-content">
+                        
+                    </div>
+                </div>
+                <div id="cs-section-column" class="cs-section-column active">
+                    <div id="cs-features-title" class="cs-section-title">Features</div>
+                    <div id="cs-features-content" class="cs-column-content">
+                        
+                    </div>
+                </div>
+            </div>
+            <div id="cs-inventory"class="cs-section">
+
+            </div>
+            <div id="cs-notes"class="cs-section">
+
+            </div>
+            <div id="cs-extras"class="cs-section">
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+    </div>
+
+
+    <div id="acknowledgements" class="acknowledgements section">
+        <div class="section-content">
+            
+            
+
+            <h1>Playtested By:</h1>
+            <!-- Print the acknowledgement list -->
+            <!-- ACKNOWLEDGEMENT LIST INDEXES: -->
+            <!-- 0: display_style - realname_only, username_only, realname_username, username_realname, none -->
+            <!-- 1: playtester_name -->
+            <!-- 2: username -->
+            <!-- 3: character_name -->
+            <!-- 4: character_level -->
+            <!-- 5: notes -->
+            <!-- ACKNOWLEDGEMENT LIST INDEXES: -->
+            
+                <div id="no-playtesters">No playtesters found</div>
+            
+        </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <div id="back-to-top" class="back-to-top" style="display: none;">
+        <a href="#content-header">Back to Top</a>
+    </div>
+
+
+</body>
+</html>
+
+
+<script>    
+
+    console.log(document.querySelector('.header-container').dataset.pageType);
+    console.log(document.querySelector('.header-container').dataset.layout);
+
+    if (!document.querySelector('.header-container').dataset.custom_js) {
+        console.log('Removing content-loading class due to custom_js not being set');
+        document.querySelector('#content-container').classList.remove('content-loading');
+    }
+
+    if (document.querySelector('#no-playtesters')) {
+        document.querySelector('#acknowledgements').style.display = 'none';
+    }
+
+    // Back to Top Button Logic
+    function toggleBackToTop() {
+        const backToTopButton = document.getElementById('back-to-top');
+        const windowHeight = window.innerHeight;
+        const documentHeight = document.documentElement.scrollHeight;
+        
+        // Show button if page height is more than 2 screens worth
+        if (documentHeight > windowHeight * 1.25) {
+            backToTopButton.style.display = 'block';
+        } else {
+            backToTopButton.style.display = 'none';
+        }
+    }
+
+    // Check on page load and resize
+    document.addEventListener('DOMContentLoaded', toggleBackToTop);
+    window.addEventListener('resize', toggleBackToTop);
+
+    // Toggle notes dropdown
+    function toggleNotes(arrowElement) {
+        const dropdown = arrowElement.parentElement.querySelector('.notes-dropdown');
+        const isVisible = dropdown.style.display !== 'none';
+        
+        if (isVisible) {
+            dropdown.style.display = 'none';
+            arrowElement.textContent = '▶';
+        } else {
+            dropdown.style.display = 'block';
+            arrowElement.textContent = '▼';
+        }
+    }
+</script>

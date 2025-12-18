@@ -1274,3 +1274,429 @@ tr.hidden{
         max-width: 100%;
     }
 }
+
+
+/* ==========================================================================
+   ASH AND FIRE CHARACTER SHEET STYLES
+   ========================================================================== */
+
+.cs {
+    min-width: 1200px;
+    padding: 28px;
+}
+
+.cs-header {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 12px 0;
+}
+
+/* ==========================================================================
+   CHARACTER TRAITS STYLES
+   ========================================================================== */
+
+.cs-character-traits {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 12px 0;
+}
+
+.cs-traits-column {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.cs-traits-row {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    position: relative;
+    width: 100%;
+}
+
+.cs-trait {
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 8px 2px 8px 2px;
+    min-width: 85px;
+    min-height: 80px;
+    position: relative;
+}
+
+.cs-trait.fill {
+    width: 100%;
+}
+
+.cs-trait-name {
+    font-weight: 700;
+    font-size: 10px;
+    color: var(--fg);
+    margin: auto;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.cs-trait-name.absolute {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    margin: 0;
+    padding: 0;
+    text-transform: uppercase;
+    transform: translateX(-50%);
+    font-size: 12px;
+    text-wrap-mode: nowrap;
+}
+
+.cs-trait-name.left-align {
+    text-align: left;
+}
+
+.cs-value {
+    font-weight: 600;
+    font-size: 18px;
+    color: var(--brand);
+    margin: auto;
+    text-align: center;
+}
+
+.cs-description {
+    font-weight: 400;
+    font-size: 12px;
+    color: var(--fg);
+}
+
+.cs-description.center-align {
+    text-align: center;
+}
+
+.cs-trait-list {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    padding-bottom: 12px;
+}
+
+.cs-trait-list-item {
+    flex: 1;
+    height: 100%;
+    border-bottom: 1px solid var(--border);
+    padding: 4px 0;
+    width: 90%;
+}
+.cs-trait-list-item:last-child {
+    border-bottom: none;
+}
+
+.cs-trait-list.two-column {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    padding-bottom: 0px;
+}
+
+.two-column .cs-trait-list-item {
+    flex: 1;
+    height: 100%;
+    border-bottom: none;
+}
+
+.two-column .cs-trait-list-item:last-child {
+    border-left: 1px solid var(--border);
+}
+
+.cs-skills {
+    column-count: 2;
+    column-gap: 12px;
+    border-radius: 4px;
+    column-rule: 1px solid var(--border);
+    padding: 8px;
+}
+
+.cs-skill {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    flex-wrap: nowrap;
+    align-items: center;
+    width: 100%;
+    margin-top: 12px;
+}
+
+.cs-skill:first-child {
+    margin-top: 0px;
+}
+
+.cs-skill-ability {
+    min-width: 28px;
+}
+
+.cs-skill-name {
+    flex: 1;
+}
+
+.cs-skill-modifier,
+.cs-skill-passive {
+    min-width: 24px;
+    text-align: right;
+}
+
+.cs-vitals {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    gap: 12px;
+    width: 100%;
+}
+.cs-hit-points {
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 8px;
+    min-width: 85px;
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    position: inherit;
+    width: 100%;
+}
+
+.cs-hp-adjust {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cs-hp-heal-button, .cs-hp-damage-button {
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--fg);
+    cursor: pointer;
+    transition: background 0.2s ease;
+    width: 70px;
+}
+
+.cs-hp-adjust-input {
+    width: 70px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--fg);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+}
+
+.cs-stress {
+}
+
+.cs-adjustable-trait {
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 8px 2px 8px 2px;
+    min-width: 85px;
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    position: inherit;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+}
+
+.cs-adjustable-trait::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 4px;
+    right: 4px;
+    height: 2px;
+    background: var(--border);
+    z-index: 0;
+}
+
+.cs-adjustable-trait > * {
+    position: relative;
+    z-index: 1;
+}
+
+.cs-adjust-button {
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--fg);
+}
+
+.cs-adjust.fa-minus {
+    left: 0;
+}
+.cs-adjust.fa-plus {
+    right: 0;
+}
+
+.cs-slots {
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.cs-slot {   
+    border: 1px solid var(--border);
+    width: 12px;
+    height: 12px;
+    background: var(--bg);
+}
+
+.cs-inspiration {
+    width: 182px;
+}
+
+.cs-saving-throw {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+}
+
+.cs-saving-throw-modifier {
+    border: 2px solid var(--border);
+    border-radius: 50%;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--fg);
+    width: 32px;
+    height: 32px;
+    background: var(--bg);
+    z-index: 1;
+    text-align: center;
+    line-height: 28px;
+}
+
+.cs-saving-throw-name {
+    flex: 1;
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--fg);
+    text-transform: uppercase;
+    border: 1px solid var(--border);
+    border-left: none;
+    border-radius: 0 4px 4px 0;
+    padding: 4px 12px 4px 8px;
+    margin-left: -4px;
+}
+
+/* ==========================================================================
+   CHARACTER SECTIONS STYLES
+   ========================================================================== */
+
+.cs-sections {
+    position: relative;
+    padding: 12px 0;
+}
+
+.cs-sections::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--border);
+}
+
+.cs-section {
+    display: none;
+    width: 100%;
+}
+
+.cs-section.active {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    justify-content: space-around;
+    align-items: flex-start;
+}
+
+.cs-section-column {
+    width: 100%;
+    border: 1px solid var(--border);
+    display: none;
+}
+.cs-section-column.active {
+    display: block;
+}
+
+.cs-section-title {
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--fg);
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.cs-column-content {
+    width: 100%;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.cs-column-title {
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--fg);
+}
+
+.cs-attack-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.cs-attack {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    border: 1px solid var(--border);
+}
