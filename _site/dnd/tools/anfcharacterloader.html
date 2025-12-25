@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Ash and Fire Character Loader - Joshua Chu</title>
+    <meta name="description" content="Bookmark this to keep an eye on my project updates!" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="/dnd/dndstyles.css">
+    
+    
+    
+    <script src="/dnd/A&F/characterselector.js"></script>
+    
+
+</head>
+
+<body>
+    <header>
+        <div class="header-container" data-pageType="characterloader" data-layout="characterloader" data-custom_js="/dnd/A&F/characterselector.js">
+            <nav>
+                <div style="display: flex; gap: 12px; align-items: center">
+                    <span class="pill">🎮 Joshua Chu</span>
+                    <span class="muted" style="font-size: 13px" data-short="Game Dev • Software Engineer • D&D Homebrew">Game Developer • Software Engineer • D&D Homebrew Creator</span>
+                </div>
+                <div class="links">
+                    <a href="/index.html">Home</a>
+                    <a href="/index.html#games" data-short="Games">Video Games</a>
+                    <a href="/index.html#software">Software</a>
+                    <a href="/dnd/">D&D</a>
+                    <a href="/index.html#about">About</a>
+                    <a href="/index.html#contact">Contact</a>
+                </div>
+            </nav>
+        </div>
+        <div class="header-container mobile" data-pageType="characterloader" data-layout="characterloader" data-custom_js="/dnd/A&F/characterselector.js">
+
+            <nav>
+                <div class="pill mobile">🎮 Joshua Chu</div>
+                <div class="links">
+                    <a href="/index.html">Home</a>
+                    <a href="/index.html#games" data-short="Games">Video Games</a>
+                    <a href="/index.html#software">Software</a>
+                    <a href="/dnd/">D&D</a>
+                    <a href="/index.html#about">About</a>
+                    <a href="/index.html#contact">Contact</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div id="content-container" class="content-loading">
+        <body>
+    <div class="cl">
+        <div class="cl-header">
+            <div class="cl-title">Character Loader</div>
+            <div class="cl-buttons">
+                <button id="cl-new-character-button" class="cl-new-character-button" onclick="newCharacter()">New Character</button>
+                <input type="file" id="cl-upload-character-file" class="cl-upload-character-file" accept=".json" style="display: none;" onchange="uploadCharacter()">
+                <button id="cl-upload-character-button" class="cl-upload-character-button" onclick="document.getElementById('cl-upload-character-file').click()">Upload Character</button>
+            </div>
+        </div>
+        <div class="cl-content">
+            <div class="cl-character-list">
+                <div class="cl-character-item">
+                    <div class="cl-character-name">Character Name</div>
+                    <div class="cl-character-info">
+                        <div class="cl-character-class">Class</div>
+                        <div class="cl-character-level">Level</div>
+                        <div class="cl-character-race">Race</div>
+                    </div>
+                    <div class="cl-character-actions">
+                        <button id="cl-character-view-button" class="cl-character-button" onclick="viewCharacter(this)">View</button>
+                        <button id="cl-character-edit-button" class="cl-character-button" onclick="editCharacter(this)">Edit</button>
+                        <button id="cl-character-delete-button" class="cl-character-button" onclick="deleteCharacter(this)">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+    </div>
+
+
+    <div id="acknowledgements" class="acknowledgements section">
+        <div class="section-content">
+            
+            
+
+            <h1>Playtested By:</h1>
+            <!-- Print the acknowledgement list -->
+            <!-- ACKNOWLEDGEMENT LIST INDEXES: -->
+            <!-- 0: display_style - realname_only, username_only, realname_username, username_realname, none -->
+            <!-- 1: playtester_name -->
+            <!-- 2: username -->
+            <!-- 3: character_name -->
+            <!-- 4: character_level -->
+            <!-- 5: notes -->
+            <!-- ACKNOWLEDGEMENT LIST INDEXES: -->
+            
+                <div id="no-playtesters">No playtesters found</div>
+            
+        </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <div id="back-to-top" class="back-to-top" style="display: none;">
+        <a href="#content-header">Back to Top</a>
+    </div>
+
+
+</body>
+</html>
+
+
+<script>    
+
+    console.log(document.querySelector('.header-container').dataset.pageType);
+    console.log(document.querySelector('.header-container').dataset.layout);
+
+    if (!document.querySelector('.header-container').dataset.custom_js) {
+        console.log('Removing content-loading class due to custom_js not being set');
+        document.querySelector('#content-container').classList.remove('content-loading');
+    }
+
+    if (document.querySelector('#no-playtesters')) {
+        document.querySelector('#acknowledgements').style.display = 'none';
+    }
+
+    // Back to Top Button Logic
+    function toggleBackToTop() {
+        const backToTopButton = document.getElementById('back-to-top');
+        const windowHeight = window.innerHeight;
+        const documentHeight = document.documentElement.scrollHeight;
+        
+        // Show button if page height is more than 2 screens worth
+        if (documentHeight > windowHeight * 1.25) {
+            backToTopButton.style.display = 'block';
+        } else {
+            backToTopButton.style.display = 'none';
+        }
+    }
+
+    // Check on page load and resize
+    document.addEventListener('DOMContentLoaded', toggleBackToTop);
+    window.addEventListener('resize', toggleBackToTop);
+
+    // Toggle notes dropdown
+    function toggleNotes(arrowElement) {
+        const dropdown = arrowElement.parentElement.querySelector('.notes-dropdown');
+        const isVisible = dropdown.style.display !== 'none';
+        
+        if (isVisible) {
+            dropdown.style.display = 'none';
+            arrowElement.textContent = '▶';
+        } else {
+            dropdown.style.display = 'block';
+            arrowElement.textContent = '▼';
+        }
+    }
+</script>

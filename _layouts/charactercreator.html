@@ -1,0 +1,87 @@
+---
+layout: base
+page_type: 'charactercreator'
+custom_js: '/dnd/A&F/charactercreator.js'
+---
+<script src="/dnd/A&F/data-loader.js"></script>
+<body>
+    <div class="cc">
+        <div class="cc-header">
+            <div class="cc-title">Character Builder</div>
+            <div class="cc-section-tabs">
+                <button id="cc-section-tabs-button" class="cc-section-tabs-button" onclick="showSection(this)">Class</button>
+                <button id="cc-section-tabs-button" class="cc-section-tabs-button" onclick="showSection(this)">Race</button>
+                <button id="cc-section-tabs-button" class="cc-section-tabs-button" onclick="showSection(this)">Backgrounds</button>
+                <button id="cc-section-tabs-button" class="cc-section-tabs-button" onclick="showSection(this)">Abilities</button>
+                <button id="cc-section-tabs-button" class="cc-section-tabs-button" onclick="showSection(this)">Equipment</button>
+            </div>
+            <button id="cc-view-button" class="cc-view-button" onclick="viewCharacter()">View</button>
+        </div>
+        <div class="cc-content">
+            <div class="cc-character-quick-info">
+                <div class="cc-character-name">Character Name</div>
+                <input type="text" id="cc-character-name" class="cc-character-name" placeholder="Tav">
+            </div>
+            <div class="cc-builder-tabs ">
+                <div id="cc-builder-tab-class" class="cc-builder-tab active">
+                    <div class="cc-builder-tab-title">Choose a Class</div>
+                    <div class="cc-builder-tab-content">
+                        <button id="cc-class-fighter" class="cc-builder-tab-content-item class">
+                            <div class="cc-builder-tab-content-item-title">Fighter</div>
+                            <div class="cc-builder-tab-content-item-description">
+                                Fighters share an unparalleled mastery with weapons and armor, and a thorough knowledge of the skills of combat. They are well acquainted with death, both meting it out and staring it defiantly in the face.
+                            </div>
+                        </button>
+                    </div>
+                </div>
+                <div id="cc-builder-tab-race" class="cc-builder-tab">
+                    <div class="cc-builder-tab-title">Choose a Race</div>
+                </div>
+                <div id="cc-builder-tab-backgrounds" class="cc-builder-tab">
+                    <div class="cc-builder-tab-title">Choose a Background</div>
+                </div>
+                <div id="cc-builder-tab-abilities" class="cc-builder-tab">
+                    <div class="cc-builder-tab-title">Choose Ability Modifiers</div>
+                </div>
+                <div id="cc-builder-tab-equipment" class="cc-builder-tab">
+                    <div class="cc-builder-tab-title">Choose Starting Equipment</div>
+                </div>
+            </div>
+        </div>
+
+        <dialog id="cc-confirm-dialog" class="cc-confirm-dialog">
+            <header class="cc-confirm-dialog-header">
+                Confirm Add Class
+            </header>
+            <div class="cc-confirm-dialog-content">
+                <div class="cc-confirm-dialog-content-title">The Fighter</div>
+                <div class="cc-confirm-dialog-content-description">Fighters share an unparalleled mastery with weapons and armor, and a thorough knowledge of the skills of combat. They are well acquainted with death, both meting it out and staring it defiantly in the face.</div>
+                <div class="cc-confirm-dialog-items">
+                    <div class="cc-confirm-dialog-item">
+                        <div class="cc-confirm-dialog-item-title">Core Traits</div>
+                        <div class="cc-confirm-dialog-item-description">
+                            <div class="cc-description-item"><strong>Hit Dice:</strong> 1d10</div>
+                            <div class="cc-description-item"><strong>Hit Points at First Level:</strong> 10</div>
+                            <div class="cc-description-item"><strong>Armor Proficiency:</strong> Light, Medium, Heavy, Shields</div>
+                            <div class="cc-description-item"><strong>Weapon Proficiencies:</strong> Simple, Martial</div>
+                            <div class="cc-description-item"><strong>Tool Proficiencies:</strong> None</div>
+                            <div class="cc-description-item"><strong>Language Proficiencies:</strong> None</div>
+                            <div class="cc-description-item"><strong>Skill Proficiencies:</strong> Choose 2 from Acrobatics, Animal Handling, Athletics, History, Insight, Intimidation, Perception, Survival</div>
+                        </div>
+                    </div>
+                    <div class="cc-confirm-dialog-item">
+                        <div class="cc-confirm-dialog-item-title">Fighting Style</div>
+                        <div class="cc-confirm-dialog-item-description">
+                            You adopt a particular style of fighting as your specialty. Choose one of the following options. You can’t take a Fighting Style option more than once, even if you later get to choose again.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer class="cc-confirm-dialog-footer">
+                <button id="cc-confirm-dialog-button" class="cc-confirm-dialog-button confirm" onclick="confirmClass()">Add</button>
+                <button id="cc-confirm-dialog-button" class="cc-confirm-dialog-button cancel" onclick="cancelClass()">Cancel</button>
+            </footer>
+        </dialog>
+    </div>
+</body>
+</html>

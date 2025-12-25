@@ -1,0 +1,10 @@
+{
+    "name": "Second Wind",
+    "level": 1,
+    "type": "Martial Prowess",
+    "useTime": "Minor Action",
+    "range": "Self",
+    "description": "On your turn, you can use a Minor Action to regain hit points equal to 1d10 + your fighter level and recover 1 Stress Slot."
+}
+  
+  

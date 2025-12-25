@@ -1,0 +1,12 @@
+{
+    "id": "potionofhealing",
+    "name": "Potion of Healing",
+    "description": "A potion of healing is a small glass vial filled with a clear liquid. It is used to heal wounds and restore health.",
+    "type": "wondrous",
+    "category": "potion",
+    "rarity": "common",
+    "consumableTraits": {
+        "effect": "healing",
+        "effectAmount": "2d4 + 2"
+    }
+}

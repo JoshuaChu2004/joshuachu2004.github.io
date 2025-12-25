@@ -1,0 +1,136 @@
+{
+  "hexId": "1234567890",
+  "characterInfo": {
+    "name": "Character Name",
+    "class": "Fighter",
+    "level": 1,
+    "race": "Human",
+    "background": "",
+    "alignment": "",
+    "experiencePoints": 0
+  },
+  "abilities": {
+    "strength": {
+      "modifier": -1
+    },
+    "dexterity": {
+      "modifier": 0
+    },
+    "constitution": {
+      "modifier": 1
+    },
+    "intelligence": {
+      "modifier": 2
+    },
+    "wisdom": {
+      "modifier": 3
+    },
+    "charisma": {
+      "modifier": 4
+    }
+  },
+  "class": {
+    "name": "Fighter",
+    "level": 1,
+    "proficiencies": {
+      "skills": ["Acrobatics", "Animal Handling"]
+    },
+    "features": [
+      {
+        "name": "Fighting Style",
+        "choices": [ "Archery" ]
+
+      }
+    ],
+    "prowesses": [
+      {
+        "name": "Second Wind",
+        "flipped": false
+      }
+    ]
+  },
+  "race": {
+    "name": "Human",
+    "variant": true,
+    "features": [
+      {
+        "name": "Skills",
+        "choices": ["Intimidation"]
+      }
+    ]
+  },
+  "background": {
+    "name": "Criminal",
+    "choices": []
+  },
+  "vitals": {
+    "hitPoints": {
+      "current": 10,
+      "max": 10,
+      "temporary": 0
+    },
+    "stressSlots": {
+      "current": 0,
+      "max": 3
+    }
+  },
+  "coreTraits": {
+    "armorClass": 13,
+    "initiative": 1,
+    "absorb": 2,
+    "heroicInspiration": {
+      "current": 0,
+      "max": 3
+    }
+  },
+  "savingThrows": {
+    "fortitude": {
+      "startingBonus": 0
+    },
+    "reflex": {
+      "startingBonus": 0
+    },
+    "will": {
+      "startingBonus": 0
+    }
+  },
+  "senses": {
+    "description": "Darkvision 60 ft."
+  },
+  "movement": {
+    "walking": 30,
+    "flying": 0,
+    "swimming": 0,
+    "climbing": 0
+  },
+  "defenses": {
+    "resistances": ["Radiant"],
+    "immunities": [],
+    "vulnerabilities": []
+  },
+  "conditions": ["Prone"],
+  "proficiencies": {
+    "armor": [],
+    "weapons": [],
+    "tools": [] ,
+    "languages": []
+  },
+  "feats": [],
+  "inventory": {
+    "equipment": [
+      {
+        "name": "longsword",
+        "quantity": 1,
+        "equipped": true
+      },
+      {
+        "name": "Potion of Healing",
+        "quantity": 1,
+        "equipped": true
+      }
+    ],
+    "items": []
+  },
+  "notes": ""
+}
+

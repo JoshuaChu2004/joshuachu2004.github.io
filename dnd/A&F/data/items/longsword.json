@@ -1,0 +1,15 @@
+{
+    "id": "longsword",
+    "name": "Longsword",
+    "description": "A long, double-edged blade with a hilt and a guard. Often wielded in either two hands or accompanied by a shield.",
+    "type": "weapon",
+    "category": "martial",
+    "weaponTraits": {
+        "type": "melee",
+        "ability": "strength",
+        "damage": "1d8",
+        "damageType": "slashing",
+        "range": "5 ft.",
+        "properties": ["versatile", "two-handed"]
+    }
+}

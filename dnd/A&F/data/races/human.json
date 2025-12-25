@@ -1,0 +1,53 @@
+{
+  "name": "Human",
+  "size": "Medium",
+  "speed": {
+    "walking": 30
+  },
+  "languages": ["Common"],
+  "features": [
+    {
+      "name": "Skills",
+      "type": "choice",
+      "description": "You gain proficiency in one skill of your choice.",
+      "choices": {
+        "type": "skill",
+        "count": 1
+      }
+    }
+  ],
+  "variants": {
+    "variant": {
+      "name": "Variant Human",
+      "abilityScoreIncrease": {
+        "strength": 1,
+        "dexterity": 1,
+        "constitution": 1,
+        "intelligence": 1,
+        "wisdom": 1,
+        "charisma": 1
+      },
+      "features": [
+        {
+          "name": "Skills",
+          "type": "choice",
+          "description": "You gain proficiency in one skill of your choice.",
+          "choices": {
+            "type": "skill",
+            "count": 1
+          }
+        },
+        {
+          "name": "Feat",
+          "type": "choice",
+          "description": "You gain one feat of your choice.",
+          "choices": {
+            "type": "feat",
+            "count": 1
+          }
+        }
+      ]
+    }
+  }
+}
+

@@ -1,0 +1,107 @@
+{
+  "name": "Fighter",
+  "classType": "Martial",
+  "hitDie": "d10",
+  "hitPointsAtFirstLevel": 10,
+  "proficiencies": {
+    "armor": ["Light", "Medium", "Heavy", "Shields"],
+    "weapons": ["Simple", "Martial"],
+    "tools": [],
+    "languages": [],
+    "skills": {
+      "choose": 2,
+      "from": ["Acrobatics", "Animal Handling", "Athletics", "History", "Insight", "Intimidation", "Perception", "Survival"]
+    }
+  },
+  "features": [
+    {
+      "name": "Fighting Style",
+      "level": 1,
+      "type": "choice",
+      "description": "You adopt a particular style of fighting as your specialty.",
+      "choices": [
+        {
+          "name": "Archery",
+          "description": "You gain a +2 bonus to attack rolls you make with ranged weapons."
+        },
+        {
+          "name": "Defense",
+          "description": "While you are wearing armor, your Absorb value increases by 1, even if the armor does not normally have Absorb."
+        },
+        {
+          "name": "Dueling",
+          "description": "When you are wielding a melee weapon in one hand and no other weapons, you gain a +2 bonus to damage rolls with that weapon."
+        },
+        {
+          "name": "Great Weapon Fighting",
+          "description": "When you roll a 1 or 2 on a damage die for an attack you make with a melee weapon that you are wielding with two hands, you can reroll the die and must use the new roll."
+        },
+        {
+          "name": "Protection",
+          "description": "When a creature you can see attacks a target other than you that is within 5 feet of you, you can use your reaction to impose disadvantage on the attack roll. You must be wielding a shield."
+        },
+        {
+          "name": "Dual Wielding",
+          "description": "You can use two-weapon fighting as long as one of the weapons you are holding has the Light property."
+        },
+        {
+          "name": "Blind Fighting",
+          "description": "You have blindsight with a range of 10 feet. Within that range, you can effectively see anything that isn't behind total cover, even if you're blinded or in darkness. Moreover, you can see an invisible creature within that range, unless the creature successfully hides from you."
+        },
+        {
+          "name": "Interception",
+          "description": "When a creature within 5 feet of you that you can see is attacked, you can use your reaction to shift the target of the attack to be yourself."
+        },
+        {
+          "name": "Unarmed Fighting",
+          "description": "Your unarmed strikes can deal bludgeoning damage equal to 1d6 + your Strength modifier on a hit. If you aren't wielding any weapons or a shield when you make the attack roll, the d6 becomes a d8. When you succeed a Shove or Grapple attack against a creature, they take damage equal to your Strength modifier."
+        }
+      ]
+    },
+    {
+      "name": "Martial Prowess",
+      "level": 1,
+      "type": "feature",
+      "description": {
+        "header": "Your training as a soldier or warrior has imparted on you various techniques to utilize against your foes. You know two Prowesses from the Fighter prowess list.",
+        "subheaders": [
+          "Prowesses Known",
+          "Prowess Ability",
+          "Prowess save DC"
+        ],
+        "body": [
+          "The Fighter table shows how many Prowesses you know at 1st level and higher. When you gain a level in this class, you can choose one of the Martial Prowesses you know and replace it with another Prowess from the Fighter prowess list.",
+          "Strength or Dexterity, whichever is higher, is your Prowess ability for your fighter prowesses, as the power of your abilities relies on your physical capacity. You use your Strength or Dexterity whenever a prowess refers to your prowess ability. In addition, you use your Strength or Dexterity modifier when setting the saving throw DC for a fighter Prowess you use.",
+          "Your Prowess save DC is 8 + your proficiency bonus + your Strength or Dexterity modifier"
+        ]
+      }
+    }
+  ],
+  "prowesses": {
+    "1": [ "Second Wind"],
+    "2": [],
+    "3": [],
+    "4": [],
+    "5": [],
+    "6": [],
+    "7": [],
+    "8": [],
+    "9": []
+  },
+  "levelFeatures": {
+    "1": ["Fighting Style", "Martial Prowess"],
+    "2": [],
+    "3": [],
+    "4": [],
+    "5": [],
+    "6": [],
+    "7": [],
+    "8": [],
+    "9": [],
+    "10": [],
+    "11": [],
+    "12": [],
+    "13": []
+  }
+}
+

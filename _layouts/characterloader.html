@@ -1,0 +1,35 @@
+---
+layout: base
+page_type: 'characterloader'
+custom_js: '/dnd/A&F/characterselector.js'
+---
+<body>
+    <div class="cl">
+        <div class="cl-header">
+            <div class="cl-title">Character Loader</div>
+            <div class="cl-buttons">
+                <button id="cl-new-character-button" class="cl-new-character-button" onclick="newCharacter()">New Character</button>
+                <input type="file" id="cl-upload-character-file" class="cl-upload-character-file" accept=".json" style="display: none;" onchange="uploadCharacter()">
+                <button id="cl-upload-character-button" class="cl-upload-character-button" onclick="document.getElementById('cl-upload-character-file').click()">Upload Character</button>
+            </div>
+        </div>
+        <div class="cl-content">
+            <div class="cl-character-list">
+                <div class="cl-character-item">
+                    <div class="cl-character-name">Character Name</div>
+                    <div class="cl-character-info">
+                        <div class="cl-character-class">Class</div>
+                        <div class="cl-character-level">Level</div>
+                        <div class="cl-character-race">Race</div>
+                    </div>
+                    <div class="cl-character-actions">
+                        <button id="cl-character-view-button" class="cl-character-button" onclick="viewCharacter(this)">View</button>
+                        <button id="cl-character-edit-button" class="cl-character-button" onclick="editCharacter(this)">Edit</button>
+                        <button id="cl-character-delete-button" class="cl-character-button" onclick="deleteCharacter(this)">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

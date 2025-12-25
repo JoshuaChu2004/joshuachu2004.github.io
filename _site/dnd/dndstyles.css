@@ -70,12 +70,16 @@ li {
     left: -9999px;
 }
 
+.hidden {
+    display: none;
+}
+
 /* ==========================================================================
    LAYOUT COMPONENTS
    ========================================================================== */
 
 /* Header & Navigation */
-header {
+header,footer {
     position: sticky;
     top: 0;
     backdrop-filter: saturate(180%) blur(10px);
@@ -1288,7 +1292,7 @@ tr.hidden{
 .cs-header {
     display: flex;
     flex-direction: row;
-    gap: 12px;
+    gap: 36px;
     flex-wrap: wrap;
     justify-content: center;
     align-items: flex-start;
@@ -1298,6 +1302,21 @@ tr.hidden{
 /* ==========================================================================
    CHARACTER TRAITS STYLES
    ========================================================================== */
+
+.cs-character-quick-info {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+.cs-character-quick-info-item {
+    font-size: 12px;
+    color: var(--fg);
+    text-transform: capitalize;
+}
+
 
 .cs-character-traits {
     display: flex;
@@ -1332,9 +1351,9 @@ tr.hidden{
 .cs-trait {
     border: 1px solid var(--border);
     border-radius: 4px;
-    padding: 8px 2px 8px 2px;
+    padding: 6px 4px 6px 4px;
     min-width: 85px;
-    min-height: 80px;
+    min-height: 88px;
     position: relative;
 }
 
@@ -1349,6 +1368,8 @@ tr.hidden{
     margin: auto;
     text-align: center;
     text-transform: uppercase;
+    padding-top: 2px;
+
 }
 
 .cs-trait-name.absolute {
@@ -1369,7 +1390,7 @@ tr.hidden{
 
 .cs-value {
     font-weight: 600;
-    font-size: 18px;
+    font-size: 22px;
     color: var(--brand);
     margin: auto;
     text-align: center;
@@ -1391,18 +1412,19 @@ tr.hidden{
     flex-wrap: wrap;
     justify-content: center;
     align-items: flex-start;
-    padding-bottom: 12px;
+    padding-bottom: 40px;
+    gap: 18px;
 }
 
 .cs-trait-list-item {
     flex: 1;
     height: 100%;
-    border-bottom: 1px solid var(--border);
+    border-top: 1px solid var(--border);
     padding: 4px 0;
     width: 90%;
 }
-.cs-trait-list-item:last-child {
-    border-bottom: none;
+.cs-trait-list-item:first-child {
+    border-top: none;
 }
 
 .cs-trait-list.two-column {
@@ -1417,7 +1439,7 @@ tr.hidden{
 .two-column .cs-trait-list-item {
     flex: 1;
     height: 100%;
-    border-bottom: none;
+    border-top: none;
 }
 
 .two-column .cs-trait-list-item:last-child {
@@ -1426,20 +1448,20 @@ tr.hidden{
 
 .cs-skills {
     column-count: 2;
-    column-gap: 12px;
+    column-gap: 16px;
     border-radius: 4px;
     column-rule: 1px solid var(--border);
-    padding: 8px;
+    padding: 0 6px 7px 6px;
 }
 
 .cs-skill {
     display: flex;
     flex-direction: row;
-    gap: 8px;
+    gap: 6px;
     flex-wrap: nowrap;
     align-items: center;
     width: 100%;
-    margin-top: 12px;
+    margin-top: 18px;
 }
 
 .cs-skill:first-child {
@@ -1473,14 +1495,13 @@ tr.hidden{
 .cs-hit-points {
     border: 1px solid var(--border);
     border-radius: 4px;
-    padding: 8px;
+    padding: 6px;
     min-width: 85px;
     display: flex;
     flex-direction: row;
     gap: 12px;
     flex-wrap: wrap;
     justify-content: space-between;
-    align-items: center;
     position: inherit;
     width: 100%;
 }
@@ -1497,17 +1518,52 @@ tr.hidden{
 .cs-hp-heal-button, .cs-hp-damage-button {
     border: 1px solid var(--border);
     border-radius: 4px;
-    padding: 4px 8px;
+    padding: 4px 4px;
     font-size: 12px;
     font-weight: 600;
     color: var(--fg);
     cursor: pointer;
     transition: background 0.2s ease;
-    width: 70px;
+    width: 60px;
 }
 
 .cs-hp-adjust-input {
-    width: 70px;
+    width: 60px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--fg);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+}
+
+.cs-hp-display {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-top: 2px;
+}
+
+.cs-temp-hp-adjust {
+    padding-top: 2px;
+}
+
+.cs-hp-divider {
+    margin-top: 20px;
+}
+
+.cs-temp-hp-button {
+    background: none;
+    border: none;
+    padding: 0;
+    line-height: inherit;
+    width: 60px;
+}
+
+.cs-temp-hp-adjust-input {
+    width: 60px;
     text-align: center;
     font-size: 12px;
     font-weight: 600;
@@ -1522,7 +1578,7 @@ tr.hidden{
 .cs-adjustable-trait {
     border: 1px solid var(--border);
     border-radius: 4px;
-    padding: 8px 2px 8px 2px;
+    padding: 6px 2px 6px 2px;
     min-width: 85px;
     display: flex;
     flex-direction: row;
@@ -1578,6 +1634,10 @@ tr.hidden{
     width: 12px;
     height: 12px;
     background: var(--bg);
+}
+
+.cs-slot.filled {
+    background: var(--fg);
 }
 
 .cs-inspiration {
@@ -1652,7 +1712,6 @@ tr.hidden{
 
 .cs-section-column {
     width: 100%;
-    border: 1px solid var(--border);
     display: none;
 }
 .cs-section-column.active {
@@ -1684,7 +1743,255 @@ tr.hidden{
     color: var(--fg);
 }
 
-.cs-attack-list {
+.cs-action-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.cs-action {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 12px;
+    border: 1px solid var(--border);
+}
+
+.cs-column-card {
+    border: 1px solid var(--border);
+    transition: all 0.2s ease;
+}
+
+.cs-column-card-title {
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--fg);
+}
+
+.cs-column-card-content {
+    color: var(--fg);
+    font-size: 12px;
+}
+
+.cs-column-card.flipped > *:not(.cs-card-buttons) {
+    opacity: 0.65;
+    pointer-events: none;
+}
+
+.cs-column-card.flipped .cs-card-buttons {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.cs-card-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    justify-content: flex-start;
+}
+
+.cs-column-card-button {
+    padding: 4px 4px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--fg);
+    cursor: pointer;
+}
+
+
+.cs-description-subheader {
+    font-weight: 700;
+    font-size: 12px;
+    color: var(--fg);
+}
+
+.cs-description-header .cs-description-body {
+    font-size: 12px;
+    color: var(--fg);
+}
+
+/* ==========================================================================
+   ASH & FIRE CHARACTER SELECTOR STYLES
+   ========================================================================== */
+.cl {
+    width: min(1200px, 90vw);
+    padding: 28px;
+    margin: auto;
+}
+
+.cl-header {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    position: relative;
+    padding-bottom: 8px;
+}
+
+.cl-header:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--border);
+}
+
+.cl-content {
+    padding-top: 12px;
+}
+
+.cl-title {
+    font-weight: 700;
+    font-size: 22px;
+    color: var(--fg);
+    line-height: 20px;
+
+}
+
+.cl-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    justify-content: center;
+    align-items: center;
+}
+
+.cl-new-character-button,
+.cl-upload-character-button {
+    padding: 8px 16px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    color: var(--fg);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.cl-new-character-button:hover,
+.cl-upload-character-button:hover {
+    background: var(--white-hover);
+}
+
+.cl-upload-character-file {
+    display: none;
+}
+
+.cl-character-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.cl-character-item {
+    border: 1px solid var(--border);
+    padding: 12px;
+    border-radius: 4px;
+    width: 100%;
+    max-width: 400px;
+}
+
+.cl-character-name {
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--fg);
+}
+
+.cl-character-info {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    flex-wrap: wrap;
+    align-items: flex-start;
+
+    font-size: 12px;
+    color: var(--fg);
+}
+
+/* ==========================================================================
+   ASH AND FIRE CHARACTER CREATOR STYLES
+   ========================================================================== */
+
+.cc {
+    width: min(1200px, 90vw);
+    padding: 28px;
+    margin: auto;
+}
+
+.cc-header {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+.cc-content {
+    padding: 12px 10vw;
+    position: relative;
+}
+
+.cc-character-quick-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    width:100%;
+    position: relative;
+    padding-bottom: 12px;
+}
+
+.cc-character-quick-info::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--border);
+}
+
+.cc-character-name {
+    font-weight: 700;
+    font-size: 22px;
+    color: var(--fg);
+}
+
+.cc-character-name input{
+    font-size: 18px;
+    color: var(--fg);
+}
+
+.cc-builder-tabs {
+    padding: 32px 0;
+}
+
+.cc-builder-tab {
+    display: none;
+}
+
+.cc-builder-tab.active {
+    display: block;
+}
+
+.cc-builder-tab-title {
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--fg);
+}
+
+.cc-builder-tab-content {
     display: flex;
     flex-direction: column;
     gap: 12px;
@@ -1693,10 +2000,123 @@ tr.hidden{
     align-items: flex-start;
 }
 
-.cs-attack {
+.cc-builder-tab-content-item {
     width: 100%;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    gap: 4px;
+    flex-wrap: wrap;
+    padding: 12px;
+    align-items: flex-start;
+}
+
+.cc-builder-tab-content-item-title {
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--fg);
+}
+
+.cc-builder-tab-content-item-description {
+    font-size: 14px;
+    color: var(--fg);
+    text-align: left;
+}
+
+.cc-confirm-dialog {
+    padding: 0;
+    margin: auto;
+    width: min(800px, 90vw);
+}
+
+.cc-confirm-dialog::backdrop {
+    background: black;
+    opacity: 0.25;
+}
+
+.cc-confirm-dialog-header,.cc-confirm-dialog-footer {
+    padding: 8px;
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--hfg);
+}
+
+.cc-confirm-dialog-content {
+    padding: 12px;
+    overflow-y: auto;
+    max-height: 500px;
+}
+
+.cc-confirm-dialog-content-title {
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--fg);
+}
+
+.cc-confirm-dialog-content-description {
+    font-size: 14px;
+    color: var(--fg);
+}
+
+.cc-confirm-dialog-items {
+    display: flex;
+    flex-direction: column;
     gap: 12px;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.cc-confirm-dialog-item {
     border: 1px solid var(--border);
+    padding: 6px;
+    border-radius: 4px;
+    width: 100%;
+}
+
+.cc-confirm-dialog-item-title {
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--fg);
+}
+
+.cc-confirm-dialog-item-description {
+    font-size: 14px;
+    color: var(--fg);
+}
+
+.cc-confirm-dialog-footer {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    padding: 0;
+}
+
+.cc-confirm-dialog-button {
+    padding: 8px 16px;
+    border: none;
+    color: var(--hfg);
+    background: none;
+    width: 100%;
+}
+
+.cc-confirm-dialog-button:hover {
+    background: #b0b0b0;
+}
+
+.cc-confirm-dialog-button.confirm {
+    background: var(--brand);
+    border-right: 1px solid var(--border);
+}
+
+.cc-confirm-dialog-button.confirm:hover {
+    background: #5d5230;
+}
+
+.cc-confirm-dialog-button.cancel {
+    background: var(--border);
+    border-left: 1px solid var(--border);
+}
+
+.cc-confirm-dialog-button.cancel:hover {
+    background: rgba(0, 0, 0, 0.3);
 }

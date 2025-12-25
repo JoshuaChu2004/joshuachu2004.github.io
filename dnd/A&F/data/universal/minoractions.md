@@ -1,0 +1,1 @@
+**Two-Weapon Fighting.** When you take the Attack action and attack with a light weapon that you’re holding in one hand, you can use a Minor Action to attack with a different light weapon that you’re holding in the other hand. 

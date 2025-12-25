@@ -1,0 +1,21 @@
+{
+  "name": "Example Feat",
+  "prerequisites": {
+    "abilityScores": {
+      "strength": 13
+    }
+  },
+  "description": "You have trained extensively in a particular combat style.",
+  "effects": {
+    "abilityScoreIncrease": {
+      "strength": 1
+    },
+    "features": [
+      {
+        "name": "Combat Expertise",
+        "description": "When you make a melee weapon attack, you can choose to take a -5 penalty to the attack roll. If the attack hits, you add +10 to the attack's damage."
+      }
+    ]
+  }
+}
+

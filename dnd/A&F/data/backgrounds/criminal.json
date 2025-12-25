@@ -1,0 +1,18 @@
+{
+  "name": "Criminal",
+  "skillProficiencies": ["Deception", "Stealth"],
+  "toolProficiencies": ["Thieves' Tools", "Gaming Set"],
+  "languages": [],
+  "equipment": [
+    "Crowbar",
+    "Dark common clothes with hood",
+    "15 gp"
+  ],
+  "features": [
+    {
+      "name": "Criminal Contact",
+      "description": "You have a reliable and trustworthy contact who acts as your liaison to a network of other criminals. You know how to get messages to and from your contact, even over great distances."
+    }
+  ]
+}
+
