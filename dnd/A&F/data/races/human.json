@@ -1,5 +1,6 @@
 {
   "name": "Human",
+  "description": "Humans are the most adaptable and ambitious people among the common races. Whatever drives them, humans are the innovators, the achievers, and the pioneers of the worlds.",
   "size": "Medium",
   "speed": {
     "walking": 30
@@ -7,47 +8,48 @@
   "languages": ["Common"],
   "features": [
     {
-      "name": "Skills",
-      "type": "choice",
-      "description": "You gain proficiency in one skill of your choice.",
-      "choices": {
-        "type": "skill",
-        "count": 1
-      }
-    }
-  ],
-  "variants": {
-    "variant": {
-      "name": "Variant Human",
-      "abilityScoreIncrease": {
-        "strength": 1,
-        "dexterity": 1,
-        "constitution": 1,
-        "intelligence": 1,
-        "wisdom": 1,
-        "charisma": 1
-      },
-      "features": [
+      "name": "Age",
+      "description": "Humans reach adulthood in their late teens and live less than a century."
+    },
+    {
+      "name": "Size",
+      "description": "Humans vary widely in height and build, from barely 5 feet to well over 6 feet tall. Regardless of your position in that range, your size is Medium."
+    },
+    {
+      "name": "Speed",
+      "description": "Your base walking speed is 30 feet."
+    },
+    {
+      "name": "Languages",
+      "description": "You can speak, read, and write Common.",
+      "modifiers": [
         {
-          "name": "Skills",
-          "type": "choice",
-          "description": "You gain proficiency in one skill of your choice.",
-          "choices": {
-            "type": "skill",
-            "count": 1
-          }
+          "type": "language",
+          "subType": "granted",
+          "value": "Common"
         },
         {
-          "name": "Feat",
-          "type": "choice",
-          "description": "You gain one feat of your choice.",
-          "choices": {
-            "type": "feat",
-            "count": 1
-          }
+          "type": "language",
+          "subType": "choose",
+          "from": ["Dwarvish", "Elvish", "Giant", "Gnomish", "Goblin", "Halfling", "Orc", "Abyssal", "Celestial", "Draconic", "Deep Speech", "Infernal", "Primordial", "Sylvan", "Undercommon"]
+        }
+      ]
+    },
+    {
+      "name": "Humanity's Hope",
+      "description": "When you take the Prepare move during a rest with another companion, the other may gain an additional Heroic Inspiration."
+    },
+    {
+      "name": "Versatile",
+      "description": "You can choose an additional Origin Feat.",
+      "modifiers": [
+        {
+          "type": "originFeat",
+          "subType": "choose",
+          "from": ["Chef"]
         }
       ]
     }
-  }
+  ]
 }
 

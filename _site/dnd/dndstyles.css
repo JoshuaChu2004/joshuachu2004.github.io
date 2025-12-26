@@ -1279,6 +1279,52 @@ tr.hidden{
     }
 }
 
+/* ==========================================================================
+   ASH AND FIRE TEXT STYLES
+   ========================================================================== */
+.cl * .paragraph, .cc * .paragraph, .cs * .paragraph{
+    font-size: 12px;
+    color: var(--fg);
+}
+
+.cc * .paragraph {    
+    font-size: 14px;
+    color: var(--fg);
+}
+
+.cl * .subheader, .cc * .subheader, .cs * .subheader{
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--fg);
+}
+
+.cl * .header, .cc * .header, .cs * .header{
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--fg);
+}
+
+.cl * .title, .cc * .title, .cs * .title{
+    font-weight: 700;
+    font-size: 20px;
+    color: var(--fg);
+}
+
+.cl * .link, .cc * .link, .cs * .link{
+    color: var(--brand);
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.cl * .bold, .cc * .bold, .cs * .bold{
+    font-weight: 700;
+    color: var(--fg);
+}
+
+.cl * .italic, .cc * .italic, .cs * .italic{
+    font-style: italic;
+    color: var(--fg);
+}
 
 /* ==========================================================================
    ASH AND FIRE CHARACTER SHEET STYLES
@@ -2119,4 +2165,101 @@ tr.hidden{
 
 .cc-confirm-dialog-button.cancel:hover {
     background: rgba(0, 0, 0, 0.3);
+}
+
+.cc-class-primary {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.cc-class-vitals {
+    border: 1px solid var(--border);
+    padding: 6px;
+}
+
+.cc-manager {
+}
+
+.cc-manager-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.cc-manager-features {
+}
+
+.cc-manager-feature {
+    border: 1px solid var(--border);
+    padding: 8px 8px 0 8px;
+    border-radius: 4px;
+}
+
+.cc-manager-feature[open] {
+    padding-bottom: 8px;
+}
+
+.cc-manager-feature-summary {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    padding-bottom: 8px;
+}
+
+.cc-manager-feature[open] .cc-manager-feature-summary {
+    border-bottom: 1px solid var(--border);
+}
+
+.cc-manager-feature-summary::after {
+    content: '▶';
+    font-size: 16px;
+    color: var(--muted);
+    transition: transform 0.2s ease;
+    margin: 0 8px;
+}
+
+.cc-manager-feature[open] .cc-manager-feature-summary::after {
+    transform: rotate(90deg);
+}
+
+.cc-manager-feature-summary-meta {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    align-items: center;
+}
+
+.cc-manager-feature-summary-meta-item {
+    font-size: 12px;
+    color: var(--muted);
+}
+
+.cc-manager-feature[open] .cc-manager-feature-content {
+    padding-top: 8px;
+}
+
+.cc-manager-feature-content-description {
+}
+
+.cc-manager-feature-content-choices {
+    width: 100%;
+    padding-top: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.cc-manager-feature-content-choice {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.cc-manager-feature-content-choice-select {
+    width: 100%;
+    padding: 4px;
+    font-size: 14px;
 }

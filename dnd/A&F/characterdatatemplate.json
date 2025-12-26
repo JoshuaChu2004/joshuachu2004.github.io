@@ -32,14 +32,23 @@
   "class": {
     "name": "Fighter",
     "level": 1,
-    "proficiencies": {
-      "skills": ["Acrobatics", "Animal Handling"]
-    },
     "features": [
       {
+        "name": "Fighter Proficiencies",
+        "modifiers": [
+          {
+            "type": "skillProficiency",
+            "choice": [ "Acrobatics" ]
+          },
+          {
+            "type": "skillProficiency",
+            "choice": [ "Animal Handling" ]
+          }
+        ]
+      },
+      {
         "name": "Fighting Style",
-        "choices": [ "Archery" ]
-
+        "options": [ "Archery" ]
       }
     ],
     "prowesses": [
@@ -51,11 +60,15 @@
   },
   "race": {
     "name": "Human",
-    "variant": true,
     "features": [
       {
-        "name": "Skills",
-        "choices": ["Intimidation"]
+        "name": "Languages",
+        "modifiers": [
+          {
+            "type": "language",
+            "choice": [ "Dwarvish" ]
+          }
+        ]
       }
     ]
   },
@@ -94,6 +107,22 @@
       "startingBonus": 0
     }
   },
+  "modifiers": [
+    {
+      "type": "skillProficiency",
+      "value": "Acrobatics",
+      "source": {
+        "name": "Fighter Proficiencies"
+      }
+    },
+    {
+      "type": "skillProficiency",
+      "value": "Animal Handling",
+      "source": {
+        "name": "Fighter Proficiencies"
+      }
+    }
+  ],
   "senses": {
     "description": "Darkvision 60 ft."
   },

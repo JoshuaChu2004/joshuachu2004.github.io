@@ -3,17 +3,19 @@ layout: base
 page_type: 'charactercreator'
 custom_js: '/dnd/A&F/charactercreator.js'
 ---
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="/dnd/A&F/markdown-processor.js"></script>
 <script src="/dnd/A&F/data-loader.js"></script>
 <body>
     <div class="cc">
         <div class="cc-header">
             <div class="cc-title">Character Builder</div>
             <div class="cc-section-tabs">
-                <button id="cc-section-tabs-button" class="cc-section-tabs-button" onclick="showSection(this)">Class</button>
-                <button id="cc-section-tabs-button" class="cc-section-tabs-button" onclick="showSection(this)">Race</button>
-                <button id="cc-section-tabs-button" class="cc-section-tabs-button" onclick="showSection(this)">Backgrounds</button>
-                <button id="cc-section-tabs-button" class="cc-section-tabs-button" onclick="showSection(this)">Abilities</button>
-                <button id="cc-section-tabs-button" class="cc-section-tabs-button" onclick="showSection(this)">Equipment</button>
+                <button id="cc-class-tabs-button" class="cc-section-tabs-button" data-section="class" onclick="showSection(this)">Class</button>
+                <button id="cc-race-tabs-button" class="cc-section-tabs-button" data-section="race" onclick="showSection(this)">Race</button>
+                <button id="cc-background-tabs-button" class="cc-section-tabs-button" data-section="background" onclick="showSection(this)">Background</button>
+                <button id="cc-abilities-tabs-button" class="cc-section-tabs-button" data-section="abilities" onclick="showSection(this)">Abilities</button>
+                <button id="cc-equipment-tabs-button" class="cc-section-tabs-button" data-section="equipment" onclick="showSection(this)">Equipment</button>
             </div>
             <button id="cc-view-button" class="cc-view-button" onclick="viewCharacter()">View</button>
         </div>
@@ -24,21 +26,222 @@ custom_js: '/dnd/A&F/charactercreator.js'
             </div>
             <div class="cc-builder-tabs ">
                 <div id="cc-builder-tab-class" class="cc-builder-tab active">
-                    <div class="cc-builder-tab-title">Choose a Class</div>
-                    <div class="cc-builder-tab-content">
-                        <button id="cc-class-fighter" class="cc-builder-tab-content-item class">
-                            <div class="cc-builder-tab-content-item-title">Fighter</div>
-                            <div class="cc-builder-tab-content-item-description">
-                                Fighters share an unparalleled mastery with weapons and armor, and a thorough knowledge of the skills of combat. They are well acquainted with death, both meting it out and staring it defiantly in the face.
+                    <div id="cc-builder-tab-class-choose">
+                        <div class="cc-builder-tab-title">Choose a Class</div>
+                        <div class="cc-builder-tab-content">
+                            <button id="cc-class-fighter" class="cc-builder-tab-content-item class">
+                                <div class="cc-builder-tab-content-item-title">Fighter</div>
+                                <div class="cc-builder-tab-content-item-description">
+                                    Fighters share an unparalleled mastery with weapons and armor, and a thorough knowledge of the skills of combat. They are well acquainted with death, both meting it out and staring it defiantly in the face.
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                    <div id="cc-builder-tab-class-manage" class="hidden">
+                        <div class="cc-class-primary">
+                            <div class="cc-progression-display">
+                                <div class="title">Character Level: <span id="cc-character-level">1</span></div>
                             </div>
-                        </button>
+                            <div class="cc-class-vitals">
+                                <div id="cc-class-vitals-hit-points" class="paragraph ">
+                                    <span class="bold">Hit Points:</span> 10
+                                </div>
+                                <div id="cc-class-vitals-hit-die" class="paragraph ">
+                                    <span class="bold">Hit Die:</span> d10
+                                </div>
+                                <div id="cc-class-vitals-stress-slots" class="paragraph ">
+                                    <span class="bold">Stress Slots:</span> 3
+                                </div>
+                            </div>
+                        </div>
+                        <div id="cc-class-manager" class="cc-manager">
+                            <div class="cc-manager-header">
+                                <div class="cc-manager-header-title title">Fighter</div>
+                                <div class="cc-manager-header-levels">
+                                    <label for="cc-manager-header-levels-select" class="cc-manager-header-levels-label header">Level</label>
+                                    <select id="cc-manager-header-levels-select" class="cc-manager-header-levels-select">
+                                        <option value="1" selected>1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                        <option value="12">12</option>
+                                        <option value="13">13</option>
+                                        <option value="14">14</option>
+                                        <option value="15">15</option>
+                                        <option value="16">16</option>
+                                        <option value="17">17</option>
+                                        <option value="18">18</option>
+                                        <option value="19">19</option>
+                                        <option value="20">20</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="cc-manager-features">
+                                <details class="cc-manager-feature">
+                                    <summary class="cc-manager-feature-summary">
+                                        <div class="cc-manager-feature-summary-info">
+                                            <div class="cc-manager-feature-summary-title header">Feature Title</div>
+                                            <div class="cc-manager-feature-summary-meta">
+                                                <div class="cc-manager-feature-summary-meta-item">X Choices</div>
+                                                <div class="cc-manager-feature-summary-meta-item">X Level</div>
+                                            </div>
+                                        </div>
+                                    </summary>
+                                    <div class="cc-manager-feature-content">
+                                        <div id="cc-manager-feature-content-description" class="">
+                                            <div class="paragraph">This is a description of the feature.</div>
+                                        <div class="cc-manager-feature-content-choices">
+                                            <div class="cc-manager-feature-content-choice">
+                                                <select class="cc-manager-feature-content-choice-select">
+                                                    <option value="0">Choose a Choice</option>
+                                                    <option value="1">Choice 1</option>
+                                                    <option value="2">Choice 2</option>
+                                                    <option value="3">Choice 3</option>
+                                                </select>
+                                                <div id="cc-manager-feature-content-choice-description" class="paragraph ">This is a description of the choice.</div>
+                                            </div>
+                                            <div class="cc-manager-feature-content-choice">
+                                                <select class="cc-manager-feature-content-choice-select">
+                                                    <option value="0">Choose a Choice</option>
+                                                    <option value="1">Choice 1</option>
+                                                    <option value="2">Choice 2</option>
+                                                    <option value="3">Choice 3</option>
+                                                </select>
+                                                <div id="cc-manager-feature-content-choice-description" class="paragraph ">This is a description of the choice.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </details>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div id="cc-builder-tab-race" class="cc-builder-tab">
-                    <div class="cc-builder-tab-title">Choose a Race</div>
+                    <div id="cc-builder-tab-race-choose">
+                        <div class="cc-builder-tab-title">Choose a Race</div>
+                        <div class="cc-builder-tab-content">
+                            <button id="cc-race-human" class="cc-builder-tab-content-item race">
+                                <div class="cc-builder-tab-content-item-title">Human</div>
+                                <div class="cc-builder-tab-content-item-description">
+                                    Humans are the most adaptable and ambitious people among the common races. Whatever drives them, humans are the innovators, the achievers, and the pioneers of the worlds.
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                    <div id="cc-builder-tab-race-manage" class="hidden">
+                        <div class="cc-race-primary">
+                            <div class="cc-progression-display">
+                                <div class="title"><span id="cc-race-name">Human</span></div>
+                                <div id="cc-race-description" class="paragraph">Humans are the most adaptable and ambitious people among the common races. Whatever drives them, humans are the innovators, the achievers, and the pioneers of the worlds.</div>
+                            </div>
+                        </div>
+                        <div id="cc-race-manager" class="cc-manager">
+                            <div class="cc-manager-features">
+                                <details class="cc-manager-feature">
+                                    <summary class="cc-manager-feature-summary">
+                                        <div class="cc-manager-feature-summary-info">
+                                            <div class="cc-manager-feature-summary-title header">Feature Title</div>
+                                            <div class="cc-manager-feature-summary-meta">
+                                                <div class="cc-manager-feature-summary-meta-item">X Choices</div>
+                                                <div class="cc-manager-feature-summary-meta-item">X Level</div>
+                                            </div>
+                                        </div>
+                                    </summary>
+                                    <div class="cc-manager-feature-content">
+                                        <div id="cc-manager-feature-content-description" class="">
+                                            <div class="paragraph">This is a description of the feature.</div>
+                                        <div class="cc-manager-feature-content-choices">
+                                            <div class="cc-manager-feature-content-choice">
+                                                <select class="cc-manager-feature-content-choice-select">
+                                                    <option value="0">Choose a Choice</option>
+                                                    <option value="1">Choice 1</option>
+                                                    <option value="2">Choice 2</option>
+                                                    <option value="3">Choice 3</option>
+                                                </select>
+                                                <div id="cc-manager-feature-content-choice-description" class="paragraph ">This is a description of the choice.</div>
+                                            </div>
+                                            <div class="cc-manager-feature-content-choice">
+                                                <select class="cc-manager-feature-content-choice-select">
+                                                    <option value="0">Choose a Choice</option>
+                                                    <option value="1">Choice 1</option>
+                                                    <option value="2">Choice 2</option>
+                                                    <option value="3">Choice 3</option>
+                                                </select>
+                                                <div id="cc-manager-feature-content-choice-description" class="paragraph ">This is a description of the choice.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </details>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div id="cc-builder-tab-backgrounds" class="cc-builder-tab">
-                    <div class="cc-builder-tab-title">Choose a Background</div>
+                <div id="cc-builder-tab-background" class="cc-builder-tab">
+                    <div id="cc-builder-tab-background-choose">
+                        <div class="cc-builder-tab-title">Choose a Background</div>
+                        <div class="cc-builder-tab-content">
+                            <button id="cc-background-criminal" class="cc-builder-tab-content-item background">
+                                <div class="cc-builder-tab-content-item-title">Criminal</div>
+                                <div class="cc-builder-tab-content-item-description">
+                                    You are an experienced criminal with a history of breaking the law. You have spent a lot of time among other criminals and still have contacts within the criminal underworld. You're far closer than most people to the world of murder, theft, and violence that pervades the underbelly of civilization, and you have survived up to this point by flouting the rules and regulations of society.</div>
+                            </button>
+                        </div>
+                    </div>
+                    <div id="cc-builder-tab-background-manage" class="">
+                        <div class="cc-background-primary">
+                            <div class="cc-progression-display">
+                                <div class="title"><span id="cc-background-name">Criminal</span></div>
+                                <div id="cc-background-description" class="paragraph">You are an experienced criminal with a history of breaking the law. You have spent a lot of time among other criminals and still have contacts within the criminal underworld. You're far closer than most people to the world of murder, theft, and violence that pervades the underbelly of civilization, and you have survived up to this point by flouting the rules and regulations of society.</div>
+                            </div>
+                        </div>
+                        <div id="cc-background-manager" class="cc-manager">
+                            <div class="cc-manager-features">
+                                <details class="cc-manager-feature">
+                                    <summary class="cc-manager-feature-summary">
+                                        <div class="cc-manager-feature-summary-info">
+                                            <div class="cc-manager-feature-summary-title header">Feature Title</div>
+                                            <div class="cc-manager-feature-summary-meta">
+                                                <div class="cc-manager-feature-summary-meta-item">X Choices</div>
+                                                <div class="cc-manager-feature-summary-meta-item">X Level</div>
+                                            </div>
+                                        </div>
+                                    </summary>
+                                    <div class="cc-manager-feature-content">
+                                        <div id="cc-manager-feature-content-description" class="">
+                                            <div class="paragraph">This is a description of the feature.</div>
+                                        <div class="cc-manager-feature-content-choices">
+                                            <div class="cc-manager-feature-content-choice">
+                                                <select class="cc-manager-feature-content-choice-select">
+                                                    <option value="0">Choose a Choice</option>
+                                                    <option value="1">Choice 1</option>
+                                                    <option value="2">Choice 2</option>
+                                                    <option value="3">Choice 3</option>
+                                                </select>
+                                                <div id="cc-manager-feature-content-choice-description" class="paragraph ">This is a description of the choice.</div>
+                                            </div>
+                                            <div class="cc-manager-feature-content-choice">
+                                                <select class="cc-manager-feature-content-choice-select">
+                                                    <option value="0">Choose a Choice</option>
+                                                    <option value="1">Choice 1</option>
+                                                    <option value="2">Choice 2</option>
+                                                    <option value="3">Choice 3</option>
+                                                </select>
+                                                <div id="cc-manager-feature-content-choice-description" class="paragraph ">This is a description of the choice.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </details>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div id="cc-builder-tab-abilities" class="cc-builder-tab">
                     <div class="cc-builder-tab-title">Choose Ability Modifiers</div>
@@ -51,28 +254,16 @@ custom_js: '/dnd/A&F/charactercreator.js'
 
         <dialog id="cc-confirm-dialog" class="cc-confirm-dialog">
             <header class="cc-confirm-dialog-header">
-                Confirm Add Class
+                Confirm Test
             </header>
             <div class="cc-confirm-dialog-content">
-                <div class="cc-confirm-dialog-content-title">The Fighter</div>
-                <div class="cc-confirm-dialog-content-description">Fighters share an unparalleled mastery with weapons and armor, and a thorough knowledge of the skills of combat. They are well acquainted with death, both meting it out and staring it defiantly in the face.</div>
+                <div class="cc-confirm-dialog-content-title">Test Title</div>
+                <div class="cc-confirm-dialog-content-description">Test Description</div>
                 <div class="cc-confirm-dialog-items">
                     <div class="cc-confirm-dialog-item">
-                        <div class="cc-confirm-dialog-item-title">Core Traits</div>
+                        <div class="cc-confirm-dialog-item-title">Test Item Title</div>
                         <div class="cc-confirm-dialog-item-description">
-                            <div class="cc-description-item"><strong>Hit Dice:</strong> 1d10</div>
-                            <div class="cc-description-item"><strong>Hit Points at First Level:</strong> 10</div>
-                            <div class="cc-description-item"><strong>Armor Proficiency:</strong> Light, Medium, Heavy, Shields</div>
-                            <div class="cc-description-item"><strong>Weapon Proficiencies:</strong> Simple, Martial</div>
-                            <div class="cc-description-item"><strong>Tool Proficiencies:</strong> None</div>
-                            <div class="cc-description-item"><strong>Language Proficiencies:</strong> None</div>
-                            <div class="cc-description-item"><strong>Skill Proficiencies:</strong> Choose 2 from Acrobatics, Animal Handling, Athletics, History, Insight, Intimidation, Perception, Survival</div>
-                        </div>
-                    </div>
-                    <div class="cc-confirm-dialog-item">
-                        <div class="cc-confirm-dialog-item-title">Fighting Style</div>
-                        <div class="cc-confirm-dialog-item-description">
-                            You adopt a particular style of fighting as your specialty. Choose one of the following options. You can’t take a Fighting Style option more than once, even if you later get to choose again.
+                            <div class="cc-description-item"><strong>Test Item Description:</strong> Test Item Description</div>
                         </div>
                     </div>
                 </div>

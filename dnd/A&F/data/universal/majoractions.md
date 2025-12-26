@@ -1,4 +1,3 @@
-# Major Actions
 **Attack.** The most common action taken in combat, whether by swinging a sword, firing a bow, or brawling with your fists. See the attacks section for your attacks.
 **Grappling.** A special unarmed strike against a creature no larger than one size larger than you. On a hit, you subject them to the Grappled and Exposed condition. 
 **Shove.** A special unarmed strike against a creature no larger than one size larger than you. On a hit, you may push them back 5 ft. or knock them Prone. They are also subjected to the Exposed condition. 

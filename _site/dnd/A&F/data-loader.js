@@ -3,6 +3,136 @@
 
 const gameDataCache = {};
 
+async function loadBuilderGameData() {
+    try {
+        const gameData = {
+            classes: await loadAllClasses(),
+            races: await loadAllRaces(),
+            backgrounds: await loadAllBackgrounds(),
+            feats: await loadAllFeats(),
+            prowesses: await loadAllProwesses()
+        };
+        return gameData;
+    } catch (error) {
+        console.error(`Error loading builder game data:`, error);
+        return null;
+    }
+}
+
+async function loadAllClasses() {
+    try {
+        const response = await fetch(`/dnd/A&F/data/dataLists/classlist.json`);
+        if (!response.ok) {
+            throw new Error(`Failed to load all classes`);
+        }
+
+        const classList = await response.json();
+
+        const classesData = [];
+        
+        for (const className of classList.classes) {
+            const classData = await loadClass(className);
+            if (classData) {
+                classesData.push(classData);
+            }
+        }
+        console.log("Classes Data:", classesData);
+
+        return classesData;
+
+    } catch (error) {
+        console.error(`Error loading all classes:`, error);
+        return null;
+    }
+}
+
+async function loadAllRaces() {
+    try {
+        const response = await fetch(`/dnd/A&F/data/dataLists/racelist.json`);
+        if (!response.ok) {
+            throw new Error(`Failed to load all races`);
+        }
+        const raceList = await response.json();
+        const racesData = [];
+        for (const raceName of raceList.races) {
+            const raceData = await loadRace(raceName);
+            if (raceData) {
+                racesData.push(raceData);
+            }
+        }
+        return racesData;
+    }
+    catch (error) {
+        console.error(`Error loading all races:`, error);
+        return null;
+    }
+}
+
+async function loadAllBackgrounds() {
+    try {
+        const response = await fetch(`/dnd/A&F/data/dataLists/backgroundlist.json`);
+        if (!response.ok) {
+            throw new Error(`Failed to load all backgrounds`);
+        }
+        const backgroundList = await response.json();
+        const backgroundsData = [];
+        for (const backgroundName of backgroundList.backgrounds) {
+            const backgroundData = await loadBackground(backgroundName);
+            if (backgroundData) {
+                backgroundsData.push(backgroundData);
+            }
+        }
+        return backgroundsData;
+    }
+    catch (error) {
+        console.error(`Error loading all backgrounds:`, error);
+        return null;
+    }
+}
+
+async function loadAllFeats() {
+    try {
+        const response = await fetch(`/dnd/A&F/data/dataLists/featlist.json`);
+        if (!response.ok) {
+            throw new Error(`Failed to load all feats`);
+        }
+        const featList = await response.json();
+        const featsData = [];
+        for (const featName of featList.feats) {
+            const featData = await loadFeat(featName);
+            if (featData) {
+                featsData.push(featData);
+            }
+        }
+        return featsData;
+    }
+    catch (error) {
+        console.error(`Error loading all feats:`, error);
+        return null;
+    }
+}
+
+async function loadAllProwesses() {
+    try {
+        const response = await fetch(`/dnd/A&F/data/dataLists/prowesslist.json`);
+        if (!response.ok) {
+            throw new Error(`Failed to load all prowesses`);
+        }
+        const prowessList = await response.json();
+        const prowessesData = [];
+        for (const prowessName of prowessList.prowesses) {
+            const prowessData = await loadProwess(prowessName);
+            if (prowessData) {
+                prowessesData.push(prowessData);
+            }
+        }
+        return prowessesData;
+    }
+    catch (error) {
+        console.error(`Error loading all prowesses:`, error);
+        return null;
+    }
+}
 /**
  * Load a class definition from JSON
  * @param {string} className - Name of the class (e.g., "Fighter")
@@ -220,7 +350,8 @@ if (typeof module !== 'undefined' && module.exports) {
         loadFeat,
         loadProwess,
         loadItem,
-        loadCharacterGameData
+        loadCharacterGameData,
+        loadBuilderGameData
     };
 }
 

@@ -1,36 +1,98 @@
 {
   "name": "Fighter",
+  "description": "Fighters share an unparalleled mastery with weapons and armor, and a thorough knowledge of the skills of combat. They are well acquainted with death, both meting it out and staring it defiantly in the face.",
   "classType": "Martial",
   "hitDie": "d10",
   "hitPointsAtFirstLevel": 10,
-  "proficiencies": {
-    "armor": ["Light", "Medium", "Heavy", "Shields"],
-    "weapons": ["Simple", "Martial"],
-    "tools": [],
-    "languages": [],
-    "skills": {
-      "choose": 2,
-      "from": ["Acrobatics", "Animal Handling", "Athletics", "History", "Insight", "Intimidation", "Perception", "Survival"]
-    }
-  },
   "features": [
+    {
+      "name": "Fighter Proficiencies",
+      "level": 1,
+      "count": 2,
+      "type": "choice",
+      "description": "**Armor**\n\nLight armor, medium armor, heavy armor, shields\n\n**Weapons**\n\nSimple weapons, martial weapons\n\n**Skills**\n\nChoose 2 from: Acrobatics, Animal Handling, Athletics, History, Insight, Intimidation, Perception, Survival",
+      "modifiers": [
+        {
+          "type": "armorProficiency",
+          "subType": "granted",
+          "value": "Light Armor"
+        },
+        {
+          "type": "armorProficiency",
+          "subType": "granted",
+          "value": "Medium Armor"
+        },
+        {
+          "type": "armorProficiency",
+          "subType": "granted",
+          "value": "Heavy Armor"
+        },
+        {
+          "type": "armorProficiency",
+          "subType": "granted",
+          "value": "Shields"
+        },
+        {
+          "type": "weaponProficiency",
+          "subType": "granted",
+          "value": "Simple Weapons"
+        },
+        {
+          "type": "weaponProficiency",
+          "subType": "granted",
+          "value": "Martial Weapons"
+        },
+        {
+          "type": "skillProficiency",
+          "subType": "choose",
+          "from": ["Acrobatics", "Animal Handling", "Athletics", "History", "Insight", "Intimidation", "Perception", "Survival"]
+        },
+        {
+          "type": "skillProficiency",
+          "subType": "choose",
+          "from": ["Acrobatics", "Animal Handling", "Athletics", "History", "Insight", "Intimidation", "Perception", "Survival"]
+        }
+      ]
+    },
     {
       "name": "Fighting Style",
       "level": 1,
-      "type": "choice",
+      "type": "option",
+      "count": 1,
       "description": "You adopt a particular style of fighting as your specialty.",
-      "choices": [
+      "options": [
         {
           "name": "Archery",
-          "description": "You gain a +2 bonus to attack rolls you make with ranged weapons."
+          "description": "You gain a +2 bonus to attack rolls you make with ranged weapons.",
+          "modifiers": [
+            {
+              "type": "rangedWeaponAttack",
+              "subType": "granted",
+              "bonus": 2
+            }
+          ]
         },
         {
           "name": "Defense",
-          "description": "While you are wearing armor, your Absorb value increases by 1, even if the armor does not normally have Absorb."
+          "description": "While you are wearing armor, your Absorb value increases by 1, even if the armor does not normally have Absorb.",
+          "modifiers": [
+            {
+              "type": "armorAbsorb",
+              "subType": "granted",
+              "bonus": 1
+            }
+          ]
         },
         {
           "name": "Dueling",
-          "description": "When you are wielding a melee weapon in one hand and no other weapons, you gain a +2 bonus to damage rolls with that weapon."
+          "description": "When you are wielding a melee weapon in one hand and no other weapons, you gain a +2 bonus to damage rolls with that weapon.",
+          "modifiers": [
+            {
+              "type": "oneHandedMeleeWeaponDamage",
+              "subType": "granted",
+              "bonus": 2
+            }
+          ]
         },
         {
           "name": "Great Weapon Fighting",
@@ -46,7 +108,13 @@
         },
         {
           "name": "Blind Fighting",
-          "description": "You have blindsight with a range of 10 feet. Within that range, you can effectively see anything that isn't behind total cover, even if you're blinded or in darkness. Moreover, you can see an invisible creature within that range, unless the creature successfully hides from you."
+          "description": "You have blindsight with a range of 10 feet. Within that range, you can effectively see anything that isn't behind total cover, even if you're blinded or in darkness. Moreover, you can see an invisible creature within that range, unless the creature successfully hides from you.",
+          "modifiers": [
+            {
+              "type": "blindsight",
+              "range": 10
+            }
+          ]
         },
         {
           "name": "Interception",
@@ -62,19 +130,7 @@
       "name": "Martial Prowess",
       "level": 1,
       "type": "feature",
-      "description": {
-        "header": "Your training as a soldier or warrior has imparted on you various techniques to utilize against your foes. You know two Prowesses from the Fighter prowess list.",
-        "subheaders": [
-          "Prowesses Known",
-          "Prowess Ability",
-          "Prowess save DC"
-        ],
-        "body": [
-          "The Fighter table shows how many Prowesses you know at 1st level and higher. When you gain a level in this class, you can choose one of the Martial Prowesses you know and replace it with another Prowess from the Fighter prowess list.",
-          "Strength or Dexterity, whichever is higher, is your Prowess ability for your fighter prowesses, as the power of your abilities relies on your physical capacity. You use your Strength or Dexterity whenever a prowess refers to your prowess ability. In addition, you use your Strength or Dexterity modifier when setting the saving throw DC for a fighter Prowess you use.",
-          "Your Prowess save DC is 8 + your proficiency bonus + your Strength or Dexterity modifier"
-        ]
-      }
+      "description": "Your training as a soldier or warrior has imparted on you various techniques to utilize against your foes. You know two Prowesses from the Fighter prowess list.\n\n**Prowesses Known**\n\nThe Fighter table shows how many Prowesses you know at 1st level and higher. When you gain a level in this class, you can choose one of the Martial Prowesses you know and replace it with another Prowess from the Fighter prowess list.\n\n**Prowess Ability**\n\nStrength or Dexterity, whichever is higher, is your Prowess ability for your fighter prowesses, as the power of your abilities relies on your physical capacity. You use your Strength or Dexterity whenever a prowess refers to your prowess ability. In addition, you use your Strength or Dexterity modifier when setting the saving throw DC for a fighter Prowess you use.\n\n**Prowess save DC**\n\nYour Prowess save DC is 8 + your proficiency bonus + your Strength or Dexterity modifier"
     }
   ],
   "prowesses": {

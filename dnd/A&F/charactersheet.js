@@ -509,7 +509,7 @@ function generateSensesAndMovement() {
     // Senses
     const sensesEl = document.querySelector('#cs-physical-traits .cs-trait-list-item:first-child .cs-description');
     if (sensesEl && characterData.senses) {
-        sensesEl.textContent = characterData.senses.description || '';
+        sensesEl.innerHTML = parseDescription(characterData.senses.description) || '';
     }
 
     // Movement
@@ -668,14 +668,17 @@ function generateProwesses() {
             prowessEl.classList.add('flipped');
         }
         
-        // In the future, load full prowess data from class definition
-        // For now, just show the name
+        // Parse description as markdown
+        const prowessDescription = prowessData?.description 
+            ? parseDescription(prowessData.description)
+            : 'Prowess description will be loaded from class data.';
+        
         prowessEl.innerHTML = `
             <div class="cs-column-card-title">${prowess.name || ''}</div>
-            <div class="cs-column-card-content">${prowessData?.description || 'Prowess description will be loaded from class data.'}</div>
+            <div class="cs-column-card-content">${prowessDescription}</div>
         
             <div class="cs-card-buttons">
-                <button id="cs-prowess-use-button-${prowessEl.id}" class="cs-column-card-button ${prowess.flipped ? 'flipped' : ''}" onclick="useProwess('${prowessEl.id}')" name="${prowess.name}"> ${prowess.flipped ? 'Reset' : 'Use'}</button>
+                <button id="cs-prowess-use-button-${prowessEl.id}" class="cs-column-card-button ${prowess.flipped ? 'flipped' : ''}" onclick="useProwess('${prowessEl.id}')" name="${prowess.name}">${prowess.flipped ? 'Reset' : 'Use'}</button>
             </div>
         `;
 
@@ -734,21 +737,6 @@ function checkFeatureColumns() {
     });
 }
 
-function parseDescription(description) {
-    let descriptionHtml = '';
-    if (!description) return '';
-    if (typeof description === 'string') return description;
-    if (description.header) {
-        descriptionHtml += `<div class="cs-description-header">${description.header}</div>`;
-    }
-
-    for (let i = 0; i < description.subheaders.length; i++) {
-        descriptionHtml += `<div class="cs-description-subheader">${description.subheaders[i]}</div>`;
-        descriptionHtml += `<div class="cs-description-body">${description.body[i]}</div>`;
-    }
-
-    return descriptionHtml;
-}
 
 // Initialize when DOM is ready
 document.addEventListener('DOMContentLoaded', async () => {
