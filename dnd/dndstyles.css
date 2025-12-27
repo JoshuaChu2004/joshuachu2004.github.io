@@ -2263,3 +2263,26 @@ tr.hidden{
     padding: 4px;
     font-size: 14px;
 }
+
+.cc-abilities-point-buy {
+}
+
+.cc-abilities-point-display {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: auto;
+}
+
+.cc-abilities-point-display-title {
+}
+
+.cc-abilities-point-display-value {
+}
+
+.cc-abilities-point-buy-selections {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}

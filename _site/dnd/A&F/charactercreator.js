@@ -16,23 +16,24 @@ let characterData = {
     },
     abilities: {
         strength: {
-            modifier: 0,
+            modifier: -1,
         },
         dexterity: {
-            modifier: 0,
+            modifier: -1,
         },
         constitution: {
-            modifier: 0,
+            modifier: -1,
         },
         intelligence: {
-            modifier: 0,
+            modifier: -1,
         },
         wisdom: {
-            modifier: 0,
+            modifier: -1,
         },
         charisma: {
-            modifier: 0,
+            modifier: -1,
         },
+        features: [],
     },
     class: {
         name: null,
@@ -45,7 +46,6 @@ let characterData = {
     },
     race: {
         name: null,
-        variant: false,
         features: [],
     },
     vitals: {
@@ -53,7 +53,7 @@ let characterData = {
     },
     background: {
         name: null,
-        choices: [],
+        features: [],
     },
     coreTraits: {
         armorClass: 10,
@@ -442,6 +442,157 @@ function generateRace() {
 }
 
 // ============================================================================
+// BACKGROUND SELECTION & MANAGEMENT
+// ============================================================================
+
+function generateBackgrounds() {
+    console.log('Generating backgrounds...');
+
+    const backgrounds = gameData.backgrounds;
+    const backgroundListEl = document.querySelector('#cc-builder-tab-background .cc-builder-tab-content');
+
+    backgroundListEl.innerHTML = '';
+
+    backgrounds.forEach(backgroundData => {
+        const backgroundEl = document.createElement('button');
+        backgroundEl.classList.add('cc-builder-tab-content-item', 'background');
+        backgroundEl.id = `cc-background-${backgroundData.name.toLowerCase().replace(/ /g, '-')}`;
+        backgroundEl.dataset.backgroundId = backgroundData.name.toLowerCase().replace(/ /g, '-');
+        backgroundEl.onclick = () => {
+            selectBackground(backgroundEl);
+        };
+        const backgroundDescription = parseDescription(backgroundData.description);
+        backgroundEl.innerHTML = `
+            <div class="cc-builder-tab-content-item-title">${backgroundData.name}</div>
+            <div class="cc-builder-tab-content-item-description">${backgroundDescription}</div>
+        `;
+        backgroundListEl.appendChild(backgroundEl);
+    });
+}
+
+function selectBackground(backgroundEl) {
+    const dialog = document.querySelector('.cc-confirm-dialog');
+    const backgroundData = gameData.backgrounds.find(b => b.name.toLowerCase().replace(/ /g, '-') === backgroundEl.dataset.backgroundId);
+    temporaryData = backgroundData;
+    if (!backgroundData) {
+        console.error('Background data not found');
+        return;
+    }
+    dialog.querySelector('.cc-confirm-dialog-header').textContent = `Confirm Add Background`;
+    dialog.querySelector('.cc-confirm-dialog-content-title').textContent = backgroundEl.querySelector('.cc-builder-tab-content-item-title').textContent;
+    const backgroundDescription = parseDescription(backgroundData.description);
+    dialog.querySelector('.cc-confirm-dialog-content-description').innerHTML = backgroundDescription;
+    
+    const dialogConfirmButtonEl = dialog.querySelector('.cc-confirm-dialog-button.confirm');
+    dialogConfirmButtonEl.textContent = `Add Background`;
+    dialogConfirmButtonEl.onclick = () => confirmBackground();
+    
+    const dialogCancelButtonEl = dialog.querySelector('.cc-confirm-dialog-button.cancel');
+    dialogCancelButtonEl.textContent = `Cancel`;
+    dialogCancelButtonEl.onclick = () => cancelBackground();
+
+    const dialogItemsEl = dialog.querySelector('.cc-confirm-dialog-items');
+    dialogItemsEl.innerHTML = '';
+
+    backgroundData.features.forEach(feature => {
+        const dialogItemEl = document.createElement('div');
+        dialogItemEl.classList.add('cc-confirm-dialog-item');
+        const featureDescription = parseDescription(feature.description);
+        dialogItemEl.innerHTML = `
+            <div class="cc-confirm-dialog-item-title">${feature.name}</div>
+            <div class="cc-confirm-dialog-item-description">${featureDescription}</div>
+        `;
+        dialogItemsEl.appendChild(dialogItemEl);
+    });
+    dialog.showModal();
+}
+
+function confirmBackground() {
+    const dialog = document.querySelector('.cc-confirm-dialog');
+
+    const backgroundData = temporaryData;
+    characterData.characterInfo.background = backgroundData.name;
+    characterData.background.name = backgroundData.name;
+
+    // Initialize features - auto-detect options and choices
+    backgroundData.features.forEach(feature => {
+        const characterFeature = {
+            name: feature.name,
+        };
+        
+        // If feature has options, initialize options array
+        if (featureHasOptions(feature)) {
+            characterFeature.options = [];
+        }
+        
+        // If feature has choices, initialize modifiers array for storing selections
+        if (featureHasChoices(feature)) {
+            // Initialize as empty array for storing selected choices
+            characterFeature.modifiers = [];
+        }
+        
+        characterData.background.features.push(characterFeature);
+    });
+
+    // Initialize modifiers array
+    characterData.modifiers = [];
+
+    generateBackground();
+
+    dialog.close();
+}
+
+function cancelBackground() {
+    const dialog = document.querySelector('.cc-confirm-dialog');
+    dialog.close();
+}
+
+function generateBackground() {
+    console.log('Generating background...');
+    const backgroundManagerEl = document.querySelector('#cc-builder-tab-background-manage');
+    const backgroundChooseEl = document.querySelector('#cc-builder-tab-background-choose');
+
+    backgroundManagerEl.classList.remove('hidden');
+    backgroundChooseEl.classList.add('hidden');
+    
+    // Generate background features
+    generateFeatures('background');
+}
+
+// ============================================================================
+// ABILITY SELECTION & MANAGEMENT
+// ============================================================================
+
+function generateAbilities() {
+    console.log('Generating abilities...');
+
+    const abilities = gameData.abilities;
+
+    abilities.forEach(abilityData => {
+        temporaryData = abilityData;
+
+        abilityData.features.forEach(feature => {
+            const characterFeature = {
+                name: feature.name,
+            };
+
+            // If feature has options, initialize options array
+            if (featureHasOptions(feature)) {
+                characterFeature.options = [];
+            }
+            
+            // If feature has choices, initialize modifiers array for storing selections
+            if (featureHasChoices(feature)) {
+                // Initialize as empty array for storing selected choices
+                characterFeature.modifiers = [];
+            }
+
+            characterData.abilities.features.push(characterFeature);
+        });
+        generateFeatures('abilities');
+    });
+}
+// ============================================================================
 // FEATURE GENERATION & MANAGEMENT
 // ============================================================================
 
@@ -450,7 +601,7 @@ function generateRace() {
  * @param {string} source - Source type ('class', 'race', 'background')
  */
 function generateFeatures(source = 'class') {
-    if (!characterData[source]?.name || !gameData) return;
+    if ((!characterData[source]?.name && source !== 'abilities') || !gameData) return;
     
     const sourceData = getGameFeatureData(source);
     if (!sourceData) return;
@@ -678,7 +829,11 @@ function getGameFeatureData(source = 'class') {
     let sourceKey = '';
     if (source === 'class') {
         sourceKey = 'classes';
-    } else {
+    } 
+    else if (source === 'abilities') {
+        return gameData.abilities[0];
+    }
+    else {
         sourceKey = source + 's';
     }
     const sourceName = characterData[source]?.name;
@@ -803,6 +958,47 @@ function handleChoiceSelection(featureName, choiceIndex, type, value, source = '
     updateModifiers();
 }
 
+/**
+ * Handle choice selection from a dropdown
+ * @param {HTMLSelectElement} selectEl - The select element that was changed
+ */
+function handleAbilityModifierSelection(selectEl) {
+    const ability = selectEl.getAttribute('ability');
+    const value = selectEl.value;
+    
+    console.log('Ability modifier selected:', ability, value);
+    
+    characterData.abilities[ability].modifier = parseInt(value);
+
+    updatePointBuy();
+}
+
+function updatePointBuy() {
+    let points = 27;
+
+    for (const ability in characterData.abilities) {
+        if (ability === 'features') continue;
+        points -= 3*(characterData.abilities[ability].modifier + 1);
+        const selectEl = document.querySelector(`#cc-abilities-point-buy-selection-${ability}-select`);
+        if (selectEl) {
+            Object.values(selectEl.options).forEach(option => {
+                const pointCost = 3*(characterData.abilities[ability].modifier - parseInt(option.value));
+                const pointCostEl = option.querySelector(`#cc-abilities-point-buy-selection-cost`);
+                if (pointCost === 0) {
+                    pointCostEl.innerHTML = '';
+                } else if (pointCost > 0) {
+                    pointCostEl.innerHTML = `(+${pointCost})`;   
+                } else {
+                    pointCostEl.innerHTML = `(${pointCost})`;   
+                }
+            });
+        }
+    }
+
+    const pointBuyDisplayValueEl = document.querySelector('#cc-abilities-point-display-value');
+    pointBuyDisplayValueEl.textContent = points;
+}
+
 // ============================================================================
 // MODIFIER PROCESSING
 // ============================================================================
@@ -818,7 +1014,7 @@ function updateModifiers() {
     characterData.modifiers = [];
     
     // Process features from all sources
-    const sources = ['class', 'race', 'background'];
+    const sources = ['class', 'race', 'background', 'ability'];
     
     sources.forEach(source => {
         // Skip if source doesn't have a name (not selected)
@@ -906,14 +1102,6 @@ function updateModifiers() {
 // ============================================================================
 // OTHER GENERATION FUNCTIONS (Placeholders - implement as needed)
 // ============================================================================
-
-function generateBackgrounds() {
-    // TODO: Implement background generation
-}
-
-function generateAbilities() {
-    // TODO: Implement ability generation
-}
 
 function generateEquipment() {
     // TODO: Implement equipment generation

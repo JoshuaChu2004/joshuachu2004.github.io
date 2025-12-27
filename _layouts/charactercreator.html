@@ -244,7 +244,124 @@ custom_js: '/dnd/A&F/charactercreator.js'
                     </div>
                 </div>
                 <div id="cc-builder-tab-abilities" class="cc-builder-tab">
-                    <div class="cc-builder-tab-title">Choose Ability Modifiers</div>
+                    <div id="cc-builder-tab-abilities-choose">
+                        <div class="cc-builder-tab-title">Choose Ability Modifiers</div>
+                        <div class="cc-abilities-point-buy">
+                            <div class="cc-abilities-point-display">
+                                <div class="cc-abilities-point-display-title title">Points Remaining</div>
+                                <div class="cc-abilities-point-display-value title"><span id="cc-abilities-point-display-value">27</span>/<span id="cc-abilities-point-display-max">27</span></div>
+                            </div>
+                            <div class="cc-abilities-point-buy-selections">
+                                <div id="cc-abilities-point-buy-selection-strength" class="cc-abilities-point-buy-selection">
+                                    <div class="cc-abilities-point-buy-selection-title">Strength</div>
+                                    <select id="cc-abilities-point-buy-selection-strength-select" ability="strength" class="cc-abilities-point-buy-selection-select" onchange="handleAbilityModifierSelection(this)">
+                                        <option value="-1">-1 <span id="cc-abilities-point-buy-selection-cost"></span></option>
+                                        <option value="0">+0 <span id="cc-abilities-point-buy-selection-cost">(-3)</span></option>
+                                        <option value="1">+1 <span id="cc-abilities-point-buy-selection-cost">(-6)</span></option>
+                                        <option value="2">+2 <span id="cc-abilities-point-buy-selection-cost">(-9)</span></option>
+                                    </select>
+                                    <div id="cc-abilities-point-buy-selection-total" class="bold">Total: -1</div>
+                                </div>
+                                <div id="cc-abilities-point-buy-selection-dexterity" class="cc-abilities-point-buy-selection">
+                                    <div class="cc-abilities-point-buy-selection-title">Dexterity</div>
+                                    <select id="cc-abilities-point-buy-selection-dexterity-select" ability="dexterity" class="cc-abilities-point-buy-selection-select" onchange="handleAbilityModifierSelection(this)">
+                                        <option value="-1">-1 <span id="cc-abilities-point-buy-selection-cost"></span></option>
+                                        <option value="0">+0 <span id="cc-abilities-point-buy-selection-cost">(-3)</span></option>
+                                        <option value="1">+1 <span id="cc-abilities-point-buy-selection-cost">(-6)</span></option>
+                                        <option value="2">+2 <span id="cc-abilities-point-buy-selection-cost">(-9)</span></option>
+                                    </select>
+                                    <div id="cc-abilities-point-buy-selection-total" class="bold">Total: -1</div>
+                                </div>
+                                <div id="cc-abilities-point-buy-selection-constitution" class="cc-abilities-point-buy-selection">
+                                    <div class="cc-abilities-point-buy-selection-title">Constitution</div>
+                                    <select id="cc-abilities-point-buy-selection-constitution-select" ability="constitution" class="cc-abilities-point-buy-selection-select" onchange="handleAbilityModifierSelection(this)">
+                                        <option value="-1">-1 <span id="cc-abilities-point-buy-selection-cost"></span></option>
+                                        <option value="0">+0 <span id="cc-abilities-point-buy-selection-cost">(-3)</span></option>
+                                        <option value="1">+1 <span id="cc-abilities-point-buy-selection-cost">(-6)</span></option>
+                                        <option value="2">+2 <span id="cc-abilities-point-buy-selection-cost">(-9)</span></option>
+                                    </select>
+                                    <div id="cc-abilities-point-buy-selection-total" class="bold">Total: -1</div>
+                                </div>
+                                <div id="cc-abilities-point-buy-selection-intelligence" class="cc-abilities-point-buy-selection">
+                                    <div class="cc-abilities-point-buy-selection-title">Intelligence</div>
+                                    <select id="cc-abilities-point-buy-selection-intelligence-select" ability="intelligence" class="cc-abilities-point-buy-selection-select" onchange="handleAbilityModifierSelection(this)">
+                                        <option value="-1">-1 <span id="cc-abilities-point-buy-selection-cost"></span></option>
+                                        <option value="0">+0 <span id="cc-abilities-point-buy-selection-cost">(-3)</span></option>
+                                        <option value="1">+1 <span id="cc-abilities-point-buy-selection-cost">(-6)</span></option>
+                                        <option value="2">+2 <span id="cc-abilities-point-buy-selection-cost">(-9)</span></option>
+                                    </select>
+                                    <div id="cc-abilities-point-buy-selection-total" class="bold">Total: -1</div>
+                                </div>
+                                <div id="cc-abilities-point-buy-selection-wisdom" class="cc-abilities-point-buy-selection">
+                                    <div class="cc-abilities-point-buy-selection-title">Wisdom</div>
+                                    <select id="cc-abilities-point-buy-selection-wisdom-select" ability="wisdom" class="cc-abilities-point-buy-selection-select" onchange="handleAbilityModifierSelection(this)">
+                                        <option value="-1">-1 <span id="cc-abilities-point-buy-selection-cost"></span></option>
+                                        <option value="0">+0 <span id="cc-abilities-point-buy-selection-cost">(-3)</span></option>
+                                        <option value="1">+1 <span id="cc-abilities-point-buy-selection-cost">(-6)</span></option>
+                                        <option value="2">+2 <span id="cc-abilities-point-buy-selection-cost">(-9)</span></option>
+                                    </select>
+                                    <div id="cc-abilities-point-buy-selection-total" class="bold">Total: -1</div>
+                                </div>
+                                <div id="cc-abilities-point-buy-selection-charisma" class="cc-abilities-point-buy-selection">
+                                    <div class="cc-abilities-point-buy-selection-title">Charisma</div>
+                                    <select id="cc-abilities-point-buy-selection-charisma-select" ability="charisma" class="cc-abilities-point-buy-selection-select" onchange="handleAbilityModifierSelection(this)">
+                                        <option value="-1">-1 <span id="cc-abilities-point-buy-selection-cost"></span></option>
+                                        <option value="0">+0 <span id="cc-abilities-point-buy-selection-cost">(-3)</span></option>
+                                        <option value="1">+1 <span id="cc-abilities-point-buy-selection-cost">(-6)</span></option>
+                                        <option value="2">+2 <span id="cc-abilities-point-buy-selection-cost">(-9)</span></option>
+                                    </select>
+                                    <div id="cc-abilities-point-buy-selection-total" class="bold">Total: -1</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="cc-builder-tab-abilities-manage" class="">
+                        <div class="cc-abilities-primary">
+                            <div class="cc-progression-display">
+                                <div class="title"><span id="cc-abilities-name">Ability Modifiers</span></div>
+                                <div id="cc-abilities-description" class="paragraph">Ability Modifiers</div>
+                            </div>
+                        </div>
+                        <div id="cc-abilities-manager" class="cc-manager">
+                            <div class="cc-manager-features">
+                                <details class="cc-manager-feature">
+                                    <summary class="cc-manager-feature-summary">
+                                        <div class="cc-manager-feature-summary-info">
+                                            <div class="cc-manager-feature-summary-title header">Feature Title</div>
+                                            <div class="cc-manager-feature-summary-meta">
+                                                <div class="cc-manager-feature-summary-meta-item">X Choices</div>
+                                                <div class="cc-manager-feature-summary-meta-item">X Level</div>
+                                            </div>
+                                        </div>
+                                    </summary>
+                                    <div class="cc-manager-feature-content">
+                                        <div id="cc-manager-feature-content-description" class="">
+                                            <div class="paragraph">This is a description of the feature.</div>
+                                        <div class="cc-manager-feature-content-choices">
+                                            <div class="cc-manager-feature-content-choice">
+                                                <select class="cc-manager-feature-content-choice-select">
+                                                    <option value="0">Choose a Choice</option>
+                                                    <option value="1">Choice 1</option>
+                                                    <option value="2">Choice 2</option>
+                                                    <option value="3">Choice 3</option>
+                                                </select>
+                                                <div id="cc-manager-feature-content-choice-description" class="paragraph ">This is a description of the choice.</div>
+                                            </div>
+                                            <div class="cc-manager-feature-content-choice">
+                                                <select class="cc-manager-feature-content-choice-select">
+                                                    <option value="0">Choose a Choice</option>
+                                                    <option value="1">Choice 1</option>
+                                                    <option value="2">Choice 2</option>
+                                                    <option value="3">Choice 3</option>
+                                                </select>
+                                                <div id="cc-manager-feature-content-choice-description" class="paragraph ">This is a description of the choice.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </details>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div id="cc-builder-tab-equipment" class="cc-builder-tab">
                     <div class="cc-builder-tab-title">Choose Starting Equipment</div>

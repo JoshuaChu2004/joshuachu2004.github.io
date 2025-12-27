@@ -10,7 +10,8 @@ async function loadBuilderGameData() {
             races: await loadAllRaces(),
             backgrounds: await loadAllBackgrounds(),
             feats: await loadAllFeats(),
-            prowesses: await loadAllProwesses()
+            prowesses: await loadAllProwesses(),
+            abilities: await loadAllAbilities()
         };
         return gameData;
     } catch (error) {
@@ -130,6 +131,47 @@ async function loadAllProwesses() {
     }
     catch (error) {
         console.error(`Error loading all prowesses:`, error);
+        return null;
+    }
+}
+
+async function loadAllAbilities() {
+    try {
+        const response = await fetch(`/dnd/A&F/data/dataLists/abilitylist.json`);
+        if (!response.ok) {
+            throw new Error(`Failed to load all abilities`);
+        }
+        const abilityList = await response.json();
+        const abilitiesData = [];
+        for (const abilityName of abilityList.abilities) {
+            const abilityData = await loadAbility(abilityName);
+            if (abilityData) {
+                abilitiesData.push(abilityData);
+            }
+        }
+        return abilitiesData;
+    }
+    catch (error) {
+        console.error(`Error loading all abilities:`, error);
+        return null;
+    }
+}
+
+async function loadAbility(abilityName) {
+    if (gameDataCache[`ability_${abilityName}`]) {
+        return gameDataCache[`ability_${abilityName}`];
+    }
+
+    try {
+        const response = await fetch(`/dnd/A&F/data/abilities/${abilityName.toLowerCase()}.json`);
+        if (!response.ok) {
+            throw new Error(`Failed to load ability: ${abilityName}`);
+        }
+        const abilityData = await response.json();
+        gameDataCache[`ability_${abilityName}`] = abilityData;
+        return abilityData;
+    } catch (error) {
+        console.error(`Error loading ability ${abilityName}:`, error);
         return null;
     }
 }

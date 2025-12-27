@@ -1,7 +1,6 @@
 {
   "name": "Criminal",
-  "skillProficiencies": ["Deception", "Stealth"],
-  "toolProficiencies": ["Thieves' Tools", "Gaming Set"],
+  "description": "You are an experienced criminal with a history of breaking the law. You have spent a lot of time among other criminals and still have contacts within the criminal underworld. You're far closer than most people to the world of murder, theft, and violence that pervades the underbelly of civilization, and you have survived up to this point by flouting the rules and regulations of society.",
   "languages": [],
   "equipment": [
     "Crowbar",
@@ -10,8 +9,45 @@
   ],
   "features": [
     {
+      "name": "Criminal Proficiencies",
+      "description": "You have proficiency with the following skills: Deception and Stealth. You also have proficiency with Thieves' Tools and a Gaming Set of your choice.",
+      "modifiers": [
+        {
+          "type": "skillProficiency",
+          "subType": "granted",
+          "value": "Deception"
+        },
+        {
+          "type": "skillProficiency",
+          "subType": "granted",
+          "value": "Stealth"
+        },
+        {
+          "type": "toolProficiency",
+          "subType": "granted",
+          "value": "Thieves' Tools"
+        },
+        {
+          "type": "toolProficiency",
+          "subType": "choose",
+          "from": ["Playing Cards", "Three-Dragon Ante", "Dice"]
+        }
+      ]
+    },
+    {
       "name": "Criminal Contact",
       "description": "You have a reliable and trustworthy contact who acts as your liaison to a network of other criminals. You know how to get messages to and from your contact, even over great distances."
+    },
+    {
+      "name": "Origin Feat",
+      "description": "You have a feat that was gained through your background. Choose one of the following Origin Feats",
+      "modifiers": [
+        {
+          "type": "originFeat",
+          "subType": "choose",
+          "from": ["Chef"]
+        }
+      ]
     }
   ]
 }

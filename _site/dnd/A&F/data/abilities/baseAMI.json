@@ -1,0 +1,42 @@
+{
+    "name": "Origin Ability Improvements",
+    "description": "You can increase two differentability modifiers by 1.",
+    "features": [
+        {
+            "name": "Ability Modifier Increase",
+            "description": "You can increase two different ability modifiers by 1.",
+            "modifiers": [
+                {
+                    "type": "abilityModifierIncrease",
+                    "subType": "chooseUnique",
+                    "bonus": 1,
+                    "from": ["Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"]
+                },
+                {
+                    "type": "abilityModifierIncrease",
+                    "subType": "chooseUnique",
+                    "bonus": 1,
+                    "from": ["Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"]
+                }
+            ]
+        },
+        {
+            "name": "Saving Throw Increase",
+            "description": "You gain either a +2 bonus to a saving throw of your choice or a +1 bonus to two saving throws of your choice.",
+            "modifiers": [
+                {
+                    "type": "savingThrowIncrease",
+                    "subType": "choose",
+                    "bonus": 1,
+                    "from": ["Fortitude", "Reflex", "Will"]
+                },
+                {
+                    "type": "savingThrowIncrease",
+                    "subType": "choose",
+                    "bonus": 1,
+                    "from": ["Fortitude", "Reflex", "Will"]
+                }
+            ]
+        }
+    ]
+}
