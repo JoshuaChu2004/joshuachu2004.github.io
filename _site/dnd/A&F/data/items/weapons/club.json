@@ -1,0 +1,16 @@
+{
+    "id": "club",
+    "name": "Club",
+    "type": "weapon",
+    "category": "simple",
+    "equipment": true,
+    "weaponTraits": {
+        "type": "melee",
+        "ability": "strength",
+        "damage": "1d4",
+        "damageType": "bludgeoning",
+        "range": "5 ft.",
+        "properties": ["light"]
+    }
+}
+

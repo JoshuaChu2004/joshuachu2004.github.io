@@ -76,6 +76,8 @@ let characterData = {
         },
     },
     modifiers: [],  // Aggregated modifiers from all selected options
+    // calculatedModifiers will be initialized after getDefaultCalculatedModifiers is defined
+    calculatedModifiers: null,
     senses: {
         description: null,
     },
@@ -102,11 +104,19 @@ let characterData = {
     inventory: {
         equipment: [],
         items: [],
+        currency: {
+            copper: 0,
+            gold: 0,
+            silver: 0,
+        },
     },
     notes: '',
 };
 let currentSection = null;
-
+let equipmentSelections = {
+    class: {},
+    background: {},
+}
 // ============================================================================
 // UTILITY FUNCTIONS
 // ============================================================================
@@ -120,6 +130,37 @@ let currentSection = null;
 function sanitizeFeatureName(name) {
     if (!name) return '';
     return name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+}
+
+/**
+ * Convert a string to camelCase
+ * @param {string} string - The string to convert
+ * @returns {string} The string in camelCase format
+ */
+function toCamelCase(string) {
+    if (!string) return '';
+    
+    return string
+        .trim()
+        .replace(/[^a-zA-Z0-9]+(.)/g, (match, char) => char.toUpperCase())
+        .replace(/^[A-Z]/, char => char.toLowerCase());
+}
+
+/**
+ * Get the gameData items key from an item type
+ * Maps singular item types to plural gameData keys
+ * @param {string} itemType - The item type (e.g., "weapon", "armor", "pack")
+ * @returns {string} The corresponding gameData key (e.g., "weapons", "armor", "packs")
+ */
+function getItemTypeKey(itemType) {
+    const typeMap = {
+        'weapon': 'weapons',
+        'armor': 'armor',
+        'pack': 'packs',
+        'wondrous': 'items',
+        'item': 'items'
+    };
+    return typeMap[itemType] || itemType;
 }
 
 /**
@@ -166,6 +207,12 @@ async function loadCharacterBuilderData(hexId=null) {
         if (gameData) {
             console.log('Game data:', gameData);
         }
+        
+        // Initialize calculatedModifiers if not already set
+        if (!characterData.calculatedModifiers) {
+            characterData.calculatedModifiers = getDefaultCalculatedModifiers();
+        }
+        
         if (hexId) {
             console.log("Editing existing character...");
             const loadedData = JSON.parse(localStorage.getItem(`characterData-${hexId}`));
@@ -175,6 +222,10 @@ async function loadCharacterBuilderData(hexId=null) {
                 // Ensure modifiers array exists
                 if (!characterData.modifiers) {
                     characterData.modifiers = [];
+                }
+                // Ensure calculatedModifiers structure is correct
+                if (!characterData.calculatedModifiers) {
+                    characterData.calculatedModifiers = getDefaultCalculatedModifiers();
                 }
                 console.log('Character data:', characterData);
             }
@@ -597,6 +648,192 @@ function generateAbilities() {
 // ============================================================================
 
 /**
+ * Generate a single feature UI element
+ * @param {object} gameFeature - The feature definition from game data
+ * @param {object} characterFeature - The character's feature data
+ * @param {string} source - Source type ('class', 'race', 'background', 'feat')
+ * @param {HTMLElement} container - Optional container to append the feature to
+ * @returns {HTMLElement} The generated feature element
+ */
+function generateFeature(gameFeature, characterFeature, source, container = null) {
+    if (!gameFeature || !characterFeature) return null;
+    
+    const featureEl = document.createElement('details');
+    featureEl.classList.add('cc-manager-feature');
+    featureEl.dataset.featureName = gameFeature.name;
+    
+    // Determine how many options/choices are available
+    let choicesCount = 0;
+    let selectedCount = 0;
+    
+    if (featureHasOptions(gameFeature)) {
+        choicesCount = gameFeature.count || 1;
+        selectedCount = characterFeature.options ? characterFeature.options.filter(o => o).length : 0;
+    } else if (featureHasChoices(gameFeature)) {
+        const choiceModifiers = getChoiceModifiers(gameFeature);
+        choicesCount = choiceModifiers.length;
+        selectedCount = characterFeature.modifiers ? characterFeature.modifiers.filter(m => m).length : 0;
+    }
+    
+    const featureDescription = parseDescription(gameFeature.description, 'charactercreator');
+    
+    // Build summary
+    const summaryEl = document.createElement('summary');
+    summaryEl.classList.add('cc-manager-feature-summary');
+    summaryEl.innerHTML = `
+        <div class="cc-manager-feature-summary-info">
+            <div class="cc-manager-feature-summary-title header">${gameFeature.name}</div>
+            <div class="cc-manager-feature-summary-meta">
+                ${choicesCount > 0 ? `<div class="cc-manager-feature-summary-meta-item">${selectedCount}/${choicesCount} Choices</div>` : ''}
+                ${source === 'class' && gameFeature.level ? `<div class="cc-manager-feature-summary-meta-item">Level ${gameFeature.level}</div>` : ''}
+            </div>
+        </div>
+    `;
+    
+    // Build content
+    const contentEl = document.createElement('div');
+    contentEl.classList.add('cc-manager-feature-content');
+    contentEl.innerHTML = `
+        <div class="cc-manager-feature-content-description">
+            ${featureDescription}
+        </div>
+    `;
+    
+    // Add options UI if feature has options
+    if (featureHasOptions(gameFeature)) {
+        const choicesContainer = document.createElement('div');
+        choicesContainer.classList.add('cc-manager-feature-content-choices');
+        
+        const count = gameFeature.count || 1;
+        for (let i = 0; i < count; i++) {
+            const choiceEl = document.createElement('div');
+            choiceEl.classList.add('cc-manager-feature-content-choice');
+            
+            choiceEl.id = `cc-manager-feature-content-choice-${sanitizeFeatureName(gameFeature.name)}-${i}`;
+            choiceEl.dataset.choiceIndex = i;
+            
+            const selectEl = document.createElement('select');
+            selectEl.classList.add('cc-manager-feature-content-choice-select');
+            selectEl.dataset.featureName = gameFeature.name;
+            selectEl.dataset.choiceIndex = i;
+            selectEl.dataset.source = source;
+            selectEl.onchange = () => handleOptionSelection(gameFeature.name, i, selectEl.value, source);
+            
+            // Add default option
+            const defaultOption = document.createElement('option');
+            defaultOption.value = -1;
+            defaultOption.textContent = 'Choose an Option';
+            selectEl.appendChild(defaultOption);
+            
+            // Add all available options
+            gameFeature.options.forEach(option => {
+                const optionEl = document.createElement('option');
+                optionEl.value = option.name;
+                optionEl.textContent = option.name;
+                // Mark as selected if this option is already chosen
+                if (characterFeature.options && characterFeature.options[i] === option.name) {
+                    optionEl.selected = true;
+                }
+                selectEl.appendChild(optionEl);
+            });
+            
+            // Show description of selected option
+            const descriptionEl = document.createElement('div');
+            descriptionEl.classList.add('cc-manager-feature-content-choice-description', 'paragraph');
+            descriptionEl.id = `cc-manager-feature-content-choice-description-${sanitizeFeatureName(gameFeature.name)}-${i}`;
+            
+            // Set initial description if option is already selected
+            if (characterFeature.options && characterFeature.options[i]) {
+                const selectedOption = gameFeature.options.find(o => o.name === characterFeature.options[i]);
+                if (selectedOption) {
+                    descriptionEl.innerHTML = parseDescription(selectedOption.description, 'charactercreator');
+                }
+            }
+            
+            choiceEl.appendChild(selectEl);
+            choiceEl.appendChild(descriptionEl);
+            choicesContainer.appendChild(choiceEl);
+        }
+        
+        contentEl.appendChild(choicesContainer);
+    }
+
+    // Add choices UI if feature has choices (but not options - options are handled above)
+    if (featureHasChoices(gameFeature)) {
+        const choicesContainer = document.createElement('div');
+        choicesContainer.classList.add('cc-manager-feature-content-choices');
+        
+        const choiceModifiers = getChoiceModifiers(gameFeature);
+        choiceModifiers.forEach((modifier, i) => {
+            const choiceEl = document.createElement('div');
+            choiceEl.classList.add('cc-manager-feature-content-choice');
+            choiceEl.id = `cc-manager-feature-content-choice-${sanitizeFeatureName(gameFeature.name)}-${i}`;
+            choiceEl.dataset.choiceIndex = i;
+            
+            const selectEl = document.createElement('select');
+            selectEl.classList.add('cc-manager-feature-content-choice-select');
+            selectEl.dataset.featureName = gameFeature.name;
+            selectEl.dataset.choiceIndex = i;
+            selectEl.dataset.source = source;
+            selectEl.onchange = () => handleChoiceSelection(gameFeature.name, i, modifier.type, selectEl.value, source);
+            
+            // Add default option
+            const defaultOption = document.createElement('option');
+            defaultOption.value = -1;
+            defaultOption.textContent = 'Choose an Option';
+            selectEl.appendChild(defaultOption);
+            
+            // Add all available options
+            if (modifier.from && Array.isArray(modifier.from)) {
+                modifier.from.forEach(choice => {
+                    const optionEl = document.createElement('option');
+                    optionEl.value = choice;
+                    optionEl.textContent = choice;
+                    // Mark as selected if already chosen
+                    if (characterFeature.modifiers && characterFeature.modifiers[i] && characterFeature.modifiers[i].value === choice) {
+                        optionEl.selected = true;
+                    }
+                    selectEl.appendChild(optionEl);
+                });
+            }
+
+            // Show description of selected option
+            const descriptionEl = document.createElement('div');
+            descriptionEl.classList.add('cc-manager-feature-content-choice-description', 'paragraph');
+            descriptionEl.id = `cc-manager-feature-content-choice-description-${sanitizeFeatureName(gameFeature.name)}-${i}`;
+            
+            // Set initial description if option is already selected
+            if (characterFeature.modifiers && characterFeature.modifiers[i] && characterFeature.modifiers[i].value) {
+                const selectedValue = characterFeature.modifiers[i].value;
+                // Handle feat descriptions
+                if (modifier.type === 'feat' || modifier.type === 'originFeat') {
+                    const featData = gameData.feats.find(f => f.name === selectedValue);
+                    if (featData) {
+                        descriptionEl.innerHTML = parseDescription(featData.description, 'charactercreator');
+                    }
+                }
+            }
+            
+            choiceEl.appendChild(selectEl);
+            choiceEl.appendChild(descriptionEl);
+            choicesContainer.appendChild(choiceEl);
+        });
+        
+        contentEl.appendChild(choicesContainer);
+    }
+    
+    featureEl.appendChild(summaryEl);
+    featureEl.appendChild(contentEl);
+    
+    // Append to container if provided
+    if (container) {
+        container.appendChild(featureEl);
+    }
+    
+    return featureEl;
+}
+
+/**
  * Generate features for a given source (class, race, background)
  * @param {string} source - Source type ('class', 'race', 'background')
  */
@@ -624,166 +861,7 @@ function generateFeatures(source = 'class') {
         const characterFeature = characterData[source].features.find(f => f.name === gameFeature.name);
         if (!characterFeature) return;
         
-        const featureEl = document.createElement('details');
-        featureEl.classList.add('cc-manager-feature');
-        featureEl.dataset.featureName = gameFeature.name;
-        
-        // Determine how many options/choices are available
-        let choicesCount = 0;
-        let selectedCount = 0;
-        
-        if (featureHasOptions(gameFeature)) {
-            choicesCount = gameFeature.count || 1;
-            selectedCount = characterFeature.options ? characterFeature.options.filter(o => o).length : 0;
-        } else if (featureHasChoices(gameFeature)) {
-            const choiceModifiers = getChoiceModifiers(gameFeature);
-            choicesCount = choiceModifiers.length;
-            selectedCount = characterFeature.modifiers ? characterFeature.modifiers.filter(m => m).length : 0;
-        }
-        
-        const featureDescription = parseDescription(gameFeature.description, 'charactercreator');
-        
-        // Build summary
-        const summaryEl = document.createElement('summary');
-        summaryEl.classList.add('cc-manager-feature-summary');
-        summaryEl.innerHTML = `
-            <div class="cc-manager-feature-summary-info">
-                <div class="cc-manager-feature-summary-title header">${gameFeature.name}</div>
-                <div class="cc-manager-feature-summary-meta">
-                    ${choicesCount > 0 ? `<div class="cc-manager-feature-summary-meta-item">${selectedCount}/${choicesCount} Choices</div>` : ''}
-                    ${source === 'class' && gameFeature.level ? `<div class="cc-manager-feature-summary-meta-item">Level ${gameFeature.level}</div>` : ''}
-                </div>
-            </div>
-        `;
-        
-        // Build content
-        const contentEl = document.createElement('div');
-        contentEl.classList.add('cc-manager-feature-content');
-        contentEl.innerHTML = `
-            <div class="cc-manager-feature-content-description">
-                ${featureDescription}
-            </div>
-        `;
-        
-        // Add options UI if feature has options
-        if (featureHasOptions(gameFeature)) {
-            const choicesContainer = document.createElement('div');
-            choicesContainer.classList.add('cc-manager-feature-content-choices');
-            
-            const count = gameFeature.count || 1;
-            for (let i = 0; i < count; i++) {
-                const choiceEl = document.createElement('div');
-                choiceEl.classList.add('cc-manager-feature-content-choice');
-                choiceEl.dataset.choiceIndex = i;
-                
-                const selectEl = document.createElement('select');
-                selectEl.classList.add('cc-manager-feature-content-choice-select');
-                selectEl.dataset.featureName = gameFeature.name;
-                selectEl.dataset.choiceIndex = i;
-                selectEl.dataset.source = source;
-                selectEl.onchange = () => handleOptionSelection(gameFeature.name, i, selectEl.value, source);
-                
-                // Add default option
-                const defaultOption = document.createElement('option');
-                defaultOption.value = '';
-                defaultOption.textContent = 'Choose an Option';
-                selectEl.appendChild(defaultOption);
-                
-                // Add all available options
-                gameFeature.options.forEach(option => {
-                    const optionEl = document.createElement('option');
-                    optionEl.value = option.name;
-                    optionEl.textContent = option.name;
-                    // Mark as selected if this option is already chosen
-                    if (characterFeature.options && characterFeature.options[i] === option.name) {
-                        optionEl.selected = true;
-                    }
-                    selectEl.appendChild(optionEl);
-                });
-                
-                // Show description of selected option
-                const descriptionEl = document.createElement('div');
-                descriptionEl.classList.add('cc-manager-feature-content-choice-description', 'paragraph');
-                descriptionEl.id = `cc-manager-feature-content-choice-description-${sanitizeFeatureName(gameFeature.name)}-${i}`;
-                
-                // Set initial description if option is already selected
-                if (characterFeature.options && characterFeature.options[i]) {
-                    const selectedOption = gameFeature.options.find(o => o.name === characterFeature.options[i]);
-                    if (selectedOption) {
-                        descriptionEl.innerHTML = parseDescription(selectedOption.description, 'charactercreator');
-                    }
-                }
-                
-                choiceEl.appendChild(selectEl);
-                choiceEl.appendChild(descriptionEl);
-                choicesContainer.appendChild(choiceEl);
-            }
-            
-            contentEl.appendChild(choicesContainer);
-        }
-
-        // Add choices UI if feature has choices (but not options - options are handled above)
-        if (featureHasChoices(gameFeature)) {
-            const choicesContainer = document.createElement('div');
-            choicesContainer.classList.add('cc-manager-feature-content-choices');
-            
-            const choiceModifiers = getChoiceModifiers(gameFeature);
-            choiceModifiers.forEach((modifier, i) => {
-                const choiceEl = document.createElement('div');
-                choiceEl.classList.add('cc-manager-feature-content-choice');
-                choiceEl.dataset.choiceIndex = i;
-                
-                const selectEl = document.createElement('select');
-                selectEl.classList.add('cc-manager-feature-content-choice-select');
-                selectEl.dataset.featureName = gameFeature.name;
-                selectEl.dataset.choiceIndex = i;
-                selectEl.dataset.source = source;
-                selectEl.onchange = () => handleChoiceSelection(gameFeature.name, i, modifier.type, selectEl.value, source);
-                
-                // Add default option
-                const defaultOption = document.createElement('option');
-                defaultOption.value = '';
-                defaultOption.textContent = 'Choose an Option';
-                selectEl.appendChild(defaultOption);
-                
-                // Add all available options
-                if (modifier.from && Array.isArray(modifier.from)) {
-                    modifier.from.forEach(choice => {
-                        const optionEl = document.createElement('option');
-                        optionEl.value = choice;
-                        optionEl.textContent = choice;
-                        // Mark as selected if already chosen
-                        if (characterFeature.modifiers && characterFeature.modifiers[i] === choice) {
-                            optionEl.selected = true;
-                        }
-                        selectEl.appendChild(optionEl);
-                    });
-                }
-
-                // Show description of selected option
-                const descriptionEl = document.createElement('div');
-                descriptionEl.classList.add('cc-manager-feature-content-choice-description', 'paragraph');
-                descriptionEl.id = `cc-manager-feature-content-choice-description-${sanitizeFeatureName(gameFeature.name)}-${i}`;
-                
-                // Set initial description if option is already selected
-                if (characterFeature.options && characterFeature.options[i]) {
-                    const selectedOption = gameFeature.options.find(o => o.name === characterFeature.options[i]);
-                    if (selectedOption) {
-                        descriptionEl.innerHTML = parseDescription(selectedOption.description, 'charactercreator');
-                    }
-                }
-                
-                choiceEl.appendChild(selectEl);
-                choiceEl.appendChild(descriptionEl);
-                choicesContainer.appendChild(choiceEl);
-            });
-            
-            contentEl.appendChild(choicesContainer);
-        }
-        
-        featureEl.appendChild(summaryEl);
-        featureEl.appendChild(contentEl);
-        featuresContainer.appendChild(featureEl);
+        generateFeature(gameFeature, characterFeature, source, featuresContainer);
     });
     
     // Update modifiers after generating features
@@ -817,6 +895,9 @@ function generateRaceFeatures() {
  * @returns {object|null} Character feature or null if not found
  */
 function getCharacterFeature(featureName, source = 'class') {
+    if (source === 'feats') {
+        return characterData.feats.find(f => f.name === featureName) || null;
+    }
     return characterData[source]?.features?.find(f => f.name === featureName) || null;
 }
 
@@ -829,7 +910,10 @@ function getGameFeatureData(source = 'class') {
     let sourceKey = '';
     if (source === 'class') {
         sourceKey = 'classes';
-    } 
+    } else if (source === 'feats') {
+        sourceKey = 'feats';
+        return gameData.feats;
+    }
     else if (source === 'abilities') {
         return gameData.abilities[0];
     }
@@ -848,8 +932,21 @@ function getGameFeatureData(source = 'class') {
  * @returns {object|null} Game feature or null if not found
  */
 function getGameFeature(featureName, source = 'class') {
+    if (source === 'feats') {
+        return gameData.feats.find(f => f.name === featureName) || null;
+    }
     const sourceData = getGameFeatureData(source);
     return sourceData?.features?.find(f => f.name === featureName) || null;
+}
+
+/**
+ * Get game feature definition from the specified source
+ * @param {string} featureName - Name of the feature
+ * @param {string} source - Source type ('class', 'race', 'background')
+ * @returns {object|null} Game feature or null if not found
+ */
+function getGameItem(itemId) {
+    return gameData.items.byId[itemId] || null;
 }
 
 /**
@@ -913,6 +1010,7 @@ function handleOptionSelection(featureName, choiceIndex, optionName, source = 'c
  * @param {string} source - Source type ('class', 'race', 'background')
  */
 function handleChoiceSelection(featureName, choiceIndex, type, value, source = 'class') {
+    debugger;
     const characterFeature = getCharacterFeature(featureName, source);
     if (!characterFeature) return;
     
@@ -930,11 +1028,32 @@ function handleChoiceSelection(featureName, choiceIndex, type, value, source = '
     // Update the choice description if its a Feat
     if (type === 'feat' || type === 'originFeat') {
         const featData = gameData.feats.find(f => f.name === value);
-        const descriptionEl = document.querySelector(`#cc-manager-feature-content-choice-description-${sanitizeFeatureName(featureName)}-${choiceIndex}`);
+
+        let characterFeature = getCharacterFeature(featureName, 'feats');
+        if (!characterFeature) {
+            characterFeature = {
+                name: value,
+                source: {
+                    type: source,
+                    feature: featureName,
+                    choiceIndex: choiceIndex
+                },
+                modifiers: [],  // For feat choices
+                options: []      // If feat has options
+            };
+            if (value != -1) {
+                characterData.feats.push(characterFeature);
+            } else {
+                removeFeat(characterFeature.source);
+            }
+        }
+
+        const choiceEl = document.querySelector(`#cc-manager-feature-content-choice-${sanitizeFeatureName(featureName)}-${choiceIndex}`);
+        
         if (featData) {
-            descriptionEl.innerHTML = parseDescription(featData.description, 'charactercreator');
+            generateFeature(featData, characterFeature, 'feats', choiceEl);
         } else {
-            descriptionEl.innerHTML = '';
+            choiceEl.querySelector('.cc-manager-feature').remove();
         }
     }
     
@@ -950,12 +1069,16 @@ function handleChoiceSelection(featureName, choiceIndex, type, value, source = '
             metaItem.textContent = `${selectedCount}/${choicesCount} Choices`;
         }
     }
-
-
-
     
     // Update modifiers
     updateModifiers();
+} 
+
+function removeFeat(source) {
+    const feat = characterData.feats.find(f => f.source.feature === source.feature && f.source.choiceIndex === source.choiceIndex);
+    if (feat) {
+        characterData.feats.splice(characterData.feats.indexOf(feat), 1);
+    }
 }
 
 /**
@@ -974,15 +1097,25 @@ function handleAbilityModifierSelection(selectEl) {
 }
 
 function updatePointBuy() {
-    let points = 27;
+    let points = 24;
+    const pointCostMap = {
+        "-1": 0,
+        "0": 2,
+        "1": 4,
+        "2": 8,
+    };
 
     for (const ability in characterData.abilities) {
         if (ability === 'features') continue;
-        points -= 3*(characterData.abilities[ability].modifier + 1);
-        const selectEl = document.querySelector(`#cc-abilities-point-buy-selection-${ability}-select`);
+        const selectionContainerEl = document.querySelector(`#cc-abilities-point-buy-selection-${ability}`);
+        const totalEl = selectionContainerEl.querySelector('#cc-abilities-point-buy-selection-total');
+        const selectEl = selectionContainerEl.querySelector(`#cc-abilities-point-buy-selection-${ability}-select`);
+        
+        points -= pointCostMap[characterData.abilities[ability].modifier];
+
         if (selectEl) {
             Object.values(selectEl.options).forEach(option => {
-                const pointCost = 3*(characterData.abilities[ability].modifier - parseInt(option.value));
+                const pointCost = pointCostMap[characterData.abilities[ability].modifier] - pointCostMap[parseInt(option.value)];
                 const pointCostEl = option.querySelector(`#cc-abilities-point-buy-selection-cost`);
                 if (pointCost === 0) {
                     pointCostEl.innerHTML = '';
@@ -993,10 +1126,39 @@ function updatePointBuy() {
                 }
             });
         }
+        
+        const total = characterData.abilities[ability].modifier + characterData.calculatedModifiers.abilityModifierIncrease[ability].bonus;
+        if (total > 0) {
+            totalEl.innerHTML = `Total: +${total}`;
+        } else if (total == 0) {
+            totalEl.innerHTML = `Total: ${total}`;
+        } 
+        else {
+            totalEl.innerHTML = `Total: ${total}`;
+        }
+    }
+
+    for (const ability in characterData.abilities) {
+        if (ability === 'features') continue;
+        const selectionContainerEl = document.querySelector(`#cc-abilities-point-buy-selection-${ability}`);
+        const selectEl = selectionContainerEl.querySelector(`#cc-abilities-point-buy-selection-${ability}-select`);
+
+        if (selectEl) {
+            Object.values(selectEl.options).forEach(option => {
+                const pointCost = pointCostMap[characterData.abilities[ability].modifier] - pointCostMap[parseInt(option.value)];
+                if (Math.abs(pointCost) > points && pointCost < 0) {
+                    option.classList.add('hidden');
+                } else {
+                    option.classList.remove('hidden');
+                }
+            });
+        }
     }
 
     const pointBuyDisplayValueEl = document.querySelector('#cc-abilities-point-display-value');
+    const pointBuyDisplayMaxEl = document.querySelector('#cc-abilities-point-display-max');
     pointBuyDisplayValueEl.textContent = points;
+    pointBuyDisplayMaxEl.textContent = 24;
 }
 
 // ============================================================================
@@ -1014,11 +1176,11 @@ function updateModifiers() {
     characterData.modifiers = [];
     
     // Process features from all sources
-    const sources = ['class', 'race', 'background', 'ability'];
+    const sources = ['class', 'race', 'background', 'abilities'];
     
     sources.forEach(source => {
         // Skip if source doesn't have a name (not selected)
-        if (!characterData[source]?.name) return;
+        if (!characterData[source]?.name && source !== 'abilities') return;
         
         // Get game data for this source
         const sourceData = getGameFeatureData(source);
@@ -1063,6 +1225,7 @@ function updateModifiers() {
                     const selectedModifier = {
                         type: selectedChoice.type,
                         value: selectedChoice.value,
+                        bonus: choiceModifier.bonus,
                         source: {
                             source: source,
                             feature: characterFeature.name,
@@ -1070,7 +1233,9 @@ function updateModifiers() {
                             modifierIndex: index,
                         }
                     };
-                    characterData.modifiers.push(selectedModifier);
+                    if (selectedModifier.value != -1) {
+                        characterData.modifiers.push(selectedModifier);
+                    }
                 });
             }
             
@@ -1088,7 +1253,9 @@ function updateModifiers() {
                                 feature: characterFeature.name,
                                 option: optionName,
                             };
-                            characterData.modifiers.push(modifierData);
+                            if (modifierData.value != -1) {
+                                characterData.modifiers.push(modifierData);
+                            }
                         });
                     }
                 });
@@ -1096,7 +1263,370 @@ function updateModifiers() {
         });
     });
     
+    characterData.feats.forEach(feat => {
+        const characterFeature = feat;
+        const gameFeature = getGameFeatureData('feats').find(f => f.name === feat.name);
+        if (gameFeature) {
+            if (gameFeature.modifiers && Array.isArray(gameFeature.modifiers)) {
+                const directModifiers = gameFeature.modifiers.filter(modifier => 
+                    modifier.subType !== 'choose' && !modifier.from && !featureHasOptions(gameFeature)
+                );
+                directModifiers.forEach(modifier => {
+                    const modifierData = { ...modifier };
+                    modifierData.source = {
+                        source: 'feats',
+                        feature: feat.name,
+                        option: null,
+                    };
+                    if (modifierData.value != -1) {
+                        characterData.modifiers.push(modifierData);
+                    }
+                });
+            }
+            // If feature has choices, extract modifiers from selected choices
+            if (featureHasChoices(gameFeature) && characterFeature.modifiers && Array.isArray(characterFeature.modifiers)) {
+                const choiceModifiers = getChoiceModifiers(gameFeature);
+                characterFeature.modifiers.forEach((selectedChoice, index) => {
+                    if (!selectedChoice || index >= choiceModifiers.length) return;
+                    
+                    const choiceModifier = choiceModifiers[index];
+                    if (!choiceModifier) return;
+                    
+                    // Find the selected value in the modifier's 'from' array
+                    const selectedModifier = {
+                        type: selectedChoice.type,
+                        value: selectedChoice.value,
+                        bonus: choiceModifier.bonus,
+                        source: {
+                            source: 'feats',
+                            feature: characterFeature.name,
+                            option: null,
+                            modifierIndex: index,
+                        }
+                    };
+                    if (selectedModifier.value != -1) {
+                        characterData.modifiers.push(selectedModifier);
+                    }
+                });
+            }
+            
+            // If feature has options, extract modifiers from selected options
+            if (featureHasOptions(gameFeature) && characterFeature.options && Array.isArray(characterFeature.options)) {
+                characterFeature.options.forEach(optionName => {
+                    if (!optionName) return;
+                    
+                    const option = gameFeature.options.find(o => o.name === optionName);
+                    if (option && option.modifiers) {
+                        option.modifiers.forEach(modifier => {
+                            const modifierData = { ...modifier };
+                            modifierData.source = {
+                                source: 'feats',
+                                feature: characterFeature.name,
+                                option: optionName,
+                            };
+                            if (modifierData.value != -1) {
+                                characterData.modifiers.push(modifierData);
+                            }
+                        });
+                    }
+                });
+            }
+        }
+    });
+    
     console.log('Updated modifiers:', characterData.modifiers);
+    calculateFinalModifiers();
+}
+
+/**
+ * Get the default structure for calculatedModifiers
+ * @returns {object} Default calculatedModifiers structure
+ */
+function getDefaultCalculatedModifiers() {
+    return {
+        abilityModifierIncrease: {
+            strength: {
+                bonus: 0,
+            },
+            dexterity: {
+                bonus: 0,
+            },
+            constitution: {
+                bonus: 0,
+            },
+            intelligence: {
+                bonus: 0,
+            },
+            wisdom: {
+                bonus: 0,
+            },
+            charisma: {
+                bonus: 0,
+            },
+        },
+        savingThrowIncrease: {
+            fortitude: {
+                bonus: 0,
+            },
+            reflex: {
+                bonus: 0,
+            },
+            will: {
+                bonus: 0,
+            },
+        },
+        skillProficiency: {
+            acrobatics: {
+                proficient: false,
+            },
+            animalHandling: {
+                proficient: false,
+            },
+            athletics: {
+                proficient: false,
+            },
+            arcana: {
+                proficient: false,
+            },
+            deception: {
+                proficient: false,
+            },
+            history: {
+                proficient: false,
+            },
+            insight: {
+                proficient: false,
+            },
+            intimidation: {
+                proficient: false,
+            },
+            investigation: {
+                proficient: false,
+            },
+            medicine: {
+                proficient: false,
+            },
+            nature: {
+                proficient: false,
+            },
+            perception: {
+                proficient: false,
+            },
+            performance: {
+                proficient: false,
+            },
+            persuasion: {
+                proficient: false,
+            },
+            religion: {
+                proficient: false,
+            },
+            sleightOfHand: {
+                proficient: false,
+            },
+            stealth: {
+                proficient: false,
+            },
+            survival: {
+                proficient: false,
+            },
+        },
+        toolProficiency: [],
+        armorProficiency: {
+            lightArmor: {
+                proficient: false,
+            },
+            mediumArmor: {
+                proficient: false,
+            },
+            heavyArmor: {
+                proficient: false,
+            },
+            shields: {
+                proficient: false,
+            }
+        },
+        weaponProficiency: {
+            simpleWeapons: {
+                proficient: false,
+            },
+            martialWeapons: {
+                proficient: false,
+            },
+            club: {
+                proficient: false,
+            },
+            dagger: {
+                proficient: false,
+            },
+            greatclub: {
+                proficient: false,
+            },
+            handaxe: {
+                proficient: false,
+            },
+            javelin: {
+                proficient: false,
+            },
+            lightHammer: {
+                proficient: false,
+            },
+            mace: {
+                proficient: false,
+            },
+            quarterstaff: {
+                proficient: false,
+            },
+            sickle: {
+                proficient: false,
+            },
+            spear: {
+                proficient: false,
+            },
+            crossbowLight: {
+                proficient: false,
+            },
+            dart: {
+                proficient: false,
+            },
+            shortbow: {
+                proficient: false,
+            },
+            sling: {
+                proficient: false,
+            },
+            battleaxe: {
+                proficient: false,
+            },
+            flail: {
+                proficient: false,
+            },
+            glaive: {
+                proficient: false,
+            },
+            greataxe: {
+                proficient: false,
+            },
+            greatsword: {
+                proficient: false,
+            },
+            halberd: {
+                proficient: false,
+            },
+            lance: {
+                proficient: false,
+            },
+            longsword: {
+                proficient: false,
+            },
+            maul: {
+                proficient: false,
+            },
+            morningstar: {
+                proficient: false,
+            },
+            pike: {
+                proficient: false,
+            },
+            rapier: {
+                proficient: false,
+            },
+            scimitar: {
+                proficient: false,
+            },
+            shortsword: {
+                proficient: false,
+            },
+            trident: {
+                proficient: false,
+            },
+            warpick: {
+                proficient: false,
+            },
+            warhammer: {
+                proficient: false,
+            },
+            whip: {
+                proficient: false,
+            },
+            blowgun: {
+                proficient: false,
+            },
+            crossbowHand: {
+                proficient: false,
+            },
+            crossbowHeavy: {
+                proficient: false,
+            },
+            longbow: {
+                proficient: false,
+            },
+            net: {
+                proficient: false,
+            },
+        },
+        rangedWeaponAttack: {
+            bonus: 0,
+        },
+        meleeWeaponAttack: {
+            bonus: 0,
+        },
+        armorAbsorb: {
+            bonus: 0,
+        },
+        oneHandedMeleeWeaponDamage: {
+            bonus: 0,
+        },
+        language: [],
+        feat: [],
+    };
+}
+
+function calculateFinalModifiers() {
+    // Reset calculatedModifiers to default structure
+    characterData.calculatedModifiers = getDefaultCalculatedModifiers();
+    
+    const finalModifiers = characterData.calculatedModifiers;
+    const modifiers = characterData.modifiers;
+
+    debugger;
+    Object.values(modifiers).forEach(modifier => {
+        const type = modifier.type;
+        const value = toCamelCase(modifier.value);
+        const bonus = modifier.bonus;
+
+        console.log('modifier', modifier);
+
+        if (type === 'feat' || type === 'originFeat') {
+            finalModifiers.feat.push(modifier.value);
+            return;
+        }
+
+        const finalModifier = finalModifiers[type];
+        if (value && finalModifier[value]) {
+            if (type.toLowerCase().includes('proficiency')) {
+                finalModifier[value].proficient = true;
+            } else if (bonus) {
+                finalModifier[value].bonus += bonus
+            }
+        } else if (value) {
+            finalModifier.push(value);
+        } else if (bonus) {
+            finalModifier.bonus += bonus;
+        }
+    });
+
+    const feats = [];
+    characterData.feats.forEach(feat => {
+        if (finalModifiers.feat.includes(feat.name)) {
+            feats.push(feat);
+        }
+    });
+    characterData.feats = feats;
+
+    console.log('Final modifiers:', characterData.calculatedModifiers);
+
+    updatePointBuy();
 }
 
 // ============================================================================
@@ -1104,7 +1634,227 @@ function updateModifiers() {
 // ============================================================================
 
 function generateEquipment() {
-    // TODO: Implement equipment generation
+    if (!characterData.class.name) return;
+
+    if (!characterData.background.name) return;
+
+    const classEquipment = getGameFeatureData('class').startingEquipment;
+    const backgroundEquipment = getGameFeatureData('background').startingEquipment;
+
+    const classEquipmentSelectionsEl = document.querySelector('#cc-equipment-class .cc-equipment-selections');
+    classEquipmentSelectionsEl.innerHTML = '';
+
+    const backgroundEquipmentSelectionsEl = document.querySelector('#cc-equipment-background .cc-equipment-selections');
+    backgroundEquipmentSelectionsEl.innerHTML = '';
+
+    classEquipment.forEach((equipment, index) => {
+
+        const equipmentSelectionEl = generateEquipmentSelection(equipment, index, 'class');
+
+        classEquipmentSelectionsEl.appendChild(equipmentSelectionEl);
+    });
+
+    backgroundEquipment.forEach((equipment, index) => {
+
+        const equipmentSelectionEl = generateEquipmentSelection(equipment, index, 'background');
+
+        backgroundEquipmentSelectionsEl.appendChild(equipmentSelectionEl);
+    });
+}
+
+function generateEquipmentSelection(equipment, selectionIndex, source) {
+    const equipmentSelectionEl = document.createElement('div');
+    equipmentSelectionEl.classList.add('cc-equipment-selection');
+    equipmentSelectionEl.id = `cc-equipment-selection-${source}-${selectionIndex}`;
+    equipmentSelectionEl.dataset.source = source;
+    equipmentSelectionEl.dataset.selectionIndex = selectionIndex;
+    equipmentSelections[source][selectionIndex] = {};
+    Object.keys(equipment).forEach((key, optionIndex) => {
+        const equipmentOption = equipment[key];
+        const equipmentOptionEl = document.createElement('div');
+        equipmentOptionEl.classList.add('cc-equipment-option');
+        equipmentOptionEl.id = `cc-equipment-option-${source}-${selectionIndex}-${optionIndex}`;
+        equipmentOptionEl.dataset.source = source;
+        equipmentOptionEl.dataset.selectionIndex = selectionIndex;
+        equipmentOptionEl.dataset.optionIndex = optionIndex;
+
+        const equipmentOptionInfoEl = document.createElement('div');
+        equipmentOptionInfoEl.classList.add('cc-equipment-option-info');
+
+
+        const equipmentOptionCheckboxEl = document.createElement('input');
+        equipmentOptionCheckboxEl.type = 'checkbox';
+        equipmentOptionCheckboxEl.classList.add('cc-equipment-option-checkbox');
+        equipmentOptionCheckboxEl.onchange = () => selectEquipmentOption(equipmentSelectionEl.id, optionIndex);
+        equipmentOptionInfoEl.appendChild(equipmentOptionCheckboxEl);
+
+        const equipmentOptionDescriptionEl = document.createElement('div');
+        equipmentOptionDescriptionEl.classList.add('cc-equipment-option-description');
+        equipmentOptionDescriptionEl.innerHTML = parseDescription(equipmentOption.description);
+        equipmentOptionInfoEl.appendChild(equipmentOptionDescriptionEl);
+        equipmentOptionEl.appendChild(equipmentOptionInfoEl);
+
+        if (equipmentOption.items) {
+            const itemSelectorsEl = document.createElement('div');
+            itemSelectorsEl.classList.add('cc-equipment-item-selectors', 'hidden');
+            
+            equipmentOption.items.forEach((item, itemSelectIndex) => {
+                if (item.type === 'choose') {
+                    
+                    const itemSelectEl = document.createElement('select');
+                    itemSelectEl.classList.add('cc-equipment-item-select');
+                    itemSelectEl.id = `cc-equipment-item-select-${source}-${selectionIndex}-${optionIndex}-${itemSelectIndex}`;
+                    itemSelectEl.dataset.source = source;
+                    itemSelectEl.dataset.itemSelectIndex = itemSelectIndex;
+                    itemSelectEl.dataset.selectionIndex = selectionIndex;
+                    itemSelectEl.dataset.optionIndex = optionIndex;
+
+                    if (item.subType === 'category') { 
+                        const category = item.category;
+                        const subCategory = item.subCategory;
+                        let items = gameData.items[category];
+                        if (subCategory === 'all') {
+                            const tempItems = [];
+                            Object.keys(items).forEach(key => {
+                                items[key].forEach(item => {
+                                    tempItems.push(item);
+                                });
+                            });
+                            items = tempItems;
+                        } else if (subCategory) {
+                            const tempItems = [];
+                            subCategory.forEach(subCategoryItem => {
+                                items[subCategoryItem].forEach(item => {
+                                    tempItems.push(item);
+                                });
+                            });
+                            items = tempItems;  
+                        }
+                        const optionEl = document.createElement('option');
+                        optionEl.value = -1;
+                        optionEl.textContent = 'Choose an option';
+                        itemSelectEl.appendChild(optionEl);
+                        items.forEach(item => {
+                            const optionEl = document.createElement('option');
+                            optionEl.value = item.id;
+                            optionEl.textContent = item.name;
+                            itemSelectEl.appendChild(optionEl);
+                        });
+                    }
+
+
+                    
+                    itemSelectEl.onchange = () => handleEquipmentOptionSelection(itemSelectEl);
+                    
+                    itemSelectorsEl.appendChild(itemSelectEl);
+                }
+            });
+            equipmentOptionEl.appendChild(itemSelectorsEl);
+        }
+
+
+
+        equipmentSelectionEl.appendChild(equipmentOptionEl);
+    });
+    return equipmentSelectionEl;
+}
+
+function selectEquipmentOption(selectionId, optionIndex) {
+    const equipmentSelectionEl = document.getElementById(selectionId);
+    console.log('equipmentSelectionEl', equipmentSelectionEl);
+    if (!equipmentSelectionEl) return;
+
+    const equipmentOptionsEls = equipmentSelectionEl.querySelectorAll('.cc-equipment-option');
+    equipmentOptionsEls.forEach((equipmentOptionEl, index) => {
+        const itemSelectorsEl = equipmentOptionEl.querySelector('.cc-equipment-item-selectors');
+        const equipmentOptionCheckboxEl = equipmentOptionEl.querySelector('.cc-equipment-option-checkbox');
+
+        if (index === optionIndex && equipmentOptionCheckboxEl.checked) {    
+            equipmentOptionEl.dataset.selected = true;
+            equipmentOptionCheckboxEl.checked = true;
+            itemSelectorsEl.classList.remove('hidden');
+
+            const source = equipmentOptionEl.dataset.source;
+            const selectionIndex = equipmentOptionEl.dataset.selectionIndex;
+            const optionIndex = equipmentOptionEl.dataset.optionIndex;
+            equipmentSelections[source][selectionIndex][optionIndex] = [];
+        } else {
+            equipmentOptionEl.dataset.selected = false;
+            equipmentOptionCheckboxEl.checked = false;
+            itemSelectorsEl.classList.add('hidden');
+
+            const source = equipmentOptionEl.dataset.source;
+            const selectionIndex = equipmentOptionEl.dataset.selectionIndex;
+            const optionIndex = equipmentOptionEl.dataset.optionIndex;
+            delete equipmentSelections[source][selectionIndex][optionIndex];
+            
+            const selectEls = equipmentOptionEl.querySelectorAll('.cc-equipment-item-select');
+            selectEls.forEach(selectEl => {
+                selectEl.value = -1;
+            });
+        }
+    });
+}
+
+function handleEquipmentOptionSelection(itemSelectEl) {
+    const itemSelectValue = itemSelectEl.value;
+    const source = itemSelectEl.dataset.source;
+    const itemSelectIndex = itemSelectEl.dataset.itemSelectIndex;
+    const selectionIndex = itemSelectEl.dataset.selectionIndex;
+    const optionIndex = itemSelectEl.dataset.optionIndex;
+
+    equipmentSelections[source][selectionIndex][optionIndex][itemSelectIndex] = itemSelectValue;
+
+    console.log('equipmentSelections', equipmentSelections);
+}
+
+function clearInventory() {
+    characterData.inventory = {
+        equipment: [],
+        items: [],
+        currency: {
+            copper: 0,
+            gold: 0,
+            silver: 0,
+            platinum: 0,
+        },
+    };
+}
+
+function addStartingEquipment() {
+    const classStartingEquipment = getGameFeatureData('class').startingEquipment;
+    const backgroundStartingEquipment = getGameFeatureData('background').startingEquipment;
+    
+    console.log('classStartingEquipment', classStartingEquipment);
+    console.log('backgroundStartingEquipment', backgroundStartingEquipment);
+
+    let source = 'class';
+
+    Object.values(classStartingEquipment).forEach((selection, selectionIndex) => {
+        Object.values(selection).forEach((option, optionIndex) => {
+            option.items.forEach((item, itemIndex) => {
+                if (item.type === 'choose') {
+                    const itemId = equipmentSelections?.[source]?.[selectionIndex]?.[optionIndex]?.[itemIndex];
+                    if (itemId) {
+                        const itemData = getGameItem(itemId);
+                        if (itemData) {
+                            characterData.inventory.equipment.push(itemData);
+                        }
+                    }
+                } else if (item.type === 'granted') {
+                    const itemId = item.value;
+                    const isSelected = equipmentSelections?.[source]?.[selectionIndex]?.[optionIndex];
+                    if (itemId && isSelected) {
+                        const itemData = getGameItem(itemId);
+                        if (itemData) {
+                            characterData.inventory.equipment.push(itemData);
+                        }
+                    }
+                }
+            });
+        });
+    });
+    console.log('characterData.inventory', characterData.inventory);
 }
 
 // ============================================================================
@@ -1130,6 +1880,11 @@ window.addEventListener('DOMContentLoaded', () => {
 // ============================================================================
 
 function showSection(sectionButton) {
+
+    if (sectionButton.dataset.section === 'equipment') {
+        generateEquipment();
+    }
+
     if (currentSection) {
         currentSection.classList.remove('active');
     }

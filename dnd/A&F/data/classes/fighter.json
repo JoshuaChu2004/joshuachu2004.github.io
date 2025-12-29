@@ -158,6 +158,97 @@
     "11": [],
     "12": [],
     "13": []
-  }
+  },
+  "startingEquipment": [
+    {
+      "0": {
+        "description": "Light, Medium, or Heavy Armor",
+        "items": [
+          {
+            "type": "choose",
+            "subType": "category",
+            "category": "armor",
+            "subCategory": ["light", "medium", "heavy"]
+          }
+        ]
+      }
+    },
+    {
+      "0": {
+        "description": "a martial weapon and a light, medium, or heavy shield",
+        "items": [
+          {
+            "type": "choose",
+            "subType": "category",
+            "category": "weapons",
+            "subCategory": ["martial"]
+          },
+          {
+            "type": "choose",
+            "subType": "category",
+            "category": "armor",
+            "subCategory": ["shield"]
+          }
+        ]
+      },
+      "1": {
+        "description": "Two martial weapons",
+        "items": [
+          {
+            "type": "choose",
+            "subType": "category",
+            "category": "weapons",
+            "subCategory": ["martial"]
+          },
+          {
+            "type": "choose",
+            "subType": "category",
+            "category": "weapons",
+            "subCategory": ["martial"]
+          }
+        ]
+      }
+    },
+    {
+      "0": {
+        "description": "Two simple weapons",
+        "items": [
+          {
+            "type": "choose",
+            "subType": "category",
+            "category": "weapons",
+            "subCategory": ["simple"]
+          },
+          {
+            "type": "choose",
+            "subType": "category",
+            "category": "weapons",
+            "subCategory": ["simple"]
+          }
+        ]
+      }
+    },
+    {
+      "0": {
+        "description": "A dungeoneer's pack",
+        "items": [
+          {
+            "type": "granted",
+            "category": "packs",
+            "value": "dungeoneerspack"
+          }
+        ]
+      },
+      "1": {
+        "description": "An explorer's pack",
+        "items": [
+          {
+            "type": "granted",
+            "category": "packs",
+            "value": "explorerspack"
+          }
+        ]
+      }
+    }
+  ]
 }
-

@@ -10,6 +10,7 @@ async function loadBuilderGameData() {
             races: await loadAllRaces(),
             backgrounds: await loadAllBackgrounds(),
             feats: await loadAllFeats(),
+            items: await loadAllItems(),
             prowesses: await loadAllProwesses(),
             abilities: await loadAllAbilities()
         };
@@ -131,6 +132,64 @@ async function loadAllProwesses() {
     }
     catch (error) {
         console.error(`Error loading all prowesses:`, error);
+        return null;
+    }
+}
+
+async function loadAllItems() {
+    try {
+        const response = await fetch(`/dnd/A&F/data/dataLists/itemlist.json`);
+        if (!response.ok) {
+            throw new Error(`Failed to load all items`);
+        }
+        const itemList = await response.json();
+        const itemsData = {
+            "packs": [],
+            "weapons": {
+                "simple": [],
+                "martial": [],
+            },
+            "armor": {
+                "light": [],
+                "medium": [],
+                "heavy": [],
+                "shield": [],
+            },
+            "items": [],
+            "byId": {},
+        };
+        for (const itemName of itemList.items) {
+            const itemData = await loadItem(itemName);
+            if (itemData) {
+                itemsData.items.push(itemData);
+                itemsData.byId[itemData.id] = itemData;
+            }
+        }
+        for (const packName of itemList.packs) {
+            const packData = await loadPack(packName);
+            if (packData) {
+                itemsData.packs.push(packData);
+                itemsData.byId[packData.id] = packData;
+            }
+        }
+        for (const weaponName of itemList.weapons) {
+            const weaponData = await loadWeapon(weaponName);
+            if (weaponData) {
+                itemsData.weapons[weaponData.category].push(weaponData);
+                itemsData.byId[weaponData.id] = weaponData;
+            }
+        }
+        for (const armorName of itemList.armor) {
+            const armorData = await loadArmor(armorName);
+            if (armorData) {
+                itemsData.armor[armorData.category].push(armorData);
+                itemsData.byId[armorData.id] = armorData;
+            }
+        }
+        return itemsData;
+    }
+    catch (error) {
+        console.error(`Error loading all items:`, error);
         return null;
     }
 }
@@ -370,7 +429,7 @@ async function loadProwess(prowessName) {
  */
 async function loadItem(itemName) {
     try {
-        const response = await fetch(`/dnd/A&F/data/items/${itemName.toLowerCase().replace(/\s+/g, '')}.json`);
+        const response = await fetch(`/dnd/A&F/data/items/${itemName.toLowerCase().replace(/\s+/g, '').replace(/,/g, '').replace(/ /g, '').replace(/'/g, '')}.json`);
         if (!response.ok) {
             throw new Error(`Failed to load item: ${itemName}`);
         }
@@ -383,6 +442,57 @@ async function loadItem(itemName) {
     }
 }
 
+/**
+ * Load an item definition from JSON
+ * @param {string} packName - Name of the pack
+ * @returns {Promise<Object>} Item data
+ */
+async function loadPack(packName) {
+    try {
+        const response = await fetch(`/dnd/A&F/data/items/packs/${packName.toLowerCase().replace(/\s+/g, '').replace(/,/g, '').replace(/ /g, '').replace(/'/g, '')}.json`);
+        if (!response.ok) {
+            throw new Error(`Failed to load pack: ${packName}`);
+        }
+        const packData = await response.json();
+        gameDataCache[`pack_${packName}`] = packData;
+        return packData;
+    } catch (error) {
+        console.error(`Error loading pack ${packName}:`, error);
+        return null;
+    }
+}
+
+async function loadWeapon(weaponName) {
+    try {
+        const response = await fetch(`/dnd/A&F/data/items/weapons/${weaponName.toLowerCase().replace(/\s+/g, '').replace(/,/g, '').replace(/ /g, '').replace(/'/g, '')}.json`);
+        if (!response.ok) {
+            throw new Error(`Failed to load weapon: ${weaponName}`);
+        }
+        const weaponData = await response.json();
+        gameDataCache[`weapon_${weaponName}`] = weaponData;
+        return weaponData;
+    }
+    catch (error) {
+        console.error(`Error loading weapon ${weaponName}:`, error);
+        return null;
+    }
+}
+
+async function loadArmor(armorName) {
+    try {
+        const response = await fetch(`/dnd/A&F/data/items/armor/${armorName.toLowerCase().replace(/\s+/g, '').replace(/,/g, '').replace(/ /g, '').replace(/'/g, '')}.json`);
+        if (!response.ok) {
+            throw new Error(`Failed to load armor: ${armorName}`);
+        }
+        const armorData = await response.json();
+        gameDataCache[`armor_${armorName}`] = armorData;
+        return armorData;
+    }
+    catch (error) {
+        console.error(`Error loading armor ${armorName}:`, error);
+        return null;
+    }
+}
 // Export functions for use in other files
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = {

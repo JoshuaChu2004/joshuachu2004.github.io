@@ -1,0 +1,16 @@
+{
+    "id": "shortsword",
+    "name": "Shortsword",
+    "type": "weapon",
+    "category": "martial",
+    "equipment": true,
+    "weaponTraits": {
+        "type": "melee",
+        "ability": "strength",
+        "damage": "1d6",
+        "damageType": "piercing",
+        "range": "5 ft.",
+        "properties": ["finesse", "light"]
+    }
+}
+

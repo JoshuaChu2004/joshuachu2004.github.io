@@ -1,0 +1,16 @@
+{
+    "id": "sling",
+    "name": "Sling",
+    "type": "weapon",
+    "category": "simple",
+    "equipment": true,
+    "weaponTraits": {
+        "type": "ranged",
+        "ability": "dexterity",
+        "damage": "1d4",
+        "damageType": "bludgeoning",
+        "range": "30/120",
+        "properties": ["ammunition"]
+    }
+}
+

@@ -1,0 +1,16 @@
+{
+    "id": "mediumarmor",
+    "name": "Medium Armor",
+    "type": "armor",
+    "category": "medium",
+    "equipment": true,
+    "armorTraits": {
+        "ac": 13,
+        "ability": "dexterity",
+        "maxAbilityBonus": 2,
+        "absorb": 1,
+        "strength": 0,
+        "properties": []
+    }
+}
+

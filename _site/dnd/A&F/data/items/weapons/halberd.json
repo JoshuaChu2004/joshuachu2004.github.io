@@ -1,0 +1,16 @@
+{
+    "id": "halberd",
+    "name": "Halberd",
+    "type": "weapon",
+    "category": "martial",
+    "equipment": true,
+    "weaponTraits": {
+        "type": "melee",
+        "ability": "strength",
+        "damage": "1d10",
+        "damageType": "slashing",
+        "range": "10 ft.",
+        "properties": ["heavy", "reach", "two-handed"]
+    }
+}
+

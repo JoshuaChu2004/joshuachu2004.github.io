@@ -1,0 +1,50 @@
+{
+    "id": "explorerspack",
+    "name": "Explorer's Pack",
+    "type": "pack",
+    "category": "explorer",
+    "equipment": false,
+    "items": [
+        {
+            "id": "backpack",
+            "name": "Backpack",
+            "quantity": 1
+        },
+        {
+            "id": "bedroll",
+            "name": "Bedroll",
+            "quantity": 1
+        },
+        {
+            "id": "messkit",
+            "name": "Mess Kit",
+            "quantity": 1
+        },
+        {
+            "id": "tinerbox",
+            "name": "Tinderbox",
+            "quantity": 1
+        },
+        {
+            "id": "torch",
+            "name": "Torch",
+            "quantity": 10
+        },
+        {
+            "id": "rations",
+            "name": "Rations",
+            "quantity": 10
+        },
+        {
+            "id": "waterskin",
+            "name": "Water Skin",
+            "quantity": 1
+        },
+        {
+            "id": "rope",
+            "name": "Rope",
+            "quantity": 50
+        }
+    ]
+}
+

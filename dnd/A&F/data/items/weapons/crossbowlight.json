@@ -1,0 +1,16 @@
+{
+    "id": "crossbowlight",
+    "name": "Crossbow, light",
+    "type": "weapon",
+    "category": "simple",
+    "equipment": true,
+    "weaponTraits": {
+        "type": "ranged",
+        "ability": "dexterity",
+        "damage": "1d8",
+        "damageType": "piercing",
+        "range": "80/320",
+        "properties": ["ammunition", "loading", "two-handed"]
+    }
+}
+

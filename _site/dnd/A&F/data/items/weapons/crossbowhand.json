@@ -1,0 +1,16 @@
+{
+    "id": "crossbowhand",
+    "name": "Crossbow, hand",
+    "type": "weapon",
+    "category": "martial",
+    "equipment": true,
+    "weaponTraits": {
+        "type": "ranged",
+        "ability": "dexterity",
+        "damage": "1d6",
+        "damageType": "piercing",
+        "range": "30/120",
+        "properties": ["ammunition", "light", "loading"]
+    }
+}
+

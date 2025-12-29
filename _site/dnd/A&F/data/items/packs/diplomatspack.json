@@ -1,0 +1,65 @@
+{
+    "id": "diplomatspack",
+    "name": "Diplomat's Pack",
+    "type": "pack",
+    "category": "diplomat",
+    "equipment": false,
+    "items": [
+        {
+            "id": "chest",
+            "name": "Chest",
+            "quantity": 1
+        },
+        {
+            "id": "mapcase",
+            "name": "Case for Maps and Scrolls",
+            "quantity": 2
+        },
+        {
+            "id": "fineclothes",
+            "name": "Fine Clothes",
+            "quantity": 1
+        },
+        {
+            "id": "ink",
+            "name": "Bottle of Ink",
+            "quantity": 1
+        },
+        {
+            "id": "inkpen",
+            "name": "Ink Pen",
+            "quantity": 1
+        },
+        {
+            "id": "lamp",
+            "name": "Lamp",
+            "quantity": 1
+        },
+        {
+            "id": "oilflask",
+            "name": "Oil Flask",
+            "quantity": 2
+        },
+        {
+            "id": "paper",
+            "name": "Sheet of Paper",
+            "quantity": 5
+        },
+        {
+            "id": "perfume",
+            "name": "Vial of Perfume",
+            "quantity": 1
+        },
+        {
+            "id": "sealingwax",
+            "name": "Sealing Wax",
+            "quantity": 1
+        },
+        {
+            "id": "soap",
+            "name": "Soap",
+            "quantity": 1
+        }
+    ]
+}
+

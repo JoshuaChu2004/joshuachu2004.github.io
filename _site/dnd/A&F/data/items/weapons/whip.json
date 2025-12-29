@@ -1,0 +1,16 @@
+{
+    "id": "whip",
+    "name": "Whip",
+    "type": "weapon",
+    "category": "martial",
+    "equipment": true,
+    "weaponTraits": {
+        "type": "melee",
+        "ability": "strength",
+        "damage": "1d4",
+        "damageType": "slashing",
+        "range": "10 ft.",
+        "properties": ["finesse", "reach"]
+    }
+}
+

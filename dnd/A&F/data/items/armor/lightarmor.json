@@ -1,0 +1,15 @@
+{
+    "id": "lightarmor",
+    "name": "Light Armor",
+    "type": "armor",
+    "category": "light",
+    "equipment": true,
+    "armorTraits": {
+        "ac": 11,
+        "ability": "dexterity",
+        "absorb": 0,
+        "strength": 0,
+        "properties": []
+    }
+}
+

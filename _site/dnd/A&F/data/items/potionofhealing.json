@@ -5,6 +5,7 @@
     "type": "wondrous",
     "category": "potion",
     "rarity": "common",
+    "equipment": false,
     "consumableTraits": {
         "effect": "healing",
         "effectAmount": "2d4 + 2"

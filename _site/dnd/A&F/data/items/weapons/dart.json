@@ -1,0 +1,16 @@
+{
+    "id": "dart",
+    "name": "Dart",
+    "type": "weapon",
+    "category": "simple",
+    "equipment": true,
+    "weaponTraits": {
+        "type": "ranged",
+        "ability": "strength",
+        "damage": "1d4",
+        "damageType": "piercing",
+        "range": "20/60",
+        "properties": ["finesse", "thrown"]
+    }
+}
+

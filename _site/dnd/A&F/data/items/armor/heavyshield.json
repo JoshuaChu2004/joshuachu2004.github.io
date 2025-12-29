@@ -1,0 +1,15 @@
+{
+    "id": "heavyshield",
+    "name": "Heavy Shield",
+    "type": "armor",
+    "category": "shield",
+    "equipment": true,
+    "armorTraits": {
+        "ac": 2,
+        "ability": null,
+        "absorb": 1,
+        "strength": 13,
+        "properties": ["protective"]
+    }
+}
+

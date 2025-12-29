@@ -1,0 +1,17 @@
+{
+    "id": "warhammer",
+    "name": "Warhammer",
+    "type": "weapon",
+    "category": "martial",
+    "equipment": true,
+    "weaponTraits": {
+        "type": "melee",
+        "ability": "strength",
+        "damage": "1d8",
+        "damageType": "bludgeoning",
+        "range": "5 ft.",
+        "properties": ["versatile"]
+    },
+    "versatileDamage": "1d10"
+}
+

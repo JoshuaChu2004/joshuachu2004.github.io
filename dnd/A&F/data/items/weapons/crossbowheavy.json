@@ -1,0 +1,16 @@
+{
+    "id": "crossbowheavy",
+    "name": "Crossbow, heavy",
+    "type": "weapon",
+    "category": "martial",
+    "equipment": true,
+    "weaponTraits": {
+        "type": "ranged",
+        "ability": "dexterity",
+        "damage": "1d10",
+        "damageType": "piercing",
+        "range": "100/400",
+        "properties": ["ammunition", "heavy", "loading", "two-handed"]
+    }
+}
+

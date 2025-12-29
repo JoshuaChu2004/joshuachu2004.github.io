@@ -1,0 +1,20 @@
+{
+    "id": "dagger",
+    "name": "Dagger",
+    "type": "weapon",
+    "category": "simple",
+    "equipment": true,
+    "weaponTraits": {
+        "type": "melee",
+        "ability": "strength",
+        "damage": "1d4",
+        "damageType": "piercing",
+        "range": "5 ft.",
+        "properties": ["finesse", "light", "thrown"]
+    },
+    "thrownRange": {
+        "normal": 20,
+        "long": 60
+    }
+}
+

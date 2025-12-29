@@ -1,0 +1,45 @@
+{
+    "id": "entertainerspack",
+    "name": "Entertainer's Pack",
+    "type": "pack",
+    "category": "entertainer",
+    "equipment": false,
+    "items": [
+        {
+            "id": "backpack",
+            "name": "Backpack",
+            "quantity": 1
+        },
+        {
+            "id": "bedroll",
+            "name": "Bedroll",
+            "quantity": 1
+        },
+        {
+            "id": "costume",
+            "name": "Costume",
+            "quantity": 2
+        },
+        {
+            "id": "candles",
+            "name": "Candles",
+            "quantity": 5
+        },
+        {
+            "id": "rations",
+            "name": "Rations",
+            "quantity": 5
+        },
+        {
+            "id": "waterskin",
+            "name": "Water Skin",
+            "quantity": 1
+        },
+        {
+            "id": "disguisekit",
+            "name": "Disguise Kit",
+            "quantity": 1
+        }
+    ]
+}
+

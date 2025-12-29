@@ -1,0 +1,16 @@
+{
+    "id": "warpick",
+    "name": "Warpick",
+    "type": "weapon",
+    "category": "martial",
+    "equipment": true,
+    "weaponTraits": {
+        "type": "melee",
+        "ability": "strength",
+        "damage": "1d8",
+        "damageType": "piercing",
+        "range": "5 ft.",
+        "properties": []
+    }
+}
+

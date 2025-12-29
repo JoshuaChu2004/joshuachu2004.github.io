@@ -256,7 +256,7 @@ custom_js: '/dnd/A&F/charactercreator.js'
                                     <div class="cc-abilities-point-buy-selection-title">Strength</div>
                                     <select id="cc-abilities-point-buy-selection-strength-select" ability="strength" class="cc-abilities-point-buy-selection-select" onchange="handleAbilityModifierSelection(this)">
                                         <option value="-1">-1 <span id="cc-abilities-point-buy-selection-cost"></span></option>
-                                        <option value="0">+0 <span id="cc-abilities-point-buy-selection-cost">(-3)</span></option>
+                                        <option value="0">0 <span id="cc-abilities-point-buy-selection-cost">(-3)</span></option>
                                         <option value="1">+1 <span id="cc-abilities-point-buy-selection-cost">(-6)</span></option>
                                         <option value="2">+2 <span id="cc-abilities-point-buy-selection-cost">(-9)</span></option>
                                     </select>
@@ -266,7 +266,7 @@ custom_js: '/dnd/A&F/charactercreator.js'
                                     <div class="cc-abilities-point-buy-selection-title">Dexterity</div>
                                     <select id="cc-abilities-point-buy-selection-dexterity-select" ability="dexterity" class="cc-abilities-point-buy-selection-select" onchange="handleAbilityModifierSelection(this)">
                                         <option value="-1">-1 <span id="cc-abilities-point-buy-selection-cost"></span></option>
-                                        <option value="0">+0 <span id="cc-abilities-point-buy-selection-cost">(-3)</span></option>
+                                        <option value="0">0 <span id="cc-abilities-point-buy-selection-cost">(-3)</span></option>
                                         <option value="1">+1 <span id="cc-abilities-point-buy-selection-cost">(-6)</span></option>
                                         <option value="2">+2 <span id="cc-abilities-point-buy-selection-cost">(-9)</span></option>
                                     </select>
@@ -276,7 +276,7 @@ custom_js: '/dnd/A&F/charactercreator.js'
                                     <div class="cc-abilities-point-buy-selection-title">Constitution</div>
                                     <select id="cc-abilities-point-buy-selection-constitution-select" ability="constitution" class="cc-abilities-point-buy-selection-select" onchange="handleAbilityModifierSelection(this)">
                                         <option value="-1">-1 <span id="cc-abilities-point-buy-selection-cost"></span></option>
-                                        <option value="0">+0 <span id="cc-abilities-point-buy-selection-cost">(-3)</span></option>
+                                        <option value="0">0 <span id="cc-abilities-point-buy-selection-cost">(-3)</span></option>
                                         <option value="1">+1 <span id="cc-abilities-point-buy-selection-cost">(-6)</span></option>
                                         <option value="2">+2 <span id="cc-abilities-point-buy-selection-cost">(-9)</span></option>
                                     </select>
@@ -286,7 +286,7 @@ custom_js: '/dnd/A&F/charactercreator.js'
                                     <div class="cc-abilities-point-buy-selection-title">Intelligence</div>
                                     <select id="cc-abilities-point-buy-selection-intelligence-select" ability="intelligence" class="cc-abilities-point-buy-selection-select" onchange="handleAbilityModifierSelection(this)">
                                         <option value="-1">-1 <span id="cc-abilities-point-buy-selection-cost"></span></option>
-                                        <option value="0">+0 <span id="cc-abilities-point-buy-selection-cost">(-3)</span></option>
+                                        <option value="0">0 <span id="cc-abilities-point-buy-selection-cost">(-3)</span></option>
                                         <option value="1">+1 <span id="cc-abilities-point-buy-selection-cost">(-6)</span></option>
                                         <option value="2">+2 <span id="cc-abilities-point-buy-selection-cost">(-9)</span></option>
                                     </select>
@@ -296,7 +296,7 @@ custom_js: '/dnd/A&F/charactercreator.js'
                                     <div class="cc-abilities-point-buy-selection-title">Wisdom</div>
                                     <select id="cc-abilities-point-buy-selection-wisdom-select" ability="wisdom" class="cc-abilities-point-buy-selection-select" onchange="handleAbilityModifierSelection(this)">
                                         <option value="-1">-1 <span id="cc-abilities-point-buy-selection-cost"></span></option>
-                                        <option value="0">+0 <span id="cc-abilities-point-buy-selection-cost">(-3)</span></option>
+                                        <option value="0">0 <span id="cc-abilities-point-buy-selection-cost">(-3)</span></option>
                                         <option value="1">+1 <span id="cc-abilities-point-buy-selection-cost">(-6)</span></option>
                                         <option value="2">+2 <span id="cc-abilities-point-buy-selection-cost">(-9)</span></option>
                                     </select>
@@ -306,7 +306,7 @@ custom_js: '/dnd/A&F/charactercreator.js'
                                     <div class="cc-abilities-point-buy-selection-title">Charisma</div>
                                     <select id="cc-abilities-point-buy-selection-charisma-select" ability="charisma" class="cc-abilities-point-buy-selection-select" onchange="handleAbilityModifierSelection(this)">
                                         <option value="-1">-1 <span id="cc-abilities-point-buy-selection-cost"></span></option>
-                                        <option value="0">+0 <span id="cc-abilities-point-buy-selection-cost">(-3)</span></option>
+                                        <option value="0">0 <span id="cc-abilities-point-buy-selection-cost">(-3)</span></option>
                                         <option value="1">+1 <span id="cc-abilities-point-buy-selection-cost">(-6)</span></option>
                                         <option value="2">+2 <span id="cc-abilities-point-buy-selection-cost">(-9)</span></option>
                                     </select>
@@ -364,7 +364,129 @@ custom_js: '/dnd/A&F/charactercreator.js'
                     </div>
                 </div>
                 <div id="cc-builder-tab-equipment" class="cc-builder-tab">
-                    <div class="cc-builder-tab-title">Choose Starting Equipment</div>
+                    <div id="cc-builder-tab-equipment-choose">
+                        <div class="cc-builder-tab-title">Choose Starting Equipment</div>
+                        <div id="cc-equipment-class" class="cc-equipment-source">
+                            <div class="cc-equipment-title title">Class</div>
+                            <div class="cc-equipment-selections">
+                                <div class="cc-equipment-selection" id="cc-equipment-selection-class-0">
+                                    <div class="cc-equipment-option" id="cc-equipment-option-class-0-0">
+                                        <div class="cc-equipment-option-info">
+                                            <input type="checkbox" class="cc-equipment-option-checkbox">
+                                            <div class="cc-equipment-option-description">
+                                                <div class="paragraph">This is a equipment choice option description.</div>
+                                            </div>
+                                        </div>
+                                        <div class="cc-equipment-item-selectors hidden">
+                                            <div class="cc-equipment-item-selector">
+                                                <select class="cc-equipment-item-select" data-item-name="undefined"
+                                                    data-choice-index="0" data-source="equipment"></select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="cc-equipment-selection" id="cc-equipment-selection-class-1">
+                                    <div class="cc-equipment-option" id="cc-equipment-option-class-1-0">
+                                        <div class="cc-equipment-option-info">
+                                            <input type="checkbox" class="cc-equipment-option-checkbox">
+                                            <div class="cc-equipment-option-description">
+                                                <div class="paragraph">This is a equipment choice option description.</div>
+                                            </div>
+                                        </div>
+                                        <div class="cc-equipment-item-selectors hidden">
+                                            <div class="cc-equipment-item-selector">
+                                                <select class="cc-equipment-item-select" data-item-name="undefined"
+                                                    data-choice-index="0" data-source="equipment"></select>
+                                            </div>
+                                            <div class="cc-equipment-item-selector">
+                                                <select class="cc-equipment-item-select" data-item-name="undefined"
+                                                    data-choice-index="1" data-source="equipment"></select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="cc-equipment-option" id="cc-equipment-option-class-1-1">
+                                        <div class="cc-equipment-option-info">
+                                            <input type="checkbox" class="cc-equipment-option-checkbox">
+                                            <div class="cc-equipment-option-description">
+                                                <div class="paragraph">This is a equipment choice option description.</div>
+                                            </div>
+                                        </div>
+                                        <div class="cc-equipment-item-selectors hidden">
+                                            <div class="cc-equipment-item-selector">
+                                                <select class="cc-equipment-item-select" data-item-name="undefined"
+                                                    data-choice-index="0" data-source="equipment"></select>
+                                            </div>
+                                            <div class="cc-equipment-item-selector">
+                                                <select class="cc-equipment-item-select" data-item-name="undefined"
+                                                    data-choice-index="1" data-source="equipment"></select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="cc-equipment-background" class="cc-equipment-source">
+                            <div class="cc-equipment-title title">Background</div>
+                            <div class="cc-equipment-selections">
+                                <div class="cc-equipment-selection" id="cc-equipment-selection-background-0">
+                                    <div class="cc-equipment-option" id="cc-equipment-option-background-0-0">
+                                        <div class="cc-equipment-option-info">
+                                            <input type="checkbox" class="cc-equipment-option-checkbox">
+                                            <div class="cc-equipment-option-description">
+                                                <div class="paragraph">This is a equipment choice option description.</div>
+                                            </div>
+                                        </div>
+                                        <div class="cc-equipment-item-selectors hidden">
+                                            <div class="cc-equipment-item-selector">
+                                                <select class="cc-equipment-item-select" data-item-name="undefined"
+                                                    data-choice-index="0" data-source="equipment"></select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="cc-equipment-selection" id="cc-equipment-selection-background-1">
+                                    <div class="cc-equipment-option" id="cc-equipment-option-background-1-0">
+                                        <div class="cc-equipment-option-info">
+                                            <input type="checkbox" class="cc-equipment-option-checkbox">
+                                            <div class="cc-equipment-option-description">
+                                                <div class="paragraph">This is a equipment choice option description.</div>
+                                            </div>
+                                        </div>
+                                        <div class="cc-equipment-item-selectors hidden">
+                                            <div class="cc-equipment-item-selector">
+                                                <select class="cc-equipment-item-select" data-item-name="undefined"
+                                                    data-choice-index="0" data-source="equipment"></select>
+                                            </div>
+                                            <div class="cc-equipment-item-selector">
+                                                <select class="cc-equipment-item-select" data-item-name="undefined"
+                                                    data-choice-index="1" data-source="equipment"></select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="cc-equipment-option" id="cc-equipment-option-background-1-1">
+                                        <div class="cc-equipment-option-info">
+                                            <input type="checkbox" class="cc-equipment-option-checkbox">
+                                            <div class="cc-equipment-option-description">
+                                                <div class="paragraph">This is a equipment choice option description.</div>
+                                            </div>
+                                        </div>
+                                        <div class="cc-equipment-item-selectors hidden">
+                                            <div class="cc-equipment-item-selector">
+                                                <select class="cc-equipment-item-select" data-item-name="undefined"
+                                                    data-choice-index="0" data-source="equipment"></select>
+                                            </div>
+                                            <div class="cc-equipment-item-selector">
+                                                <select class="cc-equipment-item-select" data-item-name="undefined"
+                                                    data-choice-index="1" data-source="equipment"></select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button id="cc-equipment-add-equipment" class="cc-equipment-button" onclick="addStartingEquipment()">Add Starting Equipment</button>
+                        <button id="cc-equipment-clear-equipment" class="cc-equipment-button" onclick="clearInventory()">Clear Inventory</button>
+                    </div>
                 </div>
             </div>
         </div>

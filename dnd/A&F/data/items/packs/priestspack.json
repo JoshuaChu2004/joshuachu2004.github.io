@@ -1,0 +1,60 @@
+{
+    "id": "priestspack",
+    "name": "Priest's Pack",
+    "type": "pack",
+    "category": "priest",
+    "equipment": false,
+    "items": [
+        {
+            "id": "backpack",
+            "name": "Backpack",
+            "quantity": 1
+        },
+        {
+            "id": "blanket",
+            "name": "Blanket",
+            "quantity": 1
+        },
+        {
+            "id": "candles",
+            "name": "Candles",
+            "quantity": 10
+        },
+        {
+            "id": "tinerbox",
+            "name": "Tinderbox",
+            "quantity": 1
+        },
+        {
+            "id": "almsbox",
+            "name": "Alms Box",
+            "quantity": 1
+        },
+        {
+            "id": "incense",
+            "name": "Block of Incense",
+            "quantity": 2
+        },
+        {
+            "id": "censer",
+            "name": "Censer",
+            "quantity": 1
+        },
+        {
+            "id": "vestments",
+            "name": "Vestments",
+            "quantity": 1
+        },
+        {
+            "id": "rations",
+            "name": "Rations",
+            "quantity": 2
+        },
+        {
+            "id": "waterskin",
+            "name": "Water Skin",
+            "quantity": 1
+        }
+    ]
+}
+

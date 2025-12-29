@@ -1,0 +1,20 @@
+{
+    "id": "javelin",
+    "name": "Javelin",
+    "type": "weapon",
+    "category": "simple",
+    "equipment": true,
+    "weaponTraits": {
+        "type": "melee",
+        "ability": "strength",
+        "damage": "1d6",
+        "damageType": "piercing",
+        "range": "5 ft.",
+        "properties": ["thrown"]
+    },
+    "thrownRange": {
+        "normal": 30,
+        "long": 120
+    }
+}
+

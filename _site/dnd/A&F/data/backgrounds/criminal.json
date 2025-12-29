@@ -2,10 +2,41 @@
   "name": "Criminal",
   "description": "You are an experienced criminal with a history of breaking the law. You have spent a lot of time among other criminals and still have contacts within the criminal underworld. You're far closer than most people to the world of murder, theft, and violence that pervades the underbelly of civilization, and you have survived up to this point by flouting the rules and regulations of society.",
   "languages": [],
-  "equipment": [
-    "Crowbar",
-    "Dark common clothes with hood",
-    "15 gp"
+  "startingEquipment": [
+    {
+      "0": {
+        "description": "A Crowbar",
+        "items": [
+          {
+            "type": "granted",
+            "value": "Crowbar"
+          }
+        ]
+      }
+    },
+    {
+      "0": {
+        "description": "Dark common clothes with hood",
+        "items": [
+          {
+            "type": "granted",
+            "value": "Common Clothes"
+          }
+        ]
+      }
+    },
+    {
+      "0": {
+        "description": "A pouch of 15 gp",
+        "items": [
+          {
+            "type": "granted",
+            "value": "gold",
+            "quantity": 15
+          }
+        ]
+      }
+    }
   ],
   "features": [
     {

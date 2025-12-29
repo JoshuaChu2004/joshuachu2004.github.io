@@ -1,0 +1,14 @@
+{
+    "id": "heavyarmor",
+    "name": "Heavy Armor",
+    "type": "armor",
+    "category": "heavy",
+    "armorTraits": {
+        "ac": 16,
+        "ability": null,
+        "absorb": 3,
+        "strength": 2,
+        "properties": ["stealthDisadvantage"]
+    }
+}
+

@@ -1,0 +1,15 @@
+{
+    "id": "mediumshield",
+    "name": "Medium Shield",
+    "type": "armor",
+    "category": "shield",
+    "equipment": true,
+    "armorTraits": {
+        "ac": 2,
+        "ability": null,
+        "absorb": 0,
+        "strength": 0,
+        "properties": []
+    }
+}
+

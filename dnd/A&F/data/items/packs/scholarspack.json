@@ -1,0 +1,44 @@
+{
+    "id": "scholarspack",
+    "name": "Scholar's Pack",
+    "type": "pack",
+    "category": "scholar",
+    "equipment": false,
+    "items": [
+        {
+            "id": "backpack",
+            "name": "Backpack",
+            "quantity": 1
+        },
+        {
+            "id": "bookoflore",
+            "name": "Book of Lore",
+            "quantity": 1
+        },
+        {
+            "id": "bottleofink",
+            "name": "Bottle of Ink",
+            "quantity": 1
+        },
+        {
+            "id": "inkpen",
+            "name": "Ink Pen",
+            "quantity": 1
+        },
+        {
+            "id": "parchment",
+            "name": "Parchment",
+            "quantity": 10
+        },
+        {
+            "id": "bagofsand",
+            "name": "Bag of Sand",
+            "quantity": 1
+        },
+        {
+            "id": "smallknife",
+            "name": "Small Knife",
+            "quantity": 1
+        }
+    ]
+}

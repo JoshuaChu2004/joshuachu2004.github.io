@@ -1,0 +1,16 @@
+{
+    "id": "longbow",
+    "name": "Longbow",
+    "type": "weapon",
+    "category": "martial",
+    "equipment": true,
+    "weaponTraits": {
+        "type": "ranged",
+        "ability": "dexterity",
+        "damage": "1d8",
+        "damageType": "piercing",
+        "range": "150/600",
+        "properties": ["ammunition", "heavy", "two-handed"]
+    }
+}
+

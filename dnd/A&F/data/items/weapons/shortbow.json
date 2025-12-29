@@ -1,0 +1,16 @@
+{
+    "id": "shortbow",
+    "name": "Shortbow",
+    "type": "weapon",
+    "category": "simple",
+    "equipment": true,
+    "weaponTraits": {
+        "type": "ranged",
+        "ability": "dexterity",
+        "damage": "1d6",
+        "damageType": "piercing",
+        "range": "80/320",
+        "properties": ["ammunition", "two-handed"]
+    }
+}
+

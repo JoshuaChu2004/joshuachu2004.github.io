@@ -1,0 +1,21 @@
+{
+    "id": "spear",
+    "name": "Spear",
+    "type": "weapon",
+    "category": "simple",
+    "equipment": true,
+    "weaponTraits": {
+        "type": "melee",
+        "ability": "strength",
+        "damage": "1d6",
+        "damageType": "piercing",
+        "range": "5 ft.",
+        "properties": ["thrown", "versatile"]
+    },
+    "thrownRange": {
+        "normal": 20,
+        "long": 60
+    },
+    "versatileDamage": "1d8"
+}
+

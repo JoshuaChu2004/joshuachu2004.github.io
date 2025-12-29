@@ -1,0 +1,16 @@
+{
+    "id": "maul",
+    "name": "Maul",
+    "type": "weapon",
+    "category": "martial",
+    "equipment": true,
+    "weaponTraits": {
+        "type": "melee",
+        "ability": "strength",
+        "damage": "2d6",
+        "damageType": "bludgeoning",
+        "range": "5 ft.",
+        "properties": ["heavy", "two-handed"]
+    }
+}
+

@@ -1,0 +1,20 @@
+{
+    "id": "handaxe",
+    "name": "Handaxe",
+    "type": "weapon",
+    "category": "simple",
+    "equipment": true,
+    "weaponTraits": {
+        "type": "melee",
+        "ability": "strength",
+        "damage": "1d6",
+        "damageType": "slashing",
+        "range": "5 ft.",
+        "properties": ["light", "thrown"]
+    },
+    "thrownRange": {
+        "normal": 20,
+        "long": 60
+    }
+}
+

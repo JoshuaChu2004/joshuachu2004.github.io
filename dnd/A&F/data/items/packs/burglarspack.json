@@ -1,0 +1,80 @@
+{
+    "id": "burglarspack",
+    "name": "Burglar's Pack",
+    "type": "pack",
+    "category": "burglar",
+    "equipment": false,
+    "items": [
+        {
+            "id": "backpack",
+            "name": "Backpack",
+            "quantity": 1
+        },
+        {
+            "id": "ballbearings",
+            "name": "Ball Bearings",
+            "quantity": 1000
+        },
+        {
+            "id": "string",
+            "name": "10 ft. of String",
+            "quantity": 1
+        },
+        {
+            "id": "bell",
+            "name": "Bell",
+            "quantity": 1
+        },
+        {
+            "id": "candles",
+            "name": "Candles",
+            "quantity": 1
+        },
+        {
+            "id": "crowbar",
+            "name": "Crowbar",
+            "quantity": 1
+        },
+        {
+            "id": "hammer",
+            "name": "Hammer",
+            "quantity": 1
+        },
+        {
+            "id": "piton",
+            "name": "Piton",
+            "quantity": 10
+        },
+        {
+            "id": "hoodedlantern",
+            "name": "Hooded Lantern",
+            "quantity": 1
+        },
+        {
+            "id": "oilflask",
+            "name": "Oil Flask",
+            "quantity": 2
+        },
+        {
+            "id": "rations",
+            "name": "Rations",
+            "quantity": 5
+        },
+        {
+            "id": "tinerbox",
+            "name": "Tinderbox",
+            "quantity": 1
+        },
+        {
+            "id": "waterskin",
+            "name": "Water Skin",
+            "quantity": 1
+        },
+        {
+            "id": "rope",
+            "name": "Rope",
+            "quantity": 50
+        }
+    ]
+}
+

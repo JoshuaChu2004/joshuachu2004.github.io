@@ -1,0 +1,16 @@
+{
+    "id": "greatsword",
+    "name": "Greatsword",
+    "type": "weapon",
+    "category": "martial",
+    "equipment": true,
+    "weaponTraits": {
+        "type": "melee",
+        "ability": "strength",
+        "damage": "2d6",
+        "damageType": "slashing",
+        "range": "5 ft.",
+        "properties": ["heavy", "two-handed"]
+    }
+}
+

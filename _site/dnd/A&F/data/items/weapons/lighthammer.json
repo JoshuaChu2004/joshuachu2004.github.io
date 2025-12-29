@@ -1,0 +1,20 @@
+{
+    "id": "lighthammer",
+    "name": "Light Hammer",
+    "type": "weapon",
+    "category": "simple",
+    "equipment": true,
+    "weaponTraits": {
+        "type": "melee",
+        "ability": "strength",
+        "damage": "1d4",
+        "damageType": "bludgeoning",
+        "range": "5 ft.",
+        "properties": ["light", "thrown"]
+    },
+    "thrownRange": {
+        "normal": 20,
+        "long": 60
+    }
+}
+

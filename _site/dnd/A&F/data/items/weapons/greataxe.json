@@ -1,0 +1,16 @@
+{
+    "id": "greataxe",
+    "name": "Greataxe",
+    "type": "weapon",
+    "category": "martial",
+    "equipment": true,
+    "weaponTraits": {
+        "type": "melee",
+        "ability": "strength",
+        "damage": "1d12",
+        "damageType": "slashing",
+        "range": "5 ft.",
+        "properties": ["heavy", "two-handed"]
+    }
+}
+

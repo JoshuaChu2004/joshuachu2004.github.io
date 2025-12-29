@@ -1,0 +1,55 @@
+{
+    "id": "dungeoneerspack",
+    "name": "Dungeoneer's Pack",
+    "type": "pack",
+    "category": "dungeoneer",
+    "equipment": false,
+    "items": [
+        {
+            "id": "backpack",
+            "name": "Backpack",
+            "quantity": 1
+        },
+        {
+            "id": "crowbar",
+            "name": "Crowbar",
+            "quantity": 1
+        },
+        {
+            "id": "hammer",
+            "name": "Hammer",
+            "quantity": 1
+        },
+        {
+            "id": "piton",
+            "name": "Piton",
+            "quantity": 10
+        },
+        {
+            "id": "torch",
+            "name": "Torch",
+            "quantity": 10
+        },
+        {
+            "id": "tinerbox",
+            "name": "Tinderbox",
+            "quantity": 1
+        },
+        {
+            "id": "rations",
+            "name": "Rations",
+            "quantity": 10
+        },
+        {
+            "id": "waterskin",
+            "name": "Water Skin",
+            "quantity": 1
+        },
+        {
+            "id": "rope",
+            "name": "Rope",
+            "quantity": 50
+        }
+    ]
+}
+

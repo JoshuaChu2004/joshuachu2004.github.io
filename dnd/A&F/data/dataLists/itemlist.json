@@ -1,3 +1,6 @@
 {
-    "items": ["Longsword","Potion of Healing"]
+    "items": ["Potion of Healing"],
+    "packs": ["Burglar's Pack", "Diplomat's Pack", "Dungeoneer's Pack", "Entertainer's Pack", "Explorer's Pack", "Priest's Pack", "Scholar's Pack"],
+    "weapons": ["Battleaxe", "Blowgun", "Crossbow, Hand", "Crossbow, Heavy", "Crossbow, Light", "Dagger", "Dart", "Flail", "Glaive", "Greataxe", "Greatclub", "Greatsword", "Halberd", "Handaxe", "Javelin", "Lance", "Light Hammer", "Longbow", "Longsword", "Mace", "Maul", "Morningstar", "Net", "Pike", "Quarterstaff", "Rapier", "Scimitar", "Shortbow", "Shortsword", "Sickle", "Sling", "Spear", "Trident", "Warhammer", "Warpick", "Whip"],
+    "armor": ["Light Armor", "Medium Armor", "Heavy Armor", "Light Shield", "Medium Shield", "Heavy Shield"]
 }

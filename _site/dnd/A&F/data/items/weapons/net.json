@@ -1,0 +1,16 @@
+{
+    "id": "net",
+    "name": "Net",
+    "type": "weapon",
+    "category": "martial",
+    "equipment": true,
+    "weaponTraits": {
+        "type": "ranged",
+        "ability": "strength",
+        "damage": "0",
+        "damageType": null,
+        "range": "5/15",
+        "properties": ["special", "thrown"]
+    }
+}
+

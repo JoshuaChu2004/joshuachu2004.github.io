@@ -1,0 +1,16 @@
+{
+    "id": "lance",
+    "name": "Lance",
+    "type": "weapon",
+    "category": "martial",
+    "equipment": true,
+    "weaponTraits": {
+        "type": "melee",
+        "ability": "strength",
+        "damage": "1d12",
+        "damageType": "piercing",
+        "range": "10 ft.",
+        "properties": ["reach", "special"]
+    }
+}
+
