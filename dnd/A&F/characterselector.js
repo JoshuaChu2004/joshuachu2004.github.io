@@ -29,7 +29,7 @@ function generateCharacterItem(characterData) {
     </div>
     <div class="cl-character-actions">
         <button id="cl-character-view-button" class="cl-character-button" onclick="viewCharacter(this)">View</button>
-        <button id="cl-character-rename-button" class="cl-character-button" onclick="renameCharacter(this)">Rename</button>
+        <button id="cl-character-edit-button" class="cl-character-button" onclick="editCharacter(this)">Edit</button>
         <button id="cl-character-delete-button" class="cl-character-button" onclick="deleteCharacter(this)">Delete</button>
     </div>`;
 
@@ -37,11 +37,8 @@ function generateCharacterItem(characterData) {
 }
 
 function newCharacter() {
-    const characterData = localStorage.getItem('characterData-${hexId}');
-    if (characterData) {
-        return JSON.parse(characterData);
-    }
-    return null;
+    console.log('New character');
+    window.location.href = `/dnd/tools/anfcharactercreator`;
 }
 
 function uploadCharacter() {
@@ -128,6 +125,26 @@ function viewCharacter(button) {
     }
     
     window.location.href = `${charactersheetPath}?hexId=${hexId}`;
+}
+
+function editCharacter(button) {
+    const hexId = button.parentElement.parentElement.getAttribute('hex-id');
+    console.log('Editing character with hex id:', hexId);
+    window.location.href = `/dnd/tools/anfcharactercreator?hexId=${hexId}`;
+}
+
+function deleteCharacter(button) {
+    const hexId = button.parentElement.parentElement.getAttribute('hex-id');
+    console.log('Deleting character with hex id:', hexId);
+    localStorage.removeItem(`characterData-${hexId}`);
+
+    let characterHexIds = JSON.parse(localStorage.getItem('characterHexIds') || '[]');
+    if (characterHexIds.includes(hexId)) {
+        characterHexIds.splice(characterHexIds.indexOf(hexId), 1);
+        localStorage.setItem('characterHexIds', JSON.stringify(characterHexIds));
+    }
+
+    loadCharacters();
 }
 
 window.addEventListener('DOMContentLoaded', () => {

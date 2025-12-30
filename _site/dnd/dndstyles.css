@@ -2167,15 +2167,26 @@ tr.hidden{
     background: rgba(0, 0, 0, 0.3);
 }
 
-.cc-class-primary {
+.cc-manager-primary {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    position: relative;
 }
 
 .cc-class-vitals {
     border: 1px solid var(--border);
     padding: 6px;
+}
+
+.cc-manager-remove-button {
+    position: absolute;
+    right: -32px;
+    font-size: 24px;
+    color: red;
+    border: none;
+    background: none;
+    cursor: pointer;
 }
 
 .cc-manager {
@@ -2187,7 +2198,7 @@ tr.hidden{
     justify-content: space-between;
 }
 
-.cc-manager-features {
+.cc-manager-details {
 }
 
 .cc-manager-feature {
@@ -2201,12 +2212,14 @@ tr.hidden{
 }
 
 .cc-manager-feature-summary {
+    position: relative;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
     cursor: pointer;
     padding-bottom: 8px;
+    padding-right: 32px;
 }
 
 .cc-manager-feature[open] .cc-manager-feature-summary {
@@ -2214,6 +2227,8 @@ tr.hidden{
 }
 
 .cc-manager-feature-summary::after {
+    position: absolute;
+    right: 0;
     content: '▶';
     font-size: 16px;
     color: var(--muted);
@@ -2326,4 +2341,9 @@ tr.hidden{
     width: 100%;
     padding: 4px;
     font-size: 14px;
+}
+
+.cc-manager-menu {
+    margin: 0;
+    padding: 0;
 }

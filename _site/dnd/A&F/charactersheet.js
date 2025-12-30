@@ -140,15 +140,21 @@ function formatModifier(modifier) {
 }
 
 // Calculate proficiency bonus from level
-function getProficiencyBonus(level) {
-    return Math.ceil(level / 4) + 1;
+function getProficiencyBonus(level=null) {
+    if (level === null) {
+        level = characterData.characterInfo?.level || 1;
+    }
+    const proficiencyBonus = Math.ceil(level / 4) + 1;
+    return proficiencyBonus;
 }
 
 // Get ability modifier
 function getAbilityModifier(abilityName) {
     const ability = characterData.abilities?.[abilityName.toLowerCase()];
     if (!ability) return 0;
-    return ability.modifier || 0;
+    let modifier = ability.modifier || 0;
+    modifier += characterData.calculatedModifiers.abilityModifierIncrease[abilityName].bonus;
+    return modifier;
 }
 
 // generate all character sheet fields
@@ -220,21 +226,19 @@ function generateAbilities() {
     if (!abilities) return;
 
     const abilityMap = {
-        'Strength': abilities.strength,
-        'Dexterity': abilities.dexterity,
-        'Constitution': abilities.constitution,
-        'Intelligence': abilities.intelligence,
-        'Wisdom': abilities.wisdom,
-        'Charisma': abilities.charisma
+        'strength': abilities.strength,
+        'dexterity': abilities.dexterity,
+        'constitution': abilities.constitution,
+        'intelligence': abilities.intelligence,
+        'wisdom': abilities.wisdom,
+        'charisma': abilities.charisma
     };
 
     const abilityElements = document.querySelectorAll('#cs-abilities .cs-trait');
     abilityElements.forEach((trait, index) => {
-        const abilityName = trait.querySelector('.cs-trait-name')?.textContent.trim();
+        const abilityName = trait.getAttribute('data-ability');
         if (abilityName && abilityMap[abilityName]) {
-            const ability = abilityMap[abilityName];
-            // Abilities now store modifiers directly
-            const modifier = ability.modifier !== undefined ? ability.modifier : 0;
+            const modifier = getAbilityModifier(abilityName);
             const valueEl = trait.querySelector('.cs-value');
             if (valueEl) {
                 valueEl.textContent = formatModifier(modifier);
@@ -252,11 +256,15 @@ function generateCombatStats() {
     // Hit Points
     const hpCurrentEl = document.querySelector('#cs-hp-current .cs-value');
     const hpMaxEl = document.querySelector('#cs-hp-max .cs-value');
+
+    const maxHP = getMaxHitPoints();
+    const currentHP = vitals.hitPoints.current !== -1 ? vitals.hitPoints.current : maxHP;
+
     if (hpCurrentEl && vitals?.hitPoints) {
-        hpCurrentEl.textContent = vitals.hitPoints.current || 10;
+        hpCurrentEl.textContent = currentHP || 10;
     }
     if (hpMaxEl && vitals?.hitPoints) {
-        hpMaxEl.textContent = vitals.hitPoints.max || 10;
+        hpMaxEl.textContent = maxHP || 10;
     }
 
     // Armor Class
@@ -265,7 +273,7 @@ function generateCombatStats() {
     );
     if (acTrait && coreTraits) {
         const valueEl = acTrait.querySelector('.cs-value');
-        if (valueEl) valueEl.textContent = coreTraits.armorClass || 10;
+        if (valueEl) valueEl.textContent = getArmorClass() || 10;
     }
 
     // Initiative
@@ -274,7 +282,7 @@ function generateCombatStats() {
     );
     if (initTrait && coreTraits) {
         const valueEl = initTrait.querySelector('.cs-value');
-        if (valueEl) valueEl.textContent = formatModifier(coreTraits.initiative || 0);
+        if (valueEl) valueEl.textContent = formatModifier(getInitiative());
     }
 
     // Absorb
@@ -283,7 +291,7 @@ function generateCombatStats() {
     );
     if (absorbTrait && coreTraits) {
         const valueEl = absorbTrait.querySelector('.cs-value');
-        if (valueEl) valueEl.textContent = coreTraits.absorb || 0;
+        if (valueEl) valueEl.textContent = getAbsorb();
     }
 
     // Proficiency Bonus
@@ -307,6 +315,36 @@ function generateCombatStats() {
     if (coreTraits) {
         generateHeroicInspiration(coreTraits.heroicInspiration);
     }
+}
+
+function getMaxHitPoints() {
+    const vitals = characterData.vitals;
+    let maxHP = vitals.hitPoints.rolledHP;
+    maxHP += characterData.characterInfo.level * getAbilityModifier('constitution');
+    return maxHP;
+}
+
+function getArmorClass() {
+    const coreTraits = characterData.coreTraits;
+    let armorClass = coreTraits.armorClass;
+    armorClass += getAbilityModifier('dexterity');
+
+    return armorClass;
+}
+
+function getInitiative() {
+    const coreTraits = characterData.coreTraits;
+    let initiative = coreTraits.initiative;
+    initiative += getAbilityModifier('dexterity');
+
+    return initiative;
+}
+
+function getAbsorb() {
+    const coreTraits = characterData.coreTraits;
+    let absorb = coreTraits.absorb;
+
+    return absorb;
 }
 
 // generate stress slots
@@ -379,106 +417,48 @@ function generateSavingThrows() {
     }
 
     const proficiencyBonus = getProficiencyBonus(level);
-    const abilityMap = {
-        'fortitude': ['strength', 'constitution'],
-        'reflex': ['dexterity'],
-        'will': ['wisdom', 'intelligence', 'charisma']
-    };
 
     const savingThrowElements = document.querySelectorAll('#cs-saving-throws .cs-saving-throw');
     savingThrowElements.forEach(throwEl => {
-        const nameEl = throwEl.querySelector('.cs-saving-throw-name');
-        if (!nameEl) return;
 
-        const throwName = nameEl.textContent.trim().toLowerCase();
-        const throwData = savingThrows[throwName];
-        if (!throwData) return;
-
-        // Calculate modifier: ability modifier + proficiency (if proficient) + startingBonus
-        const abilities = abilityMap[throwName] || [];
-        const abilityMod = abilities.length > 0 
-            ? Math.max(...abilities.map(ab => getAbilityModifier(ab)))
-            : 0;
-        
-        const isProficient = proficientSaves.includes(throwName);
-        const profBonus = isProficient ? proficiencyBonus : 0;
-        const startingBonus = throwData.startingBonus || 0;
-        const totalModifier = abilityMod + profBonus + startingBonus;
+        const throwName = throwEl.getAttribute('data-saving-throw');
+        const modifier = getSavingThrowModifier(throwName);
 
         const modifierEl = throwEl.querySelector('.cs-saving-throw-modifier');
         if (modifierEl) {
-            modifierEl.textContent = formatModifier(totalModifier);
+            modifierEl.textContent = formatModifier(modifier);
         }
     });
 }
 
+function getSavingThrowModifier(throwName) {
+    
+    const abilityMap = {
+        'fortitude': ['strength', 'constitution'],
+        'reflex': ['dexterity','wisdom'],
+        'will': [ 'intelligence', 'charisma']
+    };
+    const throwData = characterData.savingThrows[throwName];
+    if (!throwData) return 0;
+    const abilities = abilityMap[throwName] || [];
+    const abilityMod = abilities.length > 0 
+        ? Math.max(...abilities.map(ab => getAbilityModifier(ab)))
+        : 0;
+    const startingBonus = throwData.startingBonus || 0;
+    const savingThrowIncrease = characterData.calculatedModifiers.savingThrowIncrease[throwName].bonus || 0;
+
+    const modifier = abilityMod + startingBonus + savingThrowIncrease;
+    return modifier;
+}
+
 // generate skills
 function generateSkills() {
-    const level = characterData.characterInfo?.level || 1;
-    const proficiencyBonus = getProficiencyBonus(level);
-    
-    // Get all skill proficiencies from class, race, and background
-    const skillProficiencies = new Set();
-    
-    // From class
-    if (characterData.class?.proficiencies?.skills) {
-        characterData.class.proficiencies.skills.forEach(skill => skillProficiencies.add(skill));
-    }
-    
-    // From race features (e.g., variant human skills)
-    if (characterData.race?.features) {
-        characterData.race.features.forEach(feature => {
-            if (feature.name === 'Skills' && feature.choices) {
-                feature.choices.forEach(skill => skillProficiencies.add(skill));
-            }
-        });
-    }
-    
-    // From background (if it has skill choices)
-    if (characterData.background?.choices) {
-        characterData.background.choices.forEach(skill => {
-            if (typeof skill === 'string') {
-                skillProficiencies.add(skill);
-            }
-        });
-    }
-
-    // Skill to ability mapping
-    const skillAbilityMap = {
-        'Acrobatics': 'dexterity',
-        'Animal Handling': 'wisdom',
-        'Arcana': 'intelligence',
-        'Athletics': 'strength',
-        'Deception': 'charisma',
-        'History': 'intelligence',
-        'Insight': 'wisdom',
-        'Intimidation': 'charisma',
-        'Investigation': 'intelligence',
-        'Medicine': 'wisdom',
-        'Nature': 'intelligence',
-        'Perception': 'wisdom',
-        'Performance': 'charisma',
-        'Persuasion': 'charisma',
-        'Religion': 'intelligence',
-        'Sleight of Hand': 'dexterity',
-        'Stealth': 'dexterity',
-        'Survival': 'wisdom'
-    };
-
     const skillElements = document.querySelectorAll('#cs-skills .cs-skill');
     skillElements.forEach(skillEl => {
-        const nameEl = skillEl.querySelector('.cs-skill-name');
-        if (!nameEl) return;
+        const skillName = skillEl.getAttribute('data-skill');
+        if (!skillName) return;
 
-        const skillName = nameEl.textContent.trim();
-        const abilityName = skillAbilityMap[skillName];
-        if (!abilityName) return;
-
-        const isProficient = skillProficiencies.has(skillName);
-        const abilityMod = getAbilityModifier(abilityName);
-        const profBonus = isProficient ? proficiencyBonus : 0;
-        const totalModifier = abilityMod + profBonus;
-        const passive = 10 + totalModifier;
+        const { totalModifier, passive, isProficient } = getSkillInfo(skillName);
 
         // Update proficiency indicator
         const proficiencyIcon = skillEl.querySelector('.cs-skill-proficiency');
@@ -502,6 +482,40 @@ function generateSkills() {
             passiveEl.textContent = passive;
         }
     });
+}
+
+function getSkillInfo(skillName) {
+    // Skill to ability mapping
+    const skillAbilityMap = {
+        'acrobatics': 'dexterity',
+        'animalHandling': 'wisdom',
+        'arcana': 'intelligence',
+        'athletics': 'strength',
+        'deception': 'charisma',
+        'history': 'intelligence',
+        'insight': 'wisdom',
+        'intimidation': 'charisma',
+        'investigation': 'intelligence',
+        'medicine': 'wisdom',
+        'nature': 'intelligence',
+        'perception': 'wisdom',
+        'performance': 'charisma',
+        'persuasion': 'charisma',
+        'religion': 'intelligence',
+        'sleightOfHand': 'dexterity',
+        'stealth': 'dexterity',
+        'survival': 'wisdom'
+    };
+    const abilityName = skillAbilityMap[skillName];
+    if (!abilityName) return { totalModifier: 0, passive: 10, isProficient: false };
+    const abilityMod = getAbilityModifier(abilityName);
+    
+    const isProficient = characterData.calculatedModifiers.skillProficiency[skillName].proficient;
+    const proficiencyBonus = isProficient ? getProficiencyBonus() : 0;
+
+    const totalModifier = abilityMod + proficiencyBonus;
+    const passive = 10 + totalModifier;
+    return { totalModifier, passive, isProficient };
 }
 
 // generate senses and movement
@@ -560,10 +574,12 @@ function generateProficiencies() {
     const proficiencies = characterData.proficiencies;
     if (!proficiencies) return;
 
-    // Combine proficiencies from class, race, and background
-    // For now, we'll use what's stored in the proficiencies object
-    // In the future, this could be calculated from class/race/background data
+    proficiencies.armor = getArmorProficiency();
+    proficiencies.weapons = getWeaponProficiency();
+    proficiencies.tools = getToolProficiency();
+    proficiencies.languages = getLanguageProficiency();
 
+    
     const proficiencyItems = document.querySelectorAll('#cs-proficiencies .cs-trait-list-item');
     proficiencyItems.forEach(item => {
         const nameEl = item.querySelector('.cs-trait-name');
@@ -594,6 +610,93 @@ function generateProficiencies() {
             }
         }
     });
+}
+
+function getArmorProficiency() {
+    const armorMap = {
+        'lightArmor': 'Light Armor',
+        'mediumArmor': 'Medium Armor',
+        'heavyArmor': 'Heavy Armor',
+        'shields': 'Shields',
+    };
+    const armorProficiency = characterData.calculatedModifiers.armorProficiency;
+    if (!armorProficiency) return [];
+
+    const armorProficiencyList = [];
+    Object.entries(armorProficiency).forEach(([key, value]) => {
+        if (value.proficient) {
+            armorProficiencyList.push(armorMap[key]);
+        }
+    });
+
+    return armorProficiencyList;
+}
+
+function getWeaponProficiency() {
+    const weaponMap = {
+        'simpleWeapons': 'Simple Weapons',
+        'martialWeapons': 'Martial Weapons',
+        'club': 'Club',
+        'dagger': 'Dagger',
+        'greatclub': 'Greatclub',
+        'handaxe': 'Handaxe',
+        'javelin': 'Javelin',
+        'lightHammer': 'Light Hammer',
+        'mace': 'Mace',
+        'quarterstaff': 'Quarterstaff',
+        'sickle': 'Sickle',
+        'spear': 'Spear',
+        'crossbowLight': 'Crossbow, Light',
+        'dart': 'Dart',
+        'shortbow': 'Shortbow',
+        'sling': 'Sling',
+        'battleaxe': 'Battleaxe',
+        'flail': 'Flail',
+        'glaive': 'Glaive',
+        'greataxe': 'Greataxe',
+        'greatsword': 'Greatsword',
+        'halberd': 'Halberd',
+        'lance': 'Lance',
+        'longsword': 'Longsword',
+        'maul': 'Maul',
+        'morningstar': 'Morningstar',
+        'pike': 'Pike',
+        'rapier': 'Rapier',
+        'scimitar': 'Scimitar',
+        'shortsword': 'Shortsword',
+        'trident': 'Trident',
+        'warpick': 'Warpick',
+        'warhammer': 'Warhammer',
+        'whip': 'Whip',
+        'blowgun': 'Blowgun',
+        'crossbowHand': 'Crossbow, Hand',
+        'crossbowHeavy': 'Crossbow, Heavy',
+        'longbow': 'Longbow',
+        'net': 'Net',
+    };
+    const weaponProficiency = characterData.calculatedModifiers.weaponProficiency;
+    if (!weaponProficiency) return [];
+
+    const weaponProficiencyList = [];
+    Object.entries(weaponProficiency).forEach(([key, value]) => {
+        if (value.proficient) {
+            weaponProficiencyList.push(weaponMap[key]);
+        }
+    });
+
+    return weaponProficiencyList;
+}
+
+function getToolProficiency() {
+    const toolProficiency = characterData.calculatedModifiers.toolProficiency;
+    if (!toolProficiency) return [];
+    return toolProficiency;
+}
+
+function getLanguageProficiency() {
+    const languageProficiency = characterData.calculatedModifiers.languageProficiency;
+    if (!languageProficiency) return [];
+    return languageProficiency;
 }
 
 // generate attacks

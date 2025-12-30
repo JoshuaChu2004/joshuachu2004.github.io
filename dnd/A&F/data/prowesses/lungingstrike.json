@@ -1,0 +1,9 @@
+{
+    "name": "Lunging Strike",
+    "level": 1,
+    "type": "Martial Prowess",
+    "useTime": "Special",
+    "range": "Self",
+    "duration": "Instantaneous",
+    "description": "When you make a melee attack on your turn, you can extend the reach of that attack by 5 ft."
+}

@@ -4,6 +4,29 @@
   "classType": "Martial",
   "hitDie": "d10",
   "hitPointsAtFirstLevel": 10,
+  "hitPointsFixed": 6,
+  "spellInfo": {
+    "canCastSpells": false,
+    "casterType": null,
+    "spellGrowthRate": null,
+    "spellCastingAbility": null
+  },
+  "prowessInfo": {
+    "canUseProwesses": true,
+    "prowessGrowthRate": "full",
+    "prowessAbility": ["strength", "dexterity"],
+    "prowessList": {
+      "1": [ "Second Wind", "Grappling Strike", "Lunging Strike"],
+      "2": [ "Sweeping Strike"],
+      "3": [],
+      "4": [],
+      "5": [],
+      "6": [],
+      "7": [],
+      "8": [],
+      "9": []
+    }
+  },
   "features": [
     {
       "name": "Fighter Proficiencies",
@@ -131,22 +154,17 @@
       "level": 1,
       "type": "feature",
       "description": "Your training as a soldier or warrior has imparted on you various techniques to utilize against your foes. You know two Prowesses from the Fighter prowess list.\n\n**Prowesses Known**\n\nThe Fighter table shows how many Prowesses you know at 1st level and higher. When you gain a level in this class, you can choose one of the Martial Prowesses you know and replace it with another Prowess from the Fighter prowess list.\n\n**Prowess Ability**\n\nStrength or Dexterity, whichever is higher, is your Prowess ability for your fighter prowesses, as the power of your abilities relies on your physical capacity. You use your Strength or Dexterity whenever a prowess refers to your prowess ability. In addition, you use your Strength or Dexterity modifier when setting the saving throw DC for a fighter Prowess you use.\n\n**Prowess save DC**\n\nYour Prowess save DC is 8 + your proficiency bonus + your Strength or Dexterity modifier"
+    },
+    {
+      "name": "Warrior’s Grit",
+      "level": 2,
+      "type": "feature",
+      "description": "Starting at 2nd level, you can make your abilities more potent. When a creature makes a saving throw against your Prowess save DC and succeeds, you can take a Stress to force them to reroll the die."
     }
   ],
-  "prowesses": {
-    "1": [ "Second Wind"],
-    "2": [],
-    "3": [],
-    "4": [],
-    "5": [],
-    "6": [],
-    "7": [],
-    "8": [],
-    "9": []
-  },
   "levelFeatures": {
     "1": ["Fighting Style", "Martial Prowess"],
-    "2": [],
+    "2": ["Warrior’s Grit"],
     "3": [],
     "4": [],
     "5": [],

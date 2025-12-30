@@ -49,7 +49,7 @@ let characterData = {
         features: [],
     },
     vitals: {
-        hitPoints: { current: 0, max: 0 },
+        hitPoints: { current: -1, max: -1 },
     },
     background: {
         name: null,
@@ -116,6 +116,90 @@ let currentSection = null;
 let equipmentSelections = {
     class: {},
     background: {},
+}
+let saveTimeout = null;
+
+// ============================================================================
+// DEBOUNCED SAVE FUNCTION
+// ============================================================================
+
+// Debounced save function - waits 500ms after last change before saving
+function debouncedSave() {
+    clearTimeout(saveTimeout);
+    saveTimeout = setTimeout(() => {
+        saveCharacter();
+    }, 500); // Save 500ms after the last change
+}
+
+// Create a deep proxy that intercepts property changes at any nesting level
+// This allows us to auto-save when ANY property is modified, even nested ones
+function createDeepProxy(obj, onChange) {
+    // Handle null/undefined
+    if (obj === null || obj === undefined) {
+        return obj;
+    }
+    
+    // Only proxy objects and arrays (not primitives like strings, numbers, booleans)
+    if (typeof obj !== 'object') {
+        return obj;
+    }
+    
+    return new Proxy(obj, {
+        // Intercepts when a property is SET (e.g., characterData.vitals.hitPoints.current = 10)
+        set(target, prop, value) {
+            // If the new value is an object/array, make it a proxy too (recursive)
+            if (value && typeof value === 'object') {
+                value = createDeepProxy(value, onChange);
+            }
+            
+            // Set the property on the original object
+            target[prop] = value;
+            
+            // Trigger the onChange callback (which will debounce the save)
+            onChange();
+            
+            return true; // Indicates the assignment succeeded
+        },
+        
+        // Intercepts when a property is GET (e.g., const hp = characterData.vitals.hitPoints)
+        get(target, prop) {
+            const value = target[prop];
+            
+            // If accessing an object/array property, return a proxied version
+            // This ensures nested property changes are also intercepted
+            if (value && typeof value === 'object') {
+                return createDeepProxy(value, onChange);
+            }
+            
+            // Return primitive values as-is
+            return value;
+        },
+        
+        // Intercepts array methods like push, pop, splice, etc.
+        getPrototypeOf(target) {
+            return Object.getPrototypeOf(target);
+        }
+    });
+}
+
+function saveCharacter() {
+    console.log('Saving character...');
+    console.log('Character data:', characterData);
+
+    const characterDataString = JSON.stringify(characterData);
+    const hexId = characterData.hexId;
+    localStorage.setItem(`characterData-${hexId}`, characterDataString);
+
+    const characterHexIds = localStorage.getItem('characterHexIds');
+    if (characterHexIds) {
+        const characterHexIdsArray = JSON.parse(characterHexIds);
+        if (!characterHexIdsArray.includes(hexId)) {
+            characterHexIdsArray.push(hexId);
+        }
+        localStorage.setItem('characterHexIds', JSON.stringify(characterHexIdsArray));
+    } else {
+        localStorage.setItem('characterHexIds', JSON.stringify([hexId]));
+    }
 }
 // ============================================================================
 // UTILITY FUNCTIONS
@@ -196,6 +280,20 @@ function getChoiceModifiers(feature) {
     );
 }
 
+function generateRandomHexCode() {
+    // Generate a random number between 0 and 0xFFFFFF (16777215)
+    let randomNum = Math.floor(Math.random() * 16777215);
+  
+    // Convert the number to a hexadecimal string (base 16)
+    let hexCode = randomNum.toString(16);
+  
+    // Pad the string with leading zeros if necessary to ensure it's always 6 digits
+    // This handles cases where the random number generates a shorter hex string (e.g., #abc)
+    let fullHexCode = hexCode.padStart(6, '0');
+  
+    return fullHexCode;
+  }
+
 // ============================================================================
 // INITIALIZATION
 // ============================================================================
@@ -214,24 +312,16 @@ async function loadCharacterBuilderData(hexId=null) {
         }
         
         if (hexId) {
-            console.log("Editing existing character...");
             const loadedData = JSON.parse(localStorage.getItem(`characterData-${hexId}`));
             if (loadedData) {
-                // Merge loaded data into characterData
                 Object.assign(characterData, loadedData);
-                // Ensure modifiers array exists
-                if (!characterData.modifiers) {
-                    characterData.modifiers = [];
-                }
-                // Ensure calculatedModifiers structure is correct
-                if (!characterData.calculatedModifiers) {
-                    characterData.calculatedModifiers = getDefaultCalculatedModifiers();
-                }
-                console.log('Character data:', characterData);
+                characterData = createDeepProxy(characterData, debouncedSave);
             }
         }
         else {
-            console.log("Creating new character...");
+            characterData = createDeepProxy(characterData, debouncedSave);
+            characterData.hexId = generateRandomHexCode();
+            localStorage.setItem(`characterData-${characterData.hexId}`, JSON.stringify(characterData));
         }
         
         generateCharacterBuilder();
@@ -243,6 +333,14 @@ async function loadCharacterBuilderData(hexId=null) {
 
 function generateCharacterBuilder() {
     console.log('Generating character builder...');
+
+    const characterNameInputEl = document.querySelector('#cc-character-name');
+    if (characterNameInputEl) {
+        characterNameInputEl.value = characterData.characterInfo.name || '';
+        characterNameInputEl.onchange = (e) => {
+            characterData.characterInfo.name = e.target.value;
+        };
+    }
 
     generateClasses();
     generateRaces();
@@ -326,25 +424,13 @@ function confirmClass() {
     characterData.class.name = classData.name;
     characterData.class.level = 1;
 
-    // Initialize features - auto-detect options and choices
-    classData.features.forEach(feature => {
-        const characterFeature = {
-            name: feature.name,
-        };
-        
-        // If feature has options, initialize options array
-        if (featureHasOptions(feature)) {
-            characterFeature.options = [];
-        }
-        
-        // If feature has choices, initialize modifiers array for storing selections
-        if (featureHasChoices(feature)) {
-            // Initialize as empty array for storing selected choices
-            characterFeature.modifiers = [];
-        }
-        
-        characterData.class.features.push(characterFeature);
-    });
+    const vitals = characterData.vitals;
+    vitals.hitPoints.rolledHP = classData.hitPointsAtFirstLevel;
+    vitals.hitPoints.hitDie = classData.hitDie;
+    vitals.hitPoints.temporary = 0;
+    vitals.hitPoints.fixed = classData.hitPointsFixed;
+
+    initializeNewClassLevelFeatures(1);
 
     // Initialize modifiers array
     characterData.modifiers = [];
@@ -369,9 +455,396 @@ function generateClass() {
 
     const levelDisplayEl = classManagerEl.querySelector('#cc-character-level');
     levelDisplayEl.textContent = characterData.class.level || 1;
+
+    const levelSelectEl = classManagerEl.querySelector('#cc-manager-header-levels-select');
+    levelSelectEl.value = characterData.class.level || 1;
+    levelSelectEl.onchange = (e) => handleClassLevelChange(e.target);
     
     // Generate class features
     generateFeatures('class');
+    generateProwesses();
+    generateSpells();
+}
+
+function getCharacterProwessInfo(level, growthRate) {
+    let maximumProwessLevel = 0;
+    let maximumLearnedProwesses = 0;
+
+    const classData = getGameFeatureData('class');
+    const classLevel = characterData.class.level;
+    if (classData.prowessInfo.canUseProwesses) {
+        if (classData.prowessInfo.prowessGrowthRate === 'full') {
+            maximumProwessLevel = Math.ceil(classLevel / 2);
+            maximumLearnedProwesses = 2 + Math.floor((classLevel - 1) / 2);
+        } else if (classData.prowessInfo.prowessGrowthRate === 'half') {
+            maximumProwessLevel = Math.ceil(classLevel / 4);
+            maximumLearnedProwesses = 2 + Math.floor((classLevel - 1) / 4);
+        }
+    }
+    return {
+        maximumProwessLevel: maximumProwessLevel,
+        maximumLearnedProwesses: maximumLearnedProwesses,
+    };
+}
+
+function getCharacterSpellInfo(level, growthRate) {
+    let maximumSpellLevel = 0;
+    let maximumLearnedSpells = 0;
+
+    const classData = getGameFeatureData('class');
+    const classLevel = characterData.class.level;
+    if (classData.spellInfo.canUseSpells) {
+        if (classData.spellInfo.spellGrowthRate === 'full') {
+            maximumSpellLevel = Math.ceil(classLevel / 2);
+            maximumLearnedSpells = 2 + Math.floor((classLevel - 1) / 2);
+        } else if (classData.spellInfo.spellGrowthRate === 'half') {
+            maximumSpellLevel = Math.ceil(classLevel / 4);
+            maximumLearnedSpells = 2 + Math.floor((classLevel - 1) / 4);
+        }
+    }
+    return {
+        maximumSpellLevel: maximumSpellLevel,
+        maximumLearnedSpells: maximumLearnedSpells,
+    };
+}
+
+
+/**
+ * Generate a single prowess element
+ * @param {string} prowessName - Name of the prowess
+ * @param {number} prowessLevel - Level of the prowess
+ * @param {HTMLElement} container - Container to append the prowess to
+ * @returns {HTMLElement} The generated prowess element
+ */
+function generateProwessElement(prowessName, prowessLevel, container) {
+    const prowessData = gameData.prowesses.find(p => p.name === prowessName);
+    if (!prowessData) {
+        console.error('Prowess data not found:', prowessName);
+        return null;
+    }
+    
+    const prowessEl = document.createElement('details');
+    prowessEl.id = `cc-manager-prowess-${prowessName.toLowerCase().replace(/ /g, '')}`;
+    prowessEl.dataset.prowessName = prowessName;
+    prowessEl.classList.add('cc-manager-feature');
+
+    const levelSuffix = prowessLevel === 1 ? 'st' : prowessLevel === 2 ? 'nd' : prowessLevel === 3 ? 'rd' : 'th';
+
+    const prowessSummaryEl = document.createElement('summary');
+    prowessSummaryEl.classList.add('cc-manager-feature-summary');
+    prowessSummaryEl.innerHTML = `
+        <div class="cc-manager-feature-summary-info">
+            <div class="cc-manager-feature-summary-title header">${prowessData.name}</div>
+            <div class="cc-manager-feature-summary-meta">
+                <div class="cc-manager-feature-summary-meta-item">${prowessLevel}${levelSuffix} Level</div>
+            </div>
+        </div>`;
+
+    const prowessTakeButtonEl = document.createElement('button');
+    prowessTakeButtonEl.classList.add('cc-manager-feature-take-button');
+    
+    // Set initial button state based on whether prowess is already learned
+    const isLearned = characterData.class.prowesses.includes(prowessName);
+    if (isLearned) {
+        prowessTakeButtonEl.textContent = 'Unlearn';
+        prowessTakeButtonEl.classList.add('unlearn');
+        prowessTakeButtonEl.onclick = () => unlearnProwess(prowessName);
+    } else {
+        prowessTakeButtonEl.textContent = 'Learn';
+        prowessTakeButtonEl.onclick = () => takeProwess(prowessName);
+    }
+
+    const prowessContentEl = document.createElement('div');
+    prowessContentEl.classList.add('cc-manager-feature-content');
+    prowessContentEl.innerHTML = `
+        <div class="cc-manager-feature-properties">
+            <div class="cc-manager-feature-property"><span class="bold">Use Time:</span> <span id="cc-manager-feature-property-type">${prowessData.useTime}</span></div>
+            <div class="cc-manager-feature-property"><span class="bold">Range:</span> <span id="cc-manager-feature-property-type">${prowessData.range}</span></div>
+            <div class="cc-manager-feature-property"><span class="bold">Duration:</span> <span id="cc-manager-feature-property-type">${prowessData.duration}</span></div>
+        </div>
+    `;
+
+    const prowessDescriptionEl = document.createElement('div');
+    prowessDescriptionEl.classList.add('cc-manager-feature-description');
+    prowessDescriptionEl.innerHTML = `
+        <div class="paragraph">${parseDescription(prowessData.description)}</div>
+    `;
+
+    prowessContentEl.appendChild(prowessDescriptionEl);
+
+    prowessEl.appendChild(prowessContentEl);
+
+    prowessSummaryEl.appendChild(prowessTakeButtonEl);
+
+    prowessEl.appendChild(prowessSummaryEl);
+
+    if (container) {
+        container.appendChild(prowessEl);
+    }
+    
+    return prowessEl;
+}
+
+function generateProwesses() {
+    console.log('Generating prowesses...');
+    const prowessesListEl = document.querySelector('#cc-manager-prowesses');
+    if (!prowessesListEl) return;
+
+    const classLevel = characterData.class.level;
+    const classData = getGameFeatureData('class');
+    if (!classData) return;
+
+    if (classData.prowessInfo.canUseProwesses) {
+        const prowessMenuButtonEl = document.querySelector('#cc-manager-menu-prowesses-button');
+        if (prowessMenuButtonEl) {
+            prowessMenuButtonEl.classList.remove('hidden');
+        }
+    } else {
+        const prowessMenuButtonEl = document.querySelector('#cc-manager-menu-prowesses-button');
+        if (prowessMenuButtonEl) {
+            prowessMenuButtonEl.classList.add('hidden');
+        }
+        return;
+    }
+
+    const characterProwessInfo = getCharacterProwessInfo(classLevel, classData.prowessInfo.prowessGrowthRate);
+
+    const prowessCountEl = document.querySelector('#cc-prowesses-count-value');
+    if (prowessCountEl) {
+        prowessCountEl.textContent = characterData.class.prowesses.length;
+    }
+    const prowessCountMaxEl = document.querySelector('#cc-prowesses-count-max');
+    if (prowessCountMaxEl) {
+        prowessCountMaxEl.textContent = characterProwessInfo.maximumLearnedProwesses;
+    }
+
+    // Track which prowesses should exist at current level
+    const availableProwessNames = new Set();
+    
+    for (let level = 1; level <= characterProwessInfo.maximumProwessLevel; level++) {
+        const prowessList = classData.prowessInfo.prowessList[level];
+        if (!prowessList) continue;
+
+        prowessList.forEach(prowessName => {
+            availableProwessNames.add(prowessName);
+            
+            const prowessId = `cc-manager-prowess-${prowessName.toLowerCase().replace(/ /g, '')}`;
+            let prowessEl = document.getElementById(prowessId);
+            
+            if (!prowessEl) {
+                // Prowess doesn't exist yet, create it
+                prowessEl = generateProwessElement(prowessName, level, prowessesListEl);
+            } else {
+                // Prowess already exists, just update its button state
+                const prowessTakeButtonEl = prowessEl.querySelector('.cc-manager-feature-take-button');
+                if (prowessTakeButtonEl) {
+                    const isLearned = characterData.class.prowesses.includes(prowessName);
+                    if (isLearned) {
+                        prowessTakeButtonEl.textContent = 'Unlearn';
+                        prowessTakeButtonEl.classList.add('unlearn');
+                        prowessTakeButtonEl.onclick = () => unlearnProwess(prowessName);
+                    } else {
+                        prowessTakeButtonEl.textContent = 'Learn';
+                        prowessTakeButtonEl.classList.remove('unlearn');
+                        prowessTakeButtonEl.onclick = () => takeProwess(prowessName);
+                    }
+                }
+            }
+        });
+    }
+    
+    // Remove prowesses that are no longer available (e.g., when leveling down)
+    const existingProwessEls = prowessesListEl.querySelectorAll('.cc-manager-feature');
+    existingProwessEls.forEach(prowessEl => {
+        const prowessName = prowessEl.dataset.prowessName;
+        if (!prowessName || !availableProwessNames.has(prowessName)) {
+            prowessEl.remove();
+        }
+    });
+    
+    // Update button disabled states
+    updateProwesses();
+}
+
+function generateSpells() {
+    console.log('Generating prowesses...');
+    const spellsListEl = document.querySelector('#cc-manager-spells');
+    
+    spellsListEl.querySelectorAll('.cc-manager-feature').forEach(featureEl => {
+        featureEl.remove();
+    });
+
+    const classLevel = characterData.class.level;
+    const classData = getGameFeatureData('class');
+
+    if (classData.spellInfo.canUseSpells) {
+        const spellsMenuButtonEl = document.querySelector('#cc-manager-menu-spells-button');
+        spellsMenuButtonEl.classList.remove('hidden');
+    } else {
+        const spellsMenuButtonEl = document.querySelector('#cc-manager-menu-spells-button');
+        spellsMenuButtonEl.classList.add('hidden');
+        return;
+    }
+
+    const characterSpellInfo = getCharacterSpellInfo(classLevel, classData.spellInfo.spellGrowthRate);
+
+    const spellsCountEl = document.querySelector('#cc-spells-count-value');
+    spellsCountEl.textContent = characterData.class.spells.length;
+    const spellsCountMaxEl = document.querySelector('#cc-spells-count-max');
+    spellsCountMaxEl.textContent = characterSpellInfo.maximumLearnedSpells;
+
+    for (let level = 1; level <= characterSpellInfo.maximumSpellLevel; level++) {
+        const spellsList = classData.spellInfo.spellList[level];
+
+        spellsList.forEach(spellName => {
+            const spellData = gameData.spells.find(s => s.name === spellName);
+            const spellsEl = document.createElement('details');
+            spellsEl.id = `cc-manager-spell-${spellName.toLowerCase().replace(/ /g, '')}`;
+            spellsEl.dataset.spellName = spellName;
+            spellsEl.classList.add('cc-manager-feature');
+
+            const levelSuffix = level === 1 ? 'st' : level === 2 ? 'nd' : level === 3 ? 'rd' : 'th';
+
+            
+
+            const spellsSummaryEl = document.createElement('summary');
+            spellsSummaryEl.classList.add('cc-manager-feature-summary');
+            spellsSummaryEl.innerHTML = `
+                <div class="cc-manager-feature-summary-info">
+                    <div class="cc-manager-feature-summary-title header">${spellData.name}</div>
+                    <div class="cc-manager-feature-summary-meta">
+                        <div class="cc-manager-feature-summary-meta-item">${level}${levelSuffix} Level</div>
+                    </div>
+                </div>`;
+
+            const spellsTakeButtonEl = document.createElement('button');
+            spellsTakeButtonEl.classList.add('cc-manager-feature-take-button');
+            spellsTakeButtonEl.textContent = 'Learn';
+            spellsTakeButtonEl.onclick = () => takeSpell(spellName);
+
+            const spellsContentEl = document.createElement('div');
+            spellsContentEl.classList.add('cc-manager-feature-content');
+            spellsContentEl.innerHTML = `
+                <div class="cc-manager-feature-properties">
+                    <div class="cc-manager-feature-property"><span class="bold">Use Time:</span> <span id="cc-manager-feature-property-type">${spellData.useTime}</span></div>
+                    <div class="cc-manager-feature-property"><span class="bold">Range:</span> <span id="cc-manager-feature-property-type">${spellData.range}</span></div>
+                    <div class="cc-manager-feature-property"><span class="bold">Duration:</span> <span id="cc-manager-feature-property-type">${spellData.duration}</span></div>
+                </div>
+            `;
+
+            const spellsDescriptionEl = document.createElement('div');
+            spellsDescriptionEl.classList.add('cc-manager-feature-description');
+            spellsDescriptionEl.innerHTML = `
+                <div class="paragraph">${parseDescription(spellData.description)}</div>
+            `;
+
+            spellsContentEl.appendChild(spellsDescriptionEl);
+
+            spellsEl.appendChild(spellsContentEl);
+
+            spellsSummaryEl.appendChild(spellsTakeButtonEl);
+
+            spellsEl.appendChild(spellsSummaryEl);
+
+            spellsListEl.appendChild(spellsEl);
+        });
+        
+    }
+}
+
+function takeProwess(prowessName) {
+    const prowessData = gameData.prowesses.find(p => p.name === prowessName);
+    if (!prowessData) {
+        console.error('Prowess data not found');
+        return;
+    }
+    const prowessEl = document.querySelector(`#cc-manager-prowess-${prowessName.toLowerCase().replace(/ /g, '')}`);
+    if (!prowessEl) {
+        console.error('Prowess element not found');
+        return;
+    }
+    const prowessTakeButtonEl = prowessEl.querySelector('.cc-manager-feature-take-button');
+
+    prowessTakeButtonEl.textContent = 'Unlearn';
+    prowessTakeButtonEl.classList.add('unlearn');
+    prowessTakeButtonEl.onclick = () => unlearnProwess(prowessName);
+
+    const prowess = {
+        name: prowessName,
+        flipped: false,
+    }
+
+    characterData.class.prowesses.push(prowess);
+
+    console.log('Character data:', characterData);
+
+    updateProwesses();
+}
+
+function unlearnProwess(prowessName) {
+    const prowessData = gameData.prowesses.find(p => p.name === prowessName);
+    if (!prowessData) {
+        console.error('Prowess data not found');
+        return;
+    }
+    const prowessEl = document.querySelector(`#cc-manager-prowess-${prowessName.toLowerCase().replace(/ /g, '')}`);
+    if (!prowessEl) {
+        console.error('Prowess element not found');
+        return;
+    }
+    const prowessTakeButtonEl = prowessEl.querySelector('.cc-manager-feature-take-button');
+
+    prowessTakeButtonEl.textContent = 'Learn';
+    prowessTakeButtonEl.classList.remove('unlearn');
+    prowessTakeButtonEl.onclick = () => takeProwess(prowessName);
+
+    characterData.class.prowesses.splice(characterData.class.prowesses.findIndex(p => p.name === prowessName), 1);
+
+    console.log('Character data:', characterData);
+
+    updateProwesses();
+}
+
+function updateProwesses() {
+    const classData = getGameFeatureData('class');
+    const characterProwessInfo = getCharacterProwessInfo(characterData.class.level, classData.prowessInfo.prowessGrowthRate);
+
+    const prowessListEl = document.querySelector('#cc-manager-prowesses');
+
+    const prowessCountEl = document.querySelector('#cc-prowesses-count-value');
+    prowessCountEl.textContent = characterData.class.prowesses.length;
+    const prowessCountMaxEl = document.querySelector('#cc-prowesses-count-max');
+    prowessCountMaxEl.textContent = characterProwessInfo.maximumLearnedProwesses;
+
+    if (characterData.class.prowesses.length >= characterProwessInfo.maximumLearnedProwesses) {
+        const prowessTakeButtonEls = prowessListEl.querySelectorAll('.cc-manager-feature-take-button');
+        prowessTakeButtonEls.forEach(prowessTakeButtonEl => {
+            if (prowessTakeButtonEl.classList.contains('unlearn')) {
+                return;
+            }
+            prowessTakeButtonEl.disabled = true;
+            prowessTakeButtonEl.classList.add('disabled');
+        });
+    } else {
+        const prowessTakeButtonEls = prowessListEl.querySelectorAll('.cc-manager-feature-take-button');
+        prowessTakeButtonEls.forEach(prowessTakeButtonEl => {
+            prowessTakeButtonEl.disabled = false;
+            prowessTakeButtonEl.classList.remove('disabled');
+        });
+    }
+}
+
+function showClassDetails(details) {
+    console.log(`Showing ${details} details...`);
+    const classEl = document.querySelector('#cc-class-manager');
+    const detailsEl = classEl.querySelectorAll('.cc-manager-details');
+    detailsEl.forEach(detailEl => {
+        if (detailEl.id === `cc-manager-${details}`) {
+            detailEl.classList.remove('hidden');
+        } else {
+            detailEl.classList.add('hidden');
+        }
+    });
 }
 
 // ============================================================================
@@ -838,17 +1311,22 @@ function generateFeature(gameFeature, characterFeature, source, container = null
  * @param {string} source - Source type ('class', 'race', 'background')
  */
 function generateFeatures(source = 'class') {
+    
     if ((!characterData[source]?.name && source !== 'abilities') || !gameData) return;
     
     const sourceData = getGameFeatureData(source);
-    if (!sourceData) return;
+    if (!sourceData) {
+        console.error('Source data not found for:', source);
+        return;
+    }
 
     const builderTabEl = document.querySelector(`#cc-builder-tab-${source}-manage`);
     
-    const featuresContainer = builderTabEl.querySelector('.cc-manager-features');
-    if (!featuresContainer) return;
-    
-    featuresContainer.innerHTML = '';
+    const featuresContainer = builderTabEl.querySelector('#cc-manager-features');
+    if (!featuresContainer) {
+        console.error('Features container not found for:', source);
+        return;
+    }
     
     // Get features - filter by level for classes, all features for others
     let availableFeatures = sourceData.features || [];
@@ -856,11 +1334,21 @@ function generateFeatures(source = 'class') {
         const currentLevel = characterData.class.level;
         availableFeatures = availableFeatures.filter(f => f.level <= currentLevel);
     }
+
+    const featuresEl = featuresContainer.querySelectorAll('.cc-manager-feature');
+
+    featuresEl.forEach(featureEl => {
+        const featureName = featureEl.dataset.featureName;
+        if (!availableFeatures.find(f => f.name === featureName)) {
+            featureEl.remove();
+        }
+    });
     
     availableFeatures.forEach((gameFeature, index) => {
         const characterFeature = characterData[source].features.find(f => f.name === gameFeature.name);
         if (!characterFeature) return;
         
+        if (Array.from(featuresEl).find(f => f.dataset.featureName === gameFeature.name)) return;
         generateFeature(gameFeature, characterFeature, source, featuresContainer);
     });
     
@@ -1010,7 +1498,7 @@ function handleOptionSelection(featureName, choiceIndex, optionName, source = 'c
  * @param {string} source - Source type ('class', 'race', 'background')
  */
 function handleChoiceSelection(featureName, choiceIndex, type, value, source = 'class') {
-    debugger;
+    
     const characterFeature = getCharacterFeature(featureName, source);
     if (!characterFeature) return;
     
@@ -1081,6 +1569,43 @@ function removeFeat(source) {
     }
 }
 
+function removeClass() {
+    characterData.class = {
+        name: null,
+        level: 1,
+        proficiencies: {
+            skills: [],
+        },
+        features: [],
+        prowesses: [],
+    };
+    document.querySelector('#cc-builder-tab-class-manage').classList.add('hidden');
+    document.querySelector('#cc-builder-tab-class-choose').classList.remove('hidden');
+
+    updateModifiers();
+}
+
+function removeRace() {
+    characterData.race = {
+        name: null,
+        features: [],
+    };
+    document.querySelector('#cc-builder-tab-race-manage').classList.add('hidden');
+    document.querySelector('#cc-builder-tab-race-choose').classList.remove('hidden');
+
+    updateModifiers();
+}
+
+function removeBackground() {
+    characterData.background = {
+        name: null,
+        features: [],
+    };
+    document.querySelector('#cc-builder-tab-background-manage').classList.add('hidden');
+    document.querySelector('#cc-builder-tab-background-choose').classList.remove('hidden');
+
+    updateModifiers();
+}
 /**
  * Handle choice selection from a dropdown
  * @param {HTMLSelectElement} selectEl - The select element that was changed
@@ -1589,7 +2114,7 @@ function calculateFinalModifiers() {
     const finalModifiers = characterData.calculatedModifiers;
     const modifiers = characterData.modifiers;
 
-    debugger;
+    
     Object.values(modifiers).forEach(modifier => {
         const type = modifier.type;
         const value = toCamelCase(modifier.value);
@@ -1864,14 +2389,18 @@ function addStartingEquipment() {
 window.addEventListener('DOMContentLoaded', () => {
     console.log('DOMContentLoaded');
 
+    const urlParams = new URLSearchParams(window.location.search);
+    const hexId = urlParams.get('hexId');
+    
+    // Load character data (will use hexId from URL if present)
+    loadCharacterBuilderData(hexId);
+    
+    currentSection = document.querySelector('#cc-builder-tab-class');
+    
     const content = document.querySelector('#content-container');
     if (content) {
         content.classList.remove('content-loading');
     }
-
-    currentSection = document.querySelector('#cc-builder-tab-class');
-
-    loadCharacterBuilderData();
 });
 
 
@@ -1893,4 +2422,106 @@ function showSection(sectionButton) {
     sectionEl.classList.add('active');
     
     currentSection = sectionEl;
+}
+
+// ============================================================================
+// LEVEL CHANGE FUNCTIONS
+// ============================================================================
+
+function handleClassLevelChange(selectEl) {
+    const newLevel = selectEl.value;
+    changeClassLevel(newLevel);
+}
+
+function changeClassLevel(level) {
+    
+    const levelUp = level > characterData.class.level;
+    const difference = level - characterData.class.level;
+
+    characterData.class.level = level;
+    characterData.characterInfo.level = level;
+
+    const levelDisplayEl = document.querySelector('#cc-character-level');
+    levelDisplayEl.textContent = level;
+
+    const vitals = characterData.vitals;
+    vitals.hitPoints.rolledHP += vitals.hitPoints.fixed * difference;
+
+    if (levelUp) {
+
+        initializeNewClassLevelFeatures(level);
+        generateFeatures('class');
+        generateProwesses();
+        generateSpells();
+    } else {
+        removeClassLevelFeatures(level);
+        generateFeatures('class');
+        generateProwesses();
+        generateSpells();
+    }
+}
+
+function initializeNewClassLevelFeatures(level) {
+    const classData = getGameFeatureData('class');
+    
+    const availableFeatures = classData.features.filter(f => f.level <= level);
+    
+    // Initialize features - auto-detect options and choices
+    availableFeatures.forEach(feature => {
+        if (characterData.class.features.find(f => f.name === feature.name)) return;
+        const characterFeature = {
+            name: feature.name,
+        };
+        
+        // If feature has options, initialize options array
+        if (featureHasOptions(feature)) {
+            characterFeature.options = [];
+        }
+        
+        // If feature has choices, initialize modifiers array for storing selections
+        if (featureHasChoices(feature)) {
+            // Initialize as empty array for storing selected choices
+            characterFeature.modifiers = [];
+        }
+        
+        characterData.class.features.push(characterFeature);
+    });
+}
+
+function removeClassLevelFeatures(level) {
+    const classData = getGameFeatureData('class');
+    if (!classData) return;
+    
+    // Filter out features that are above the specified level
+    // Need to look up the game feature to get its level property
+    characterData.class.features = characterData.class.features.filter(characterFeature => {
+        const featureData = classData.features.find(f => f.name === characterFeature.name);
+        if (!featureData) return false; // Keep if game feature not found (safety)
+        return featureData.level <= level;
+    });
+
+    const characterProwessInfo = getCharacterProwessInfo(level, classData.prowessInfo.prowessGrowthRate);
+    const characterSpellInfo = getCharacterSpellInfo(level, classData.spellInfo.spellGrowthRate);
+
+    if (characterData.class.prowesses) {
+        characterData.class.prowesses = characterData.class.prowesses.filter(prowess => {
+            
+            const prowessData = gameData.prowesses.find(p => p.name === prowess.name);
+            if (!prowessData) return false; // Keep if game prowess not found (safety)
+            console.log('prowessData', prowessData);
+            console.log('characterProwessInfo.maximumProwessLevel', characterProwessInfo.maximumProwessLevel);
+            return prowessData.level <= characterProwessInfo.maximumProwessLevel;
+        });
+    }
+
+    if (characterData.class.spells) {
+        characterData.class.spells = characterData.class.spells.filter(spell => {
+            const spellData = gameData.spells.find(s => s.name === spell.name);
+            if (!spellData) return false; // Keep if game spell not found (safety)
+            return spellData.level <= characterSpellInfo.maximumSpellLevel;
+        });
+    }
+    
+    // Modifiers will be automatically removed when updateModifiers() is called
+    // (which happens in generateFeatures('class') after this function)
 }

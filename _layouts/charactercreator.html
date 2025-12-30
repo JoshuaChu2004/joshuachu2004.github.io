@@ -38,7 +38,7 @@ custom_js: '/dnd/A&F/charactercreator.js'
                         </div>
                     </div>
                     <div id="cc-builder-tab-class-manage" class="hidden">
-                        <div class="cc-class-primary">
+                        <div class="cc-manager-primary">
                             <div class="cc-progression-display">
                                 <div class="title">Character Level: <span id="cc-character-level">1</span></div>
                             </div>
@@ -53,6 +53,7 @@ custom_js: '/dnd/A&F/charactercreator.js'
                                     <span class="bold">Stress Slots:</span> 3
                                 </div>
                             </div>
+                            <button id="cc-class-manager-remove-button" class="cc-manager-remove-button" onclick="removeClass()">X</button>
                         </div>
                         <div id="cc-class-manager" class="cc-manager">
                             <div class="cc-manager-header">
@@ -84,7 +85,13 @@ custom_js: '/dnd/A&F/charactercreator.js'
                                 </div>
                             </div>
 
-                            <div class="cc-manager-features">
+                            <menu class="cc-manager-menu">
+                                <button id="cc-manager-menu-features-button" class="cc-manager-menu-button" onclick="showClassDetails('features')">Class Features</button>
+                                <button id="cc-manager-menu-prowesses-button" class="cc-manager-menu-button" onclick="showClassDetails('prowesses')">Prowesses</button>
+                                <button id="cc-manager-menu-spells-button" class="cc-manager-menu-button" onclick="showClassDetails('spells')">Spells</button>
+                            </menu>
+
+                            <div id="cc-manager-features" class="cc-manager-details">
                                 <details class="cc-manager-feature">
                                     <summary class="cc-manager-feature-summary">
                                         <div class="cc-manager-feature-summary-info">
@@ -121,6 +128,56 @@ custom_js: '/dnd/A&F/charactercreator.js'
                                     </div>
                                 </details>
                             </div>
+                            <div id="cc-manager-prowesses" class="cc-manager-details hidden">
+                                <div class="cc-manager-information">
+                                    <div id="cc-prowesses-count" class="paragraph">Learned Prowesses: <span id="cc-prowesses-count-value">0</span>/<span id="cc-prowesses-count-max">2</span></div>
+                                </div>
+                                <details class="cc-manager-feature">
+                                    <summary class="cc-manager-feature-summary">
+                                        <div class="cc-manager-feature-summary-info">
+                                            <div class="cc-manager-feature-summary-title header">Prowess Title</div>
+                                            <div class="cc-manager-feature-summary-meta">
+                                                <div class="cc-manager-feature-summary-meta-item">X Level</div>
+                                            </div>
+                                        </div>
+                                        <button class="cc-manager-feature-take-button" onclick="takeProwess()">Learn</button>
+                                    </summary>
+                                    <div class="cc-manager-feature-content">
+                                        <div class="cc-manager-feature-properties">
+                                            <div class="cc-manager-feature-property"><span class="bold">Type:</span> <span id="cc-manager-feature-property-type">Type</span></div>
+                                            <div class="cc-manager-feature-property"><span class="bold">Cost:</span> <span id="cc-manager-feature-property-cost">Cost</span></div>
+                                        </div>
+                                        <div id="cc-manager-feature-content-description" class="">
+                                            <div class="paragraph">This is a description of the prowess.</div>
+                                        </div>
+                                    </div>
+                                </details>
+                            </div>
+                            <div id="cc-manager-spells" class="cc-manager-details hidden">
+                                <div class="cc-manager-information">
+                                    <div id="cc-spells-count" class="paragraph">Learned Spells: <span id="cc-spells-count-value">0</span>/<span id="cc-spells-count-max">2</span></div>
+                                </div>
+                                <details class="cc-manager-feature">
+                                    <summary class="cc-manager-feature-summary">
+                                        <div class="cc-manager-feature-summary-info">
+                                            <div class="cc-manager-feature-summary-title header">Spell Title</div>
+                                            <div class="cc-manager-feature-summary-meta">
+                                                <div class="cc-manager-feature-summary-meta-item">X Level</div>
+                                            </div>
+                                        </div>
+                                        <button class="cc-manager-feature-take-button" onclick="takeSpell()">Learn</button>
+                                    </summary>
+                                    <div class="cc-manager-feature-content">
+                                        <div class="cc-manager-feature-properties">
+                                            <div class="cc-manager-feature-property"><span class="bold">Type:</span> <span id="cc-manager-feature-property-type">Type</span></div>
+                                            <div class="cc-manager-feature-property"><span class="bold">Cost:</span> <span id="cc-manager-feature-property-cost">Cost</span></div>
+                                        </div>
+                                        <div id="cc-manager-feature-content-description" class="">
+                                            <div class="paragraph">This is a description of the spell.</div>
+                                        </div>
+                                    </div>
+                                </details>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -137,14 +194,15 @@ custom_js: '/dnd/A&F/charactercreator.js'
                         </div>
                     </div>
                     <div id="cc-builder-tab-race-manage" class="hidden">
-                        <div class="cc-race-primary">
+                        <div class="cc-manager-primary">
                             <div class="cc-progression-display">
                                 <div class="title"><span id="cc-race-name">Human</span></div>
                                 <div id="cc-race-description" class="paragraph">Humans are the most adaptable and ambitious people among the common races. Whatever drives them, humans are the innovators, the achievers, and the pioneers of the worlds.</div>
                             </div>
+                            <button id="cc-race-manager-remove-button" class="cc-manager-remove-button" onclick="removeRace()">X</button>
                         </div>
                         <div id="cc-race-manager" class="cc-manager">
-                            <div class="cc-manager-features">
+                            <div id="cc-manager-features" class="cc-manager-details">
                                 <details class="cc-manager-feature">
                                     <summary class="cc-manager-feature-summary">
                                         <div class="cc-manager-feature-summary-info">
@@ -196,14 +254,15 @@ custom_js: '/dnd/A&F/charactercreator.js'
                         </div>
                     </div>
                     <div id="cc-builder-tab-background-manage" class="">
-                        <div class="cc-background-primary">
+                        <div class="cc-manager-primary">
                             <div class="cc-progression-display">
                                 <div class="title"><span id="cc-background-name">Criminal</span></div>
                                 <div id="cc-background-description" class="paragraph">You are an experienced criminal with a history of breaking the law. You have spent a lot of time among other criminals and still have contacts within the criminal underworld. You're far closer than most people to the world of murder, theft, and violence that pervades the underbelly of civilization, and you have survived up to this point by flouting the rules and regulations of society.</div>
                             </div>
+                            <button id="cc-background-manager-remove-button" class="cc-manager-remove-button" onclick="removeBackground()">X</button>
                         </div>
                         <div id="cc-background-manager" class="cc-manager">
-                            <div class="cc-manager-features">
+                            <div id="cc-manager-features" class="cc-manager-details">
                                 <details class="cc-manager-feature">
                                     <summary class="cc-manager-feature-summary">
                                         <div class="cc-manager-feature-summary-info">
@@ -316,14 +375,14 @@ custom_js: '/dnd/A&F/charactercreator.js'
                         </div>
                     </div>
                     <div id="cc-builder-tab-abilities-manage" class="">
-                        <div class="cc-abilities-primary">
+                        <div class="cc-manager-primary">
                             <div class="cc-progression-display">
                                 <div class="title"><span id="cc-abilities-name">Ability Modifiers</span></div>
                                 <div id="cc-abilities-description" class="paragraph">Ability Modifiers</div>
                             </div>
                         </div>
                         <div id="cc-abilities-manager" class="cc-manager">
-                            <div class="cc-manager-features">
+                            <div id="cc-manager-features" class="cc-manager-details">
                                 <details class="cc-manager-feature">
                                     <summary class="cc-manager-feature-summary">
                                         <div class="cc-manager-feature-summary-info">
