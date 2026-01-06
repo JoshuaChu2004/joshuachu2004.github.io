@@ -5,9 +5,9 @@
     "category": "shield",
     "equipment": true,
     "armorTraits": {
-        "ac": 2,
+        "bonusAC": 2,
         "ability": null,
-        "absorb": 1,
+        "bonusAbsorb": 1,
         "strength": 13,
         "properties": ["protective"]
     }

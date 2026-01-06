@@ -37,12 +37,20 @@ let characterData = {
     },
     class: {
         name: null,
-        level: 1,
+        level: 0,
         proficiencies: {
             skills: [],
         },
         features: [],
         prowesses: [],
+        spells: {
+            cantrips: [],
+            spells: [],
+        },
+        subclass: {
+            name: null,
+            features: [],
+        },
     },
     race: {
         name: null,
@@ -50,6 +58,8 @@ let characterData = {
     },
     vitals: {
         hitPoints: { current: -1, max: -1 },
+        stressSlots: { current: 0, max: 3 },
+        exhaustion: { current: 0, max: 3 },
     },
     background: {
         name: null,
@@ -58,7 +68,10 @@ let characterData = {
     coreTraits: {
         armorClass: 10,
         initiative: 0,
-        absorb: 0,
+        absorb: {
+            absorb: 0,
+            total: 0,
+        },
         heroicInspiration: {
             current: 0,
             max: 3,
@@ -106,8 +119,9 @@ let characterData = {
         items: [],
         currency: {
             copper: 0,
-            gold: 0,
             silver: 0,
+            gold: 0,
+            platinum: 0,
         },
     },
     notes: '',
@@ -120,7 +134,7 @@ let equipmentSelections = {
 let saveTimeout = null;
 
 // ============================================================================
-// DEBOUNCED SAVE FUNCTION
+// DATA PERSISTENCE
 // ============================================================================
 
 // Debounced save function - waits 500ms after last change before saving
@@ -201,6 +215,7 @@ function saveCharacter() {
         localStorage.setItem('characterHexIds', JSON.stringify([hexId]));
     }
 }
+
 // ============================================================================
 // UTILITY FUNCTIONS
 // ============================================================================
@@ -268,6 +283,16 @@ function featureHasChoices(feature) {
     );
 }
 
+function featureHasSpellChoices(feature) {
+    if (!feature.spells || !Array.isArray(feature.spells)) return false;
+    return feature.spells.some(spell => spell.type === 'choose');
+}
+
+function featureHasProwessChoices(feature) {
+    if (!feature.prowesses || !Array.isArray(feature.prowesses)) return false;
+    return feature.prowesses.some(prowess => prowess.type === 'choose');
+}
+
 /**
  * Get all choice modifiers from a feature
  * @param {object} feature - The feature definition
@@ -278,6 +303,16 @@ function getChoiceModifiers(feature) {
     return feature.modifiers.filter(modifier => 
         modifier.subType === 'choose' || (modifier.from && Array.isArray(modifier.from))
     );
+}
+
+function getSpellChoices(feature) {
+    if (!feature.spells || !Array.isArray(feature.spells)) return [];
+    return feature.spells.filter(spell => spell.type === 'choose');
+}
+
+function getProwessChoices(feature) {
+    if (!feature.prowesses || !Array.isArray(feature.prowesses)) return [];
+    return feature.prowesses.filter(prowess => prowess.type === 'choose');
 }
 
 function generateRandomHexCode() {
@@ -295,7 +330,7 @@ function generateRandomHexCode() {
   }
 
 // ============================================================================
-// INITIALIZATION
+// INITIALIZATION & DATA LOADING
 // ============================================================================
 
 async function loadCharacterBuilderData(hexId=null) {
@@ -350,7 +385,9 @@ function generateCharacterBuilder() {
 }
 
 // ============================================================================
-// CLASS SELECTION & MANAGEMENT
+// CHARACTER SELECTION
+// ============================================================================
+// Class Selection & Management
 // ============================================================================
 
 function generateClasses() {
@@ -429,6 +466,7 @@ function confirmClass() {
     vitals.hitPoints.hitDie = classData.hitDie;
     vitals.hitPoints.temporary = 0;
     vitals.hitPoints.fixed = classData.hitPointsFixed;
+    vitals.stressSlots.max = classData.stressSlotsAtFirstLevel;
 
     initializeNewClassLevelFeatures(1);
 
@@ -456,15 +494,50 @@ function generateClass() {
     const levelDisplayEl = classManagerEl.querySelector('#cc-character-level');
     levelDisplayEl.textContent = characterData.class.level || 1;
 
+    const classNameEl = classManagerEl.querySelector('.cc-manager-header-title');
+    classNameEl.textContent = characterData.class.name || '';
+
     const levelSelectEl = classManagerEl.querySelector('#cc-manager-header-levels-select');
     levelSelectEl.value = characterData.class.level || 1;
     levelSelectEl.onchange = (e) => handleClassLevelChange(e.target);
     
     // Generate class features
+    updateClassVitals();
     generateFeatures('class');
     generateProwesses();
     generateSpells();
 }
+
+function updateClassVitals() {
+    const classManagerEl = document.querySelector('#cc-builder-tab-class-manage');
+    const classVitalsEl = classManagerEl.querySelector('#cc-class-vitals-hit-points-value');
+    classVitalsEl.textContent = getMaxHitPoints() || 0;
+
+    const classVitalsHitDieEl = classManagerEl.querySelector('#cc-class-vitals-hit-die-value');
+    classVitalsHitDieEl.textContent = characterData.vitals.hitPoints.hitDie || 'd10';
+
+    const classVitalsStressSlotsEl = classManagerEl.querySelector('#cc-class-vitals-stress-slots-value');
+    classVitalsStressSlotsEl.textContent = getMaxStressSlots() || 3;
+}
+
+function getMaxHitPoints() {
+    const vitals = characterData.vitals;
+    let maxHP = vitals.hitPoints.rolledHP;
+    maxHP += characterData.characterInfo.level * getAbilityModifier('constitution');
+    return maxHP;
+}
+
+function getMaxStressSlots() {
+    const vitals = characterData.vitals;
+    let maxStressSlots = vitals.stressSlots.max;
+    maxStressSlots += Math.max(0, getAbilityModifier('constitution'));
+    return maxStressSlots;
+}
+
+
+// ============================================================================
+// PROWESS & SPELL MANAGEMENT
+// ============================================================================
 
 function getCharacterProwessInfo(level, growthRate) {
     let maximumProwessLevel = 0;
@@ -490,24 +563,73 @@ function getCharacterProwessInfo(level, growthRate) {
 function getCharacterSpellInfo(level, growthRate) {
     let maximumSpellLevel = 0;
     let maximumLearnedSpells = 0;
+    let maximumLearnedCantrips = 0;
 
     const classData = getGameFeatureData('class');
     const classLevel = characterData.class.level;
-    if (classData.spellInfo.canUseSpells) {
+    if (classData.spellInfo.canCastSpells) {
+        const highestAbilityModifier = getHighestAbilityModifier(classData.spellInfo.spellCastingAbility);     
         if (classData.spellInfo.spellGrowthRate === 'full') {
             maximumSpellLevel = Math.ceil(classLevel / 2);
-            maximumLearnedSpells = 2 + Math.floor((classLevel - 1) / 2);
+            if (classData.spellInfo.casterType === 'prepared') {
+                maximumLearnedSpells = highestAbilityModifier.modifier + classLevel;
+            } else if (classData.spellInfo.casterType === 'learned') {
+                maximumLearnedCantrips = 3 + classLevel;
+            }
+            if (classData.spellInfo.cantripGrowthRate === 'high') {
+                maximumLearnedCantrips = 3 + (level >= 4 ? 1 : 0) + (level >= 10 ? 1 : 0);
+            } else {
+                maximumLearnedCantrips = 2 + (level >= 4 ? 1 : 0) + (level >= 10 ? 1 : 0);
+            }
         } else if (classData.spellInfo.spellGrowthRate === 'half') {
             maximumSpellLevel = Math.ceil(classLevel / 4);
-            maximumLearnedSpells = 2 + Math.floor((classLevel - 1) / 4);
+            if (classData.spellInfo.casterType === 'prepared') {
+                maximumLearnedSpells = highestAbilityModifier.modifier + Math.floor(classLevel / 2);
+            } else if (classData.spellInfo.casterType === 'learned') {
+                maximumLearnedCantrips = 1 + Math.ceil(classLevel / 2);
+            }
         }
     }
     return {
         maximumSpellLevel: maximumSpellLevel,
         maximumLearnedSpells: maximumLearnedSpells,
+        maximumLearnedCantrips: maximumLearnedCantrips,
     };
 }
 
+function getLearnedCantripsCount() {
+    const cantrips = characterData.class.spells.cantrips.filter(c => c.countsAsKnown);
+    return cantrips.length;
+}
+
+function getLearnedSpellsCount() {
+    const spells = characterData.class.spells.spells.filter(s => s.countsAsKnown);
+    return spells.length;
+}
+
+function getHighestAbilityModifier(abilityNames) {
+    let highestModifier = 0;
+    let highestAbilityName = null;
+    abilityNames.forEach(abilityName => {
+        const modifier = getAbilityModifier(abilityName);
+        if (modifier > highestModifier) {
+            highestModifier = modifier;
+            highestAbilityName = abilityName;
+        }
+    });
+    return {
+        modifier: highestModifier,
+        abilityName: highestAbilityName,
+    };
+}
+
+function getAbilityModifier(abilityName) {
+    const ability = characterData.abilities?.[abilityName.toLowerCase()];
+    if (!ability) return 0;
+    let modifier = ability.modifier || 0;
+    modifier += characterData.calculatedModifiers.abilityModifierIncrease[abilityName].bonus;
+    return modifier;
+}
 
 /**
  * Generate a single prowess element
@@ -667,7 +789,7 @@ function generateProwesses() {
 }
 
 function generateSpells() {
-    console.log('Generating prowesses...');
+    console.log('Generating spells...');
     const spellsListEl = document.querySelector('#cc-manager-spells');
     
     spellsListEl.querySelectorAll('.cc-manager-feature').forEach(featureEl => {
@@ -677,7 +799,7 @@ function generateSpells() {
     const classLevel = characterData.class.level;
     const classData = getGameFeatureData('class');
 
-    if (classData.spellInfo.canUseSpells) {
+    if (classData.spellInfo.canCastSpells) {
         const spellsMenuButtonEl = document.querySelector('#cc-manager-menu-spells-button');
         spellsMenuButtonEl.classList.remove('hidden');
     } else {
@@ -689,23 +811,34 @@ function generateSpells() {
     const characterSpellInfo = getCharacterSpellInfo(classLevel, classData.spellInfo.spellGrowthRate);
 
     const spellsCountEl = document.querySelector('#cc-spells-count-value');
-    spellsCountEl.textContent = characterData.class.spells.length;
+    spellsCountEl.textContent = getLearnedSpellsCount();
     const spellsCountMaxEl = document.querySelector('#cc-spells-count-max');
     spellsCountMaxEl.textContent = characterSpellInfo.maximumLearnedSpells;
 
-    for (let level = 1; level <= characterSpellInfo.maximumSpellLevel; level++) {
+    const cantripsCountEl = document.querySelector('#cc-cantrips-count-value');
+    cantripsCountEl.textContent = getLearnedCantripsCount();
+    const cantripsCountMaxEl = document.querySelector('#cc-cantrips-count-max');
+    cantripsCountMaxEl.textContent = characterSpellInfo.maximumLearnedCantrips;
+
+    for (let level = 0; level <= characterSpellInfo.maximumSpellLevel; level++) {
         const spellsList = classData.spellInfo.spellList[level];
 
         spellsList.forEach(spellName => {
-            const spellData = gameData.spells.find(s => s.name === spellName);
+            let spellData = null;
+            // Try to find spell in both arrays, checking isCantrip property
+            spellData = gameData.spells.spells.find(s => s.name === spellName);
+            if (!spellData) {
+                spellData = gameData.spells.cantrips.find(c => c.name === spellName);
+            }
+            if (!spellData) return; // Skip if spell not found
+            
+            const isCantrip = spellData.isCantrip || false;
             const spellsEl = document.createElement('details');
             spellsEl.id = `cc-manager-spell-${spellName.toLowerCase().replace(/ /g, '')}`;
             spellsEl.dataset.spellName = spellName;
             spellsEl.classList.add('cc-manager-feature');
 
-            const levelSuffix = level === 1 ? 'st' : level === 2 ? 'nd' : level === 3 ? 'rd' : 'th';
-
-            
+            const levelSuffix = isCantrip ? '' : level === 1 ? 'st' : level === 2 ? 'nd' : level === 3 ? 'rd' : 'th';
 
             const spellsSummaryEl = document.createElement('summary');
             spellsSummaryEl.classList.add('cc-manager-feature-summary');
@@ -713,21 +846,37 @@ function generateSpells() {
                 <div class="cc-manager-feature-summary-info">
                     <div class="cc-manager-feature-summary-title header">${spellData.name}</div>
                     <div class="cc-manager-feature-summary-meta">
-                        <div class="cc-manager-feature-summary-meta-item">${level}${levelSuffix} Level</div>
+                        <div class="cc-manager-feature-summary-meta-item">${isCantrip ? 'Cantrip' : level}${levelSuffix} ${isCantrip ? '' : 'Level'} ${spellData.ritual ? ' - Ritual' : ''}</div>
                     </div>
                 </div>`;
 
             const spellsTakeButtonEl = document.createElement('button');
             spellsTakeButtonEl.classList.add('cc-manager-feature-take-button');
-            spellsTakeButtonEl.textContent = 'Learn';
-            spellsTakeButtonEl.onclick = () => takeSpell(spellName);
+            spellsTakeButtonEl.dataset.spellName = spellName;
+            spellsTakeButtonEl.dataset.isCantrip = isCantrip;
+            
+            // Check if spell is already learned
+            const isLearned = isCantrip 
+                ? characterData.class.spells.cantrips.some(c => c.name === spellName && c.countsAsKnown)
+                : characterData.class.spells.spells.some(s => s.name === spellName && s.countsAsKnown);
+            
+            if (isLearned) {
+                spellsTakeButtonEl.textContent = 'Unlearn';
+                spellsTakeButtonEl.classList.add('unlearn');
+                spellsTakeButtonEl.onclick = () => unlearnSpell(spellName, isCantrip);
+            } else {
+                spellsTakeButtonEl.textContent = 'Learn';
+                spellsTakeButtonEl.onclick = () => takeSpell(spellName, isCantrip);
+            }
 
             const spellsContentEl = document.createElement('div');
             spellsContentEl.classList.add('cc-manager-feature-content');
             spellsContentEl.innerHTML = `
                 <div class="cc-manager-feature-properties">
-                    <div class="cc-manager-feature-property"><span class="bold">Use Time:</span> <span id="cc-manager-feature-property-type">${spellData.useTime}</span></div>
-                    <div class="cc-manager-feature-property"><span class="bold">Range:</span> <span id="cc-manager-feature-property-type">${spellData.range}</span></div>
+                    <div class="cc-manager-feature-property"><span class="bold">School:</span> <span id="cc-manager-feature-property-type">${spellData.school}</span></div>
+                    <div class="cc-manager-feature-property"><span class="bold">Casting Time:</span> <span id="cc-manager-feature-property-type">${spellData.castingTime}</span></div>
+                    <div class="cc-manager-feature-property"><span class="bold">Range/Area:</span> <span id="cc-manager-feature-property-type">${spellData.range}</span></div>
+                    <div class="cc-manager-feature-property"><span class="bold">Components:</span> <span id="cc-manager-feature-property-type">${spellData.components}</span></div>
                     <div class="cc-manager-feature-property"><span class="bold">Duration:</span> <span id="cc-manager-feature-property-type">${spellData.duration}</span></div>
                 </div>
             `;
@@ -778,7 +927,7 @@ function takeProwess(prowessName) {
 
     console.log('Character data:', characterData);
 
-    updateProwesses();
+    updateProwessElements();
 }
 
 function unlearnProwess(prowessName) {
@@ -802,10 +951,10 @@ function unlearnProwess(prowessName) {
 
     console.log('Character data:', characterData);
 
-    updateProwesses();
+    updateProwessElements();
 }
 
-function updateProwesses() {
+function updateProwessElements() {
     const classData = getGameFeatureData('class');
     const characterProwessInfo = getCharacterProwessInfo(characterData.class.level, classData.prowessInfo.prowessGrowthRate);
 
@@ -834,6 +983,159 @@ function updateProwesses() {
     }
 }
 
+function takeSpell(spellName, isCantrip) {
+    // Initialize spells array if it doesn't exist
+    if (!characterData.class.spells) {
+        characterData.class.spells = {
+            spells: [],
+            cantrips: [],
+        };
+    }
+    
+    // Try to find spell in both arrays
+    let spellData = gameData.spells.spells.find(s => s.name === spellName);
+    if (!spellData) {
+        spellData = gameData.spells.cantrips.find(c => c.name === spellName);
+    }
+    if (!spellData) {
+        console.error('Spell data not found');
+        return;
+    }
+
+    const spell = { 
+        name: spellData.name,
+        isCantrip: spellData.isCantrip || false,
+        grantedAtLevel: null,
+        alwaysPrepared: false,
+        countsAsKnown: true,
+        source: {
+            source: 'class',
+            subsource: null,
+            feature: null,
+            type: 'prepared',
+            option: null,
+        }
+     };
+
+     if (isCantrip) {
+        characterData.class.spells.cantrips.push(spell);
+    } else {
+        characterData.class.spells.spells.push(spell);
+    }
+    
+    // Update UI
+    const spellEl = document.querySelector(`#cc-manager-spell-${spellName.toLowerCase().replace(/ /g, '')}`);
+    if (spellEl) {
+        const spellTakeButtonEl = spellEl.querySelector('.cc-manager-feature-take-button');
+        if (spellTakeButtonEl) {
+            spellTakeButtonEl.textContent = 'Unlearn';
+            spellTakeButtonEl.classList.add('unlearn');
+            spellTakeButtonEl.onclick = () => unlearnSpell(spellName, isCantrip);
+        }
+    }
+
+    updateSpellElements();
+    
+    console.log('Character data:', characterData);
+}
+
+function unlearnSpell(spellName, isCantrip) {
+    if (!characterData.class.spells) return;
+    
+    // Try to find spell in both arrays to determine which one to remove from
+    let spellIndex = characterData.class.spells.spells.findIndex(s => s.name === spellName);
+    if (spellIndex !== -1) {
+        characterData.class.spells.spells.splice(spellIndex, 1);
+    } else {
+        spellIndex = characterData.class.spells.cantrips.findIndex(c => c.name === spellName);
+        if (spellIndex !== -1) {
+            characterData.class.spells.cantrips.splice(spellIndex, 1);
+        }
+    }
+    
+    // Update UI - need to determine isCantrip from spell data
+    const spellEl = document.querySelector(`#cc-manager-spell-${spellName.toLowerCase().replace(/ /g, '')}`);
+    if (spellEl) {
+        const spellTakeButtonEl = spellEl.querySelector('.cc-manager-feature-take-button');
+        if (spellTakeButtonEl) {
+            // Get isCantrip from game data
+            let spellData = gameData.spells.spells.find(s => s.name === spellName);
+            if (!spellData) {
+                spellData = gameData.spells.cantrips.find(c => c.name === spellName);
+            }
+            const spellIsCantrip = spellData ? (spellData.isCantrip || false) : isCantrip;
+            
+            spellTakeButtonEl.textContent = 'Learn';
+            spellTakeButtonEl.classList.remove('unlearn');
+            spellTakeButtonEl.onclick = () => takeSpell(spellName, spellIsCantrip);
+        }
+    }
+    
+    console.log('Character data:', characterData);
+
+    updateSpellElements();
+}
+
+function updateSpellElements() {
+    const classData = getGameFeatureData('class');
+    const characterSpellInfo = getCharacterSpellInfo(characterData.class.level, classData.spellInfo.spellGrowthRate);
+
+    const spellsListEl = document.querySelector('#cc-manager-spells');
+
+    const spellCount = getLearnedSpellsCount();
+    const cantripCount = getLearnedCantripsCount();
+
+    const spellsCountEl = document.querySelector('#cc-spells-count-value');
+    spellsCountEl.textContent = spellCount;
+    const spellsCountMaxEl = document.querySelector('#cc-spells-count-max');
+    spellsCountMaxEl.textContent = characterSpellInfo.maximumLearnedSpells;
+
+    const cantripsCountEl = document.querySelector('#cc-cantrips-count-value');
+    cantripsCountEl.textContent = cantripCount;
+    const cantripsCountMaxEl = document.querySelector('#cc-cantrips-count-max');
+    cantripsCountMaxEl.textContent = characterSpellInfo.maximumLearnedCantrips;
+
+    if (spellCount >= characterSpellInfo.maximumLearnedSpells) {
+        const spellsTakeButtonEls = spellsListEl.querySelectorAll('.cc-manager-feature-take-button');
+        spellsTakeButtonEls.forEach(spellsTakeButtonEl => {
+            if (spellsTakeButtonEl.dataset.isCantrip === 'true' || spellsTakeButtonEl.classList.contains('unlearn')) {
+                return;
+            }
+            spellsTakeButtonEl.disabled = true;
+            spellsTakeButtonEl.classList.add('disabled');
+        });
+    } else {
+        const spellsTakeButtonEls = spellsListEl.querySelectorAll('.cc-manager-feature-take-button');
+        spellsTakeButtonEls.forEach(spellsTakeButtonEl => {
+            if (spellsTakeButtonEl.dataset.isCantrip === 'true') {
+                return;
+            }
+            spellsTakeButtonEl.disabled = false;
+            spellsTakeButtonEl.classList.remove('disabled');
+        });
+    }
+
+    if (cantripCount >= characterSpellInfo.maximumLearnedCantrips) {
+        const cantripsTakeButtonEls = spellsListEl.querySelectorAll('.cc-manager-feature-take-button');
+        cantripsTakeButtonEls.forEach(cantripsTakeButtonEl => {
+            if (cantripsTakeButtonEl.dataset.isCantrip === 'false' || cantripsTakeButtonEl.classList.contains('unlearn')) {
+                return;
+            }
+            cantripsTakeButtonEl.disabled = true;
+            cantripsTakeButtonEl.classList.add('disabled');
+        });
+    } else {
+        const cantripsTakeButtonEls = spellsListEl.querySelectorAll('.cc-manager-feature-take-button');
+        cantripsTakeButtonEls.forEach(cantripsTakeButtonEl => {
+            if (cantripsTakeButtonEl.dataset.isCantrip === 'false') {
+                return;
+            }
+            cantripsTakeButtonEl.disabled = false;
+            cantripsTakeButtonEl.classList.remove('disabled');
+        });
+    }
+}
+
 function showClassDetails(details) {
     console.log(`Showing ${details} details...`);
     const classEl = document.querySelector('#cc-class-manager');
@@ -848,7 +1150,7 @@ function showClassDetails(details) {
 }
 
 // ============================================================================
-// RACE SELECTION & MANAGEMENT
+// Race Selection & Management
 // ============================================================================
 
 function generateRaces() {
@@ -966,7 +1268,7 @@ function generateRace() {
 }
 
 // ============================================================================
-// BACKGROUND SELECTION & MANAGEMENT
+// Background Selection & Management
 // ============================================================================
 
 function generateBackgrounds() {
@@ -1084,7 +1386,7 @@ function generateBackground() {
 }
 
 // ============================================================================
-// ABILITY SELECTION & MANAGEMENT
+// Ability Selection & Management
 // ============================================================================
 
 function generateAbilities() {
@@ -1117,7 +1419,7 @@ function generateAbilities() {
     });
 }
 // ============================================================================
-// FEATURE GENERATION & MANAGEMENT
+// FEATURE MANAGEMENT
 // ============================================================================
 
 /**
@@ -1128,7 +1430,7 @@ function generateAbilities() {
  * @param {HTMLElement} container - Optional container to append the feature to
  * @returns {HTMLElement} The generated feature element
  */
-function generateFeature(gameFeature, characterFeature, source, container = null) {
+function generateFeature(gameFeature, characterFeature, source, subsource = null, container = null) {
     if (!gameFeature || !characterFeature) return null;
     
     const featureEl = document.createElement('details');
@@ -1146,6 +1448,9 @@ function generateFeature(gameFeature, characterFeature, source, container = null
         const choiceModifiers = getChoiceModifiers(gameFeature);
         choicesCount = choiceModifiers.length;
         selectedCount = characterFeature.modifiers ? characterFeature.modifiers.filter(m => m).length : 0;
+    } else if (gameFeature.type === 'subclass') {
+        choicesCount = gameFeature.subclasses.length;
+        selectedCount = characterFeature.subclass?.name ? 1 : 0;
     }
     
     const featureDescription = parseDescription(gameFeature.description, 'charactercreator');
@@ -1158,7 +1463,7 @@ function generateFeature(gameFeature, characterFeature, source, container = null
             <div class="cc-manager-feature-summary-title header">${gameFeature.name}</div>
             <div class="cc-manager-feature-summary-meta">
                 ${choicesCount > 0 ? `<div class="cc-manager-feature-summary-meta-item">${selectedCount}/${choicesCount} Choices</div>` : ''}
-                ${source === 'class' && gameFeature.level ? `<div class="cc-manager-feature-summary-meta-item">Level ${gameFeature.level}</div>` : ''}
+                ${source === 'class' || subsource === 'subclass' && gameFeature.level ? `<div class="cc-manager-feature-summary-meta-item">Level ${gameFeature.level}</div>` : ''}
             </div>
         </div>
     `;
@@ -1190,7 +1495,8 @@ function generateFeature(gameFeature, characterFeature, source, container = null
             selectEl.dataset.featureName = gameFeature.name;
             selectEl.dataset.choiceIndex = i;
             selectEl.dataset.source = source;
-            selectEl.onchange = () => handleOptionSelection(gameFeature.name, i, selectEl.value, source);
+            selectEl.dataset.subsource = subsource;
+            selectEl.onchange = () => handleOptionSelection(gameFeature.name, i, selectEl.value, source, subsource);
             
             // Add default option
             const defaultOption = document.createElement('option');
@@ -1248,7 +1554,8 @@ function generateFeature(gameFeature, characterFeature, source, container = null
             selectEl.dataset.featureName = gameFeature.name;
             selectEl.dataset.choiceIndex = i;
             selectEl.dataset.source = source;
-            selectEl.onchange = () => handleChoiceSelection(gameFeature.name, i, modifier.type, selectEl.value, source);
+            selectEl.dataset.subsource = subsource;
+            selectEl.onchange = () => handleChoiceSelection(gameFeature.name, i, modifier.type, selectEl.value, source, subsource);
             
             // Add default option
             const defaultOption = document.createElement('option');
@@ -1294,6 +1601,46 @@ function generateFeature(gameFeature, characterFeature, source, container = null
         
         contentEl.appendChild(choicesContainer);
     }
+
+    // Add subclass UI if feature is a subclass
+    if (gameFeature.type === 'subclass') {
+        const choicesContainer = document.createElement('div');
+        choicesContainer.classList.add('cc-manager-feature-content-choices');
+        
+        gameFeature.subclasses.forEach((subclass, i) => {
+            const choiceEl = document.createElement('div');
+            choiceEl.classList.add('cc-manager-feature-content-choice');
+            choiceEl.id = `cc-manager-feature-content-choice-${sanitizeFeatureName(gameFeature.name)}-${i}`;
+            choiceEl.dataset.choiceIndex = i;
+            
+            const selectEl = document.createElement('select');
+            selectEl.classList.add('cc-manager-feature-content-choice-select');
+            selectEl.dataset.featureName = gameFeature.name;
+            selectEl.dataset.choiceIndex = i;
+            selectEl.dataset.source = source;
+            selectEl.dataset.subsource = subsource;
+            selectEl.onchange = () => handleSubclassSelection(gameFeature.name, i, selectEl.value, source, subsource);
+            
+            // Add default option
+            const defaultOption = document.createElement('option');
+            defaultOption.value = -1;
+            defaultOption.textContent = 'Choose an Option';
+            selectEl.appendChild(defaultOption);
+            
+            // Add all available options
+            gameFeature.subclasses.forEach(subclass => {
+                const optionEl = document.createElement('option');
+                optionEl.value = subclass;
+                optionEl.textContent = subclass;
+                selectEl.appendChild(optionEl);
+            });
+            
+            choiceEl.appendChild(selectEl);
+            choicesContainer.appendChild(choiceEl);
+        });
+        
+        contentEl.appendChild(choicesContainer);
+    }
     
     featureEl.appendChild(summaryEl);
     featureEl.appendChild(contentEl);
@@ -1310,11 +1657,15 @@ function generateFeature(gameFeature, characterFeature, source, container = null
  * Generate features for a given source (class, race, background)
  * @param {string} source - Source type ('class', 'race', 'background')
  */
-function generateFeatures(source = 'class') {
+function generateFeatures(source = 'class', subsource = null) {
     
     if ((!characterData[source]?.name && source !== 'abilities') || !gameData) return;
+
+    if (subsource && !characterData[source]?.subclass?.name) {
+        console.error('Subclass not found for:', source);
+    }
     
-    const sourceData = getGameFeatureData(source);
+    const sourceData = getGameFeatureData(source, subsource);
     if (!sourceData) {
         console.error('Source data not found for:', source);
         return;
@@ -1339,21 +1690,34 @@ function generateFeatures(source = 'class') {
 
     featuresEl.forEach(featureEl => {
         const featureName = featureEl.dataset.featureName;
-        if (!availableFeatures.find(f => f.name === featureName)) {
+        if (subsource === 'subclass' && !sourceData.features.find(f => f.name === featureName)) {
+            return;
+        } else if (subsource === 'subclass' && sourceData.features.find(f => f.name === featureName)) {
+            featureEl.remove();
+        }
+        else if (!availableFeatures.find(f => f.name === featureName)) {
             featureEl.remove();
         }
     });
     
     availableFeatures.forEach((gameFeature, index) => {
-        const characterFeature = characterData[source].features.find(f => f.name === gameFeature.name);
+        let characterFeature = null;
+        if (subsource) {
+            characterFeature = characterData[source][subsource].features.find(f => f.name === gameFeature.name);
+        } else {
+            characterFeature = characterData[source].features.find(f => f.name === gameFeature.name);
+        }
         if (!characterFeature) return;
         
         if (Array.from(featuresEl).find(f => f.dataset.featureName === gameFeature.name)) return;
-        generateFeature(gameFeature, characterFeature, source, featuresContainer);
+        generateFeature(gameFeature, characterFeature, source, subsource? subsource : null, featuresContainer);
     });
     
     // Update modifiers after generating features
     updateModifiers();
+
+    updateProwesses();
+    updateSpells();
 }
 
 /**
@@ -1373,7 +1737,7 @@ function generateRaceFeatures() {
 }
 
 // ============================================================================
-// FEATURE EVENT HANDLERS
+// Feature Event Handlers & Data Access
 // ============================================================================
 
 /**
@@ -1382,9 +1746,12 @@ function generateRaceFeatures() {
  * @param {string} source - Source type ('class', 'race', 'background')
  * @returns {object|null} Character feature or null if not found
  */
-function getCharacterFeature(featureName, source = 'class') {
+function getCharacterFeature(featureName, source = 'class', subsource = null) {
     if (source === 'feats') {
         return characterData.feats.find(f => f.name === featureName) || null;
+    }
+    if (subsource) {
+        return characterData[source][subsource].features.find(f => f.name === featureName) || null;
     }
     return characterData[source]?.features?.find(f => f.name === featureName) || null;
 }
@@ -1394,10 +1761,14 @@ function getCharacterFeature(featureName, source = 'class') {
  * @param {string} source - Source type ('class', 'race', 'background')
  * @returns {object|null} Game data or null if not found
  */
-function getGameFeatureData(source = 'class') {
+function getGameFeatureData(source = 'class', subsource = null) {
     let sourceKey = '';
     if (source === 'class') {
-        sourceKey = 'classes';
+        sourceKey = source + 'es';
+        if (subsource === 'subclass') {
+            sourceKey = 'subclasses';
+            return gameData[sourceKey][characterData.class.name.toLowerCase()].find(s => s.name === characterData.class.subclass.name) || null;
+        }
     } else if (source === 'feats') {
         sourceKey = 'feats';
         return gameData.feats;
@@ -1419,11 +1790,11 @@ function getGameFeatureData(source = 'class') {
  * @param {string} source - Source type ('class', 'race', 'background')
  * @returns {object|null} Game feature or null if not found
  */
-function getGameFeature(featureName, source = 'class') {
+function getGameFeature(featureName, source = 'class', subsource = null) {
     if (source === 'feats') {
         return gameData.feats.find(f => f.name === featureName) || null;
     }
-    const sourceData = getGameFeatureData(source);
+    const sourceData = getGameFeatureData(source, subsource);
     return sourceData?.features?.find(f => f.name === featureName) || null;
 }
 
@@ -1444,7 +1815,7 @@ function getGameItem(itemId) {
  * @param {string} optionName - Name of the selected option
  * @param {string} source - Source type ('class', 'race', 'background')
  */
-function handleOptionSelection(featureName, choiceIndex, optionName, source = 'class') {
+function handleOptionSelection(featureName, choiceIndex, optionName, source = 'class', subsource = null) {
     const characterFeature = getCharacterFeature(featureName, source);
     if (!characterFeature) return;
     
@@ -1487,6 +1858,9 @@ function handleOptionSelection(featureName, choiceIndex, optionName, source = 'c
     
     // Update modifiers
     updateModifiers();
+
+    updateProwesses();
+    updateSpells();
 }
 
 /**
@@ -1539,7 +1913,7 @@ function handleChoiceSelection(featureName, choiceIndex, type, value, source = '
         const choiceEl = document.querySelector(`#cc-manager-feature-content-choice-${sanitizeFeatureName(featureName)}-${choiceIndex}`);
         
         if (featData) {
-            generateFeature(featData, characterFeature, 'feats', choiceEl);
+            generateFeature(featData, characterFeature, 'feats', null, choiceEl);
         } else {
             choiceEl.querySelector('.cc-manager-feature').remove();
         }
@@ -1560,7 +1934,65 @@ function handleChoiceSelection(featureName, choiceIndex, type, value, source = '
     
     // Update modifiers
     updateModifiers();
+
+    updateProwesses();
+    updateSpells();
 } 
+
+function handleSubclassSelection(featureName, choiceIndex, subclassName, source = 'class') {
+    console.log('handleSubclassSelection', featureName, choiceIndex, subclassName, source);
+    const characterFeature = getCharacterFeature(featureName, source);
+    if (!characterFeature) return;
+    
+    characterFeature.subclass.name = subclassName;
+
+    characterData.class.subclass.name = subclassName;
+
+    const featureEl = document.querySelector(`[data-feature-name="${featureName}"]`);
+    if (featureEl) {
+        const selectedCount = characterFeature.subclass?.name ? 1 : 0;
+        const gameFeature = getGameFeature(featureName, source);
+        const choicesCount = gameFeature.subclasses.length;
+        const metaItem = featureEl.querySelector('.cc-manager-feature-summary-meta-item');
+        if (metaItem && choicesCount > 0) {
+            metaItem.textContent = `${selectedCount}/${choicesCount} Choices`;
+        }
+    }
+
+    if (subclassName != -1) {
+        initializeNewSubclassLevelFeatures(characterData.class.level);
+
+        generateFeatures('class', 'subclass');
+    } else {
+        removeSubclass();
+    }
+
+    // Update modifiers
+    updateModifiers();
+
+    updateProwesses();
+    updateSpells();
+}
+
+function removeSubclass() {
+    characterData.class.subclass = {
+        name: null
+    };
+    characterData.class.subclass.features = [];
+
+    const builderTabEl = document.querySelector(`#cc-builder-tab-class-manage`);
+
+    const featuresEl = builderTabEl.querySelectorAll('.cc-manager-feature');
+
+    const classFeatures = characterData.class.features;
+    
+    featuresEl.forEach(featureEl => {
+        const featureName = featureEl.dataset.featureName;
+        if (!classFeatures.find(f => f.name === featureName)) {
+            featureEl.remove();
+        }
+    });
+}
 
 function removeFeat(source) {
     const feat = characterData.feats.find(f => f.source.feature === source.feature && f.source.choiceIndex === source.choiceIndex);
@@ -1572,17 +2004,32 @@ function removeFeat(source) {
 function removeClass() {
     characterData.class = {
         name: null,
-        level: 1,
+        level: 0,
         proficiencies: {
             skills: [],
         },
         features: [],
         prowesses: [],
+        spells: {
+            cantrips: [],
+            spells: [],
+        },
+        subclass: {
+            name: null,
+            features: [],
+        },
     };
+
+    characterData.characterInfo.class = null;
+    characterData.characterInfo.level = 0;
+
     document.querySelector('#cc-builder-tab-class-manage').classList.add('hidden');
     document.querySelector('#cc-builder-tab-class-choose').classList.remove('hidden');
 
     updateModifiers();
+
+    updateProwesses();
+    updateSpells();
 }
 
 function removeRace() {
@@ -1594,6 +2041,9 @@ function removeRace() {
     document.querySelector('#cc-builder-tab-race-choose').classList.remove('hidden');
 
     updateModifiers();
+
+    updateProwesses();
+    updateSpells();
 }
 
 function removeBackground() {
@@ -1605,11 +2055,10 @@ function removeBackground() {
     document.querySelector('#cc-builder-tab-background-choose').classList.remove('hidden');
 
     updateModifiers();
+
+    updateProwesses();
+    updateSpells();
 }
-/**
- * Handle choice selection from a dropdown
- * @param {HTMLSelectElement} selectEl - The select element that was changed
- */
 function handleAbilityModifierSelection(selectEl) {
     const ability = selectEl.getAttribute('ability');
     const value = selectEl.value;
@@ -1687,7 +2136,7 @@ function updatePointBuy() {
 }
 
 // ============================================================================
-// MODIFIER PROCESSING
+// MODIFIER PROCESSING & CALCULATION
 // ============================================================================
 
 /**
@@ -1701,18 +2150,23 @@ function updateModifiers() {
     characterData.modifiers = [];
     
     // Process features from all sources
-    const sources = ['class', 'race', 'background', 'abilities'];
+    const sources = ['class', 'subclass', 'race', 'background', 'abilities'];
     
     sources.forEach(source => {
+        let subsource = null;
+        if (source === 'subclass') {
+            source = 'class';
+            subsource = 'subclass';
+        }
         // Skip if source doesn't have a name (not selected)
         if (!characterData[source]?.name && source !== 'abilities') return;
-        
+
         // Get game data for this source
-        const sourceData = getGameFeatureData(source);
+        const sourceData = getGameFeatureData(source, subsource);
         if (!sourceData) return;
         
         // Process each feature from this source
-        const features = characterData[source]?.features || [];
+        const features = subsource ? characterData[source][subsource].features : characterData[source]?.features || [];
         features.forEach(characterFeature => {
             const gameFeature = sourceData.features?.find(f => f.name === characterFeature.name);
             if (!gameFeature) return;
@@ -1729,6 +2183,7 @@ function updateModifiers() {
                         const modifierData = { ...modifier };
                         modifierData.source = {
                             source: source,
+                            subsource: subsource,
                             feature: characterFeature.name,
                             option: null,
                         };
@@ -1751,6 +2206,183 @@ function updateModifiers() {
                         type: selectedChoice.type,
                         value: selectedChoice.value,
                         bonus: choiceModifier.bonus,
+                        source: {
+                            source: source,
+                            subsource: subsource,
+                            feature: characterFeature.name,
+                            option: null,
+                            modifierIndex: index,
+                        }
+                    };
+                    if (selectedModifier.value != -1) {
+                        characterData.modifiers.push(selectedModifier);
+                    }
+                });
+            }
+            
+            // If feature has options, extract modifiers from selected options
+            if (featureHasOptions(gameFeature) && characterFeature.options && Array.isArray(characterFeature.options)) {
+                characterFeature.options.forEach(optionName => {
+                    if (!optionName) return;
+                    
+                    const option = gameFeature.options.find(o => o.name === optionName);
+                    if (option && option.modifiers) {
+                        option.modifiers.forEach(modifier => {
+                            const modifierData = { ...modifier };
+                            modifierData.source = {
+                                source: source,
+                                subsource: subsource,
+                                feature: characterFeature.name,
+                                option: optionName,
+                            };
+                            if (modifierData.value != -1) {
+                                characterData.modifiers.push(modifierData);
+                            }
+                        });
+                    }
+                });
+            }
+        });
+    });
+    
+    characterData.feats.forEach(feat => {
+        const characterFeature = feat;
+        const gameFeature = getGameFeatureData('feats').find(f => f.name === feat.name);
+        if (gameFeature) {
+            if (gameFeature.modifiers && Array.isArray(gameFeature.modifiers)) {
+                const directModifiers = gameFeature.modifiers.filter(modifier => 
+                    modifier.subType !== 'choose' && !modifier.from && !featureHasOptions(gameFeature)
+                );
+                directModifiers.forEach(modifier => {
+                    const modifierData = { ...modifier };
+                    modifierData.source = {
+                        source: 'feats',
+                        subsource: null,
+                        feature: feat.name,
+                        option: null,
+                    };
+                    if (modifierData.value != -1) {
+                        characterData.modifiers.push(modifierData);
+                    }
+                });
+            }
+            // If feature has choices, extract modifiers from selected choices
+            if (featureHasChoices(gameFeature) && characterFeature.modifiers && Array.isArray(characterFeature.modifiers)) {
+                const choiceModifiers = getChoiceModifiers(gameFeature);
+                characterFeature.modifiers.forEach((selectedChoice, index) => {
+                    if (!selectedChoice || index >= choiceModifiers.length) return;
+                    
+                    const choiceModifier = choiceModifiers[index];
+                    if (!choiceModifier) return;
+                    
+                    // Find the selected value in the modifier's 'from' array
+                    const selectedModifier = {
+                        type: selectedChoice.type,
+                        value: selectedChoice.value,
+                        bonus: choiceModifier.bonus,
+                        source: {
+                            source: 'feats',
+                            subsource: null,
+                            feature: characterFeature.name,
+                            option: null,
+                            modifierIndex: index,
+                        }
+                    };
+                    if (selectedModifier.value != -1) {
+                        characterData.modifiers.push(selectedModifier);
+                    }
+                });
+            }
+            
+            // If feature has options, extract modifiers from selected options
+            if (featureHasOptions(gameFeature) && characterFeature.options && Array.isArray(characterFeature.options)) {
+                characterFeature.options.forEach(optionName => {
+                    if (!optionName) return;
+                    
+                    const option = gameFeature.options.find(o => o.name === optionName);
+                    if (option && option.modifiers) {
+                        option.modifiers.forEach(modifier => {
+                            const modifierData = { ...modifier };
+                            modifierData.source = {
+                                source: 'feats',
+                                subsource: null,
+                                feature: characterFeature.name,
+                                option: optionName,
+                            };
+                            if (modifierData.value != -1) {
+                                characterData.modifiers.push(modifierData);
+                            }
+                        });
+                    }
+                });
+            }
+        }
+    });
+    
+    console.log('Updated modifiers:', characterData.modifiers);
+    calculateFinalModifiers();
+}
+
+function updateProwesses() {
+    if (!gameData) return;
+    
+    // Clear existing modifiers
+    const characterProwesses = characterData.class.prowesses.filter(p => p.source.type !== "granted" || p.source.type !== "choose");
+    
+    // Process features from all sources
+    const sources = ['class', 'race', 'background'];
+    
+    sources.forEach(source => {
+        // Skip if source doesn't have a name (not selected)
+        if (!characterData[source]?.name) return;
+        
+        // Get game data for this source
+        const sourceData = getGameFeatureData(source);
+        if (!sourceData) return;
+        
+        // Process each feature from this source
+        const features = characterData[source]?.features || [];
+        features.forEach(characterFeature => {
+            const gameFeature = sourceData.features?.find(f => f.name === characterFeature.name);
+            if (!gameFeature) return;
+
+            if (!gameFeature.prowesses || !Array.isArray(gameFeature.prowesses)) { return; }
+
+            const availableProwesses = gameFeature.prowesses.filter(prowess => prowess.grantedAtLevel <= characterData.characterInfo.level);
+            
+            // If feature has direct modifiers (not choices, not from options)
+            if (availableProwesses && Array.isArray(availableProwesses)) {
+                availableProwesses.filter(prowess => prowess.type !== 'choose').forEach(prowess => {
+                    const prowessData = { 
+                        name: prowess.name,
+                        grantedAtLevel: prowess.grantedAtLevel,
+                        countsAsKnown: prowess.countsAsKnown,
+                        flipped: false,
+                        source: {
+                            source: source,
+                            feature: characterFeature.name,
+                            type: prowess.type,
+                            option: null,
+                        }
+                     };
+                    characterProwesses.push(prowessData);
+                });
+            }
+        });
+
+            // If feature has choices, extract modifiers from selected choices
+            /*if (featureHasProwessChoices(gameFeature) && characterFeature.prowesses && Array.isArray(characterFeature.prowesses)) {
+                const choiceProwesses = getProwessChoices(gameFeature);
+                characterFeature.prowesses.forEach((selectedChoice, index) => {
+                    if (!selectedChoice || index >= choiceProwesses.length) return;
+                    
+                    const choiceProwess = choiceProwesses[index];
+                    if (!choiceProwess) return;
+                    
+                    // Find the selected value in the modifier's 'from' array
+                    const selectedProwess = {
+                        type: selectedProwess.type,
+                        value: selectedProwess.value,
                         source: {
                             source: source,
                             feature: characterFeature.name,
@@ -1783,47 +2415,113 @@ function updateModifiers() {
                             }
                         });
                     }
-                });
+                }); 
             }
-        });
+        }); */
     });
     
     characterData.feats.forEach(feat => {
         const characterFeature = feat;
         const gameFeature = getGameFeatureData('feats').find(f => f.name === feat.name);
-        if (gameFeature) {
+        if (gameFeature && gameFeature.prowesses && Array.isArray(gameFeature.prowesses)) {
             if (gameFeature.modifiers && Array.isArray(gameFeature.modifiers)) {
-                const directModifiers = gameFeature.modifiers.filter(modifier => 
-                    modifier.subType !== 'choose' && !modifier.from && !featureHasOptions(gameFeature)
-                );
-                directModifiers.forEach(modifier => {
-                    const modifierData = { ...modifier };
-                    modifierData.source = {
-                        source: 'feats',
-                        feature: feat.name,
-                        option: null,
+                const directProwesses = gameFeature.prowesses.filter(prowess => prowess.type !== 'choose');
+                directProwesses.forEach(prowess => {
+                    const prowessData = { 
+                        name: prowess.name,
+                        grantedAtLevel: prowess.grantedAtLevel,
+                        countsAsKnown: prowess.countsAsKnown,
+                        flipped: false,
+                        source: {
+                            source: 'feats',
+                            feature: feat.name,
+                            type: prowess.type,
+                            option: null,
+                        }
                     };
-                    if (modifierData.value != -1) {
-                        characterData.modifiers.push(modifierData);
+                    characterProwesses.push(prowessData);
+                });
+            }
+        }
+    });
+    console.log('Updated prowesses:', characterProwesses);
+}
+
+function updateSpells() {
+    if (!gameData) return;
+    
+    // Clear existing spells that weren't learned from the class
+    const characterSpells = characterData.class.spells.spells.filter(s => s.source.type !== "granted" || s.source.type !== "choose");
+    const characterCantrips = characterData.class.spells.cantrips.filter(c => c.source.type !== "granted" || c.source.type !== "choose");
+    
+    // Process features from all sources
+    const sources = ['class', 'subclass', 'race', 'background'];
+    
+    sources.forEach(source => {
+        let subsource = null;
+        if (source === 'subclass') {
+            source = 'class';
+            subsource = 'subclass';
+        }
+        // Skip if source doesn't have a name (not selected)
+        if (!characterData[source]?.name) return;
+        
+        // Get game data for this source
+        const sourceData = getGameFeatureData(source, subsource);
+        if (!sourceData) return;
+        
+        // Process each feature from this source
+        const features = subsource ? characterData[source][subsource].features : characterData[source]?.features || [];
+        features.forEach(characterFeature => {
+            const gameFeature = sourceData.features?.find(f => f.name === characterFeature.name);
+            if (!gameFeature) return;
+
+            if (!gameFeature.spells || !Array.isArray(gameFeature.spells)) { return; }
+
+            const availableSpells = gameFeature.spells.filter(spell => spell.grantedAtLevel <= characterData.characterInfo.level).filter(spell => characterData.class.spells.spells.find(s => s.name === spell.name) === undefined && characterData.class.spells.cantrips.find(c => c.name === spell.name) === undefined);
+            
+            // If feature has direct modifiers (not choices, not from options)
+            if (availableSpells && Array.isArray(availableSpells)) {
+                availableSpells.filter(spell => spell.type !== 'choose').forEach(spell => {
+                    const spellData = { 
+                        name: spell.name,
+                        isCantrip: spell.isCantrip || false,
+                        grantedAtLevel: spell.grantedAtLevel,
+                        alwaysPrepared: spell.alwaysPrepared,
+                        countsAsKnown: spell.countsAsKnown,
+                        flipped: false,
+                        source: {
+                            source: source,
+                            subsource: subsource,
+                            feature: characterFeature.name,
+                            type: spell.type,
+                            option: null,
+                        }
+                     };
+                    if (spellData.isCantrip) {
+                        characterCantrips.push(spellData);
+                    } else {
+                        characterSpells.push(spellData);
                     }
                 });
             }
+        });
+
             // If feature has choices, extract modifiers from selected choices
-            if (featureHasChoices(gameFeature) && characterFeature.modifiers && Array.isArray(characterFeature.modifiers)) {
-                const choiceModifiers = getChoiceModifiers(gameFeature);
-                characterFeature.modifiers.forEach((selectedChoice, index) => {
-                    if (!selectedChoice || index >= choiceModifiers.length) return;
+            /*if (featureHasProwessChoices(gameFeature) && characterFeature.prowesses && Array.isArray(characterFeature.prowesses)) {
+                const choiceProwesses = getProwessChoices(gameFeature);
+                characterFeature.prowesses.forEach((selectedChoice, index) => {
+                    if (!selectedChoice || index >= choiceProwesses.length) return;
                     
-                    const choiceModifier = choiceModifiers[index];
-                    if (!choiceModifier) return;
+                    const choiceProwess = choiceProwesses[index];
+                    if (!choiceProwess) return;
                     
                     // Find the selected value in the modifier's 'from' array
-                    const selectedModifier = {
-                        type: selectedChoice.type,
-                        value: selectedChoice.value,
-                        bonus: choiceModifier.bonus,
+                    const selectedProwess = {
+                        type: selectedProwess.type,
+                        value: selectedProwess.value,
                         source: {
-                            source: 'feats',
+                            source: source,
                             feature: characterFeature.name,
                             option: null,
                             modifierIndex: index,
@@ -1845,7 +2543,7 @@ function updateModifiers() {
                         option.modifiers.forEach(modifier => {
                             const modifierData = { ...modifier };
                             modifierData.source = {
-                                source: 'feats',
+                                source: source,
                                 feature: characterFeature.name,
                                 option: optionName,
                             };
@@ -1854,14 +2552,48 @@ function updateModifiers() {
                             }
                         });
                     }
+                }); 
+            }
+        }); */
+
+        characterData.class.spells.spells = characterSpells;
+        characterData.class.spells.cantrips = characterCantrips;
+    });
+    
+    characterData.feats.forEach(feat => {
+        const characterFeature = feat;
+        const gameFeature = getGameFeatureData('feats').find(f => f.name === feat.name);
+        if (gameFeature && gameFeature.spells && Array.isArray(gameFeature.spells)) {
+            if (gameFeature.modifiers && Array.isArray(gameFeature.modifiers)) {
+                const directSpells = gameFeature.spells.filter(spell => spell.type !== 'choose');
+                directSpells.forEach(spell => {
+                    const spellData = { 
+                        name: spell.name,
+                        isCantrip: spell.isCantrip || false,
+                        grantedAtLevel: spell.grantedAtLevel,
+                        alwaysPrepared: spell.alwaysPrepared,
+                        countsAsKnown: spell.countsAsKnown,
+                        flipped: false,
+                        source: {
+                            source: 'feats',
+                            feature: feat.name,
+                            type: spell.type,
+                            option: null,
+                        }
+                    };
+                    if (spellData.isCantrip) {
+                        characterCantrips.push(spellData);
+                    } else {
+                        characterSpells.push(spellData);
+                    }
                 });
             }
         }
     });
-    
-    console.log('Updated modifiers:', characterData.modifiers);
-    calculateFinalModifiers();
+    console.log('Updated spells:', characterSpells);
 }
+
+
 
 /**
  * Get the default structure for calculatedModifiers
@@ -2155,7 +2887,7 @@ function calculateFinalModifiers() {
 }
 
 // ============================================================================
-// OTHER GENERATION FUNCTIONS (Placeholders - implement as needed)
+// EQUIPMENT MANAGEMENT
 // ============================================================================
 
 function generateEquipment() {
@@ -2352,6 +3084,7 @@ function addStartingEquipment() {
     
     console.log('classStartingEquipment', classStartingEquipment);
     console.log('backgroundStartingEquipment', backgroundStartingEquipment);
+    console.log('equipmentSelections', equipmentSelections);
 
     let source = 'class';
 
@@ -2362,17 +3095,120 @@ function addStartingEquipment() {
                     const itemId = equipmentSelections?.[source]?.[selectionIndex]?.[optionIndex]?.[itemIndex];
                     if (itemId) {
                         const itemData = getGameItem(itemId);
-                        if (itemData) {
-                            characterData.inventory.equipment.push(itemData);
+                        const i = {
+                            id: itemId,
+                            name: itemData.name,
+                            equipment: itemData.equipment,
+                            quantity: item.quantity? item.quantity : 1,
+                            equipped: false,
+                        }
+                        if (i.equipment) {
+                            characterData.inventory.equipment.push(i);
+                        } else {
+                            characterData.inventory.items.push(i);
                         }
                     }
                 } else if (item.type === 'granted') {
                     const itemId = item.value;
                     const isSelected = equipmentSelections?.[source]?.[selectionIndex]?.[optionIndex];
-                    if (itemId && isSelected) {
+                    if (isSelected) {
+                        if (itemId === 'gold') {
+                            characterData.inventory.currency.gold += item.quantity;
+                        } else if (itemId === 'silver') {
+                            characterData.inventory.currency.silver += item.quantity;
+                        } else if (itemId === 'copper') {
+                            characterData.inventory.currency.copper += item.quantity;
+                        } else if (itemId === 'platinum') {
+                            characterData.inventory.currency.platinum += item.quantity;
+                        } else if (itemId) {
+                            const itemData = getGameItem(itemId);
+                            let i = null;
+                            if (itemData) {
+                                i = {
+                                    id: itemId,
+                                    name: itemData.name,
+                                    equipment: itemData.equipment,
+                                    equipped: false,
+                                }
+                            } else {
+                                i = {
+                                    id: itemId,
+                                    name: itemId,
+                                    equipment: false,
+                                    equipped: false,
+                                }
+                            }
+                            if (i.equipment) {
+                                characterData.inventory.equipment.push(i);
+                            } else {
+                                characterData.inventory.items.push(i);
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    });
+
+    source = 'background';
+
+    Object.values(backgroundStartingEquipment).forEach((selection, selectionIndex) => {
+        Object.values(selection).forEach((option, optionIndex) => {
+            option.items.forEach((item, itemIndex) => {
+                if (item.type === 'choose') {
+                    const itemId = equipmentSelections?.[source]?.[selectionIndex]?.[optionIndex]?.[itemIndex];
+                    if (itemId) {
                         const itemData = getGameItem(itemId);
-                        if (itemData) {
-                            characterData.inventory.equipment.push(itemData);
+                        const i = {
+                            id: itemId,
+                            name: itemData.name,
+                            equipment: itemData.equipment,
+                            quantity: item.quantity? item.quantity : 1,
+                            equipped: false,
+                        }
+                        if (i.equipment) {
+                            characterData.inventory.equipment.push(i);
+                        } else {
+                            characterData.inventory.items.push(i);
+                        }
+                    }
+                } else if (item.type === 'granted') {
+                    const itemId = item.value;
+                    const isSelected = equipmentSelections?.[source]?.[selectionIndex]?.[optionIndex];
+                    if (isSelected) {
+                        if (itemId === 'gold') {
+                            characterData.inventory.currency.gold += item.quantity;
+                        } else if (itemId === 'silver') {
+                            characterData.inventory.currency.silver += item.quantity;
+                        } else if (itemId === 'copper') {
+                            characterData.inventory.currency.copper += item.quantity;
+                        } else if (itemId === 'platinum') {
+                            characterData.inventory.currency.platinum += item.quantity;
+                        } else if (itemId) {
+                            const itemData = getGameItem(itemId);
+                            let i = null;
+                            if (itemData) {
+                                i = {
+                                    id: itemId,
+                                    name: itemData.name,
+                                    equipment: itemData.equipment,
+                                    quantity: item.quantity? item.quantity : 1,
+                                    equipped: false,
+                                }
+                            } else {
+                                i = {
+                                    id: itemId,
+                                    name: itemId,
+                                    equipment: false,
+                                    quantity: item.quantity? item.quantity : 1,
+                                    equipped: false,
+                                }
+                            }
+                            if (i.equipment) {
+                                characterData.inventory.equipment.push(i);
+                            } else {
+                                characterData.inventory.items.push(i);
+                            }
                         }
                     }
                 }
@@ -2383,49 +3219,7 @@ function addStartingEquipment() {
 }
 
 // ============================================================================
-// EVENT LISTENERS
-// ============================================================================
-
-window.addEventListener('DOMContentLoaded', () => {
-    console.log('DOMContentLoaded');
-
-    const urlParams = new URLSearchParams(window.location.search);
-    const hexId = urlParams.get('hexId');
-    
-    // Load character data (will use hexId from URL if present)
-    loadCharacterBuilderData(hexId);
-    
-    currentSection = document.querySelector('#cc-builder-tab-class');
-    
-    const content = document.querySelector('#content-container');
-    if (content) {
-        content.classList.remove('content-loading');
-    }
-});
-
-
-// ============================================================================
-// EVENT HANDLERS
-// ============================================================================
-
-function showSection(sectionButton) {
-
-    if (sectionButton.dataset.section === 'equipment') {
-        generateEquipment();
-    }
-
-    if (currentSection) {
-        currentSection.classList.remove('active');
-    }
-    
-    const sectionEl = document.querySelector(`#cc-builder-tab-${sectionButton.dataset.section}`);
-    sectionEl.classList.add('active');
-    
-    currentSection = sectionEl;
-}
-
-// ============================================================================
-// LEVEL CHANGE FUNCTIONS
+// LEVEL MANAGEMENT
 // ============================================================================
 
 function handleClassLevelChange(selectEl) {
@@ -2450,11 +3244,13 @@ function changeClassLevel(level) {
     if (levelUp) {
 
         initializeNewClassLevelFeatures(level);
+        initializeNewSubclassLevelFeatures(level);
         generateFeatures('class');
         generateProwesses();
         generateSpells();
     } else {
         removeClassLevelFeatures(level);
+        removeSubclassLevelFeatures(level);
         generateFeatures('class');
         generateProwesses();
         generateSpells();
@@ -2483,8 +3279,43 @@ function initializeNewClassLevelFeatures(level) {
             // Initialize as empty array for storing selected choices
             characterFeature.modifiers = [];
         }
+
+        if (feature.type === 'subclass') {
+            characterFeature.subclass = {
+                name: null,
+            };
+        }
         
         characterData.class.features.push(characterFeature);
+    });
+}
+
+function initializeNewSubclassLevelFeatures(level) {
+    const subclassData = getGameFeatureData('class','subclass');
+
+    if (!subclassData) return;
+    
+    const availableFeatures = subclassData.features.filter(f => f.level <= level);
+    
+    // Initialize features - auto-detect options and choices
+    availableFeatures.forEach(feature => {
+        if (characterData.class.subclass.features.find(f => f.name === feature.name)) return;
+        const characterFeature = {
+            name: feature.name,
+        };
+        
+        // If feature has options, initialize options array
+        if (featureHasOptions(feature)) {
+            characterFeature.options = [];
+        }
+        
+        // If feature has choices, initialize modifiers array for storing selections
+        if (featureHasChoices(feature)) {
+            // Initialize as empty array for storing selected choices
+            characterFeature.modifiers = [];
+        }
+        
+        characterData.class.subclass.features.push(characterFeature);
     });
 }
 
@@ -2525,3 +3356,51 @@ function removeClassLevelFeatures(level) {
     // Modifiers will be automatically removed when updateModifiers() is called
     // (which happens in generateFeatures('class') after this function)
 }
+
+function removeSubclassLevelFeatures(level) {
+    const subclassData = getGameFeatureData('class','subclass');
+    if (!subclassData) return;
+    
+    // Filter out features that are above the specified level
+    // Need to look up the game feature to get its level property
+    characterData.class.subclass.features = characterData.class.subclass.features.filter(characterFeature => {
+        const featureData = subclassData.features.find(f => f.name === characterFeature.name);
+        if (!featureData) return false; // Keep if game feature not found (safety)
+        return featureData.level <= level;
+    });
+}
+// ============================================================================
+// EVENT HANDLERS & LISTENERS
+// ============================================================================
+
+function showSection(sectionButton) {
+    if (sectionButton.dataset.section === 'equipment') {
+        generateEquipment();
+    }
+
+    if (currentSection) {
+        currentSection.classList.remove('active');
+    }
+    
+    const sectionEl = document.querySelector(`#cc-builder-tab-${sectionButton.dataset.section}`);
+    sectionEl.classList.add('active');
+    
+    currentSection = sectionEl;
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+    console.log('DOMContentLoaded');
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const hexId = urlParams.get('hexId');
+    
+    // Load character data (will use hexId from URL if present)
+    loadCharacterBuilderData(hexId);
+    
+    currentSection = document.querySelector('#cc-builder-tab-class');
+    
+    const content = document.querySelector('#content-container');
+    if (content) {
+        content.classList.remove('content-loading');
+    }
+});

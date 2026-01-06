@@ -2,18 +2,20 @@
    CSS VARIABLES
    ========================================================================== */
 
-:root {
+   :root {
     --bg-light: #fcf9f4;
     --bg: #f3eee5;
     --fg: #242322;
     --hfg:#f3f1e9;
     --muted: #2e3033;
+    --inactive: #666666;
     --hmuted: #a8b3c2;
     --brand: #776936;
     --card: #131720;
     --card-light: #1a1f2c;
     --accent: #ffd166;
     --border: rgba(0, 0, 0, 0.2);
+    --border-exhaust: rgba(158, 18, 18, 0.555);
     --white-hover: #dadada;
     --white-active: #d4d4d4;
 }
@@ -1682,8 +1684,27 @@ tr.hidden{
     background: var(--bg);
 }
 
+
+
 .cs-slot.filled {
     background: var(--fg);
+}
+
+.cs-slot.exhaust {
+    border: 1px solid var(--border-exhaust);
+}
+
+.cs-slot.exhaust.filled {
+    background: var(--border-exhaust);
+}
+
+.cs-exhaustion-indicator {
+    font-size: 12px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 12px;
+    text-align: center;
 }
 
 .cs-inspiration {
@@ -1724,23 +1745,169 @@ tr.hidden{
     margin-left: -4px;
 }
 
+.cs-currency-display {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.cs-inventory-currency-item {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 0 6px;
+}
+
+.cs-inventory-currency-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: 0px;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: var(--fg);
+}
+
+.cs-inventory-item {
+    width: 100%;
+    border: 1px solid var(--border);
+    padding: 8px;
+    border-radius: 4px;
+}
+
+.cs-inventory-item-summary {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.cs-inventory-item-summary::after {
+    position: absolute;
+    right: 0;
+    content: '▶';
+    font-size: 16px;
+    color: var(--fg);
+    transition: transform 0.2s ease;
+    margin: 0 8px;
+    transform: rotate(0deg);    
+}
+
+.cs-inventory-item[open] .cs-inventory-item-summary::after {
+    transform: rotate(90deg);
+}
+
+.cs-inventory-item[open] .cs-inventory-item-summary {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 8px;
+}
+
+.cs-inventory-item-equip-button {
+    width: 5%;
+    margin: 0 4px;
+}
+
+.cs-inventory-summary-info {
+    line-height: 1;
+    width: 40%;
+}
+
+.cs-inventory-summary-info-title {
+}
+
+.cs-inventory-summary-info-type {
+    font-size: 12px;
+    color: var(--muted);
+}
+
+.cs-inventory-summary-info-quantity {
+    width: 10%;
+}
+
+.cs-inventory-summary-info-notes {
+    width: 35%;
+    max-width: 30%;    
+    font-size: 11px;
+    text-wrap: wrap;
+}
+
+.cs-inventory-summary-info-notes-item {
+}
+
+.cs-inventory-item-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+    padding-top: 8px;
+}
+
+.cs-inventory-item-content-item {
+    width: 33%;
+    font-size: 14px;
+    color: var(--fg);
+}
+
+.cs-inventory-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    font-weight: 600;
+    font-size: 12px !important;
+    padding: 8px;
+    
+}
+
 /* ==========================================================================
    CHARACTER SECTIONS STYLES
    ========================================================================== */
 
-.cs-sections {
+.cs-section-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    justify-content: space-around;
+    align-items: center;
     position: relative;
     padding: 12px 0;
 }
 
-.cs-sections::before {
+.cs-section-buttons::before {
     content: '';
     position: absolute;
-    top: 0;
+    top: 50%;
     left: 0;
     right: 0;
     height: 1px;
     background: var(--border);
+    z-index: 0;
+    transform: translateY(-50%);
+}
+
+.cs-section-button {
+    padding: 8px 16px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    color: var(--fg);
+    font-size: 14px;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+    background: var(--bg, #fff);
+}
+
+.cs-sections {
+    position: relative;
+    padding: 12px 0;
+    margin-top: -1px;
 }
 
 .cs-section {
@@ -1751,8 +1918,7 @@ tr.hidden{
 .cs-section.active {
     display: flex;
     flex-direction: row;
-    gap: 12px;
-    justify-content: space-around;
+    justify-content: center;
     align-items: flex-start;
 }
 
@@ -1764,6 +1930,14 @@ tr.hidden{
     display: block;
 }
 
+.cs-section-title-container {
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+    justify-content: center;
+    align-items: center;
+}
+
 .cs-section-title {
     font-weight: 700;
     font-size: 16px;
@@ -1772,8 +1946,29 @@ tr.hidden{
     text-align: center;
 }
 
+.cs-section-title.button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: color 0.2s ease;
+    color: var(--inactive);
+}
+
+.cs-section-title.button:hover {
+    color: var(--brand);
+}
+.cs-section-title.button.active:hover {
+    color: var(--fg);
+}
+
+.cs-section-title.active {
+    color: var(--fg);
+}
+
 .cs-column-content {
     width: 100%;
+    max-width: 900px;
     padding: 12px;
     display: flex;
     flex-direction: column;
@@ -1781,6 +1976,7 @@ tr.hidden{
     flex-wrap: wrap;
     justify-content: center;
     align-items: flex-start;
+    margin: auto;
 }
 
 .cs-column-title {
@@ -1811,6 +2007,9 @@ tr.hidden{
 .cs-column-card {
     border: 1px solid var(--border);
     transition: all 0.2s ease;
+    padding: 8px;
+    width: 100%;
+    font-size: 12px;
 }
 
 .cs-column-card-title {
@@ -1819,8 +2018,19 @@ tr.hidden{
     color: var(--fg);
 }
 
+.cs-column-card-title-source {
+    margin-left: 8px;
+    font-size: 12px;
+    color: var(--brand);
+    font-weight: 600;
+}
+
 .cs-column-card-content {
     color: var(--fg);
+    font-size: 12px;
+}
+
+.cs-column-card-content li {
     font-size: 12px;
 }
 
@@ -1859,6 +2069,27 @@ tr.hidden{
 .cs-description-header .cs-description-body {
     font-size: 12px;
     color: var(--fg);
+}
+
+.cs-column-card-modifiers {
+    position: relative;
+    font-size: 12px;
+    padding: 0 12px;
+}
+
+.cs-column-card-modifiers::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: var(--border);
+    left: 6px;
+}
+
+.cs-column-card-option-title {
+    font-size: 12px;
+    font-weight: 700;
 }
 
 /* ==========================================================================
@@ -2347,3 +2578,4 @@ tr.hidden{
     margin: 0;
     padding: 0;
 }
+

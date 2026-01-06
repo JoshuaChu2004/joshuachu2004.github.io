@@ -5,10 +5,10 @@
     "category": "medium",
     "equipment": true,
     "armorTraits": {
-        "ac": 13,
+        "AC": 13,
         "ability": "dexterity",
         "maxAbilityBonus": 2,
-        "absorb": 1,
+        "bonusAbsorb": 1,
         "strength": 0,
         "properties": []
     }

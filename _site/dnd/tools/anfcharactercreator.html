@@ -95,13 +95,13 @@
                             </div>
                             <div class="cc-class-vitals">
                                 <div id="cc-class-vitals-hit-points" class="paragraph ">
-                                    <span class="bold">Hit Points:</span> 10
+                                    <span class="bold">Hit Points:</span> <span id="cc-class-vitals-hit-points-value">10</span>
                                 </div>
                                 <div id="cc-class-vitals-hit-die" class="paragraph ">
-                                    <span class="bold">Hit Die:</span> d10
+                                    <span class="bold">Hit Die:</span> <span id="cc-class-vitals-hit-die-value">d10</span>
                                 </div>
                                 <div id="cc-class-vitals-stress-slots" class="paragraph ">
-                                    <span class="bold">Stress Slots:</span> 3
+                                    <span class="bold">Stress Slots:</span> <span id="cc-class-vitals-stress-slots-value">3</span>
                                 </div>
                             </div>
                             <button id="cc-class-manager-remove-button" class="cc-manager-remove-button" onclick="removeClass()">X</button>
@@ -206,6 +206,7 @@
                             </div>
                             <div id="cc-manager-spells" class="cc-manager-details hidden">
                                 <div class="cc-manager-information">
+                                    <div id="cc-cantrips-count" class="paragraph">Learned Cantrips: <span id="cc-cantrips-count-value">0</span>/<span id="cc-cantrips-count-max">2</span></div>
                                     <div id="cc-spells-count" class="paragraph">Learned Spells: <span id="cc-spells-count-value">0</span>/<span id="cc-spells-count-max">2</span></div>
                                 </div>
                                 <details class="cc-manager-feature">

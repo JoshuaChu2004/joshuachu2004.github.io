@@ -3,9 +3,10 @@
     "name": "Heavy Armor",
     "type": "armor",
     "category": "heavy",
+    "equipment": true,
     "armorTraits": {
-        "ac": 16,
-        "ability": null,
+        "AC": 16,
+        "ability": "none",
         "absorb": 3,
         "strength": 2,
         "properties": ["stealthDisadvantage"]

@@ -7,11 +7,13 @@ async function loadBuilderGameData() {
     try {
         const gameData = {
             classes: await loadAllClasses(),
+            subclasses: await loadAllSubclasses(),
             races: await loadAllRaces(),
             backgrounds: await loadAllBackgrounds(),
             feats: await loadAllFeats(),
             items: await loadAllItems(),
             prowesses: await loadAllProwesses(),
+            spells: await loadAllSpells(),
             abilities: await loadAllAbilities()
         };
         return gameData;
@@ -48,6 +50,40 @@ async function loadAllClasses() {
     }
 }
 
+async function loadAllSubclasses() {
+    try {
+        const response = await fetch(`/dnd/A&F/data/dataLists/subclasslist.json`);
+        if (!response.ok) {
+            throw new Error(`Failed to load all subclasses`);
+        }
+        const subclassList = await response.json();
+        const subclassesData = {
+            "cleric": [],
+            "fighter": [],
+            "rogue": [],
+            "wizard": [],
+            "bard": [],
+            "druid": [],
+            "paladin": [],
+            "ranger": [],
+            "sorcerer": [],
+            "warlock": []
+        };
+        for (const className of Object.keys(subclassList)) {
+            for (const subclassName of subclassList[className]) {
+                const subclassData = await loadSubclass(subclassName);
+                if (subclassData) {
+                    subclassesData[className].push(subclassData);
+                }
+            }
+        }
+        return subclassesData;
+    }
+    catch (error) {
+        console.error(`Error loading all subclasses:`, error);
+        return null;
+    }
+}
 async function loadAllRaces() {
     try {
         const response = await fetch(`/dnd/A&F/data/dataLists/racelist.json`);
@@ -136,6 +172,37 @@ async function loadAllProwesses() {
     }
 }
 
+async function loadAllSpells() {
+    try {
+        const response = await fetch(`/dnd/A&F/data/dataLists/spelllist.json`);
+        if (!response.ok) {
+            throw new Error(`Failed to load all spells`);
+        }
+        const spellList = await response.json();
+        const spellsData = {
+            spells: [],
+            cantrips: [],
+        };
+        for (const spellName of spellList.spells) {
+            const spellData = await loadSpell(spellName);
+            if (spellData) {
+                spellsData.spells.push(spellData);
+            }
+        }
+        for (const cantripName of spellList.cantrips) {
+            const cantripData = await loadSpell(cantripName);
+            if (cantripData) {
+                spellsData.cantrips.push(cantripData);
+            }
+        }
+        return spellsData;
+    }
+    catch (error) {
+        console.error(`Error loading all spells:`, error);
+        return null;
+    }
+}
+
 async function loadAllItems() {
     try {
         const response = await fetch(`/dnd/A&F/data/dataLists/itemlist.json`);
@@ -216,6 +283,44 @@ async function loadAllAbilities() {
     }
 }
 
+async function loadAllUniversals() {
+    try {
+        const response = await fetch(`/dnd/A&F/data/dataLists/universallist.json`);
+        if (!response.ok) {
+            throw new Error(`Failed to load all universals`);
+        }
+        const universalList = await response.json();
+        const universalsData = [];
+        for (const universalName of universalList.universals) {
+            const universalData = await loadUniversal(universalName);
+            if (universalData) {
+                universalsData.push(universalData);
+            }
+        }
+        return universalsData;
+    }
+    catch (error) {
+        console.error(`Error loading all universals:`, error);
+        return null;
+    }
+}
+
+async function loadUniversal(universalName) {
+    try {
+        const response = await fetch(`/dnd/A&F/data/universal/${universalName.toLowerCase()}.json`);
+        if (!response.ok) {
+            throw new Error(`Failed to load universal: ${universalName}`);
+        }
+        const universalData = await response.json();
+        gameDataCache[`universal_${universalName}`] = universalData;
+        return universalData;
+    }
+    catch (error) {
+        console.error(`Error loading universal ${universalName}:`, error);
+        return null;
+    }
+}
+
 async function loadAbility(abilityName) {
     if (gameDataCache[`ability_${abilityName}`]) {
         return gameDataCache[`ability_${abilityName}`];
@@ -254,6 +359,23 @@ async function loadClass(className) {
         return classData;
     } catch (error) {
         console.error(`Error loading class ${className}:`, error);
+        return null;
+    }
+}
+
+
+
+async function loadSubclass(subclassName) {
+    try {
+        const response = await fetch(`/dnd/A&F/data/classes/subclasses/${subclassName.toLowerCase().replace(/\s+/g, '')}.json`);
+        if (!response.ok) {
+            throw new Error(`Failed to load subclass: ${subclassName}`);
+        }
+        const subclassData = await response.json();
+        gameDataCache[`subclass_${subclassName}`] = subclassData;
+        return subclassData;
+    } catch (error) {
+        console.error(`Error loading subclass ${subclassName}:`, error);
         return null;
     }
 }
@@ -357,7 +479,9 @@ async function loadCharacterGameData(characterData) {
         race: null,
         background: null,
         feats: [],
-        prowesses: []
+        prowesses: [],
+        universal: null,
+        items: await loadAllItems()
     };
 
     // Load class
@@ -377,30 +501,39 @@ async function loadCharacterGameData(characterData) {
 
     // Load feats
     if (characterData.feats && Array.isArray(characterData.feats)) {
-        for (const featName of characterData.feats) {
-            const featData = await loadFeat(featName);
+        for (const feat of characterData.feats) {
+            const featData = await loadFeat(feat.name);
             if (featData) {
                 gameData.feats.push(featData);
             }
         }
     }
 
-    if (gameData.class?.classType === "Martial") {
+    if (gameData.class.prowessInfo.canUseProwesses) {
         console.log("Loading prowesses for martial class");
-        for (const level in gameData.class.prowesses) {
+        const prowessList = [];
+        Object.values(gameData.class.prowessInfo.prowessList).forEach(level => {
             console.log("Loading prowess for level", level);
-            for (const prowessName of gameData.class.prowesses[level]) {
+            level.forEach((prowessName) => {
                 console.log("Loading prowess", prowessName);
-                const prowessData = await loadProwess(prowessName);
-                if (prowessData) {
-                    gameData.prowesses.push(prowessData);
-                }
+                prowessList.push(prowessName);
+            });
+        });
+        
+        for (const prowessName of prowessList) {
+            const prowessData = await loadProwess(prowessName);
+            if (prowessData) {
+                gameData.prowesses.push(prowessData);
             }
         }
     }
 
+    gameData.universal = await loadAllUniversals();
+    
     return gameData;
 }
+
+
 
 /**
  * Load a prowess definition from JSON
@@ -418,6 +551,23 @@ async function loadProwess(prowessName) {
         return prowessData;
     } catch (error) {
         console.error(`Error loading prowess ${prowessName}:`, error);
+        return null;
+    }
+}
+
+
+async function loadSpell(spellName) {
+    try {
+        const response = await fetch(`/dnd/A&F/data/spells/${spellName.toLowerCase().replace(/\s+/g, '')}.json`);
+        if (!response.ok) {
+            throw new Error(`Failed to load spell: ${spellName}`);
+        }
+        const spellData = await response.json();
+        gameDataCache[`spell_${spellName}`] = spellData;
+        return spellData;
+    }
+    catch (error) {
+        console.error(`Error loading spell ${spellName}:`, error);
         return null;
     }
 }

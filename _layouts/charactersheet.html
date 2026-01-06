@@ -18,8 +18,8 @@ custom_js: '/dnd/A&F/charactersheet.js'
                 </div>
             </div>
             <div class="cs-rest-options">
-                <button class="cs-rest-button">Long Rest</button>
-                <button class="cs-rest-button">Short Rest</button>
+                <button class="cs-rest-button" onclick="longRest()">Long Rest</button>
+                <button class="cs-rest-button" onclick="shortRest()">Short Rest</button>
             </div>
             <button id="cs-character-loader-button" class="cs-header-button" onclick="window.location.href='/dnd/tools/anfcharacterloader'">Character Loader</button>
         </div>
@@ -53,9 +53,14 @@ custom_js: '/dnd/A&F/charactersheet.js'
                     </div>
                     <div class="cs-stress cs-adjustable-trait">
                         <button id="cs-stress-minus-button" class="cs-adjust-button fa-solid fa-minus" onclick="adjustStressSlots(this)"></button>
-                        <div class="cs-slots">
+                        <div id="cs-stress-slots" class="cs-slots">
                             <div class="cs-slot"></div>
                             <div class="cs-slot"></div>
+                        </div>
+                        <div id="cs-exhaust-slots" class="cs-slots">
+                            <div class="cs-slot exhaust"></div>
+                            <div class="cs-slot exhaust"></div>
+                            <div class="cs-slot exhaust"></div>
                         </div>
                         <button id="cs-stress-plus-button" class="cs-adjust-button fa-solid fa-plus" onclick="adjustStressSlots(this)"></button>
                         <div class="cs-trait-name absolute">Stress Slots</div>
@@ -321,6 +326,13 @@ custom_js: '/dnd/A&F/charactersheet.js'
             
         </div>
 
+        <div class="cs-section-buttons">
+            <button id="cs-actions-and-features-button" class="cs-section-button" onclick="showSection('actions-and-features')">Actions and Features</button>
+            <button id="cs-inventory-button" class="cs-section-button" onclick="showSection('inventory')">Inventory</button>
+            <button id="cs-notes-button" class="cs-section-button" onclick="showSection('notes')">Notes</button>
+            <button id="cs-extras-button" class="cs-section-button" onclick="showSection('extras')">Extras</button>
+        </div>
+
         <div class="cs-sections">
             <div id="cs-actions-and-features"class="cs-section active">
                 <div id="cs-section-column" class="cs-section-column active">
@@ -344,64 +356,14 @@ custom_js: '/dnd/A&F/charactersheet.js'
                                 <div class="cs-column-consumable-effect-amount">2d4 + 2</div>
                             </div>
                         </div>
-                        <div id="cs-combat-major-actions" class="cs-column-card">
-                            <div class="cs-column-card-title">Major Actions</div>
-                            <div class="cs-column-card-content">
-                                <div class="cs-column-card-content-item">
-                                    <div class="cs-column-card-content-item-title">Attack</div>
-                                    <div class="cs-column-card-content-item-description">The most common action taken in combat, whether by swinging a sword, firing a bow, or brawling with your fists.</div>
-                                </div>
-                                <div class="cs-column-card-content-item">
-                                    <div class="cs-column-card-content-item-title">Two-Weapon Fighting</div>
-                                    <div class="cs-column-card-content-item-description">When you take the Attack action and attack with a light weapon that you’re holding in one hand, you can use a Minor Action to attack with a different light weapon that you’re holding in the other hand.</div>
-                                </div>
-                                <div class="cs-column-card-content-item">
-                                    <div class="cs-column-card-content-item-title">Grappling</div>
-                                    <div class="cs-column-card-content-item-description">A special unarmed strike against a creature no larger than one size larger than you. On a hit, you subject them to the Grappled and Exposed condition.</div>
-                                </div>
-                                <div class="cs-column-card-content-item">
-                                    <div class="cs-column-card-content-item-title">Shove</div>
-                                    <div class="cs-column-card-content-item-description">A special unarmed strike against a creature no larger than one size larger than you. On a hit, you may push them back 5 ft. or knock them Prone. They are also subjected to the Exposed condition.</div>
-                                </div>
-                                <div class="cs-column-card-content-item">
-                                    <div class="cs-column-card-content-item-title">Cast a Spell</div>
-                                    <div class="cs-column-card-content-item-description">Cast a spell that has a casting time of 1 action.</div>
-                                </div>
-                                <div class="cs-column-card-content-item">
-                                    <div class="cs-column-card-content-item-title">Dash</div>
-                                    <div class="cs-column-card-content-item-description">When you take the Dash action, you increase your movement for the current turn by your current speed.</div>
-                                </div>
-                                <div class="cs-column-card-content-item">
-                                    <div class="cs-column-card-content-item-title">Dodge</div>
-                                    <div class="cs-column-card-content-item-description">Attack rolls made against you have disadvantage if you can see the attacker, and you make Reflex saving throws with advantage until the start of your next turn. You lose this benefit if you are incapacitated or your speed drops to 0.</div>
-                                </div>
-                                <div class="cs-column-card-content-item">
-                                    <div class="cs-column-card-content-item-title">Help</div>
-                                    <div class="cs-column-card-content-item-description">Aid another creature in a task or action. Until the start of your next turn, the creature you aid gains advantage on its next ability check or attack roll, so long as it is possible to help them in their task from where you currently are. Alternatively, you may instead choose a willing creature within the same area. The two of you must spend a collective 2 Heroic Inspiration to allow both you and that creature to immediately each take one type of action of your choice, describing how your combined efforts create a single, unique effect on the scene. The DM determines whether the description is coherent and feasible.</div>
-                                </div>
-                                <div class="cs-column-card-content-item">
-                                    <div class="cs-column-card-content-item-title">Hide</div>
-                                    <div class="cs-column-card-content-item-description">Make a Dexterity (Stealth) check to attempt to hide from other creatures. The DM may set a DC or otherwise use the Passive Perception of the enemy creatures in the encounter. If you pass, you gain the Hidden condition.</div>
-                                </div>
-                                <div class="cs-column-card-content-item">
-                                    <div class="cs-column-card-content-item-title">Hiding in Plain Sight</div>
-                                    <div class="cs-column-card-content-item-description">If you use the Hide action without anything obstructing the line of sight between you and any opposing creatures, you take a -10 to your Dexterity (Stealth) check.</div>
-                                </div>
-                                <div class="cs-column-card-content-item">
-                                    <div class="cs-column-card-content-item-title">Ready</div>
-                                    <div class="cs-column-card-content-item-description">Declare an action you will take and what condition(s) must be met before you take that action as a reaction.</div>
-                                </div>
-                                <div class="cs-column-card-content-item">
-                                    <div class="cs-column-card-content-item-title">Search</div>
-                                    <div class="cs-column-card-content-item-description">Make an appropriate ability check to find something.</div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
-                <div id="cs-section-column" class="cs-section-column active">
-                    <div id="cs-martial-prowesses-title" class="cs-section-title">Martial Prowesses</div>
-                    <div id="cs-martial-prowesses-content" class="cs-column-content">
+                <div id="cs-prowesses-spells-column" class="cs-section-column active">
+                    <div class="cs-section-title-container">
+                        <button data-section="prowesses" id="cs-martial-prowesses-title" class="cs-section-title button active" onclick="showProwesses()">Prowesses</button>
+                        <button data-section="spells" id="cs-spells-title" class="cs-section-title button" onclick="showSpells()">Spells</button>
+                    </div>
+                    <div id="cs-prowesses-content" class="cs-column-content">
                         
                         <div id="cs-prowess-second-wind" class="cs-column-card">
                             <div class="cs-column-card-title">Second Wind</div>
@@ -422,21 +384,81 @@ custom_js: '/dnd/A&F/charactersheet.js'
                             </div>
                         </div>
                     </div>
-                </div>
-                <div id="cs-section-column" class="cs-section-column active">
-                    <div id="cs-spells-title" class="cs-section-title">Spells</div>
-                    <div id="cs-spells-content" class="cs-column-content">
-                        
+                    <div id="cs-spells-content" class="cs-column-content hidden">
                     </div>
                 </div>
-                <div id="cs-section-column" class="cs-section-column active">
+                <div id="cs-features-column" class="cs-section-column active">
                     <div id="cs-features-title" class="cs-section-title">Features</div>
-                    <div id="cs-features-content" class="cs-column-content">
+                    <div id="cs-class-features" class="cs-column-content">
+                        
+                    </div>
+                    
+                    <div id="cs-race-features" class="cs-column-content">
+                        
+                    </div>
+                    <div id="cs-background-features" class="cs-column-content">
+                        
+                    </div>
+                    <div id="cs-feat-features" class="cs-column-content">
                         
                     </div>
                 </div>
             </div>
             <div id="cs-inventory"class="cs-section">
+                <div id="cs-section-column" class="cs-section-column active">
+                    <div id="cs-inventory-title" class="cs-section-title">Inventory</div>
+                    <div id="cs-inventory-currency" class="cs-currency-display">
+                        <input type="number" min="0" oninput="validity.valid||(value='');" id="cs-inventory-currency-input" class="cs-inventory-currency-input" placeholder="1">
+                        <div id="cs-inventory-currency-copper" class="cs-inventory-currency-item">
+                            <button class="cs-adjust-button fa-solid fa-minus" data-currency="copper" data-type="minus" onclick="adjustCurrency(this)"></button>
+                            <div class="cs-inventory-currency-item-value">1</div>
+                            <div class="cs-inventory-currency-item-label">Copper</div>
+                            <button class="cs-adjust-button fa-solid fa-plus" data-currency="copper" data-type="plus" onclick="adjustCurrency(this)"></button>
+                        </div>
+                        <div id="cs-inventory-currency-silver" class="cs-inventory-currency-item">
+                            <button class="cs-adjust-button fa-solid fa-minus" data-currency="silver" data-type="minus" onclick="adjustCurrency(this)"></button>
+                            <div class="cs-inventory-currency-item-value">1</div>
+                            <div class="cs-inventory-currency-item-label">Silver</div>
+                            <button class="cs-adjust-button fa-solid fa-plus" data-currency="silver" data-type="plus" onclick="adjustCurrency(this)"></button>
+                        </div>
+                        <div id="cs-inventory-currency-gold" class="cs-inventory-currency-item">
+                            <button class="cs-adjust-button fa-solid fa-minus" data-currency="gold" data-type="minus" onclick="adjustCurrency(this)"></button>
+                            <div class="cs-inventory-currency-item-value">1</div>                            
+                            <div class="cs-inventory-currency-item-label">Gold</div>
+                            <button class="cs-adjust-button fa-solid fa-plus" data-currency="gold" data-type="plus" onclick="adjustCurrency(this)"></button>
+                        </div>
+                        <div id="cs-inventory-currency-platinum" class="cs-inventory-currency-item">
+                            <button class="cs-adjust-button fa-solid fa-minus" data-currency="platinum" data-type="minus" onclick="adjustCurrency(this)"></button>
+                            <div class="cs-inventory-currency-item-value">1</div>
+                            <div class="cs-inventory-currency-item-label">Platinum</div>
+                            <button class="cs-adjust-button fa-solid fa-plus" data-currency="platinum" data-type="plus" onclick="adjustCurrency(this)"></button>
+                        </div>
+                    </div>
+                    <div id="cs-inventory-content" class="cs-column-content">
+                        <div id="cs-inventory-header" class="cs-inventory-header">
+                            <div class="cs-inventory-item-equip-button">Active</div>
+                            <div class="cs-inventory-summary-info">Name</div>
+                            <div class="cs-inventory-summary-info-quantity">QTY</div>
+                            <div class="cs-inventory-summary-info-notes">Notes</div>
+                        </div>
+                        <details class="cs-inventory-item">
+                            <summary class="cs-inventory-item-summary">
+                                <input type="checkbox" class="cs-inventory-item-equip-button">
+                                <div class="cs-inventory-summary-info">
+                                    <div class="cs-inventory-summary-info-title">Item Name</div>
+                                    <div class="cs-inventory-summary-info-type">Item Type</div>
+                                </div>
+                                <div class="cs-inventory-summary-info-quantity">1</div>
+                                <div class="cs-inventory-summary-info-notes">Item Notes</div>
+                            </summary>
+                            <div class="cs-inventory-item-content">
+                                <div class="cs-inventory-item-content-item">This is a test item.</div>
+                                <div class="cs-inventory-item-content-item">This is a test item.</div>
+                                <div class="cs-inventory-item-content-item">This is a test item.</div>
+                            </div>  
+                        </details>
+                    </div>
+                </div>
 
             </div>
             <div id="cs-notes"class="cs-section">

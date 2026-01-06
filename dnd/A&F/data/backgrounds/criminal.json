@@ -41,7 +41,9 @@
   "features": [
     {
       "name": "Criminal Proficiencies",
+      "showInSheet": false,
       "description": "You have proficiency with the following skills: Deception and Stealth. You also have proficiency with Thieves' Tools and a Gaming Set of your choice.",
+      "snippet": "",
       "modifiers": [
         {
           "type": "skillProficiency",
@@ -67,10 +69,12 @@
     },
     {
       "name": "Criminal Contact",
+      "showInSheet": true,
       "description": "You have a reliable and trustworthy contact who acts as your liaison to a network of other criminals. You know how to get messages to and from your contact, even over great distances."
     },
     {
       "name": "Origin Feat",
+      "showInSheet": true,
       "description": "You have a feat that was gained through your background. Choose one of the following Origin Feats",
       "modifiers": [
         {

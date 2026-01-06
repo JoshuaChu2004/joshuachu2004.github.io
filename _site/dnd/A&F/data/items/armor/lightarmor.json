@@ -5,7 +5,7 @@
     "category": "light",
     "equipment": true,
     "armorTraits": {
-        "ac": 11,
+        "AC": 11,
         "ability": "dexterity",
         "absorb": 0,
         "strength": 0,

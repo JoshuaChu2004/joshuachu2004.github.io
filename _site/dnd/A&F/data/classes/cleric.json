@@ -1,0 +1,227 @@
+{
+    "name": "Cleric",
+    "description": "Clerics are intermediaries between the mortal world and the distant planes of the gods. As varied as the gods they serve, clerics strive to embody the handiwork of their deities. No ordinary priest, a cleric is imbued with divine magic.",
+    "classType": "Caster",
+    "hitDie": "d8",
+    "hitPointsAtFirstLevel": 8,
+    "hitPointsFixed": 5,
+    "stressSlotsAtFirstLevel": 3,
+    "prowessInfo": {
+      "canUseProwesses": false,
+      "prowessGrowthRate": null,
+      "prowessAbility": null,
+      "prowessList": null
+    },
+    "spellInfo": {
+      "canCastSpells": true,
+      "casterType": "prepared",
+      "spellGrowthRate": "full",
+      "spellCastingAbility": ["wisdom"],
+      "cantripGrowthRate": "high",
+      "spellList": {
+        "0": ["Guidance"],
+        "1": ["Detect Magic", "Guiding Bolt"],
+        "2": [],
+        "3": [],
+        "4": [],
+        "5": [],
+        "6": [],
+        "7": [],
+        "8": [],
+        "9": []
+      }
+    },
+    "features": [
+      {
+        "name": "Cleric Proficiencies",
+        "level": 1,
+        "count": 2,
+        "type": "choice",
+        "showInSheet": true,
+        "description": "**Armor:** Light armor, medium armor, shields\n\n**Weapons:** All simple weapons\n\n**Tools:** None\n\n**Skills:** Choose two from History, Insight, Medicine, Persuasion, and Religion",
+        "snippet": "",
+        "modifiers": [
+          {
+            "type": "armorProficiency",
+            "subType": "granted",
+            "value": "Light Armor"
+          },
+          {
+            "type": "armorProficiency",
+            "subType": "granted",
+            "value": "Medium Armor"
+          },
+          {
+            "type": "armorProficiency",
+            "subType": "granted",
+            "value": "Shields"
+          },
+          {
+            "type": "weaponProficiency",
+            "subType": "granted",
+            "value": "Simple Weapons"
+          },
+          {
+            "type": "skillProficiency",
+            "subType": "choose",
+            "from": ["History", "Insight", "Medicine", "Persuasion", "Religion"]
+          },
+          {
+            "type": "skillProficiency",
+            "subType": "choose",
+            "from": ["History", "Insight", "Medicine", "Persuasion", "Religion"]
+          }
+        ]
+      },
+      {
+        "name": "Divine Domain",
+        "level": 1,
+        "type": "subclass",
+        "showInSheet": true,
+        "description": "At 1st level, you choose a domain shaped by your choice of Deity and the gifts they grant you. Your choice grants you domain spells and other features when you choose it at 1st level. It also grants you additional ways to use Channel Divinity when you gain that feature at 2nd level, and additional benefits at 6th, 10th, 14th, and 18th level.\n\n**Domain Spells**\n\nEach domain has a list of spells-its domain spells that you gain at the cleric levels noted in the domain description. Once you gain a domain spell, you always have it prepared, and it doesn't count against the number of spells you can prepare each day.\n\nIf you have a domain spell that doesn't appear on the cleric spell list, the spell is nonetheless a cleric spell for you.",
+        "snippet": "",
+        "subclasses": ["Light Domain"]
+      },
+      {
+        "name": "Spellcasting",
+        "level": 1,
+        "type": "feature",
+        "showInSheet": true,
+        "description": "As a conduit for divine power, you can cast cleric spells.\n\n**Cantrips**\n\nAt 1st level, you know three cantrips of your choice from the cleric spell list. You learn additional cleric cantrips of your choice at higher levels, as shown in the Cantrips Known column of the Cleric table.\n\n**Spell Slots**\n\nThe Cleric table shows how many spell slots you have to cast your cleric spells of 1st level and higher. To cast one of these spells, you must expend a slot of the spell's level or higher. You regain all expended spell slots when you finish a long rest.\n\nYou prepare the list of cleric spells that are available for you to cast, choosing from the cleric spell list. When you do so, choose a number of cleric spells equal to your Wisdom modifier + your Cleric level (minimum of one spell). The spells must be of a level for which you have spell slots. You can change your list of prepared spells when you finish a long rest.\n\nFor example, if you know the 1st-level spell *Animal Friendship* and have a 1st-level and a 2nd-level spell slot available, you can cast *Animal Friendship* using either slot.\n\n**Spellcasting Ability**\n\nWisdom is your spellcasting ability for your cleric spells, since the power of your spells comes from your devotion to your deity. You use your Wisdom whenever a spell refers to your spellcasting ability. In addition, you use your Wisdom modifier when setting the saving throw DC for a cleric spell you cast and when making an attack roll with one.\n\n- **Spell save DC** = 8 + your proficiency bonus + your Wisdom modifier\n- **Spell attack modifier** = your proficiency bonus + your Wisdom modifier\n\n**Ritual Casting**\n\nYou can cast a cleric spell as a ritual if that spell has the ritual tag and you have the spell prepared.",
+        "snippet": "As a conduit for divine power, you can cast cleric spells."
+      },
+      {
+        "name": "Channel Divinity",
+        "level": 2,
+        "type": "feature",
+        "showInSheet": true,
+        "description": "At 2nd level, you gain the ability to channel divine energy directly from your deity, using that energy to fuel magical effects. You start with two such effects: Turn Undead and an effect determined by your domain. Some domains grant you additional effects as you advance in levels, as noted in the domain description. If you use a Channel Divinity while another is still active, the previous effect immediately ends.",
+        "snippet": "You can make your abilities more potent. When a creature makes a saving throw against your Prowess save DC and succeeds, you can take a Stress to force them to reroll the die."
+      },
+      {
+        "name": "Channel Divinity: Turn Undead",
+        "level": 2,
+        "type": "feature",
+        "showInSheet": true,
+        "description": "As a Major Action, take a Stress and speak a holy prayer against the undead. Each undead that can see or hear you within 30 feet of you must make a Will saving throw. If the creature fails its saving throw, it is must spend its turn trying to move as far away from, and can not willingly move closer to you. It can’t take reactions and can only take the Dash action or try to escape from an effect that prevents it from moving.",
+        "snippet": "As a Major Action, take a Stress to force all undead that can see or hear you within 30 feet of you to make a Will saving throw. If the creature fails its saving throw, it is must spend its turn trying to move as far away from, and can not willingly move closer to you. It can’t take reactions and can only take the Dash action or try to escape from an effect that prevents it from moving."
+      }
+    ],
+    "levelFeatures": {
+      "1": ["Cleric Proficiencies", "Divine Domain", "Spellcasting"],
+      "2": ["Channel Divinity", "Channel Divinity: Turn Undead"],
+      "3": [],
+      "4": [],
+      "5": [],
+      "6": [],
+      "7": [],
+      "8": [],
+      "9": [],
+      "10": [],
+      "11": [],
+      "12": [],
+      "13": []
+    },
+    "startingEquipment": [
+      {
+        "0": {
+          "description": "Light, Medium, or Heavy Armor",
+          "items": [
+            {
+              "type": "choose",
+              "subType": "category",
+              "category": "armor",
+              "subCategory": ["light", "medium", "heavy"]
+            }
+          ]
+        }
+      },
+      {
+        "0": {
+          "description": "a simple weapon",
+          "items": [
+            {
+              "type": "choose",
+              "subType": "category",
+              "category": "weapons",
+              "subCategory": ["simple"]
+            }
+          ]
+        },
+        "1": {
+          "description": "A martial weapon",
+          "items": [
+            {
+              "type": "choose",
+              "subType": "category",
+              "category": "weapons",
+              "subCategory": ["martial"]
+            }
+          ]
+        }
+      },
+      {
+        "0": {
+          "description": "a light crossbow",
+          "items": [
+            {
+              "type": "granted",
+              "category": "weapons",
+              "value": "crossbowlight"
+            }
+          ]
+        },
+        "1": {
+          "description": "a simple weapon",
+          "items": [
+            {
+              "type": "choose",
+              "subType": "category",
+              "category": "weapons",
+              "subCategory": ["simple"]
+            }
+          ]
+        }
+      },
+      {
+        "0": {
+          "description": "A priest's pack",
+          "items": [
+            {
+              "type": "granted",
+              "category": "packs",
+              "value": "priestspack"
+            }
+          ]
+        },
+        "1": {
+          "description": "An explorer's pack",
+          "items": [
+            {
+              "type": "granted",
+              "category": "packs",
+              "value": "explorerspack"
+            }
+          ]
+        }
+      }, 
+      {
+        "0": {
+          "description": "a shield and a holy symbol",
+          "items": [
+            {
+              "type": "choose",
+              "subType": "category",
+              "category": "armor",
+              "subCategory": ["shield"]
+            },
+            {
+              "type": "granted",
+              "value": "Holy Symbol"
+            }
+          ]
+        }
+      }
+    ]
+  }
+  

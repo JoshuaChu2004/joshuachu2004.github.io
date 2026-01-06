@@ -1,0 +1,86 @@
+{
+    "name": "Light Domain",
+    "description": "Gods of light – including Helm, Lathander, Pholtus, Branchala, the Silver Flame, Belenus, Apollo, and Re-Horakhty – promote the ideals of rebirth and renewal, truth, vigilance, and beauty, often using the symbol of the sun. Some of these gods are portrayed as the sun itself or as a charioteer who guides the sun across the sky. Others are tireless sentinels whose eyes pierce every shadow and see through every deception. Some are deities of beauty and artistry, who teach that art is a vehicle for the soul's improvement. Clerics of a god of light are enlightened souls infused with radiance and the power of their gods' discerning vision, charged with chasing away lies and burning away darkness.",
+    "snippet": "",
+    "class": "Cleric",
+    "prowessInfo": {
+      "canUseProwesses": false,
+      "prowessGrowthRate": null,
+      "prowessAbility": null,
+      "prowessList": null
+    },
+    "spellInfo": {
+      "canCastSpells": false,
+      "casterType": null,
+      "spellGrowthRate": null,
+      "spellCastingAbility": null
+    },
+    "features": [
+      {
+        "name": "Light Domain Spells",
+        "level": 1,
+        "type": "feature",
+        "showInSheet": true,
+        "description": "| Level | Features |\n|-------|----------|\n| 1st Level | Burning Hands, Faerie Fire |\n| 3rd Level | Flaming Sphere, Scorching Ray |\n| 5th Level | Daylight, Fireball |\n| 7th Level | Guardian of Faith, Wall of Fire |\n| 9th Level | Flame Strike, Scrying |",
+        "snippet": "",
+        "spells": [
+            {
+                "type": "granted",
+                "name": "Burning Hands",
+                "isCantrip": false,
+                "grantedAtLevel": 1,
+                "alwaysPrepared": true,
+                "countsAsKnown": false
+            },
+            {
+                "type": "granted",
+                "name": "Faerie Fire",
+                "isCantrip": false,
+                "grantedAtLevel": 1,
+                "alwaysPrepared": true,
+                "countsAsKnown": false
+            }
+        ]
+      },
+      {
+        "name": "Bonus Cantrip",
+        "level": 1,
+        "type": "feature",
+        "showInSheet": true,
+        "description": "When you choose this domain at 1st level, you gain the Light cantrip if you don't already know it. This cantrip doesn’t count against the number of cleric cantrips you know.",
+        "snippet": "You gain the Light cantrip if you don't already know it."
+      },
+      {
+        "name": "Warding Flare",
+        "level": 1,
+        "type": "feature",
+        "showInSheet": true,
+        "description": "Also at 1st level, you can interpose divine light between an ally and an attacking enemy. When a creature that you can see within 30 ft. of you attacks another creature, you can take a Stress as a reaction to impose disadvantage on the attack roll. You must do this before knowing if the attack hits or misses. An attacker that can’t be blinded or does not need to see is immune to this feature.",
+        "snippet": "When a creature that you can see within 30 ft. of you attacks another creature, you can take a Stress as a reaction to impose disadvantage on the attack roll. You must do this before knowing if the attack hits or misses. An attacker that can’t be blinded or does not need to see is immune to this feature."
+      },
+      {
+        "name": "Channel Divinity: Radiance of the Dawn",
+        "level": 2,
+        "type": "feature",
+        "showInSheet": true,
+        "description": "Starting at 2nd level, you can harness sunlight to smite your foes. As a Major Action, expend a Heroic Inspiration and present your holy symbol, dispelling any magic darkness within 30 ft. of you. Additionally, each creature of your choice within 30 ft. of you that can see you must make a Fortitude saving throw. A creature takes radiant damage equal to 2d10 + your cleric level on a failed save, and half as much on a success.\n\nThe amount of damage dice increases when you reach 5th (3d10), 9th (4d10), 13th (5d10), and 17th (6d10).",
+        "snippet": "As a Major Action, expend a Heroic Inspiration and present your holy symbol, dispelling any magic darkness within 30 ft. of you. Additionally, each creature of your choice within 30 ft. of you that can see you must make a Fortitude saving throw. A creature takes radiant damage equal to 2d10 + your cleric level on a failed save, and half as much on a success."
+      }
+    ],
+    "levelFeatures": {
+      "1": ["Light Domain Spells", "Bonus Cantrip", "Warding Flare"],
+      "2": ["Channel Divinity: Radiance of the Dawn"],
+      "3": [],
+      "4": [],
+      "5": [],
+      "6": [],
+      "7": [],
+      "8": [],
+      "9": [],
+      "10": [],
+      "11": [],
+      "12": [],
+      "13": []
+    }
+  }
+  

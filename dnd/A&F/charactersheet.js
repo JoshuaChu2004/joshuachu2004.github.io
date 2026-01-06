@@ -122,7 +122,7 @@ function saveCharacter() {
     const hexId = characterData.hexId;
     localStorage.setItem(`characterData-${hexId}`, characterDataString);
 
-    const characterHexIds = localStorage.getItem('characterHexIds');
+    let characterHexIds = localStorage.getItem('characterHexIds');
     if (characterHexIds) {
         characterHexIds = JSON.parse(characterHexIds);
         if (!characterHexIds.includes(hexId)) {
@@ -157,6 +157,22 @@ function getAbilityModifier(abilityName) {
     return modifier;
 }
 
+function showSection(sectionId) {
+    const sections = document.querySelectorAll('.cs-section');
+    sections.forEach(section => {
+        if (section.id === `cs-${sectionId}`) {
+            section.classList.add('active');
+        }
+        else {
+            section.classList.remove('active');
+        }
+    });
+}
+
+function toTitleCase(string) {
+    return string.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+}
+
 // generate all character sheet fields
 function generateCharacterSheet() {
     if (!characterData) return;
@@ -187,17 +203,26 @@ function generateCharacterSheet() {
     
     // Attacks
     generateAttacks();
+
+    // Generate Universal Actions
+    generateUniversalActions();
     
     // Prowesses
     generateProwesses();
 
-    // Class Features
-    generateClassFeatures();
+    // Features
+    generateFeatures();
 
     // Check Features Columns
     checkFeatureColumns();
-}
 
+    // Check Prowesses/Spells Columns
+    checkProwessesSpellsColumns();
+
+    // Inventory
+    generateInventory();
+}
+    
 // generate character info section
 function generateCharacterInfo() {
     const nameEl = document.querySelector('.cs-character-name');
@@ -260,6 +285,9 @@ function generateCombatStats() {
     const maxHP = getMaxHitPoints();
     const currentHP = vitals.hitPoints.current !== -1 ? vitals.hitPoints.current : maxHP;
 
+    vitals.hitPoints.current = currentHP;
+    vitals.hitPoints.max = maxHP;
+
     if (hpCurrentEl && vitals?.hitPoints) {
         hpCurrentEl.textContent = currentHP || 10;
     }
@@ -291,7 +319,7 @@ function generateCombatStats() {
     );
     if (absorbTrait && coreTraits) {
         const valueEl = absorbTrait.querySelector('.cs-value');
-        if (valueEl) valueEl.textContent = getAbsorb();
+        if (valueEl) valueEl.textContent = getAbsorb().totalAbsorb;
     }
 
     // Proficiency Bonus
@@ -325,11 +353,22 @@ function getMaxHitPoints() {
 }
 
 function getArmorClass() {
-    const coreTraits = characterData.coreTraits;
-    let armorClass = coreTraits.armorClass;
-    armorClass += getAbilityModifier('dexterity');
+    let baseArmorClass = 10;
+    let ability = 'dexterity';
+    let bonusAC = 0;
+    let maxAbilityBonus = 99;
 
-    return armorClass;
+    characterData.inventory.equipment.filter(i => i.equipped).forEach(i => {
+        const itemData = gameData.items.byId[i.id];
+        if (itemData?.type === 'armor') {
+            baseArmorClass = itemData.armorTraits.AC ?? baseArmorClass;
+            ability = itemData.armorTraits.ability ?? ability;
+            bonusAC = itemData.armorTraits.bonusAC ?? bonusAC;
+            maxAbilityBonus = itemData.armorTraits.maxAbilityBonus ?? maxAbilityBonus;
+        }
+    });
+
+    return baseArmorClass + bonusAC + Math.min(getAbilityModifier(ability), maxAbilityBonus);
 }
 
 function getInitiative() {
@@ -341,10 +380,23 @@ function getInitiative() {
 }
 
 function getAbsorb() {
-    const coreTraits = characterData.coreTraits;
-    let absorb = coreTraits.absorb;
+    let absorb = 0;
+    let bonusAbsorb = 0;
+    let isArmorEquipped = false;
 
-    return absorb;
+    characterData.inventory.equipment.filter(i => i.equipped).forEach(i => {
+        const itemData = gameData.items.byId[i.id];
+        if (itemData?.type === 'armor') {
+            isArmorEquipped = true;
+            absorb = itemData.armorTraits.absorb ?? absorb;
+            bonusAbsorb = itemData.armorTraits.bonusAbsorb ?? bonusAbsorb;
+        }
+    });
+
+    absorb = absorb + bonusAbsorb;
+    let totalAbsorb = absorb * getProficiencyBonus();
+
+    return {absorb: absorb, totalAbsorb: totalAbsorb};
 }
 
 // generate stress slots
@@ -382,14 +434,14 @@ function generateHeroicInspiration(heroicInspiration) {
     slotsContainer.innerHTML = '';
 
     // Heroic inspiration is stored as a number (current), max is typically 3
-    const maxSlots = 3;
-    const currentSlots = typeof heroicInspiration === 'number' ? heroicInspiration : 0;
+    const maxSlots = heroicInspiration.max;
+    const currentSlots = heroicInspiration.current;
 
     for (let i = 0; i < maxSlots; i++) {
         const slot = document.createElement('div');
         slot.className = 'cs-slot';
         if (i < currentSlots) {
-            slot.style.backgroundColor = 'var(--fg)'; // Filled slot
+            slot.classList.add('filled');
         }
         slotsContainer.appendChild(slot);
     }
@@ -694,7 +746,7 @@ function getToolProficiency() {
 }
 
 function getLanguageProficiency() {
-    const languageProficiency = characterData.calculatedModifiers.languageProficiency;
+    const languageProficiency = characterData.calculatedModifiers.language;
     if (!languageProficiency) return [];
     return languageProficiency;
 }
@@ -709,9 +761,9 @@ function generateAttacks() {
 
     attacksContainer.innerHTML = '';
 
-    equipment.forEach(async item => {
+    equipment.filter(item => item.equipped).forEach(item => {
         const proficiencyBonus = getProficiencyBonus(characterData.characterInfo.level);
-        const itemData = await loadItem(item.name);
+        const itemData = gameData.items.byId[item.id];
 
         console.log("Item data:", itemData);
 
@@ -738,11 +790,32 @@ function generateAttacks() {
     // This is a placeholder for future implementation
 }
 
+function updateAttacks() {
+    generateAttacks();
+}
+
 async function generateAttack(weaponName, attacksContainer) {
    
-    const weaponData = await loadItem(weaponName);
+    const weaponData = gameData.items.byId[weaponName];
     if (!weaponData) return;
 
+}
+
+// generate universal actions
+function generateUniversalActions() {
+    const universalActionsContainer = document.querySelector('#cs-combat-content');
+    if (!universalActionsContainer) return;
+    
+    Object.values(gameData.universal).forEach(universal => {
+        const universalEl = document.createElement('div');
+        const universalDescription = universal.snippet || universal.snippet === '' ? universal.snippet : universal.description;
+        universalEl.className = 'cs-column-card';
+        universalEl.innerHTML = `
+            <div class="cs-column-card-title">${universal.name}</div>
+            <div class="cs-column-card-content">${parseDescription(universalDescription)}</div>
+        `;
+        universalActionsContainer.appendChild(universalEl);
+    });
 }
 
 // generate prowesses/features
@@ -750,7 +823,7 @@ function generateProwesses() {
     const classData = characterData.class;
     if (!classData?.prowesses || classData.prowesses.length === 0) return;
 
-    const prowessesContainer = document.querySelector('#cs-martial-prowesses-content');
+    const prowessesContainer = document.querySelector('#cs-prowesses-content');
     if (!prowessesContainer) return;
 
     // Clear existing prowesses
@@ -758,7 +831,8 @@ function generateProwesses() {
 
     // Note: Prowess descriptions should be loaded from class data at runtime
     // For now, we'll just display the names
-    classData.prowesses.forEach(prowess => {
+    characterData.class.prowesses.forEach(prowess => {
+        console.log("Prowess:", prowess);
         const prowessData = gameData.prowesses.find(p => p.name === prowess.name);
 
         console.log("Prowess data:", prowessData);
@@ -788,58 +862,383 @@ function generateProwesses() {
         prowessesContainer.appendChild(prowessEl);
     });
 }
+function generateFeatures() {
+    
+    generateClassFeatures();
+    generateRaceFeatures();
+    generateBackgroundFeatures();
+    generateFeatFeatures();
+}
 
 function generateClassFeatures() {
-    const classFeatureData = gameData.class.features;
-    const classLevelFeatures = gameData.class.levelFeatures;
-
-    const classLevel = characterData.class.level;
-    if (!classLevelFeatures) return;
-
-    const featuresContainer = document.querySelector('#cs-features-content');
-    if (!featuresContainer) return;
-
-    // Clear existing features
+    const featuresContainer = document.querySelector('#cs-class-features');
+    if (!featuresContainer) console.error('Features container not found');
     featuresContainer.innerHTML = '';
 
-    for (let i = 1; i <= classLevel; i++) {
-        const levelFeatures = classLevelFeatures[i];
-        if (!levelFeatures) continue;
+    const classFeatureData = gameData.class.features;
+    if (!classFeatureData) console.error('Class feature data not found');
 
-        console.log("Level features:", levelFeatures);
-        
-        levelFeatures.forEach(feature => {
-            const featureData = classFeatureData.find(f => f.name === feature);
-            console.log("Feature data:", featureData);
-            if (!featureData) return;
-            
-            const featureEl = document.createElement('div');
+    characterData.class.features.forEach(feature => {
+        const featureData = classFeatureData.find(f => f.name === feature.name);
+        if (!featureData) console.error('Feature data not found');
 
-            const description = parseDescription(featureData.description);
+        if (!featureData.showInSheet) {
+            console.log('Feature not shown in sheet:', feature.name);
+            return;
+        }
 
-            featureEl.className = 'cs-column-card';
-            featureEl.innerHTML = `
-                <div class="cs-column-card-title">${featureData.name || ''}</div>
-                <div class="cs-column-card-content">${description || 'Feature description will be loaded from class data.'}</div>
-            `;
+        const featureEl = generateFeature(feature, featureData, 'class');
+        featuresContainer.appendChild(featureEl);
+    });
+}
 
-            featuresContainer.appendChild(featureEl);
-        });
-    }
+function generateRaceFeatures() {
+    const featuresContainer = document.querySelector('#cs-race-features');
+    if (!featuresContainer) console.error('Features container not found');
+    featuresContainer.innerHTML = '';
+
+    const raceFeatureData = gameData.race.features;
+    if (!raceFeatureData) console.error('Race feature data not found');
+
+    characterData.race.features.forEach(feature => {
+        const featureData = raceFeatureData.find(f => f.name === feature.name);
+        if (!featureData) console.error('Feature data not found');
+
+        if (!featureData.showInSheet) {
+            console.log('Feature not shown in sheet:', feature.name);
+            return;
+        }
+
+        const featureEl = generateFeature(feature, featureData, 'race');
+        featuresContainer.appendChild(featureEl);
+    });
+}
+
+function generateBackgroundFeatures() {
+    const featuresContainer = document.querySelector('#cs-background-features');
+    if (!featuresContainer) console.error('Features container not found');
+    featuresContainer.innerHTML = '';
+
+    const backgroundFeatureData = gameData.background.features;
+    if (!backgroundFeatureData) console.error('Background feature data not found');
+
+    characterData.background.features.forEach(feature => {
+        const featureData = backgroundFeatureData.find(f => f.name === feature.name);
+        if (!featureData) console.error('Feature data not found');
+
+        if (!featureData.showInSheet) {
+            console.log('Feature not shown in sheet:', feature.name);
+            return;
+        }
+
+        const featureEl = generateFeature(feature, featureData, 'background');
+        featuresContainer.appendChild(featureEl);
+    });
+}
+
+function generateFeatFeatures() {
+    const featuresContainer = document.querySelector('#cs-feat-features');
+    if (!featuresContainer) console.error('Features container not found');
+    featuresContainer.innerHTML = '';
+
+    const featFeatureData = gameData.feats;
+    if (!featFeatureData) console.error('Feat feature data not found');
+
+    characterData.feats.forEach(feat => {
+        const featureData = featFeatureData.find(f => f.name === feat.name);
+        if (!featureData) console.error('Feature data not found');
+
+        if (!featureData.showInSheet) {
+            console.log('Feature not shown in sheet:', feat.name);
+            return;
+        }
+
+        const featureEl = generateFeature(feat, featureData, 'feat');
+        featuresContainer.appendChild(featureEl);
+    });
 }
 
 // check if any columns have no content
 function checkFeatureColumns() {
-    const featureColumns = document.querySelectorAll('.cs-section-column');
+    debugger;
+    const actionSections = document.querySelector('#cs-actions-and-features');
+
+    const featureColumns = actionSections.querySelectorAll('.cs-section-column');
     featureColumns.forEach(column => {
-        const content = column.querySelector('.cs-column-content');
-        console.log("Content:", content);
-        if (content.children.length === 0) {
+        const contents = column.querySelectorAll('.cs-column-content');
+        let count = 0; 
+        contents.forEach(content => {
+            console.log("Content:", content);
+            if (content.children.length === 0) {
+                count++;
+            }
+        });
+        if (count === contents.length) {
             column.classList.remove('active');
         }
     });
 }
 
+function checkProwessesSpellsColumns() {
+    const prowessesColumnContent = document.querySelector('#cs-prowesses-content');
+    const spellsColumnContent = document.querySelector('#cs-spells-content');
+
+    const prowessesTitleEl = document.querySelector('#cs-martial-prowesses-title');
+    const spellsTitleEl = document.querySelector('#cs-spells-title');
+
+    if (prowessesColumnContent.children.length === 0) {
+        prowessesTitleEl.classList.add('hidden');
+    } else {
+        prowessesTitleEl.classList.remove('hidden');
+    }
+    if (spellsColumnContent.children.length === 0) {
+        spellsTitleEl.classList.add('hidden');
+    } else {
+        spellsTitleEl.classList.remove('hidden');
+    }
+}
+
+function generateFeature(characterFeature, featureData, source='') {
+    const featureEl = document.createElement('div');
+    const featureDescription = featureData.snippet || featureData.snippet === '' ? featureData.snippet : featureData.description;
+    featureEl.className = 'cs-column-card';
+    featureEl.innerHTML = `
+        <div class="cs-column-card-title">${featureData.name|| ''} <span class="cs-column-card-title-source">${source !== '' ? toTitleCase(source) + " Feature" : ''}</span></div>
+        <div class="cs-column-card-content">${parseDescription(featureDescription) != null ? parseDescription(featureDescription) : 'Feature description will be loaded from class data.'}</div>
+    `;
+    characterFeature.options?.forEach(option => {
+        const optionData = featureData.options?.find(o => o.name === option);
+        const optionDescription = optionData.snippet || optionData.snippet === '' ? optionData.snippet : optionData.description;
+        if (!optionData) console.error('Option data not found');
+        const optionEl = document.createElement('div');
+        optionEl.className = 'cs-column-card-option';
+        optionEl.innerHTML = `
+            <div class="cs-column-card-option-title">${optionData.name || ''}</div>
+            <div class="cs-column-card-option-content">${parseDescription(optionDescription) != null ? parseDescription(optionDescription) : 'Option description will be loaded from class data.'}</div>
+        `;
+        featureEl.appendChild(optionEl);
+    });
+    const modifiersContainer = document.createElement('div');
+    modifiersContainer.className = 'cs-column-card-modifiers';
+    characterFeature.modifiers?.forEach(modifier => {
+        const modifierEl = document.createElement('div');
+        modifierEl.className = 'cs-column-card-modifier';
+        modifierEl.textContent = modifier.value;
+        modifiersContainer.appendChild(modifierEl);
+    });
+    featureEl.appendChild(modifiersContainer);
+    return featureEl;
+}
+
+function generateInventory() {
+    const inventoryContainer = document.querySelector('#cs-inventory-content');
+
+    const equipment = characterData.inventory.equipment;
+    const items = characterData.inventory.items;
+    const currency = characterData.inventory.currency;
+
+    equipment.forEach(item => {
+        const itemData = gameData.items.byId[item.id];
+        const itemNotes = getNotes(itemData);
+        const itemEl = document.createElement('details');
+        itemEl.id = `cs-inventory-item-${item.id}`;
+        itemEl.className = 'cs-inventory-item';
+        itemEl.innerHTML = `
+            <summary class="cs-inventory-item-summary">
+                <input type="checkbox" class="cs-inventory-item-equip-button">
+                <div class="cs-inventory-summary-info">
+                    <div class="cs-inventory-summary-info-title">${item.name}</div>
+                    <div class="cs-inventory-summary-info-type">${item.equipment ? 'Equipment' : 'Item'}</div>
+                </div>
+                <div class="cs-inventory-summary-info-quantity">${item.quantity}</div>
+                <div class="cs-inventory-summary-info-notes"></div>
+            </summary>
+            <div class="cs-inventory-item-content">
+            </div>
+        `;
+        const equipButton = itemEl.querySelector('.cs-inventory-item-equip-button');
+        equipButton.addEventListener('click', () => {
+            equipItem(item);
+        });
+        if (item.equipment) {
+            if (item.equipped) {
+                equipButton.checked = true;
+            } else {
+                equipButton.checked = false;
+            }
+            equipButton.style.visibility = 'visible';
+        } else {
+            equipButton.style.visibility = 'hidden';
+        }
+        
+        const itemNotesEl = itemEl.querySelector('.cs-inventory-summary-info-notes');
+        if (itemNotesEl) {
+            const notesArray = [];
+            itemNotes.forEach(note => {
+                console.log("Note:", note);
+                if (note.displayType === false) {
+                    notesArray.push(`${toTitleCase(note.value)}`);
+                } else {
+                    notesArray.push(`${toTitleCase(note.key)}: ${toTitleCase(note.value)}`);
+                }
+            });
+            itemNotesEl.textContent = notesArray.join(', ');
+        }
+
+        const itemContentEl = itemEl.querySelector('.cs-inventory-item-content');
+        if (itemContentEl) {
+            itemNotes.forEach(note => {
+                const noteEl = document.createElement('div');
+                noteEl.className = 'cs-inventory-item-content-item';
+                if (typeof note.value === 'string') {
+                    noteEl.innerHTML = `<span class="bold">${toTitleCase(note.key)}:</span> ${toTitleCase(note.value)}`;
+                } else {
+                    noteEl.innerHTML = `<span class="bold">${toTitleCase(note.key)}:</span> ${note.value}`;
+                }
+                itemContentEl.appendChild(noteEl);
+            });
+        }
+        
+        inventoryContainer.appendChild(itemEl);
+    });
+
+    items.forEach(item => {
+        const itemData = gameData.items.byId[item.id];
+        const itemNotes = getNotes(itemData);
+        const itemEl = document.createElement('details');
+        itemEl.id = `cs-inventory-item-${item.id}`;
+        itemEl.className = 'cs-inventory-item';
+        itemEl.innerHTML = `
+            <summary class="cs-inventory-item-summary">
+                <input type="checkbox" class="cs-inventory-item-equip-button">
+                <div class="cs-inventory-summary-info">
+                    <div class="cs-inventory-summary-info-title">${item.name}</div>
+                    <div class="cs-inventory-summary-info-type">${item.equipment ? 'Equipment' : 'Item'}</div>
+                </div>
+                <div class="cs-inventory-summary-info-quantity">${item.quantity ? item.quantity : 1}</div>
+                <div class="cs-inventory-summary-info-notes"></div>
+            </summary>
+            <div class="cs-inventory-item-content">
+            </div>
+        `;
+        const equipButton = itemEl.querySelector('.cs-inventory-item-equip-button');
+
+        if (item.equipment) {
+            if (item.equipped) {
+                equipButton.checked = true;
+            } else {
+                equipButton.checked = false;
+            }
+            equipButton.style.visibility = 'visible';
+        } else {
+            equipButton.style.visibility = 'hidden';
+        }
+        const itemNotesEl = itemEl.querySelector('.cs-inventory-summary-info-notes');
+        if (itemNotesEl) {
+            itemNotes.forEach(note => {
+                console.log("Note:", note);
+                const noteEl = document.createElement('div');
+                noteEl.className = 'cs-inventory-summary-info-notes-item';
+                if (note.displayType === false) {
+                    noteEl.textContent = `${note.value}`;
+                } else {
+                    noteEl.textContent = `${note.key}: ${note.value}`;
+                }
+                itemNotesEl.appendChild(noteEl);
+            });
+        }
+        inventoryContainer.appendChild(itemEl);
+    });
+    
+    Object.entries(currency).forEach(([key, value]) => {
+        const currencyItemEl = document.querySelector(`#cs-inventory-currency-${key}`);
+        currencyItemEl.querySelector('.cs-inventory-currency-item-value').textContent = value;
+    });
+}
+
+function equipItem(item) {
+    const itemEl = document.querySelector(`#cs-inventory-item-${item.id}`);
+    const equipButton = itemEl.querySelector('.cs-inventory-item-equip-button');
+    if (equipButton.checked) {
+        item.equipped = true;
+    } else {
+        item.equipped = false;
+    }
+
+    const itemData = gameData.items.byId[item.id];
+
+    if (itemData.type === 'armor') {
+        updateCoreTraits();
+    } else if (itemData.type === 'weapon') {
+        updateAttacks();
+    }
+}
+
+function updateCoreTraits() {
+    const coreTraits = characterData.coreTraits;
+    coreTraits.armorClass = getArmorClass();
+    coreTraits.absorb = getAbsorb();
+    generateCombatStats();
+}
+
+function getNotes(item) {
+    const notes = [];
+    if (!item) {
+        return notes;
+    }
+    if (item.type) {
+        notes.push({key: 'type', value: `${item.type}`, displayType: false});
+    }
+    if (item.equipment) {
+        notes.push({key: 'equipment', value: 'Equipment', displayType: false});
+    }
+
+    if (item.type === 'weapon') {
+        Object.entries(item.weaponTraits).forEach(([key, value]) => {
+            if (typeof value === 'string') {
+                notes.push({key: key, value: `${value}`, displayType: false});
+            } else if (typeof value === 'number') {
+                notes.push({key: key, value: `${value}`, displayType: true});
+            } else if (typeof value === 'array') {
+                value.forEach(v => {
+                    notes.push({key: key, value: `${v}`, displayType: false});
+                });
+            }
+        });
+    } else if (item.type === 'armor') {
+        Object.entries(item.armorTraits).forEach(([key, value]) => {
+            if (typeof value === 'string') {
+                notes.push({key: key, value: `${value}`, displayType: false});
+            } else if (typeof value === 'number') {
+                notes.push({key: key, value: `${value}`, displayType: true});
+            } else if (typeof value === 'array') {
+                value.forEach(v => {
+                    notes.push({key: key, value: `${v}`, displayType: false});
+                });
+            }
+        });
+    }
+    return notes;
+}
+
+function adjustCurrency(button) {
+    const currency = characterData.inventory.currency;
+    const currencyInputEl = document.querySelector('#cs-inventory-currency-input');
+    const currencyInputValue = parseInt(currencyInputEl.value) ? parseInt(currencyInputEl.value) : 1;
+
+    if (!currency[button.dataset.currency] || currency[button.dataset.currency] < 0) {
+        currency[button.dataset.currency] = 0;
+    }
+
+    if (button.dataset.type === 'plus') {
+        currency[button.dataset.currency] = Math.max(currency[button.dataset.currency] + currencyInputValue, 0);
+    } else if (button.dataset.type === 'minus') {
+        currency[button.dataset.currency] = Math.max(currency[button.dataset.currency] - currencyInputValue, 0);
+    }
+
+    const currencyItemEl = document.querySelector(`#cs-inventory-currency-${button.dataset.currency}`);
+    currencyItemEl.querySelector('.cs-inventory-currency-item-value').textContent = currency[button.dataset.currency];
+}
 
 // Initialize when DOM is ready
 document.addEventListener('DOMContentLoaded', async () => {
@@ -934,19 +1333,37 @@ function changeTemporaryHitPoints(input) {
 
 function adjustStressSlots(button) {
     const stressSlots = characterData.vitals.stressSlots;
+    const exhaustionSlots = characterData.vitals.exhaustion;
 
-    const stressSlotsEl = document.querySelector('.cs-stress .cs-slots');
+    const stressSlotsEl = document.querySelector('#cs-stress-slots');
+    const exhaustSlotsEl = document.querySelector('#cs-exhaust-slots');
 
-    if (button.id === 'cs-stress-minus-button' && stressSlots.current > 0) {
-        stressSlots.current--;
-        stressSlotsEl.children[stressSlots.current].classList.remove('filled');
-    } else if (button.id === 'cs-stress-plus-button' && stressSlots.current < stressSlots.max) {
-        stressSlotsEl.children[stressSlots.current].classList.add('filled');
-        stressSlots.current++;
+    if (button.id === 'cs-stress-minus-button') {
+        reduceStressSlots(stressSlots, exhaustionSlots, stressSlotsEl, exhaustSlotsEl);
+    } else if (button.id === 'cs-stress-plus-button') {
+        increaseStressSlots(stressSlots, exhaustionSlots, stressSlotsEl, exhaustSlotsEl);
     }
 
     console.log("Stress slots:", stressSlots);
+    console.log("Exhaustion slots:", exhaustionSlots);
     console.log("Character data stress slots:", characterData.vitals.stressSlots);
+}
+
+function reduceStressSlots(stressSlots, exhaustionSlots, stressSlotsEl, exhaustSlotsEl) {
+    if (stressSlots.current > 0) {
+        stressSlots.current--;
+        stressSlotsEl.children[stressSlots.current].classList.remove('filled');
+    }
+}
+
+function increaseStressSlots(stressSlots, exhaustionSlots, stressSlotsEl, exhaustSlotsEl) {
+    if (stressSlots.current < stressSlots.max) {
+        stressSlotsEl.children[stressSlots.current].classList.add('filled');
+        stressSlots.current++;
+    } else if (stressSlots.current === stressSlots.max && exhaustionSlots.current < exhaustionSlots.max) {
+        exhaustSlotsEl.children[exhaustionSlots.current].classList.add('filled');
+        exhaustionSlots.current++;
+    }
 }
 
 function adjustHeroicInspiration(button) {
@@ -975,4 +1392,44 @@ function useProwess(prowessId) {
     prowessEl.classList.toggle('flipped');
 
     useButton.textContent = prowess.flipped ? 'Reset' : 'Use';
+}
+
+function longRest() {
+    const exhaustionSlots = characterData.vitals.exhaustion;
+    const exhaustionSlotsEl = document.querySelector('#cs-exhaust-slots');
+
+    if (exhaustionSlots.current > 0) {
+        exhaustionSlots.current--;
+        exhaustionSlotsEl.children[exhaustionSlots.current].classList.remove('filled');
+    }
+}
+
+function shortRest() {
+    return;
+}
+
+function showProwesses() {
+    const martialProwessesTitleEl = document.querySelector('#cs-martial-prowesses-title');
+    const spellsTitleEl = document.querySelector('#cs-spells-title');
+    const prowessesContentEl = document.querySelector('#cs-prowesses-content');
+    const spellsContentEl = document.querySelector('#cs-spells-content');
+
+    martialProwessesTitleEl.classList.add('active');
+    spellsTitleEl.classList.remove('active');
+
+    prowessesContentEl.classList.remove('hidden');
+    spellsContentEl.classList.add('hidden');
+}
+
+function showSpells() {
+    const martialProwessesTitleEl = document.querySelector('#cs-martial-prowesses-title');
+    const spellsTitleEl = document.querySelector('#cs-spells-title');
+    const prowessesContentEl = document.querySelector('#cs-prowesses-content');
+    const spellsContentEl = document.querySelector('#cs-spells-content');
+
+    martialProwessesTitleEl.classList.remove('active');
+    spellsTitleEl.classList.add('active');
+
+    prowessesContentEl.classList.add('hidden');
+    spellsContentEl.classList.remove('hidden');
 }

@@ -9,19 +9,27 @@
   "features": [
     {
       "name": "Age",
-      "description": "Humans reach adulthood in their late teens and live less than a century."
+      "showInSheet": false,
+      "description": "Humans reach adulthood in their late teens and live less than a century.",
+      "snippet": "Humans reach adulthood in their late teens and live less than a century."
     },
     {
       "name": "Size",
-      "description": "Humans vary widely in height and build, from barely 5 feet to well over 6 feet tall. Regardless of your position in that range, your size is Medium."
+      "showInSheet": false,
+      "description": "Humans vary widely in height and build, from barely 5 feet to well over 6 feet tall. Regardless of your position in that range, your size is Medium.",
+      "snippet": "Humans vary widely in height and build, from barely 5 feet to well over 6 feet tall. Regardless of your position in that range, your size is Medium."
     },
     {
       "name": "Speed",
-      "description": "Your base walking speed is 30 feet."
+      "showInSheet": false,
+      "description": "Your base walking speed is 30 feet.",
+      "snippet": "Your base walking speed is 30 feet."
     },
     {
       "name": "Languages",
-      "description": "You can speak, read, and write Common.",
+      "showInSheet": true,
+      "description": "You can speak, read, and write Common. You can choose one additional language.",
+      "snippet": "You can speak, read, and write Common. You can choose one additional language.",
       "modifiers": [
         {
           "type": "language",
@@ -37,11 +45,15 @@
     },
     {
       "name": "Humanity's Hope",
-      "description": "When you take the Prepare move during a rest with another companion, the other may gain an additional Heroic Inspiration."
+      "showInSheet": true,
+      "description": "When you take the Prepare move during a rest with another companion, the other may gain an additional Heroic Inspiration.",
+      "snippet": "When you take the Prepare move during a rest with another companion, the other may gain an additional Heroic Inspiration."
     },
     {
       "name": "Versatile",
+      "showInSheet": true,
       "description": "You can choose an additional Origin Feat.",
+      "snippet": "You can choose an additional Origin Feat.",
       "modifiers": [
         {
           "type": "originFeat",
