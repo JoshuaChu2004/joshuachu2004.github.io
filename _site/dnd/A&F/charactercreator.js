@@ -1520,7 +1520,10 @@ function generateFeature(gameFeature, characterFeature, source, subsource = null
     
     if (featureHasOptions(gameFeature)) {
         choicesCount = gameFeature.count || 1;
-        selectedCount = characterFeature.options ? characterFeature.options.filter(o => o).length : 0;
+        selectedCount = characterFeature.options ? characterFeature.options.filter(o => {
+            if (!o) return false;
+            return typeof o === 'string' ? true : (o.optionName ? true : false);
+        }).length : 0;
     } else if (featureHasChoices(gameFeature)) {
         const choiceModifiers = getChoiceModifiers(gameFeature);
         choicesCount = choiceModifiers.length;
@@ -1587,8 +1590,13 @@ function generateFeature(gameFeature, characterFeature, source, subsource = null
                 optionEl.value = option.name;
                 optionEl.textContent = option.name;
                 // Mark as selected if this option is already chosen
-                if (characterFeature.options && characterFeature.options[i] === option.name) {
-                    optionEl.selected = true;
+                if (characterFeature.options && characterFeature.options[i]) {
+                    const optionName = typeof characterFeature.options[i] === 'string' 
+                        ? characterFeature.options[i] 
+                        : characterFeature.options[i].optionName;
+                    if (optionName === option.name) {
+                        optionEl.selected = true;
+                    }
                 }
                 selectEl.appendChild(optionEl);
             });
@@ -1600,9 +1608,18 @@ function generateFeature(gameFeature, characterFeature, source, subsource = null
             
             // Set initial description if option is already selected
             if (characterFeature.options && characterFeature.options[i]) {
-                const selectedOption = gameFeature.options.find(o => o.name === characterFeature.options[i]);
+                const optionName = typeof characterFeature.options[i] === 'string' 
+                    ? characterFeature.options[i] 
+                    : characterFeature.options[i].optionName;
+                const selectedOption = gameFeature.options.find(o => o.name === optionName);
                 if (selectedOption) {
                     descriptionEl.innerHTML = parseDescription(selectedOption.description, 'charactercreator');
+                    
+                    // Generate choices UI if the selected option has choice modifiers
+                    const characterOption = typeof characterFeature.options[i] === 'object' 
+                        ? characterFeature.options[i] 
+                        : { optionName: optionName, choices: [] };
+                    generateOptionChoices(gameFeature.name, i, selectedOption, characterOption, source, subsource, descriptionEl);
                 }
             }
             
@@ -1886,6 +1903,184 @@ function getGameItem(itemId) {
 }
 
 /**
+ * Generate choice UI for a selected option that has choice modifiers
+ * @param {string} featureName - Name of the feature
+ * @param {number} choiceIndex - Index of the option choice
+ * @param {object} selectedOption - The selected option data from game data
+ * @param {object} characterOption - The character's option data
+ * @param {string} source - Source type ('class', 'race', 'background')
+ * @param {string} subsource - Subsource (e.g., 'subclass')
+ * @param {HTMLElement} container - Container to append choices to
+ */
+function generateOptionChoices(featureName, choiceIndex, selectedOption, characterOption, source, subsource, container) {
+    if (!selectedOption.modifiers || !Array.isArray(selectedOption.modifiers)) return;
+    
+    // Get choice modifiers from the option
+    const choiceModifiers = selectedOption.modifiers.filter(modifier => 
+        modifier.subType === 'choose' || (modifier.from && Array.isArray(modifier.from))
+    );
+    
+    if (choiceModifiers.length === 0) return;
+    
+    // Remove existing choice container if it exists
+    const existingContainer = container.parentElement.querySelector('.cc-manager-feature-content-option-choices');
+    if (existingContainer) {
+        existingContainer.remove();
+    }
+    
+    // Create container for option choices
+    const choicesContainer = document.createElement('div');
+    choicesContainer.classList.add('cc-manager-feature-content-option-choices');
+    
+    choiceModifiers.forEach((modifier, i) => {
+        const choiceEl = document.createElement('div');
+        choiceEl.classList.add('cc-manager-feature-content-option-choice');
+        choiceEl.id = `cc-manager-feature-content-option-choice-${sanitizeFeatureName(featureName)}-${choiceIndex}-${i}`;
+        choiceEl.dataset.choiceIndex = i;
+        
+        const selectEl = document.createElement('select');
+        selectEl.classList.add('cc-manager-feature-content-option-choice-select');
+        selectEl.dataset.featureName = featureName;
+        selectEl.dataset.optionChoiceIndex = choiceIndex;
+        selectEl.dataset.choiceIndex = i;
+        selectEl.dataset.source = source;
+        selectEl.dataset.subsource = subsource;
+        selectEl.onchange = () => handleOptionChoiceSelection(featureName, choiceIndex, i, modifier.type, selectEl.value, source, subsource);
+        
+        // Add default option
+        const defaultOption = document.createElement('option');
+        defaultOption.value = -1;
+        defaultOption.textContent = 'Choose an Option';
+        selectEl.appendChild(defaultOption);
+        
+        // Add all available options
+        if (modifier.from && Array.isArray(modifier.from)) {
+            modifier.from.forEach(choice => {
+                const optionEl = document.createElement('option');
+                optionEl.value = choice;
+                optionEl.textContent = choice;
+                // Mark as selected if already chosen
+                if (characterOption.choices && characterOption.choices[i] && characterOption.choices[i].value === choice) {
+                    optionEl.selected = true;
+                }
+                selectEl.appendChild(optionEl);
+            });
+        }
+        
+        // Show description of selected option (for feats)
+        const descriptionEl = document.createElement('div');
+        descriptionEl.classList.add('cc-manager-feature-content-option-choice-description', 'paragraph');
+        descriptionEl.id = `cc-manager-feature-content-option-choice-description-${sanitizeFeatureName(featureName)}-${choiceIndex}-${i}`;
+        
+        // Set initial description if option is already selected
+        if (characterOption.choices && characterOption.choices[i] && characterOption.choices[i].value) {
+            const selectedValue = characterOption.choices[i].value;
+            // Handle feat descriptions
+            if (modifier.type === 'feat' || modifier.type === 'originFeat') {
+                const featData = gameData.feats.find(f => f.name === selectedValue);
+                if (featData) {
+                    descriptionEl.innerHTML = parseDescription(featData.description, 'charactercreator');
+                }
+            }
+        }
+        
+        choiceEl.appendChild(selectEl);
+        choiceEl.appendChild(descriptionEl);
+        choicesContainer.appendChild(choiceEl);
+    });
+    
+    container.parentElement.appendChild(choicesContainer);
+}
+
+/**
+ * Handle choice selection within an option
+ * @param {string} featureName - Name of the feature
+ * @param {number} optionChoiceIndex - Index of the option choice
+ * @param {number} choiceIndex - Index of the choice within the option
+ * @param {string} type - Selected modifier type
+ * @param {string} value - Selected modifier value
+ * @param {string} source - Source type ('class', 'race', 'background')
+ * @param {string} subsource - Subsource (e.g., 'subclass')
+ */
+function handleOptionChoiceSelection(featureName, optionChoiceIndex, choiceIndex, type, value, source = 'class', subsource = null) {
+    const characterFeature = getCharacterFeature(featureName, source);
+    if (!characterFeature) return;
+    
+    // Get the option data
+    const characterOption = characterFeature.options[optionChoiceIndex];
+    if (!characterOption) return;
+    
+    // Initialize choices array if needed
+    if (!characterOption.choices) {
+        characterOption.choices = [];
+    }
+    
+    // Update the selected choice
+    characterOption.choices[choiceIndex] = {
+        type: type,
+        value: value,
+    } || null;
+    
+    // Update the choice description if its a Feat
+    if (type === 'feat' || type === 'originFeat') {
+        if (value == -1) {
+            // Remove feat if deselected
+            const featToRemove = characterData.feats.find(f => 
+                f.source.feature === featureName && 
+                f.source.optionChoiceIndex === optionChoiceIndex && 
+                f.source.choiceIndex === choiceIndex
+            );
+            if (featToRemove) {
+                removeFeat(featToRemove.source);
+            }
+        } else {
+            const featData = gameData.feats.find(f => f.name === value);
+            
+            let characterFeat = characterData.feats.find(f => 
+                f.source.feature === featureName && 
+                f.source.optionChoiceIndex === optionChoiceIndex && 
+                f.source.choiceIndex === choiceIndex
+            );
+            
+            if (!characterFeat) {
+                characterFeat = {
+                    name: value,
+                    source: {
+                        type: source,
+                        feature: featureName,
+                        optionChoiceIndex: optionChoiceIndex,
+                        choiceIndex: choiceIndex
+                    },
+                    modifiers: [],
+                    options: []
+                };
+                characterData.feats.push(characterFeat);
+            } else {
+                // Update existing feat name if changed
+                characterFeat.name = value;
+            }
+            
+            const choiceEl = document.querySelector(`#cc-manager-feature-content-option-choice-${sanitizeFeatureName(featureName)}-${optionChoiceIndex}-${choiceIndex}`);
+            
+            if (featData && choiceEl) {
+                generateFeature(featData, characterFeat, 'feats', null, choiceEl);
+            } else if (choiceEl) {
+                const existingFeature = choiceEl.querySelector('.cc-manager-feature');
+                if (existingFeature) {
+                    existingFeature.remove();
+                }
+            }
+        }
+    }
+    
+    // Update modifiers
+    updateModifiers();
+
+    updateProwesses();
+    updateSpells();
+}
+
+/**
  * Handle option selection from a dropdown
  * @param {string} featureName - Name of the feature
  * @param {number} choiceIndex - Index of the choice
@@ -1901,8 +2096,19 @@ function handleOptionSelection(featureName, choiceIndex, optionName, source = 'c
         characterFeature.options = [];
     }
     
-    // Update the selected option
-    characterFeature.options[choiceIndex] = optionName || null;
+    // Update the selected option - store as object to support nested choices
+    if (optionName) {
+        // Initialize option object if it doesn't exist or if changing option
+        if (!characterFeature.options[choiceIndex] || characterFeature.options[choiceIndex].optionName !== optionName) {
+            characterFeature.options[choiceIndex] = {
+                optionName: optionName,
+                choices: []
+            };
+        }
+    } else {
+        // Clear option if deselected
+        characterFeature.options[choiceIndex] = null;
+    }
     
     // Update the description display
     const sanitizedName = sanitizeFeatureName(featureName);
@@ -1914,17 +2120,28 @@ function handleOptionSelection(featureName, choiceIndex, optionName, source = 'c
                 const selectedOption = gameFeature.options.find(o => o.name === optionName);
                 if (selectedOption) {
                     descriptionEl.innerHTML = parseDescription(selectedOption.description, 'charactercreator');
+                    
+                    // Generate choices UI if the selected option has choice modifiers
+                    generateOptionChoices(featureName, choiceIndex, selectedOption, characterFeature.options[choiceIndex], source, subsource, descriptionEl);
                 }
             }
         } else {
             descriptionEl.innerHTML = '';
+            // Remove any existing choice UI when option is deselected
+            const choiceContainer = descriptionEl.parentElement.querySelector('.cc-manager-feature-content-option-choices');
+            if (choiceContainer) {
+                choiceContainer.remove();
+            }
         }
     }
     
     // Update the summary to reflect selected count
     const featureEl = document.querySelector(`[data-feature-name="${featureName}"]`);
     if (featureEl) {
-        const selectedCount = characterFeature.options.filter(o => o).length;
+        const selectedCount = characterFeature.options.filter(o => {
+            if (!o) return false;
+            return typeof o === 'string' ? true : (o.optionName ? true : false);
+        }).length;
         const gameFeature = getGameFeature(featureName, source);
         const choicesCount = gameFeature?.count || 1;
         const metaItem = featureEl.querySelector('.cc-manager-feature-summary-meta-item');
@@ -2072,7 +2289,17 @@ function removeSubclass() {
 }
 
 function removeFeat(source) {
-    const feat = characterData.feats.find(f => f.source.feature === source.feature && f.source.choiceIndex === source.choiceIndex);
+    const feat = characterData.feats.find(f => {
+        if (f.source.feature !== source.feature) return false;
+        // Handle both old format (choiceIndex) and new format (optionChoiceIndex + choiceIndex)
+        if (source.choiceIndex !== undefined) {
+            return f.source.choiceIndex === source.choiceIndex;
+        } else if (source.optionChoiceIndex !== undefined && source.choiceIndex !== undefined) {
+            return f.source.optionChoiceIndex === source.optionChoiceIndex && 
+                   f.source.choiceIndex === source.choiceIndex;
+        }
+        return false;
+    });
     if (feat) {
         characterData.feats.splice(characterData.feats.indexOf(feat), 1);
     }
@@ -2299,12 +2526,22 @@ function updateModifiers() {
             
             // If feature has options, extract modifiers from selected options
             if (featureHasOptions(gameFeature) && characterFeature.options && Array.isArray(characterFeature.options)) {
-                characterFeature.options.forEach(optionName => {
+                characterFeature.options.forEach((optionData, optionIndex) => {
+                    if (!optionData) return;
+                    
+                    // Handle both old format (string) and new format (object)
+                    const optionName = typeof optionData === 'string' ? optionData : optionData.optionName;
                     if (!optionName) return;
                     
                     const option = gameFeature.options.find(o => o.name === optionName);
                     if (option && option.modifiers) {
                         option.modifiers.forEach(modifier => {
+                            // Skip choice modifiers - they're handled separately
+                            if (modifier.subType === 'choose' || (modifier.from && Array.isArray(modifier.from))) {
+                                return;
+                            }
+                            
+                            // Direct modifiers from the option
                             const modifierData = { ...modifier };
                             modifierData.source = {
                                 source: source,
@@ -2316,6 +2553,37 @@ function updateModifiers() {
                                 characterData.modifiers.push(modifierData);
                             }
                         });
+                        
+                        // Process choices within the option
+                        if (optionData.choices && Array.isArray(optionData.choices)) {
+                            const choiceModifiers = option.modifiers.filter(mod => 
+                                mod.subType === 'choose' || (mod.from && Array.isArray(mod.from))
+                            );
+                            
+                            optionData.choices.forEach((selectedChoice, choiceIndex) => {
+                                if (!selectedChoice || choiceIndex >= choiceModifiers.length) return;
+                                
+                                const choiceModifier = choiceModifiers[choiceIndex];
+                                if (!choiceModifier) return;
+                                
+                                // Create modifier from the selected choice
+                                const modifierData = {
+                                    type: selectedChoice.type,
+                                    value: selectedChoice.value,
+                                    bonus: choiceModifier.bonus,
+                                    source: {
+                                        source: source,
+                                        subsource: subsource,
+                                        feature: characterFeature.name,
+                                        option: optionName,
+                                        choiceIndex: choiceIndex,
+                                    }
+                                };
+                                if (modifierData.value != -1) {
+                                    characterData.modifiers.push(modifierData);
+                                }
+                            });
+                        }
                     }
                 });
             }
@@ -2373,12 +2641,22 @@ function updateModifiers() {
             
             // If feature has options, extract modifiers from selected options
             if (featureHasOptions(gameFeature) && characterFeature.options && Array.isArray(characterFeature.options)) {
-                characterFeature.options.forEach(optionName => {
+                characterFeature.options.forEach((optionData, optionIndex) => {
+                    if (!optionData) return;
+                    
+                    // Handle both old format (string) and new format (object)
+                    const optionName = typeof optionData === 'string' ? optionData : optionData.optionName;
                     if (!optionName) return;
                     
                     const option = gameFeature.options.find(o => o.name === optionName);
                     if (option && option.modifiers) {
                         option.modifiers.forEach(modifier => {
+                            // Skip choice modifiers - they're handled separately
+                            if (modifier.subType === 'choose' || (modifier.from && Array.isArray(modifier.from))) {
+                                return;
+                            }
+                            
+                            // Direct modifiers from the option
                             const modifierData = { ...modifier };
                             modifierData.source = {
                                 source: 'feats',
@@ -2390,6 +2668,37 @@ function updateModifiers() {
                                 characterData.modifiers.push(modifierData);
                             }
                         });
+                        
+                        // Process choices within the option
+                        if (optionData.choices && Array.isArray(optionData.choices)) {
+                            const choiceModifiers = option.modifiers.filter(mod => 
+                                mod.subType === 'choose' || (mod.from && Array.isArray(mod.from))
+                            );
+                            
+                            optionData.choices.forEach((selectedChoice, choiceIndex) => {
+                                if (!selectedChoice || choiceIndex >= choiceModifiers.length) return;
+                                
+                                const choiceModifier = choiceModifiers[choiceIndex];
+                                if (!choiceModifier) return;
+                                
+                                // Create modifier from the selected choice
+                                const modifierData = {
+                                    type: selectedChoice.type,
+                                    value: selectedChoice.value,
+                                    bonus: choiceModifier.bonus,
+                                    source: {
+                                        source: 'feats',
+                                        subsource: null,
+                                        feature: characterFeature.name,
+                                        option: optionName,
+                                        choiceIndex: choiceIndex,
+                                    }
+                                };
+                                if (modifierData.value != -1) {
+                                    characterData.modifiers.push(modifierData);
+                                }
+                            });
+                        }
                     }
                 });
             }
@@ -2903,6 +3212,15 @@ function getDefaultCalculatedModifiers() {
             bonus: 0,
         },
         meleeWeaponAttack: {
+            bonus: 0,
+        },
+        bonusStressSlots: {
+            bonus: 0,
+        },
+        bonusInitiative: {
+            bonus: 0,
+        },
+        innateAbsorb: {
             bonus: 0,
         },
         armorAbsorb: {

@@ -484,6 +484,7 @@ async function loadCharacterGameData(characterData) {
             spells: [],
             cantrips: [],
         },
+        subclass: null,
         universal: null,
         items: await loadAllItems()
     };
@@ -491,6 +492,10 @@ async function loadCharacterGameData(characterData) {
     // Load class
     if (characterData.class?.name) {
         gameData.class = await loadClass(characterData.class.name);
+    }
+
+    if (characterData.class?.subclass?.name) {
+        gameData.subclass = await loadSubclass(characterData.class.subclass.name);
     }
 
     // Load race
@@ -549,6 +554,17 @@ async function loadCharacterGameData(characterData) {
                     spellsList.spells.push(spellName);
                 }
             });
+        });
+
+        Object.entries(characterData.class.spells.spells).forEach(([key, value]) => {
+            if (spellsList.spells.find(s => s.name === value.name) === undefined) {
+                spellsList.spells.push(value.name);
+            }
+        });
+        Object.entries(characterData.class.spells.cantrips).forEach(([key, value]) => {
+            if (spellsList.cantrips.find(c => c.name === value.name) === undefined) {
+                spellsList.cantrips.push(value.name);
+            }
         });
 
         for (const spellName of spellsList.cantrips) {

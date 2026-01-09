@@ -20,7 +20,7 @@
         "name": "Light Domain Spells",
         "level": 1,
         "type": "feature",
-        "showInSheet": true,
+        "showInSheet": false,
         "description": "| Level | Features |\n|-------|----------|\n| 1st Level | Burning Hands, Faerie Fire |\n| 3rd Level | Flaming Sphere, Scorching Ray |\n| 5th Level | Daylight, Fireball |\n| 7th Level | Guardian of Faith, Wall of Fire |\n| 9th Level | Flame Strike, Scrying |",
         "snippet": "",
         "spells": [

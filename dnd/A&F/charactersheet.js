@@ -1062,6 +1062,7 @@ function generateSpells() {
 function generateFeatures() {
     
     generateClassFeatures();
+    generateSubclassFeatures();
     generateRaceFeatures();
     generateBackgroundFeatures();
     generateFeatFeatures();
@@ -1085,6 +1086,28 @@ function generateClassFeatures() {
         }
 
         const featureEl = generateFeature(feature, featureData, 'class');
+        featuresContainer.appendChild(featureEl);
+    });
+}
+
+function generateSubclassFeatures() {
+    const featuresContainer = document.querySelector('#cs-subclass-features');
+    if (!featuresContainer) console.error('Features container not found');
+    featuresContainer.innerHTML = '';
+
+    const subclassFeatureData = gameData.subclass.features;
+    if (!subclassFeatureData) console.error('Subclass feature data not found');
+
+    characterData.class.subclass.features.forEach(feature => {
+        const featureData = subclassFeatureData.find(f => f.name === feature.name);
+        if (!featureData) console.error('Feature data not found');
+
+        if (!featureData.showInSheet) {
+            console.log('Feature not shown in sheet:', feature.name);
+            return;
+        }
+
+        const featureEl = generateFeature(feature, featureData, 'subclass');
         featuresContainer.appendChild(featureEl);
     });
 }
@@ -1228,6 +1251,16 @@ function generateFeature(characterFeature, featureData, source='') {
         modifierEl.textContent = modifier.value;
         modifiersContainer.appendChild(modifierEl);
     });
+    
+    const subclassContainer = document.createElement('div');
+    subclassContainer.className = 'cs-column-card-modifiers';
+    if (characterFeature.subclass) {
+        const subclassEl = document.createElement('div');
+        subclassEl.className = 'cs-column-card-modifier';
+        subclassEl.textContent = characterFeature.subclass.name;
+        subclassContainer.appendChild(subclassEl);
+    }
+    featureEl.appendChild(subclassContainer);
     featureEl.appendChild(modifiersContainer);
     return featureEl;
 }

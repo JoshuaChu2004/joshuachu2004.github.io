@@ -2654,7 +2654,8 @@ tr.hidden{
     gap: 4px;
 }
 
-.cc-manager-feature-content-choice-select {
+.cc-manager-feature-content-choice-select,
+.cc-manager-feature-content-option-choice-select {
     width: 100%;
     padding: 4px;
     font-size: 14px;

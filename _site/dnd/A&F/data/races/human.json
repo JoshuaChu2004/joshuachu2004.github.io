@@ -27,7 +27,7 @@
     },
     {
       "name": "Languages",
-      "showInSheet": true,
+      "showInSheet": false,
       "description": "You can speak, read, and write Common. You can choose one additional language.",
       "snippet": "You can speak, read, and write Common. You can choose one additional language.",
       "modifiers": [

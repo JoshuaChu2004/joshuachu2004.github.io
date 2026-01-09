@@ -91,6 +91,102 @@
         "snippet": "As a conduit for divine power, you can cast cleric spells."
       },
       {
+        "name": "Trait Improvement",
+        "level": 2,
+        "type": "option",
+        "count": 1,
+        "showInSheet": true,
+        "description": "When you reach 2nd level, and again at 4th, 6th, 8th, 10th, 12th, 14th, 16th, and 19th level, you can improve upon one of your traits listed below. You have the following choices:\n\n- Gain an additional Stress Slot\n- Gain a +1 bonus to a Saving Throw\n- Gain a +1 bonus to your innate Absorb, to a maximum of your proficiency bonus.\n- Gain a +1 bonus to your Initiative\n- Gain proficiency in a skill, tool, or language. This option may only be chosen twice.",
+        "snippet": "",
+        "options": [
+          {
+            "name": "Gain an additional Stress Slot",
+            "description": "You gain an additional Stress Slot.",
+            "snippet": "You gain an additional Stress Slot.",
+            "modifiers": [
+              {
+                "type": "bonusStressSlots",
+                "subType": "granted",
+                "bonus": 1
+              }
+            ]
+          },
+          {
+            "name": "Gain a +1 bonus to a Saving Throw",
+            "description": "You gain a +1 bonus to a Saving Throw.",
+            "snippet": "You gain a +1 bonus to a Saving Throw.",
+            "modifiers": [
+              {
+                "type": "savingThrowIncrease",
+                "subType": "choose",
+                "bonus": 1,
+                "from": ["Fortitude", "Reflex", "Will"]
+              }
+            ]
+          },
+          {
+            "name": "Gain a +1 bonus to your innate Absorb, to a maximum of your proficiency bonus.",
+            "description": "You gain a +1 bonus to your innate Absorb, to a maximum of your proficiency bonus.",
+            "snippet": "You gain a +1 bonus to your innate Absorb, to a maximum of your proficiency bonus.",
+            "modifiers": [
+              {
+                "type": "innateAbsorb",
+                "subType": "granted",
+                "bonus": 1
+              }
+            ]
+          },
+          {
+            "name": "Gain a +1 bonus to your Initiative",
+            "description": "You gain a +1 bonus to your Initiative.",
+            "snippet": "You gain a +1 bonus to your Initiative.",
+            "modifiers": [
+              {
+                "type": "bonusInitiative",
+                "subType": "granted",
+                "bonus": 1
+              }
+            ]
+          },
+          {
+            "name": "Gain proficiency in a skill.",
+            "description": "You gain proficiency in a skill.",
+            "snippet": "You gain proficiency in a skill.",
+            "modifiers": [
+              {
+                "type": "skillProficiency",
+                "subType": "choose",
+                "from": ["Acrobatics", "Animal Handling", "Arcana", "Athletics", "Deception", "History", "Insight", "Intimidation", "Investigation", "Medicine", "Nature", "Perception", "Performance", "Persuasion", "Religion", "Sleight of Hand", "Stealth", "Survival"]
+              }
+            ]
+          },
+          {
+            "name": "Gain proficiency in a tool.",
+            "description": "You gain proficiency in a tool.",
+            "snippet": "You gain proficiency in a tool.",
+            "modifiers": [
+              {
+                "type": "toolProficiency",
+                "subType": "choose",
+                "from": ["Alchemist's supplies", "Brewer's supplies", "Calligrapher's supplies", "Carpenter's tools", "Cartographer's tools", "Cobbler's tools", "Cook's utensils", "Glassblower's tools", "Jeweler's tools", "Leatherworker's tools", "Mason's tools", "Painter's supplies", "Potter's tools", "Smith's tools", "Tinker's tools", "Weaver's tools", "Woodcarver's tools", "Dice set", "Dragonchess set", "Playing card set", "Three-Dragon Ante set", "Bagpipes", "Drum", "Dulcimer", "Flute", "Lute", "Lyre", "Horn", "Pan flute", "Shawm", "Viol", "Disguise kit", "Forgery kit", "Herbalism kit", "Navigator's tools", "Poisoner's kit", "Thieves' tools"]
+              }
+            ]
+          },
+          {
+            "name": "Gain proficiency in a language.",
+            "description": "You gain proficiency in a language.",
+            "snippet": "You gain proficiency in a language.",
+            "modifiers": [
+              {
+                "type": "languageProficiency",
+                "subType": "choose",
+                "from": ["Dwarvish", "Elvish", "Giant", "Gnomish", "Goblin", "Halfling", "Orc", "Abyssal", "Celestial", "Deep Speech", "Draconic", "Infernal", "Primordial", "Sylvan", "Undercommon", "Undercommon"]
+              }
+            ]
+          }
+        ]
+      },
+      {
         "name": "Channel Divinity",
         "level": 2,
         "type": "feature",
