@@ -532,20 +532,38 @@ async function loadCharacterGameData(characterData) {
         }
     }
 
-    if (gameData.class.spellInfo.canUseSpells) {
+    if (gameData.class.spellInfo.canCastSpells) {
         console.log("Loading spells for spellcaster class");
+
+        debugger;
+
         const spellsList = {
             spells: [],
             cantrips: [],
         };
-        Object.values(gameData.class.spellInfo.spellList).forEach(level => {
-            level.forEach((spellName) => {
-                const spellData = await loadSpell(spellName);
-                if (spellData) {
-                    spellsList.spells.push(spellData);
+        Object.entries(gameData.class.spellInfo.spellList).forEach(([key, value]) => {
+            value.forEach((spellName) => {
+                if (key === "0") {
+                    spellsList.cantrips.push(spellName);
+                } else {
+                    spellsList.spells.push(spellName);
                 }
             });
         });
+
+        for (const spellName of spellsList.cantrips) {
+            const spellData = await loadSpell(spellName);
+            if (spellData) {
+                gameData.spells.cantrips.push(spellData);
+            }
+        }
+        for (const spellName of spellsList.spells) {
+            const spellData = await loadSpell(spellName);
+            if (spellData) {
+                gameData.spells.spells.push(spellData);
+            }
+        }
+    }
 
     gameData.universal = await loadAllUniversals();
     

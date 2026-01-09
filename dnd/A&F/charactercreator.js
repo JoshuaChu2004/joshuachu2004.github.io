@@ -45,39 +45,43 @@ let characterData = {
         prowesses: [],
         spells: {
             slots: {
-                "1st": {
+                "0": {
                     max: -1,
                     current: -1,
                 },
-                "2nd": {
+                "1": {
                     max: -1,
                     current: -1,
                 },
-                "3rd": {
+                "2": {
                     max: -1,
                     current: -1,
                 },
-                "4th": {
+                "3": {
                     max: -1,
                     current: -1,
                 },
-                "5th": {
+                "4": {
                     max: -1,
                     current: -1,
                 },
-                "6th": {
+                "5": {
                     max: -1,
                     current: -1,
                 },
-                "7th": {
+                "6": {
                     max: -1,
                     current: -1,
                 },
-                "8th": {
+                "7": {
                     max: -1,
                     current: -1,
                 },
-                "9th": {
+                "8": {
+                    max: -1,
+                    current: -1,
+                },
+                "9": {
                     max: -1,
                     current: -1,
                 }
@@ -950,21 +954,21 @@ function generateSpellSlots() {
     const classLevel = parseInt(characterData.class.level);
 
     if (classData.spellInfo.spellGrowthRate === 'full') {
-        spellSlots["1st"].max = Math.min(1 + classLevel, 3);
-        spellSlots["2nd"].max = classLevel >= 3 ? Math.min(-1 + classLevel, 3) : -1;
-        spellSlots["3rd"].max = classLevel >= 5 ? Math.min(-3 + classLevel, 3) : -1;
-        spellSlots["4th"].max = classLevel >= 7 ? Math.min(-6 + classLevel, 3) : -1;
-        spellSlots["5th"].max = classLevel >= 9 ? Math.min(1 + Math.ceil((classLevel - 9) / 8), 3) : -1;
-        spellSlots["6th"].max = classLevel >= 11 ? Math.min(1 + Math.floor((classLevel - 11) / 8), 2) : -1;
-        spellSlots["7th"].max = classLevel >= 13 ? Math.min(12 + Math.ceil((classLevel - 13) / 8), 2) : -1;
-        spellSlots["8th"].max = classLevel >= 15 ? 1 : -1;
-        spellSlots["9th"].max = classLevel >= 17 ? 1 : -1;
+        spellSlots["1"].max = Math.min(1 + classLevel, 3);
+        spellSlots["2"].max = classLevel >= 3 ? Math.min(-1 + classLevel, 3) : -1;
+        spellSlots["3"].max = classLevel >= 5 ? Math.min(-3 + classLevel, 3) : -1;
+        spellSlots["4"].max = classLevel >= 7 ? Math.min(-6 + classLevel, 3) : -1;
+        spellSlots["5"].max = classLevel >= 9 ? Math.min(1 + Math.ceil((classLevel - 9) / 8), 3) : -1;
+        spellSlots["6"].max = classLevel >= 11 ? Math.min(1 + Math.floor((classLevel - 11) / 8), 2) : -1;
+        spellSlots["7"].max = classLevel >= 13 ? Math.min(12 + Math.ceil((classLevel - 13) / 8), 2) : -1;
+        spellSlots["8"].max = classLevel >= 15 ? 1 : -1;
+        spellSlots["9"].max = classLevel >= 17 ? 1 : -1;
     } else if (classData.spellInfo.spellGrowthRate === 'half') {
-        spellSlots["1st"].max = classLevel >= 2 ? Math.min(classLevel, 3) : -1;
-        spellSlots["2nd"].max = classLevel >= 5 ? Math.min(2 + Math.floor((classLevel - 5) / 2), 3) : -1;
-        spellSlots["3rd"].max = classLevel >= 9 ? Math.min(2 + Math.floor((classLevel - 9) / 2), 3) : -1;
-        spellSlots["4th"].max = classLevel >= 13 ? Math.min(1 + Math.floor((classLevel - 13) / 2), 3) : -1;
-        spellSlots["5th"].max = classLevel >= 17 ? Math.min(1 + Math.ceil((classLevel - 17) / 2), 2) : -1;
+        spellSlots["1"].max = classLevel >= 2 ? Math.min(classLevel, 3) : -1;
+        spellSlots["2"].max = classLevel >= 5 ? Math.min(2 + Math.floor((classLevel - 5) / 2), 3) : -1;
+        spellSlots["3"].max = classLevel >= 9 ? Math.min(2 + Math.floor((classLevel - 9) / 2), 3) : -1;
+        spellSlots["4"].max = classLevel >= 13 ? Math.min(1 + Math.floor((classLevel - 13) / 2), 3) : -1;
+        spellSlots["5"].max = classLevel >= 17 ? Math.min(1 + Math.ceil((classLevel - 17) / 2), 2) : -1;
     }
 
     Object.values(spellSlots).forEach(slot => {

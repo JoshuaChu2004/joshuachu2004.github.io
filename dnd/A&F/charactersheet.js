@@ -824,13 +824,14 @@ function generateUniversalActions() {
 // generate prowesses/features
 function generateProwesses() {
     const classData = characterData.class;
-    if (!classData?.prowesses || classData.prowesses.length === 0) return;
 
     const prowessesContainer = document.querySelector('#cs-prowesses-content');
     if (!prowessesContainer) return;
 
     // Clear existing prowesses
     prowessesContainer.innerHTML = '';
+
+    if (!classData?.prowesses || classData.prowesses.length === 0) return;
 
     // Note: Prowess descriptions should be loaded from class data at runtime
     // For now, we'll just display the names
@@ -875,26 +876,154 @@ function sortSpellsByLevel(spells) {
 // generate spells
 function generateSpells() {
     const classData = characterData.class;
-    if (!classData?.spells || classData.spells.length === 0) return;
 
     sortSpellsByLevel(classData.spells.spells);
 
     const spellsContainer = document.querySelector('#cs-spells-content');
     if (!spellsContainer) return;
 
-
     // Clear existing spells
     spellsContainer.innerHTML = '';
+    
+    if (!classData?.spells || classData.spells.length === 0) return;
 
-    const cantripsContainer = document.querySelector('#cs-spells-level-0');
-    if (!cantripsContainer) return;
-    cantripsContainer.innerHTML = '';
+    const spellLevelLabelMap = {
+        '0': 'Cantrip',
+        '1': '1st',
+        '2': '2nd',
+        '3': '3rd',
+        '4': '4th',
+        '5': '5th',
+        '6': '6th',
+        '7': '7th',
+        '8': '8th',
+        '9': '9th',
+    }
+
+    const spellActionMap = {
+        "Major Action": "Maj",
+        "Minor Action": "Min",
+        "Reaction": "R",
+        "Special": "S",
+    }
+
+    const spellDurationMap = {
+        "Instantaneous": "Inst",
+        "Round": "Rnd",
+        "Minute": "Min",
+        "Hour": "Hr",
+        "Day": "Day",
+        "Week": "Wk",
+        "Month": "Mo",
+        "Year": "Yr",
+    }
+
+    Object.entries(characterData.class.spells.slots).forEach(([key, value]) => {
+        if (value.max < 0 && key !== '0') return;
+
+        const spellLevelContainer = document.createElement('div');
+        spellLevelContainer.id = `cs-spells-level-${key}`;
+        spellLevelContainer.className = 'cs-spell-list';
+
+
+        spellLevelContainer.innerHTML = `
+            <div class="cs-spell-list-info">
+                <div class="cs-spell-list-info-title header">${spellLevelLabelMap[key]}</div>
+                <div class="cs-spell-list-info-slots ${key === '0' ? 'hidden' : ''}">
+                    <button class="cs-adjust-button fa-solid fa-minus" data-level="${key}" data-type="minus" onclick="adjustSpellSlots(this)"></button>
+                    <div id="cs-${key}-slots" class="cs-slots"></div>
+                    <button class="cs-adjust-button fa-solid fa-plus" data-level="${key}" data-type="plus" onclick="adjustSpellSlots(this)"></button>
+                </div>
+            </div>
+            <div class="cs-spell-list-headers paragraph bold">
+                <div class="cs-spell-summary-title">Name</div>
+                <div class="cs-spell-summary-casting-time">Time</div>
+                <div class="cs-spell-summary-range">Range</div>
+                <div class="cs-spell-summary-duration">Dur</div>
+                <div class="cs-spell-summary-notes">Notes</div>
+            </div>
+            <div class="cs-spell-list-content"></div>
+        `;
+
+        const slotsEl = spellLevelContainer.querySelector(`#cs-${key}-slots`);
+
+        for (let i = 0; i < value.max; i++) {
+            const slotEl = document.createElement('div');
+            slotEl.className = 'cs-slot';
+            if (i < value.current) {
+                slotEl.classList.add('filled');
+            }
+            slotsEl.appendChild(slotEl);
+        }
+
+        spellsContainer.appendChild(spellLevelContainer);
+    });
+    
+    let spellLevelContainer = document.querySelector('#cs-spells-level-0');
+    let spellListContent = spellLevelContainer.querySelector('.cs-spell-list-content');
 
     classData.spells.cantrips.forEach(cantrip => {
         console.log("Cantrip:", cantrip);
-        const cantripData = gameData.spells.find(s => s.name === cantrip.name);
+        const cantripData = gameData.spells.cantrips.find(s => s.name === cantrip.name);
         console.log("Cantrip data:", cantripData);
+
+        const cantripEl = document.createElement('details');
+        cantripEl.className = 'cs-spell';
+        cantripEl.innerHTML = `
+            <summary class="cs-spell-summary paragraph">
+                <div class="cs-spell-summary-title">${cantripData.name}</div>
+                <div class="cs-spell-summary-casting-time">${spellActionMap[cantripData.castingTime]}</div>
+                <div class="cs-spell-summary-range">${cantripData.range}</div>
+                <div class="cs-spell-summary-duration">${cantripData.durationValue > 0 ? cantripData.durationValue + spellDurationMap[cantripData.durationType] : spellDurationMap[cantripData.durationType]}</div>
+                <div class="cs-spell-summary-notes">${cantripData.notes ? cantripData.notes : ''}</div>
+            </summary>
+            <div class="cs-spell-content">
+                <div class="cs-spell-info">
+                    <div class="cs-spell-info-casting-time"><span class="bold">Casting Time:</span> ${cantripData.castingTime}</div>
+                    <div class="cs-spell-info-range"><span class="bold">Range:</span> ${cantripData.range}</div>
+                    <div class="cs-spell-info-components"><span class="bold">Components:</span> ${cantripData.components}</div>
+                    <div class="cs-spell-info-duration"><span class="bold">Duration:</span> ${cantripData.duration}</div>
+                </div>
+                <div class="cs-spell-description">${cantripData.description ? parseDescription(cantripData.description) : ''}</div>
+            </div>
+        `;
+        spellListContent.appendChild(cantripEl);
     });
+
+    classData.spells.spells.forEach(spell => {
+        console.log("Spell:", spell);
+        const spellData = gameData.spells.spells.find(s => s.name === spell.name);
+        console.log("Spell data:", spellData);
+
+        if (spellLevelContainer.id !== `cs-spells-level-${spellData.level}`) {
+            spellLevelContainer = document.querySelector(`#cs-spells-level-${spellData.level}`);
+            spellListContent = spellLevelContainer.querySelector('.cs-spell-list-content');
+        }
+
+        const spellEl = document.createElement('details');
+        spellEl.className = 'cs-spell';
+        spellEl.innerHTML = `
+            <summary class="cs-spell-summary paragraph">
+                <div class="cs-spell-summary-title">${spellData.name}</div>
+                <div class="cs-spell-summary-casting-time">${spellActionMap[spellData.castingTime]}</div>
+                <div class="cs-spell-summary-range">${spellData.range}</div>
+                <div class="cs-spell-summary-duration">${spellData.durationValue > 0 ? spellData.durationValue + spellDurationMap[spellData.durationType] : spellDurationMap[spellData.durationType]}</div>
+                <div class="cs-spell-summary-notes">${spellData.notes ? spellData.notes : ''}</div>
+            </summary>
+            <div class="cs-spell-content">
+                <div class="cs-spell-info">
+                    <div class="cs-spell-info-casting-time"><span class="bold">Casting Time:</span> ${spellData.castingTime}</div>
+                    <div class="cs-spell-info-range"><span class="bold">Range:</span> ${spellData.range}</div>
+                    <div class="cs-spell-info-components"><span class="bold">Components:</span> ${spellData.components}</div>
+                    <div class="cs-spell-info-duration"><span class="bold">Duration:</span> ${spellData.duration}</div>
+                </div>
+                <div class="cs-spell-description">${spellData.description ? parseDescription(spellData.description) : ''}</div>
+            </div>
+        `;
+        spellListContent.appendChild(spellEl);
+    });
+
+    return;
 
     // Note: Prowess descriptions should be loaded from class data at runtime
     // For now, we'll just display the names
@@ -1048,6 +1177,7 @@ function checkFeatureColumns() {
 }
 
 function checkProwessesSpellsColumns() {
+    debugger;
     const prowessesColumnContent = document.querySelector('#cs-prowesses-content');
     const spellsColumnContent = document.querySelector('#cs-spells-content');
 
@@ -1056,13 +1186,17 @@ function checkProwessesSpellsColumns() {
 
     if (prowessesColumnContent.children.length === 0) {
         prowessesTitleEl.classList.add('hidden');
+        prowessesColumnContent.classList.add('hidden');
     } else {
         prowessesTitleEl.classList.remove('hidden');
+        prowessesColumnContent.classList.remove('hidden');
     }
     if (spellsColumnContent.children.length === 0) {
         spellsTitleEl.classList.add('hidden');
+        spellsColumnContent.classList.add('hidden');
     } else {
         spellsTitleEl.classList.remove('hidden');
+        spellsColumnContent.classList.remove('hidden');
     }
 }
 
@@ -1306,6 +1440,20 @@ function adjustCurrency(button) {
 
     const currencyItemEl = document.querySelector(`#cs-inventory-currency-${button.dataset.currency}`);
     currencyItemEl.querySelector('.cs-inventory-currency-item-value').textContent = currency[button.dataset.currency];
+}
+
+function adjustSpellSlots(button) {
+    const spellLevel = button.dataset.level;
+    const spellSlots = characterData.class.spells.slots[spellLevel];
+
+    const slotsEl = document.querySelector(`#cs-${spellLevel}-slots`);
+    if (button.dataset.type === 'plus' && spellSlots.current < spellSlots.max) {
+        slotsEl.children[spellSlots.current].classList.add('filled');
+        spellSlots.current++;
+    } else if (button.dataset.type === 'minus' && spellSlots.current > 0) {
+        spellSlots.current--;
+        slotsEl.children[spellSlots.current].classList.remove('filled');
+    }
 }
 
 // Initialize when DOM is ready

@@ -5,5 +5,7 @@
     "useTime": "Special",
     "range": "Melee",
     "duration": "Instantaneous",
+    "durationType": "Instantaneous",
+    "durationValue": 0,
     "description": "When you hit a creature with a melee attack, you can have the attack target all creatures within 5 ft. of you. You use the same To Hit roll and damage roll against each creature."
 }

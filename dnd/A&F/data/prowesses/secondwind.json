@@ -5,6 +5,8 @@
     "useTime": "Minor Action",
     "range": "Self",
     "duration": "Instantaneous",
+    "durationType": "Instantaneous",
+    "durationValue": 0,
     "description": "On your turn, you can use a Minor Action to regain hit points equal to 1d10 + your fighter level and recover 1 Stress Slot."
 }
   
