@@ -44,6 +44,44 @@ let characterData = {
         features: [],
         prowesses: [],
         spells: {
+            slots: {
+                "1st": {
+                    max: -1,
+                    current: -1,
+                },
+                "2nd": {
+                    max: -1,
+                    current: -1,
+                },
+                "3rd": {
+                    max: -1,
+                    current: -1,
+                },
+                "4th": {
+                    max: -1,
+                    current: -1,
+                },
+                "5th": {
+                    max: -1,
+                    current: -1,
+                },
+                "6th": {
+                    max: -1,
+                    current: -1,
+                },
+                "7th": {
+                    max: -1,
+                    current: -1,
+                },
+                "8th": {
+                    max: -1,
+                    current: -1,
+                },
+                "9th": {
+                    max: -1,
+                    current: -1,
+                }
+            },
             cantrips: [],
             spells: [],
         },
@@ -469,6 +507,7 @@ function confirmClass() {
     vitals.stressSlots.max = classData.stressSlotsAtFirstLevel;
 
     initializeNewClassLevelFeatures(1);
+    generateSpellSlots();
 
     // Initialize modifiers array
     characterData.modifiers = [];
@@ -899,6 +938,40 @@ function generateSpells() {
         });
         
     }
+}
+
+function generateSpellSlots() {
+    const classData = getGameFeatureData('class');
+    if (!classData) return;
+
+    if (!classData.spellInfo.canCastSpells) return;
+
+    const spellSlots = characterData.class.spells.slots;
+    const classLevel = parseInt(characterData.class.level);
+
+    if (classData.spellInfo.spellGrowthRate === 'full') {
+        spellSlots["1st"].max = Math.min(1 + classLevel, 3);
+        spellSlots["2nd"].max = classLevel >= 3 ? Math.min(-1 + classLevel, 3) : -1;
+        spellSlots["3rd"].max = classLevel >= 5 ? Math.min(-3 + classLevel, 3) : -1;
+        spellSlots["4th"].max = classLevel >= 7 ? Math.min(-6 + classLevel, 3) : -1;
+        spellSlots["5th"].max = classLevel >= 9 ? Math.min(1 + Math.ceil((classLevel - 9) / 8), 3) : -1;
+        spellSlots["6th"].max = classLevel >= 11 ? Math.min(1 + Math.floor((classLevel - 11) / 8), 2) : -1;
+        spellSlots["7th"].max = classLevel >= 13 ? Math.min(12 + Math.ceil((classLevel - 13) / 8), 2) : -1;
+        spellSlots["8th"].max = classLevel >= 15 ? 1 : -1;
+        spellSlots["9th"].max = classLevel >= 17 ? 1 : -1;
+    } else if (classData.spellInfo.spellGrowthRate === 'half') {
+        spellSlots["1st"].max = classLevel >= 2 ? Math.min(classLevel, 3) : -1;
+        spellSlots["2nd"].max = classLevel >= 5 ? Math.min(2 + Math.floor((classLevel - 5) / 2), 3) : -1;
+        spellSlots["3rd"].max = classLevel >= 9 ? Math.min(2 + Math.floor((classLevel - 9) / 2), 3) : -1;
+        spellSlots["4th"].max = classLevel >= 13 ? Math.min(1 + Math.floor((classLevel - 13) / 2), 3) : -1;
+        spellSlots["5th"].max = classLevel >= 17 ? Math.min(1 + Math.ceil((classLevel - 17) / 2), 2) : -1;
+    }
+
+    Object.values(spellSlots).forEach(slot => {
+        slot.current = slot.current == -1 && slot.max != -1 ? 0 : slot.current;
+    });
+
+    console.log('Spell slots:', spellSlots);
 }
 
 function takeProwess(prowessName) {
@@ -3255,6 +3328,7 @@ function changeClassLevel(level) {
         generateProwesses();
         generateSpells();
     }
+    generateSpellSlots();
 }
 
 function initializeNewClassLevelFeatures(level) {

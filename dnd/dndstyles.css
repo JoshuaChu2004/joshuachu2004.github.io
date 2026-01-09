@@ -2092,6 +2092,108 @@ tr.hidden{
     font-weight: 700;
 }
 
+.cs-spell-list {
+    width: 100%;
+}
+
+.cs-spell-list-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.cs-spell-list-info::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--border);
+}
+
+.cs-spell-list-content {
+    padding-top: 8px;
+    width: 100%;
+}   
+
+.cs-spell {
+    width: 100%;
+    border: 1px solid var(--border);
+    padding: 8px;
+    border-radius: 4px;
+}
+
+.cs-spell-summary {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.cs-spell-summary::after {
+    position: absolute;
+    right: 0;
+    content: '▶';
+    font-size: 16px;
+    color: var(--fg);
+    transition: transform 0.2s ease;
+    margin: 0 8px;
+    transform: rotate(0deg);    
+}
+
+.cs-spell[open] .cs-spell-summary::after {
+    transform: rotate(90deg);
+}
+
+.cs-spell[open] .cs-spell-summary {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 8px;
+}
+
+.cs-spell-summary-title {
+}
+
+.cs-spell-summary-casting-time {
+}
+.cs-spell-summary-range {
+}
+.cs-spell-summary-duration {
+}
+.cs-spell-summary-hit-save {
+}
+.cs-spell-summary-notes {
+}
+
+.cs-spell-content {
+}
+
+.cs-spell-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+    padding-top: 8px;
+}
+
+.cs-spell-info::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--border);
+}
+
+
+.cs-spell-description {
+    padding-top: 8px;
+}
+
 /* ==========================================================================
    ASH & FIRE CHARACTER SELECTOR STYLES
    ========================================================================== */

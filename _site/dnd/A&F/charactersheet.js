@@ -210,6 +210,9 @@ function generateCharacterSheet() {
     // Prowesses
     generateProwesses();
 
+    // Spells
+    generateSpells();
+
     // Features
     generateFeatures();
 
@@ -862,6 +865,62 @@ function generateProwesses() {
         prowessesContainer.appendChild(prowessEl);
     });
 }
+
+//sorts spells by level (descending)
+function sortSpellsByLevel(spells) {
+    spells.sort((a, b) => b.level - a.level);
+}
+
+
+// generate spells
+function generateSpells() {
+    const classData = characterData.class;
+    if (!classData?.spells || classData.spells.length === 0) return;
+
+    sortSpellsByLevel(classData.spells.spells);
+
+    const spellsContainer = document.querySelector('#cs-spells-content');
+    if (!spellsContainer) return;
+
+    return;
+
+    // Clear existing spells
+    spellsContainer.innerHTML = '';
+
+    // Note: Prowess descriptions should be loaded from class data at runtime
+    // For now, we'll just display the names
+    classData.spells.spells.forEach(spell => {
+        console.log("Spell:", spell);
+        const spellData = gameData.spells.find(s => s.name === spell.name);
+
+        console.log("Spell data:", spellData);
+        
+        const spellEl = document.createElement('div');
+        spellEl.id = `cs-spell-${spell.name.toLowerCase().replace(/ /g, '-')}`;
+        spellEl.className = 'cs-column-card';
+
+        if (spell.flipped) {
+            prowessEl.classList.add('flipped');
+        }
+        
+        // Parse description as markdown
+        const spellDescription = spellData?.description 
+            ? parseDescription(prowessData.description)
+            : 'Spell description will be loaded from class data.';
+        
+        spellEl.innerHTML = `
+            <div class="cs-column-card-title">${spell.name || ''}</div>
+            <div class="cs-column-card-content">${spellDescription}</div>
+        
+            <div class="cs-card-buttons">
+                <button id="cs-spell-use-button-${spellEl.id}" class="cs-column-card-button ${spell.flipped ? 'flipped' : ''}" onclick="useSpell('${spellEl.id}')" name="${spell.name}">${spell.flipped ? 'Reset' : 'Use'}</button>
+            </div>
+        `;
+
+        spellsContainer.appendChild(spellEl);
+    });
+}
+
 function generateFeatures() {
     
     generateClassFeatures();
