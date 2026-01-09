@@ -480,6 +480,10 @@ async function loadCharacterGameData(characterData) {
         background: null,
         feats: [],
         prowesses: [],
+        spells: {
+            spells: [],
+            cantrips: [],
+        },
         universal: null,
         items: await loadAllItems()
     };
@@ -527,6 +531,21 @@ async function loadCharacterGameData(characterData) {
             }
         }
     }
+
+    if (gameData.class.spellInfo.canUseSpells) {
+        console.log("Loading spells for spellcaster class");
+        const spellsList = {
+            spells: [],
+            cantrips: [],
+        };
+        Object.values(gameData.class.spellInfo.spellList).forEach(level => {
+            level.forEach((spellName) => {
+                const spellData = await loadSpell(spellName);
+                if (spellData) {
+                    spellsList.spells.push(spellData);
+                }
+            });
+        });
 
     gameData.universal = await loadAllUniversals();
     

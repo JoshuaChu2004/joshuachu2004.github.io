@@ -882,10 +882,19 @@ function generateSpells() {
     const spellsContainer = document.querySelector('#cs-spells-content');
     if (!spellsContainer) return;
 
-    return;
 
     // Clear existing spells
     spellsContainer.innerHTML = '';
+
+    const cantripsContainer = document.querySelector('#cs-spells-level-0');
+    if (!cantripsContainer) return;
+    cantripsContainer.innerHTML = '';
+
+    classData.spells.cantrips.forEach(cantrip => {
+        console.log("Cantrip:", cantrip);
+        const cantripData = gameData.spells.find(s => s.name === cantrip.name);
+        console.log("Cantrip data:", cantripData);
+    });
 
     // Note: Prowess descriptions should be loaded from class data at runtime
     // For now, we'll just display the names
