@@ -2117,7 +2117,17 @@ tr.hidden{
 .cs-spell-list-content {
     padding-top: 8px;
     width: 100%;
-}   
+}
+
+.cs-spell-list-headers {
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-transform: uppercase;
+    padding: 0 8px;
+}
 
 .cs-spell {
     width: 100%;
@@ -2154,17 +2164,23 @@ tr.hidden{
 }
 
 .cs-spell-summary-title {
+    width: 25%;
 }
 
 .cs-spell-summary-casting-time {
+    width: 10%;
 }
 .cs-spell-summary-range {
+    width: 10%;
 }
 .cs-spell-summary-duration {
+    width: 10%;
 }
 .cs-spell-summary-hit-save {
+    width: 20%;
 }
 .cs-spell-summary-notes {
+    width: 25%;
 }
 
 .cs-spell-content {
