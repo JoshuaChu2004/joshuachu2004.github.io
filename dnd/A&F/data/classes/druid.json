@@ -1,0 +1,381 @@
+{
+  "name": "Druid",
+  "description": "Whether calling on the elemental forces of nature or emulating the creatures of the animal world, druids are an embodiment of nature's resilience, cunning, and fury. They claim no mastery over nature, but see themselves as extensions of nature's indomitable will.",
+  "classType": "Caster",
+  "hitDie": "d8",
+  "hitPointsAtFirstLevel": 8,
+  "hitPointsFixed": 5,
+  "stressSlotsAtFirstLevel": 3,
+  "prowessInfo": {
+    "canUseProwesses": false,
+    "prowessGrowthRate": null,
+    "prowessAbility": null,
+    "prowessList": null
+  },
+  "spellInfo": {
+    "canCastSpells": true,
+    "casterType": "prepared",
+    "spellGrowthRate": "full",
+    "spellCastingAbility": ["wisdom"],
+    "cantripGrowthRate": "low",
+    "spellList": {
+      "0": [],
+      "1": [],
+      "2": [],
+      "3": [],
+      "4": [],
+      "5": [],
+      "6": [],
+      "7": [],
+      "8": [],
+      "9": []
+    }
+  },
+  "features": [
+    {
+      "name": "Druid Proficiencies",
+      "level": 1,
+      "count": 2,
+      "type": "choice",
+      "showInSheet": false,
+      "description": "**Armor:** Light armor, medium armor, shields\n\n**Weapons:** Clubs, daggers, darts, javelins, maces, quarterstaffs, scimitars, sickles, slings, spears\n\n**Tools:** Herbalism kit\n\n **Languages**: Druidic\n\n**Skills:** Choose two from Arcana, Animal Handling, Insight, Medicine, Nature, Perception, Religion, and Survival",
+      "snippet": "",
+      "modifiers": [
+        {
+          "type": "armorProficiency",
+          "subType": "granted",
+          "value": "Light Armor"
+        },
+        {
+          "type": "armorProficiency",
+          "subType": "granted",
+          "value": "Medium Armor"
+        },
+        {
+          "type": "armorProficiency",
+          "subType": "granted",
+          "value": "Shields"
+        },
+        {
+          "type": "weaponProficiency",
+          "subType": "granted",
+          "value": "Simple Weapons"
+        },
+        {
+          "type": "language",
+          "subType": "granted",
+          "value": "Druidic"
+        },
+        {
+          "type": "skillProficiency",
+          "subType": "choose",
+          "from": [
+            "Arcana",
+            "Animal Handling",
+            "Insight",
+            "Medicine",
+            "Nature",
+            "Perception",
+            "Religion",
+            "Survival"
+          ]
+        },
+        {
+          "type": "skillProficiency",
+          "subType": "choose",
+          "from": [
+            "Arcana",
+            "Animal Handling",
+            "Insight",
+            "Medicine",
+            "Nature",
+            "Perception",
+            "Religion",
+            "Survival"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Spellcasting",
+      "level": 1,
+      "type": "feature",
+      "showInSheet": false,
+      "description": "Drawing on the divine essence of nature itself, you can cast spells to shape that essence to your will.\n\n**Cantrips**\n\nAt 1st level, you know two cantrips of your choice from the druid spell list. You learn additional druid cantrips of your choice at higher levels, as shown in the Cantrips Known column of the Druid table.\n\n**Spell Slots**\nThe Druid table shows how many spell slots you have to cast your druid spells of 1st level and higher. To cast one of these spells, you must expend a slot of the spell's level or higher. You regain all expended spell slots when you finish a long rest.\n\nYou prepare the list of druid spells that are available for you to cast, choosing from the druid spell list. When you do so, choose a number of druid spells equal to your Wisdom modifier + your Druid level (minimum of one spell). The spells must be of a level for which you have spell slots. You can change your list of prepared spells when you finish a long rest.\n\nFor example, if you know the 1st-level spell Animal Friendship and have a 1st-level and a 2nd-level spell slot available, you can cast Animal Friendship using either slot.\n\n**Spellcasting Ability**\n\nWisdom is your spellcasting ability for your druid spells, since your magic draws upon your devotion and attunement to nature. You use your Widom whenever a spell refers to your spellcasting ability. In addition, you use your Widom modifier when setting the saving throw DC for a druid spell you cast and when making an attack roll with one.\n\n**Spell save DC** = 8 + your proficiency bonus + your Widom modifier\n\n**Spell attack modifier** = your proficiency bonus + your Widom modifier",
+      "snippet": "Drawing on the divine essence of nature itself, you can cast spells to shape that essence to your will."
+    },
+    {
+      "name": "Trait Improvement",
+      "level": 2,
+      "type": "option",
+      "count": 1,
+      "showInSheet": false,
+      "description": "When you reach 2nd level, and again at 4th, 6th, 8th, 10th, 12th, 14th, 16th, and 19th level, you can improve upon one of your traits listed below. You have the following choices:\n\n- Gain an additional Stress Slot\n- Gain a +1 bonus to a Saving Throw\n- Gain a +1 bonus to your innate Absorb, to a maximum of your proficiency bonus.\n- Gain a +1 bonus to your Initiative\n- Gain proficiency in a skill, tool, or language. This option may only be chosen twice.",
+      "snippet": "",
+      "options": [
+        {
+          "name": "Gain an additional Stress Slot",
+          "description": "You gain an additional Stress Slot.",
+          "snippet": "You gain an additional Stress Slot.",
+          "modifiers": [
+            {
+              "type": "bonusStressSlots",
+              "subType": "granted",
+              "bonus": 1
+            }
+          ]
+        },
+        {
+          "name": "Gain a +1 bonus to a Saving Throw",
+          "description": "You gain a +1 bonus to a Saving Throw.",
+          "snippet": "You gain a +1 bonus to a Saving Throw.",
+          "modifiers": [
+            {
+              "type": "savingThrowIncrease",
+              "subType": "choose",
+              "bonus": 1,
+              "from": ["Fortitude", "Reflex", "Will"]
+            }
+          ]
+        },
+        {
+          "name": "Gain a +1 bonus to your innate Absorb, to a maximum of your proficiency bonus.",
+          "description": "You gain a +1 bonus to your innate Absorb, to a maximum of your proficiency bonus.",
+          "snippet": "You gain a +1 bonus to your innate Absorb, to a maximum of your proficiency bonus.",
+          "modifiers": [
+            {
+              "type": "innateAbsorb",
+              "subType": "granted",
+              "bonus": 1
+            }
+          ]
+        },
+        {
+          "name": "Gain a +1 bonus to your Initiative",
+          "description": "You gain a +1 bonus to your Initiative.",
+          "snippet": "You gain a +1 bonus to your Initiative.",
+          "modifiers": [
+            {
+              "type": "bonusInitiative",
+              "subType": "granted",
+              "bonus": 1
+            }
+          ]
+        },
+        {
+          "name": "Gain proficiency in a skill.",
+          "description": "You gain proficiency in a skill.",
+          "snippet": "You gain proficiency in a skill.",
+          "modifiers": [
+            {
+              "type": "skillProficiency",
+              "subType": "choose",
+              "from": [
+                "Acrobatics",
+                "Animal Handling",
+                "Arcana",
+                "Athletics",
+                "Deception",
+                "History",
+                "Insight",
+                "Intimidation",
+                "Investigation",
+                "Medicine",
+                "Nature",
+                "Perception",
+                "Performance",
+                "Persuasion",
+                "Religion",
+                "Sleight of Hand",
+                "Stealth",
+                "Survival"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Gain proficiency in a tool.",
+          "description": "You gain proficiency in a tool.",
+          "snippet": "You gain proficiency in a tool.",
+          "modifiers": [
+            {
+              "type": "toolProficiency",
+              "subType": "choose",
+              "from": [
+                "Alchemist's supplies",
+                "Brewer's supplies",
+                "Calligrapher's supplies",
+                "Carpenter's tools",
+                "Cartographer's tools",
+                "Cobbler's tools",
+                "Cook's utensils",
+                "Glassblower's tools",
+                "Jeweler's tools",
+                "Leatherworker's tools",
+                "Mason's tools",
+                "Painter's supplies",
+                "Potter's tools",
+                "Smith's tools",
+                "Tinker's tools",
+                "Weaver's tools",
+                "Woodcarver's tools",
+                "Dice set",
+                "Dragonchess set",
+                "Playing card set",
+                "Three-Dragon Ante set",
+                "Bagpipes",
+                "Drum",
+                "Dulcimer",
+                "Flute",
+                "Lute",
+                "Lyre",
+                "Horn",
+                "Pan flute",
+                "Shawm",
+                "Viol",
+                "Disguise kit",
+                "Forgery kit",
+                "Herbalism kit",
+                "Navigator's tools",
+                "Poisoner's kit",
+                "Thieves' tools"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Gain proficiency in a language.",
+          "description": "You gain proficiency in a language.",
+          "snippet": "You gain proficiency in a language.",
+          "modifiers": [
+            {
+              "type": "languageProficiency",
+              "subType": "choose",
+              "from": [
+                "Dwarvish",
+                "Elvish",
+                "Giant",
+                "Gnomish",
+                "Goblin",
+                "Halfling",
+                "Orc",
+                "Abyssal",
+                "Celestial",
+                "Deep Speech",
+                "Draconic",
+                "Infernal",
+                "Primordial",
+                "Sylvan",
+                "Undercommon",
+                "Undercommon"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Wild Shape",
+      "level": 2,
+      "type": "feature",
+      "showInSheet": true,
+      "description": "Starting at 2nd level, you can take a Stress as a Major Action to magically assume the form of a beast you have seen before.\n\nYour druid level determines the beasts you can transform into, as shown in the Beast Shapes table. At 2nd level, for example, you can transform into any beast that has a challenge rating of 1/4 or lower that doesn't have a flying or swimming speed.\n\nYou can stay in Wild Shape for a number of hours equal to your proficiency bonus. While transformed, the following rules apply:\n- You use the statistics of your chosen beast (Hit Points, Armor Class, etc.), but you retain your Intelligence, Wisdom, and Charisma modifiers, saving throw bonuses, and any proficiencies.\n- You retain any features you have, so long as the beast’s body is capable of utilizing them.\n- Unless the beast can, you can’t cast spells, speak a language, or use equipment that would require hands. However, spells already cast before transforming remain, and you may still take actions that are a part of that spell.\n\nYou can revert to your normal form as a Minor Action. You are reverted if you fall unconscious, drop to 0 hit points, or die. If you revert by dropping to 0 hit points, you return to the number of hit points you had before transforming, but any excess damage carries over to your normal form.",
+      "snippet": "You can take a Stress as a Major Action to magically assume the form of a beast you have seen before. While transformed, the following rules apply:\n- You use the statistics of your chosen beast (Hit Points, Armor Class, etc.), but you retain your Intelligence, Wisdom, and Charisma modifiers, saving throw bonuses, and any proficiencies.\n- You retain any features you have, so long as the beast’s body is capable of utilizing them.\n- Unless the beast can, you can’t cast spells, speak a language, or use equipment that would require hands. However, spells already cast before transforming remain, and you may still take actions that are a part of that spell.\n\nYou can revert to your normal form as a Minor Action. You are reverted if you fall unconscious, drop to 0 hit points, or die. If you revert by dropping to 0 hit points, you return to the number of hit points you had before transforming, but any excess damage carries over to your normal form."
+    },
+    {
+      "name": "Druid Circle",
+      "level": 3,
+      "type": "subclass",
+      "showInSheet": true,
+      "description": "At 3rd level, you choose to identify with a circle of druids. Your choice grants you features at 3rd level and again at 6th, 10th, 14th and 18th level.",
+      "snippet": "",
+      "subclasses": []
+    }
+  ],
+  "levelFeatures": {
+    "1": ["Druid Proficiencies", "Spellcasting"],
+    "2": ["Trait Improvement", "Wild Shape"],
+    "3": ["Druid Circle"],
+    "4": [],
+    "5": [],
+    "6": [],
+    "7": [],
+    "8": [],
+    "9": [],
+    "10": [],
+    "11": [],
+    "12": [],
+    "13": []
+  },
+  "startingEquipment": [
+    {
+      "0": {
+        "description": "a shield",
+        "items": [
+          {
+            "type": "choose",
+            "subType": "category",
+            "category": "armor",
+            "subCategory": ["shield"]
+          }
+        ]
+      },
+      "1": {
+        "description": "a simple weapon",
+        "items": [
+          {
+            "type": "choose",
+            "subType": "category",
+            "category": "weapons",
+            "subCategory": ["simple"]
+          }
+        ]
+      }
+    },
+    {
+      "0": {
+        "description": "a scimitar",
+        "items": [
+          {
+            "type": "choose",
+            "subType": "category",
+            "category": "weapons",
+            "value": "scimitar"
+          }
+        ]
+      },
+      "1": {
+        "description": "a simple weapon",
+        "items": [
+          {
+            "type": "choose",
+            "subType": "category",
+            "category": "weapons",
+            "subCategory": ["simple"]
+          }
+        ]
+      }
+    },
+    {
+      "0": {
+        "description": "light armor, an explorer's pack, and a druidic focus",
+        "items": [
+          {
+            "type": "granted",
+            "category": "armor",
+            "value": "light"
+          },
+          {
+            "type": "granted",
+            "category": "packs",
+            "value": "explorerspack"
+          },
+          {
+            "type": "granted",
+            "value": "Druidic Focus"
+          }
+        ]
+      }
+    }
+  ]
+}

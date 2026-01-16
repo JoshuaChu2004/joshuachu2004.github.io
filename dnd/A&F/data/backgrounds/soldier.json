@@ -96,7 +96,7 @@
     },
     {
       "name": "Origin Feat",
-      "showInSheet": true,
+      "showInSheet": false,
       "description": "You have a feat that was gained through your background. Choose one of the following Origin Feats",
       "modifiers": [
         {

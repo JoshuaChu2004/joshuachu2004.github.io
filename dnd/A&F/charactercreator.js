@@ -3286,6 +3286,8 @@ function calculateFinalModifiers() {
 // ============================================================================
 
 function generateEquipment() {
+    
+    debugger;
     if (!characterData.class.name) return;
 
     if (!characterData.background.name) return;

@@ -27,7 +27,7 @@
   },
   "prowessInfo": {
     "canUseProwesses": true,
-    "prowessGrowthRate": null,
+    "prowessGrowthRate": "half",
     "prowessAbility": ["wisdom"],
     "prowessList": {
       "1": [],
@@ -79,17 +79,44 @@
         {
           "type": "skillProficiency",
           "subType": "choose",
-          "from": ["Animal Handling", "Athletics", "Insight", "Investigation", "Nature", "Perception", "Stealth", "Survival"]
+          "from": [
+            "Animal Handling",
+            "Athletics",
+            "Insight",
+            "Investigation",
+            "Nature",
+            "Perception",
+            "Stealth",
+            "Survival"
+          ]
         },
         {
           "type": "skillProficiency",
           "subType": "choose",
-          "from": ["Animal Handling", "Athletics", "Insight", "Investigation", "Nature", "Perception", "Stealth", "Survival"]
+          "from": [
+            "Animal Handling",
+            "Athletics",
+            "Insight",
+            "Investigation",
+            "Nature",
+            "Perception",
+            "Stealth",
+            "Survival"
+          ]
         },
         {
           "type": "skillProficiency",
           "subType": "choose",
-          "from": ["Animal Handling", "Athletics", "Insight", "Investigation", "Nature", "Perception", "Stealth", "Survival"]
+          "from": [
+            "Animal Handling",
+            "Athletics",
+            "Insight",
+            "Investigation",
+            "Nature",
+            "Perception",
+            "Stealth",
+            "Survival"
+          ]
         }
       ]
     },
@@ -110,108 +137,182 @@
       "snippet": "Your experience as a hunter or nomad has taught you special techniques to utilize against your foes. You know one Prowess from the Ranger prowess list."
     },
     {
-        "name": "Spellcasting",
-        "level": 1,
-        "type": "feature",
-        "showInSheet": false,
-        "description": "By the time you reach 2nd level, you have learned to use the magical essence of nature to cast spells, much as a druid does.\n\n**Spell Slots**\n\nThe Ranger table shows how many spell slots you have to cast your ranger spells of 1st level and higher. To cast one of these spells, you must expend a slot of the spell's level or higher. You regain all expended spell slots when you finish a long rest.\n\nFor example, if you know the 1st-level spell Animal Friendship and have a 1st-level and a 2nd-level spell slot available, you can cast Animal Friendship using either slot.\n\n**Spells Known of 1st Level and Higher**\n\nYou know two 1st-level spells of your choice from the ranger spell list.\n\nThe Spells Known column of the Ranger table shows when you learn more ranger spells of your choice. Each of these spells must be of a level for which you have spell slots. For instance, when you reach 5th level in this class, you can learn one new spell of 1st or 2nd level.\n\nAdditionally, when you gain a level in this class, you can choose one of the ranger spells you know and replace it with another spell from the ranger spell list, which also must be of a level for which you have spell slots.\n\n**Spellcasting Ability**\n\nWisdom is your spellcasting ability for your ranger spells, since your magic draws on your attunement to nature. You use your Wisdom whenever a spell refers to your spellcasting ability. In addition, you use your Wisdom modifier when setting the saving throw DC for a ranger spell you cast and when making an attack roll with one.\n\n**Spell save DC**\n\n8 + your proficiency bonus + your Wisdom modifier\n\n**Spell attack modifier**\n\nYour proficiency bonus + your Wisdom modifier",
-        "snippet": "By the time you reach 2nd level, you have learned to use the magical essence of nature to cast spells, much as a druid does."
+      "name": "Spellcasting",
+      "level": 1,
+      "type": "feature",
+      "showInSheet": false,
+      "description": "By the time you reach 2nd level, you have learned to use the magical essence of nature to cast spells, much as a druid does.\n\n**Spell Slots**\n\nThe Ranger table shows how many spell slots you have to cast your ranger spells of 1st level and higher. To cast one of these spells, you must expend a slot of the spell's level or higher. You regain all expended spell slots when you finish a long rest.\n\nFor example, if you know the 1st-level spell Animal Friendship and have a 1st-level and a 2nd-level spell slot available, you can cast Animal Friendship using either slot.\n\n**Spells Known of 1st Level and Higher**\n\nYou know two 1st-level spells of your choice from the ranger spell list.\n\nThe Spells Known column of the Ranger table shows when you learn more ranger spells of your choice. Each of these spells must be of a level for which you have spell slots. For instance, when you reach 5th level in this class, you can learn one new spell of 1st or 2nd level.\n\nAdditionally, when you gain a level in this class, you can choose one of the ranger spells you know and replace it with another spell from the ranger spell list, which also must be of a level for which you have spell slots.\n\n**Spellcasting Ability**\n\nWisdom is your spellcasting ability for your ranger spells, since your magic draws on your attunement to nature. You use your Wisdom whenever a spell refers to your spellcasting ability. In addition, you use your Wisdom modifier when setting the saving throw DC for a ranger spell you cast and when making an attack roll with one.\n\n**Spell save DC**\n\n8 + your proficiency bonus + your Wisdom modifier\n\n**Spell attack modifier**\n\nYour proficiency bonus + your Wisdom modifier",
+      "snippet": "By the time you reach 2nd level, you have learned to use the magical essence of nature to cast spells, much as a druid does."
     },
     {
-    "name": "Trait Improvement",
-    "level": 2,
-    "type": "option",
-    "count": 1,
-    "showInSheet": false,
-    "description": "When you reach 2nd level, and again at 4th, 6th, 8th, 10th, 12th, 14th, 16th, and 19th level, you can improve upon one of your traits listed below. You have the following choices:\n\n- Gain an additional Stress Slot\n- Gain a +1 bonus to a Saving Throw\n- Gain a +1 bonus to your innate Absorb, to a maximum of your proficiency bonus.\n- Gain a +1 bonus to your Initiative\n- Gain proficiency in a skill, tool, or language. This option may only be chosen twice.",
-    "snippet": "",
-    "options": [
+      "name": "Trait Improvement",
+      "level": 2,
+      "type": "option",
+      "count": 1,
+      "showInSheet": false,
+      "description": "When you reach 2nd level, and again at 4th, 6th, 8th, 10th, 12th, 14th, 16th, and 19th level, you can improve upon one of your traits listed below. You have the following choices:\n\n- Gain an additional Stress Slot\n- Gain a +1 bonus to a Saving Throw\n- Gain a +1 bonus to your innate Absorb, to a maximum of your proficiency bonus.\n- Gain a +1 bonus to your Initiative\n- Gain proficiency in a skill, tool, or language. This option may only be chosen twice.",
+      "snippet": "",
+      "options": [
         {
-        "name": "Gain an additional Stress Slot",
-        "description": "You gain an additional Stress Slot.",
-        "snippet": "You gain an additional Stress Slot.",
-        "modifiers": [
+          "name": "Gain an additional Stress Slot",
+          "description": "You gain an additional Stress Slot.",
+          "snippet": "You gain an additional Stress Slot.",
+          "modifiers": [
             {
-            "type": "bonusStressSlots",
-            "subType": "granted",
-            "bonus": 1
+              "type": "bonusStressSlots",
+              "subType": "granted",
+              "bonus": 1
             }
-        ]
+          ]
         },
         {
-        "name": "Gain a +1 bonus to a Saving Throw",
-        "description": "You gain a +1 bonus to a Saving Throw.",
-        "snippet": "You gain a +1 bonus to a Saving Throw.",
-        "modifiers": [
+          "name": "Gain a +1 bonus to a Saving Throw",
+          "description": "You gain a +1 bonus to a Saving Throw.",
+          "snippet": "You gain a +1 bonus to a Saving Throw.",
+          "modifiers": [
             {
-            "type": "savingThrowIncrease",
-            "subType": "choose",
-            "bonus": 1,
-            "from": ["Fortitude", "Reflex", "Will"]
+              "type": "savingThrowIncrease",
+              "subType": "choose",
+              "bonus": 1,
+              "from": ["Fortitude", "Reflex", "Will"]
             }
-        ]
+          ]
         },
         {
-        "name": "Gain a +1 bonus to your innate Absorb, to a maximum of your proficiency bonus.",
-        "description": "You gain a +1 bonus to your innate Absorb, to a maximum of your proficiency bonus.",
-        "snippet": "You gain a +1 bonus to your innate Absorb, to a maximum of your proficiency bonus.",
-        "modifiers": [
+          "name": "Gain a +1 bonus to your innate Absorb, to a maximum of your proficiency bonus.",
+          "description": "You gain a +1 bonus to your innate Absorb, to a maximum of your proficiency bonus.",
+          "snippet": "You gain a +1 bonus to your innate Absorb, to a maximum of your proficiency bonus.",
+          "modifiers": [
             {
-            "type": "innateAbsorb",
-            "subType": "granted",
-            "bonus": 1
+              "type": "innateAbsorb",
+              "subType": "granted",
+              "bonus": 1
             }
-        ]
+          ]
         },
         {
-        "name": "Gain a +1 bonus to your Initiative",
-        "description": "You gain a +1 bonus to your Initiative.",
-        "snippet": "You gain a +1 bonus to your Initiative.",
-        "modifiers": [
+          "name": "Gain a +1 bonus to your Initiative",
+          "description": "You gain a +1 bonus to your Initiative.",
+          "snippet": "You gain a +1 bonus to your Initiative.",
+          "modifiers": [
             {
-            "type": "bonusInitiative",
-            "subType": "granted",
-            "bonus": 1
+              "type": "bonusInitiative",
+              "subType": "granted",
+              "bonus": 1
             }
-        ]
+          ]
         },
         {
-        "name": "Gain proficiency in a skill.",
-        "description": "You gain proficiency in a skill.",
-        "snippet": "You gain proficiency in a skill.",
-        "modifiers": [
+          "name": "Gain proficiency in a skill.",
+          "description": "You gain proficiency in a skill.",
+          "snippet": "You gain proficiency in a skill.",
+          "modifiers": [
             {
-            "type": "skillProficiency",
-            "subType": "choose",
-            "from": ["Acrobatics", "Animal Handling", "Arcana", "Athletics", "Deception", "History", "Insight", "Intimidation", "Investigation", "Medicine", "Nature", "Perception", "Performance", "Persuasion", "Religion", "Sleight of Hand", "Stealth", "Survival"]
+              "type": "skillProficiency",
+              "subType": "choose",
+              "from": [
+                "Acrobatics",
+                "Animal Handling",
+                "Arcana",
+                "Athletics",
+                "Deception",
+                "History",
+                "Insight",
+                "Intimidation",
+                "Investigation",
+                "Medicine",
+                "Nature",
+                "Perception",
+                "Performance",
+                "Persuasion",
+                "Religion",
+                "Sleight of Hand",
+                "Stealth",
+                "Survival"
+              ]
             }
-        ]
+          ]
         },
         {
-        "name": "Gain proficiency in a tool.",
-        "description": "You gain proficiency in a tool.",
-        "snippet": "You gain proficiency in a tool.",
-        "modifiers": [
+          "name": "Gain proficiency in a tool.",
+          "description": "You gain proficiency in a tool.",
+          "snippet": "You gain proficiency in a tool.",
+          "modifiers": [
             {
-            "type": "toolProficiency",
-            "subType": "choose",
-            "from": ["Alchemist's supplies", "Brewer's supplies", "Calligrapher's supplies", "Carpenter's tools", "Cartographer's tools", "Cobbler's tools", "Cook's utensils", "Glassblower's tools", "Jeweler's tools", "Leatherworker's tools", "Mason's tools", "Painter's supplies", "Potter's tools", "Smith's tools", "Tinker's tools", "Weaver's tools", "Woodcarver's tools", "Dice set", "Dragonchess set", "Playing card set", "Three-Dragon Ante set", "Bagpipes", "Drum", "Dulcimer", "Flute", "Lute", "Lyre", "Horn", "Pan flute", "Shawm", "Viol", "Disguise kit", "Forgery kit", "Herbalism kit", "Navigator's tools", "Poisoner's kit", "Thieves' tools"]
+              "type": "toolProficiency",
+              "subType": "choose",
+              "from": [
+                "Alchemist's supplies",
+                "Brewer's supplies",
+                "Calligrapher's supplies",
+                "Carpenter's tools",
+                "Cartographer's tools",
+                "Cobbler's tools",
+                "Cook's utensils",
+                "Glassblower's tools",
+                "Jeweler's tools",
+                "Leatherworker's tools",
+                "Mason's tools",
+                "Painter's supplies",
+                "Potter's tools",
+                "Smith's tools",
+                "Tinker's tools",
+                "Weaver's tools",
+                "Woodcarver's tools",
+                "Dice set",
+                "Dragonchess set",
+                "Playing card set",
+                "Three-Dragon Ante set",
+                "Bagpipes",
+                "Drum",
+                "Dulcimer",
+                "Flute",
+                "Lute",
+                "Lyre",
+                "Horn",
+                "Pan flute",
+                "Shawm",
+                "Viol",
+                "Disguise kit",
+                "Forgery kit",
+                "Herbalism kit",
+                "Navigator's tools",
+                "Poisoner's kit",
+                "Thieves' tools"
+              ]
             }
-        ]
+          ]
         },
         {
-        "name": "Gain proficiency in a language.",
-        "description": "You gain proficiency in a language.",
-        "snippet": "You gain proficiency in a language.",
-        "modifiers": [
+          "name": "Gain proficiency in a language.",
+          "description": "You gain proficiency in a language.",
+          "snippet": "You gain proficiency in a language.",
+          "modifiers": [
             {
-            "type": "languageProficiency",
-            "subType": "choose",
-            "from": ["Dwarvish", "Elvish", "Giant", "Gnomish", "Goblin", "Halfling", "Orc", "Abyssal", "Celestial", "Deep Speech", "Draconic", "Infernal", "Primordial", "Sylvan", "Undercommon", "Undercommon"]
+              "type": "languageProficiency",
+              "subType": "choose",
+              "from": [
+                "Dwarvish",
+                "Elvish",
+                "Giant",
+                "Gnomish",
+                "Goblin",
+                "Halfling",
+                "Orc",
+                "Abyssal",
+                "Celestial",
+                "Deep Speech",
+                "Draconic",
+                "Infernal",
+                "Primordial",
+                "Sylvan",
+                "Undercommon",
+                "Undercommon"
+              ]
             }
-        ]
+          ]
         }
-    ]
+      ]
     },
     {
       "name": "Favored Enemy",
@@ -253,5 +354,118 @@
       "snippet": "At 3rd level, you choose to emulate the ideals and training of a ranger conclave.",
       "subclasses": ["Beastmaster"]
     }
-  ]
+  ],
+  "startingEquipment": [
+  {
+    "0": {
+      "description": "Light Armor",
+      "items": [
+        {
+          "type": "choose",
+          "subType": "category",
+          "category": "armor",
+          "value": "light"
+        }
+      ]
+    },
+    "1": {
+      "description": "Medium Armor",
+      "items": [
+        {
+          "type": "choose",
+          "subType": "category",
+          "category": "armor",
+          "value": "medium"
+        }
+      ]
+
+    }
+  },
+  {
+    "0": {
+      "description": "two simple weapon",
+      "items": [
+        {
+          "type": "choose",
+          "subType": "category",
+          "category": "weapons",
+          "subCategory": ["simple"]
+        }
+      ]
+    },
+    "1": {
+      "description": "A martial weapon",
+      "items": [
+        {
+          "type": "choose",
+          "subType": "category",
+          "category": "weapons",
+          "subCategory": ["martial"]
+        }
+      ]
+    }
+  },
+  {
+    "0": {
+      "description": "a light crossbow",
+      "items": [
+        {
+          "type": "granted",
+          "category": "weapons",
+          "value": "crossbowlight"
+        }
+      ]
+    },
+    "1": {
+      "description": "a simple weapon",
+      "items": [
+        {
+          "type": "choose",
+          "subType": "category",
+          "category": "weapons",
+          "subCategory": ["simple"]
+        }
+      ]
+    }
+  },
+  {
+    "0": {
+      "description": "A priest's pack",
+      "items": [
+        {
+          "type": "granted",
+          "category": "packs",
+          "value": "priestspack"
+        }
+      ]
+    },
+    "1": {
+      "description": "An explorer's pack",
+      "items": [
+        {
+          "type": "granted",
+          "category": "packs",
+          "value": "explorerspack"
+        }
+      ]
+    }
+  }, 
+  {
+    "0": {
+      "description": "a shield and a holy symbol",
+      "items": [
+        {
+          "type": "choose",
+          "subType": "category",
+          "category": "armor",
+          "subCategory": ["shield"]
+        },
+        {
+          "type": "granted",
+          "value": "Holy Symbol"
+        }
+      ]
+    }
+  }
+]
 }
