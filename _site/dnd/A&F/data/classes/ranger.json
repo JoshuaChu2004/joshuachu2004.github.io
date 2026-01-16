@@ -1,0 +1,257 @@
+{
+  "name": "Ranger",
+  "description": "Far from the bustle of cities and towns, past the hedges that shelter the most distant farms from the terrors of the wild, amid the dense-packed trees of trackless forests and across wide and empty plains, rangers keep their unending watch.",
+  "classType": "Martial",
+  "hitDie": "d10",
+  "hitPointsAtFirstLevel": 10,
+  "hitPointsFixed": 6,
+  "stressSlotsAtFirstLevel": 4,
+  "spellInfo": {
+    "canCastSpells": true,
+    "casterType": "prepared",
+    "spellGrowthRate": "half",
+    "spellCastingAbility": ["wisdom"],
+    "cantripGrowthRate": "high",
+    "spellList": {
+      "0": [],
+      "1": [],
+      "2": [],
+      "3": [],
+      "4": [],
+      "5": [],
+      "6": [],
+      "7": [],
+      "8": [],
+      "9": []
+    }
+  },
+  "prowessInfo": {
+    "canUseProwesses": true,
+    "prowessGrowthRate": null,
+    "prowessAbility": ["wisdom"],
+    "prowessList": {
+      "1": [],
+      "2": [],
+      "3": [],
+      "4": [],
+      "5": [],
+      "6": [],
+      "7": [],
+      "8": [],
+      "9": []
+    }
+  },
+  "features": [
+    {
+      "name": "Ranger Proficiencies",
+      "level": 1,
+      "count": 3,
+      "type": "choice",
+      "showInSheet": false,
+      "description": "**Armor:** Light armor, medium armor, shields\n\n**Weapons:** Simple weapons, martial weapons\n\n**Tools:** None\n\n**Skills:** Choose three from Animal Handling, Athletics, Insight, Investigation, Nature, Perception, Stealth, and Survival",
+      "snippet": "",
+      "modifiers": [
+        {
+          "type": "armorProficiency",
+          "subType": "granted",
+          "value": "Light Armor"
+        },
+        {
+          "type": "armorProficiency",
+          "subType": "granted",
+          "value": "Medium Armor"
+        },
+        {
+          "type": "armorProficiency",
+          "subType": "granted",
+          "value": "Shields"
+        },
+        {
+          "type": "weaponProficiency",
+          "subType": "granted",
+          "value": "Simple Weapons"
+        },
+        {
+          "type": "weaponProficiency",
+          "subType": "granted",
+          "value": "Martial Weapons"
+        },
+        {
+          "type": "skillProficiency",
+          "subType": "choose",
+          "from": ["Animal Handling", "Athletics", "Insight", "Investigation", "Nature", "Perception", "Stealth", "Survival"]
+        },
+        {
+          "type": "skillProficiency",
+          "subType": "choose",
+          "from": ["Animal Handling", "Athletics", "Insight", "Investigation", "Nature", "Perception", "Stealth", "Survival"]
+        },
+        {
+          "type": "skillProficiency",
+          "subType": "choose",
+          "from": ["Animal Handling", "Athletics", "Insight", "Investigation", "Nature", "Perception", "Stealth", "Survival"]
+        }
+      ]
+    },
+    {
+      "name": "Hunter's Mark",
+      "level": 1,
+      "type": "feature",
+      "showInSheet": true,
+      "description": "Also at 1st level, you can channel natural magics to mark your quarry. As a Minor Action, take a Stress and choose a creature you can see within 90 ft. For 1 hour, you deal an additional d6 of damage to the target when you hit it with a weapon attack. Also, you have advantage on any Wisdom (Perception) or Wisdom (Survival) check you make to find it. If the target drops to 0 hit points before this effect ends, you can immediately unflip a Martial Prowess.\n\nAt 9th and 15th level, the damage die of Hunter's Mark becomes a d8 and a d10, respectively.",
+      "snippet": "As a Minor Action, take a Stress and choose a creature you can see within 90 ft. For 1 hour, you deal an additional d6 of damage to the target when you hit it with a weapon attack."
+    },
+    {
+      "name": "Martial Prowess",
+      "level": 1,
+      "type": "feature",
+      "showInSheet": true,
+      "description": "Your experience as a hunter or nomad has taught you special techniques to utilize against your foes. You know one Prowess from the Ranger prowess list.\n\n**Prowesses Known**\n\nThe Ranger table shows how many Prowesses you know at 1st level and higher. When you gain a level in this class, you can choose one of the Martial Prowesses you know and replace it with another Prowess from the Ranger prowess list.\n\n**Prowess Ability**\n\nWisdom, whichever is higher, is your Prowess ability for your Ranger prowesses, as the power of your abilities relies on your physical capacity. You use your Wisdom whenever a prowess refers to your prowess ability. In addition, you use your Wisdom modifier when setting the saving throw DC for a ranger Prowess you use.\n\n**Prowess save DC**\n\nYour Prowess save DC is 8 + your proficiency bonus + your Wisdom modifier",
+      "snippet": "Your experience as a hunter or nomad has taught you special techniques to utilize against your foes. You know one Prowess from the Ranger prowess list."
+    },
+    {
+        "name": "Spellcasting",
+        "level": 1,
+        "type": "feature",
+        "showInSheet": false,
+        "description": "By the time you reach 2nd level, you have learned to use the magical essence of nature to cast spells, much as a druid does.\n\n**Spell Slots**\n\nThe Ranger table shows how many spell slots you have to cast your ranger spells of 1st level and higher. To cast one of these spells, you must expend a slot of the spell's level or higher. You regain all expended spell slots when you finish a long rest.\n\nFor example, if you know the 1st-level spell Animal Friendship and have a 1st-level and a 2nd-level spell slot available, you can cast Animal Friendship using either slot.\n\n**Spells Known of 1st Level and Higher**\n\nYou know two 1st-level spells of your choice from the ranger spell list.\n\nThe Spells Known column of the Ranger table shows when you learn more ranger spells of your choice. Each of these spells must be of a level for which you have spell slots. For instance, when you reach 5th level in this class, you can learn one new spell of 1st or 2nd level.\n\nAdditionally, when you gain a level in this class, you can choose one of the ranger spells you know and replace it with another spell from the ranger spell list, which also must be of a level for which you have spell slots.\n\n**Spellcasting Ability**\n\nWisdom is your spellcasting ability for your ranger spells, since your magic draws on your attunement to nature. You use your Wisdom whenever a spell refers to your spellcasting ability. In addition, you use your Wisdom modifier when setting the saving throw DC for a ranger spell you cast and when making an attack roll with one.\n\n**Spell save DC**\n\n8 + your proficiency bonus + your Wisdom modifier\n\n**Spell attack modifier**\n\nYour proficiency bonus + your Wisdom modifier",
+        "snippet": "By the time you reach 2nd level, you have learned to use the magical essence of nature to cast spells, much as a druid does."
+    },
+    {
+    "name": "Trait Improvement",
+    "level": 2,
+    "type": "option",
+    "count": 1,
+    "showInSheet": false,
+    "description": "When you reach 2nd level, and again at 4th, 6th, 8th, 10th, 12th, 14th, 16th, and 19th level, you can improve upon one of your traits listed below. You have the following choices:\n\n- Gain an additional Stress Slot\n- Gain a +1 bonus to a Saving Throw\n- Gain a +1 bonus to your innate Absorb, to a maximum of your proficiency bonus.\n- Gain a +1 bonus to your Initiative\n- Gain proficiency in a skill, tool, or language. This option may only be chosen twice.",
+    "snippet": "",
+    "options": [
+        {
+        "name": "Gain an additional Stress Slot",
+        "description": "You gain an additional Stress Slot.",
+        "snippet": "You gain an additional Stress Slot.",
+        "modifiers": [
+            {
+            "type": "bonusStressSlots",
+            "subType": "granted",
+            "bonus": 1
+            }
+        ]
+        },
+        {
+        "name": "Gain a +1 bonus to a Saving Throw",
+        "description": "You gain a +1 bonus to a Saving Throw.",
+        "snippet": "You gain a +1 bonus to a Saving Throw.",
+        "modifiers": [
+            {
+            "type": "savingThrowIncrease",
+            "subType": "choose",
+            "bonus": 1,
+            "from": ["Fortitude", "Reflex", "Will"]
+            }
+        ]
+        },
+        {
+        "name": "Gain a +1 bonus to your innate Absorb, to a maximum of your proficiency bonus.",
+        "description": "You gain a +1 bonus to your innate Absorb, to a maximum of your proficiency bonus.",
+        "snippet": "You gain a +1 bonus to your innate Absorb, to a maximum of your proficiency bonus.",
+        "modifiers": [
+            {
+            "type": "innateAbsorb",
+            "subType": "granted",
+            "bonus": 1
+            }
+        ]
+        },
+        {
+        "name": "Gain a +1 bonus to your Initiative",
+        "description": "You gain a +1 bonus to your Initiative.",
+        "snippet": "You gain a +1 bonus to your Initiative.",
+        "modifiers": [
+            {
+            "type": "bonusInitiative",
+            "subType": "granted",
+            "bonus": 1
+            }
+        ]
+        },
+        {
+        "name": "Gain proficiency in a skill.",
+        "description": "You gain proficiency in a skill.",
+        "snippet": "You gain proficiency in a skill.",
+        "modifiers": [
+            {
+            "type": "skillProficiency",
+            "subType": "choose",
+            "from": ["Acrobatics", "Animal Handling", "Arcana", "Athletics", "Deception", "History", "Insight", "Intimidation", "Investigation", "Medicine", "Nature", "Perception", "Performance", "Persuasion", "Religion", "Sleight of Hand", "Stealth", "Survival"]
+            }
+        ]
+        },
+        {
+        "name": "Gain proficiency in a tool.",
+        "description": "You gain proficiency in a tool.",
+        "snippet": "You gain proficiency in a tool.",
+        "modifiers": [
+            {
+            "type": "toolProficiency",
+            "subType": "choose",
+            "from": ["Alchemist's supplies", "Brewer's supplies", "Calligrapher's supplies", "Carpenter's tools", "Cartographer's tools", "Cobbler's tools", "Cook's utensils", "Glassblower's tools", "Jeweler's tools", "Leatherworker's tools", "Mason's tools", "Painter's supplies", "Potter's tools", "Smith's tools", "Tinker's tools", "Weaver's tools", "Woodcarver's tools", "Dice set", "Dragonchess set", "Playing card set", "Three-Dragon Ante set", "Bagpipes", "Drum", "Dulcimer", "Flute", "Lute", "Lyre", "Horn", "Pan flute", "Shawm", "Viol", "Disguise kit", "Forgery kit", "Herbalism kit", "Navigator's tools", "Poisoner's kit", "Thieves' tools"]
+            }
+        ]
+        },
+        {
+        "name": "Gain proficiency in a language.",
+        "description": "You gain proficiency in a language.",
+        "snippet": "You gain proficiency in a language.",
+        "modifiers": [
+            {
+            "type": "languageProficiency",
+            "subType": "choose",
+            "from": ["Dwarvish", "Elvish", "Giant", "Gnomish", "Goblin", "Halfling", "Orc", "Abyssal", "Celestial", "Deep Speech", "Draconic", "Infernal", "Primordial", "Sylvan", "Undercommon", "Undercommon"]
+            }
+        ]
+        }
+    ]
+    },
+    {
+      "name": "Favored Enemy",
+      "level": 3,
+      "type": "option",
+      "count": 1,
+      "showInSheet": true,
+      "description": "At 3rd level, you have significant experience studying, tracking, and hunting a certain type of enemy.\n\nChoose a type of favored enemy: Mundane (humanoids, plants, beasts), Monsters (aberrations, monstrosities, undead), Primordials (dragons, giants, elementals, oozes), and Immortals (celestials, fey, fiends).\n\nWhen you apply your Hunter's Mark to your Favored Enemy, its dice category is increased (to a maximum of d12). Also, you have advantage on Wisdom (Survival) checks to track your favored enemies, Intelligence checks to recall information about them.",
+      "snippet": "",
+      "options": [
+        {
+          "name": "Mundane",
+          "description": "Your favored enemy are humanoids, plants, and beasts. When you apply your Hunter's Mark to your Favored Enemy, its dice category is increased (to a maximum of d12). Also, you have advantage on Wisdom (Survival) checks to track your favored enemies, Intelligence checks to recall information about them.",
+          "snippet": "Your favored enemy are humanoids, plants, and beasts. When you apply your Hunter's Mark to your Favored Enemy, its dice category is increased (to a maximum of d12). Also, you have advantage on Wisdom (Survival) checks to track your favored enemies, Intelligence checks to recall information about them."
+        },
+        {
+          "name": "Monsters",
+          "description": "Your favored enemy are aberrations, monstrosities, and undead. When you apply your Hunter's Mark to your Favored Enemy, its dice category is increased (to a maximum of d12). Also, you have advantage on Wisdom (Survival) checks to track your favored enemies, Intelligence checks to recall information about them.",
+          "snippet": "Your favored enemy are aberrations, monstrosities, and undead. When you apply your Hunter's Mark to your Favored Enemy, its dice category is increased (to a maximum of d12). Also, you have advantage on Wisdom (Survival) checks to track your favored enemies, Intelligence checks to recall information about them."
+        },
+        {
+          "name": "Primordials",
+          "description": "Your favored enemy are dragons, giants, elementals, and oozes. When you apply your Hunter's Mark to your Favored Enemy, its dice category is increased (to a maximum of d12). Also, you have advantage on Wisdom (Survival) checks to track your favored enemies, Intelligence checks to recall information about them.",
+          "snippet": "Your favored enemy are dragons, giants, elementals, and oozes. When you apply your Hunter's Mark to your Favored Enemy, its dice category is increased (to a maximum of d12). Also, you have advantage on Wisdom (Survival) checks to track your favored enemies, Intelligence checks to recall information about them."
+        },
+        {
+          "name": "Immortals",
+          "description": "Your favored enemy are celestials, fey, and fiends. When you apply your Hunter's Mark to your Favored Enemy, its dice category is increased (to a maximum of d12). Also, you have advantage on Wisdom (Survival) checks to track your favored enemies, Intelligence checks to recall information about them.",
+          "snippet": "Your favored enemy are celestials, fey, and fiends. When you apply your Hunter's Mark to your Favored Enemy, its dice category is increased (to a maximum of d12). Also, you have advantage on Wisdom (Survival) checks to track your favored enemies, Intelligence checks to recall information about them."
+        }
+      ]
+    },
+    {
+      "name": "Ranger Conclave",
+      "level": 3,
+      "type": "subclass",
+      "showInSheet": true,
+      "description": "At 3rd level, you choose to emulate the ideals and training of a ranger conclave. Your choice grants you features at 3rd level and again at 7th, 11th, and 15th level.",
+      "snippet": "At 3rd level, you choose to emulate the ideals and training of a ranger conclave.",
+      "subclasses": ["Beastmaster"]
+    }
+  ]
+}

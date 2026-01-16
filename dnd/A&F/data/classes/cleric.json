@@ -201,12 +201,58 @@
         "showInSheet": true,
         "description": "As a Major Action, take a Stress and speak a holy prayer against the undead. Each undead that can see or hear you within 30 feet of you must make a Will saving throw. If the creature fails its saving throw, it is must spend its turn trying to move as far away from, and can not willingly move closer to you. It can’t take reactions and can only take the Dash action or try to escape from an effect that prevents it from moving.",
         "snippet": "As a Major Action, take a Stress to force all undead that can see or hear you within 30 feet of you to make a Will saving throw. If the creature fails its saving throw, it is must spend its turn trying to move as far away from, and can not willingly move closer to you. It can’t take reactions and can only take the Dash action or try to escape from an effect that prevents it from moving."
+      },
+      {
+        "name": "Pious Role",
+        "level": 3,
+        "type": "feature",
+        "showInSheet": true,
+        "description": "At 3rd level, you gain benefits from the role you performed within your religion’s organization or how you practiced its doctrine. Choose one of the following roles:\n\n- **Archivist**. You spent your days delving through knowledge and research to know your deity better. You gain proficiency in Arcana and may always ritual cast any spell with the ritual tag in the cleric’s spell list without preparing it. The spell can not be a level higher than your highest spell slot.\n- **Insquisitor**. You were an enforcer, a weapon for your deity against enemies outside and even inside the organization. You gain proficiency with martial weapons and once per turn, you may add your Wisdom modifier to the damage roll of a weapon or spell attack.\n- **Preacher**. You have comitted the rites to memory and can speak for hours to spread your deity’s wisdom. You gain proficiency in Performance and may use your Wisdom modifier as the basis of your Fortitude saving throws.",
+        "snippet": "",
+        "options": [
+          {
+            "name": "Archivist",
+            "description": "You spent your days delving through knowledge and research to know your deity better. You gain proficiency in Arcana and may always ritual cast any spell with the ritual tag in the cleric’s spell list without preparing it. The spell can not be a level higher than your highest spell slot.",
+            "snippet": "You may always ritual cast any spell with the ritual tag in the cleric’s spell list without preparing it. The spell can not be a level higher than your highest spell slot.",
+            "modifiers": [
+              {
+                "type": "skillProficiency",
+                "subType": "granted",
+                "value": "Arcana"
+              }
+            ]
+          },
+          {
+            "name": "Insquisitor",
+            "description": "You were an enforcer, a weapon for your deity against enemies outside and even inside the organization. You gain proficiency with martial weapons and once per turn, you may add your Wisdom modifier to the damage roll of a weapon or spell attack.",
+            "snippet": "Once per turn, you may add your Wisdom modifier to the damage roll of a weapon or spell attack.",
+            "modifiers": [
+              {
+                "type": "weaponProficiency",
+                "subType": "granted",
+                "value": "Martial Weapons"
+              }
+            ]
+          },
+          {
+            "name": "Preacher",
+            "description": "You have comitted the rites to memory and can speak for hours to spread your deity’s wisdom. You gain proficiency in Performance and when making a Fortitude saving throw, you may instead make a Will saving throw.",
+            "snippet": "When making a Fortitude saving throw, you may instead make a Will saving throw.",
+            "modifiers": [
+              {
+                "type": "skillProficiency",
+                "subType": "granted",
+                "value": "Performance"
+              }
+            ]
+          }
+        ]
       }
     ],
     "levelFeatures": {
       "1": ["Cleric Proficiencies", "Divine Domain", "Spellcasting"],
       "2": ["Channel Divinity", "Channel Divinity: Turn Undead"],
-      "3": [],
+      "3": ["Pious Role"],
       "4": [],
       "5": [],
       "6": [],
