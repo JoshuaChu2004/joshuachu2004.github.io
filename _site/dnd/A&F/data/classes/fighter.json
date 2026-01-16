@@ -5,7 +5,7 @@
   "hitDie": "d10",
   "hitPointsAtFirstLevel": 10,
   "hitPointsFixed": 6,
-  "stressSlotsAtFirstLevel": 4,
+  "stressSlotsAtFirstLevel": 5,
   "spellInfo": {
     "canCastSpells": false,
     "casterType": null,
@@ -34,7 +34,7 @@
       "level": 1,
       "count": 2,
       "type": "choice",
-      "showInSheet": true,
+      "showInSheet": false,
       "description": "**Armor**\n\nLight armor, medium armor, heavy armor, shields\n\n**Weapons**\n\nSimple weapons, martial weapons\n\n**Skills**\n\nChoose 2 from: Acrobatics, Animal Handling, Athletics, History, Insight, Intimidation, Perception, Survival",
       "snippet": "",
       "modifiers": [
@@ -167,7 +167,7 @@
       "name": "Martial Prowess",
       "level": 1,
       "type": "feature",
-      "showInSheet": true,
+      "showInSheet": false,
       "description": "Your training as a soldier or warrior has imparted on you various techniques to utilize against your foes. You know two Prowesses from the Fighter prowess list.\n\n**Prowesses Known**\n\nThe Fighter table shows how many Prowesses you know at 1st level and higher. When you gain a level in this class, you can choose one of the Martial Prowesses you know and replace it with another Prowess from the Fighter prowess list.\n\n**Prowess Ability**\n\nStrength or Dexterity, whichever is higher, is your Prowess ability for your fighter prowesses, as the power of your abilities relies on your physical capacity. You use your Strength or Dexterity whenever a prowess refers to your prowess ability. In addition, you use your Strength or Dexterity modifier when setting the saving throw DC for a fighter Prowess you use.\n\n**Prowess save DC**\n\nYour Prowess save DC is 8 + your proficiency bonus + your Strength or Dexterity modifier",
       "snippet": "Your training as a soldier or warrior has imparted on you various techniques to utilize against your foes. You know two Prowesses from the Fighter prowess list."
     },
@@ -178,12 +178,117 @@
       "showInSheet": true,
       "description": "Starting at 2nd level, you can make your abilities more potent. When a creature makes a saving throw against your Prowess save DC and succeeds, you can take a Stress to force them to reroll the die.",
       "snippet": "You can make your abilities more potent. When a creature makes a saving throw against your Prowess save DC and succeeds, you can take a Stress to force them to reroll the die."
+    },
+    {
+      "name": "Trait Improvement",
+      "level": 2,
+      "type": "option",
+      "count": 1,
+      "showInSheet": false,
+      "description": "When you reach 2nd level, and again at 4th, 6th, 8th, 10th, 12th, 14th, 16th, and 19th level, you can improve upon one of your traits listed below. You have the following choices:\n\n- Gain an additional Stress Slot\n- Gain a +1 bonus to a Saving Throw\n- Gain a +1 bonus to your innate Absorb, to a maximum of your proficiency bonus.\n- Gain a +1 bonus to your Initiative\n- Gain proficiency in a skill, tool, or language. This option may only be chosen twice.",
+      "snippet": "",
+      "options": [
+        {
+          "name": "Gain an additional Stress Slot",
+          "description": "You gain an additional Stress Slot.",
+          "snippet": "You gain an additional Stress Slot.",
+          "modifiers": [
+            {
+              "type": "bonusStressSlots",
+              "subType": "granted",
+              "bonus": 1
+            }
+          ]
+        },
+        {
+          "name": "Gain a +1 bonus to a Saving Throw",
+          "description": "You gain a +1 bonus to a Saving Throw.",
+          "snippet": "You gain a +1 bonus to a Saving Throw.",
+          "modifiers": [
+            {
+              "type": "savingThrowIncrease",
+              "subType": "choose",
+              "bonus": 1,
+              "from": ["Fortitude", "Reflex", "Will"]
+            }
+          ]
+        },
+        {
+          "name": "Gain a +1 bonus to your innate Absorb, to a maximum of your proficiency bonus.",
+          "description": "You gain a +1 bonus to your innate Absorb, to a maximum of your proficiency bonus.",
+          "snippet": "You gain a +1 bonus to your innate Absorb, to a maximum of your proficiency bonus.",
+          "modifiers": [
+            {
+              "type": "innateAbsorb",
+              "subType": "granted",
+              "bonus": 1
+            }
+          ]
+        },
+        {
+          "name": "Gain a +1 bonus to your Initiative",
+          "description": "You gain a +1 bonus to your Initiative.",
+          "snippet": "You gain a +1 bonus to your Initiative.",
+          "modifiers": [
+            {
+              "type": "bonusInitiative",
+              "subType": "granted",
+              "bonus": 1
+            }
+          ]
+        },
+        {
+          "name": "Gain proficiency in a skill.",
+          "description": "You gain proficiency in a skill.",
+          "snippet": "You gain proficiency in a skill.",
+          "modifiers": [
+            {
+              "type": "skillProficiency",
+              "subType": "choose",
+              "from": ["Acrobatics", "Animal Handling", "Arcana", "Athletics", "Deception", "History", "Insight", "Intimidation", "Investigation", "Medicine", "Nature", "Perception", "Performance", "Persuasion", "Religion", "Sleight of Hand", "Stealth", "Survival"]
+            }
+          ]
+        },
+        {
+          "name": "Gain proficiency in a tool.",
+          "description": "You gain proficiency in a tool.",
+          "snippet": "You gain proficiency in a tool.",
+          "modifiers": [
+            {
+              "type": "toolProficiency",
+              "subType": "choose",
+              "from": ["Alchemist's supplies", "Brewer's supplies", "Calligrapher's supplies", "Carpenter's tools", "Cartographer's tools", "Cobbler's tools", "Cook's utensils", "Glassblower's tools", "Jeweler's tools", "Leatherworker's tools", "Mason's tools", "Painter's supplies", "Potter's tools", "Smith's tools", "Tinker's tools", "Weaver's tools", "Woodcarver's tools", "Dice set", "Dragonchess set", "Playing card set", "Three-Dragon Ante set", "Bagpipes", "Drum", "Dulcimer", "Flute", "Lute", "Lyre", "Horn", "Pan flute", "Shawm", "Viol", "Disguise kit", "Forgery kit", "Herbalism kit", "Navigator's tools", "Poisoner's kit", "Thieves' tools"]
+            }
+          ]
+        },
+        {
+          "name": "Gain proficiency in a language.",
+          "description": "You gain proficiency in a language.",
+          "snippet": "You gain proficiency in a language.",
+          "modifiers": [
+            {
+              "type": "languageProficiency",
+              "subType": "choose",
+              "from": ["Dwarvish", "Elvish", "Giant", "Gnomish", "Goblin", "Halfling", "Orc", "Abyssal", "Celestial", "Deep Speech", "Draconic", "Infernal", "Primordial", "Sylvan", "Undercommon", "Undercommon"]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Martial Archetype",
+      "level": 3,
+      "type": "subclass",
+      "showInSheet": true,
+      "description": "At 1st level, you choose a domain shaped by your choice of Deity and the gifts they grant you. Your choice grants you domain spells and other features when you choose it at 1st level. It also grants you additional ways to use Channel Divinity when you gain that feature at 2nd level, and additional benefits at 6th, 10th, 14th, and 18th level.\n\n**Domain Spells**\n\nEach domain has a list of spells-its domain spells that you gain at the cleric levels noted in the domain description. Once you gain a domain spell, you always have it prepared, and it doesn't count against the number of spells you can prepare each day.\n\nIf you have a domain spell that doesn't appear on the cleric spell list, the spell is nonetheless a cleric spell for you.",
+      "snippet": "",
+      "subclasses": ["Battle Master"]
     }
   ],
   "levelFeatures": {
     "1": ["Fighting Style", "Martial Prowess"],
     "2": ["Warrior’s Grit"],
-    "3": [],
+    "3": ["Martial Archetype"],
     "4": [],
     "5": [],
     "6": [],

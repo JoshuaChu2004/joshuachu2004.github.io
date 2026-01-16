@@ -37,7 +37,7 @@
         "level": 1,
         "count": 2,
         "type": "choice",
-        "showInSheet": true,
+        "showInSheet": false,
         "description": "**Armor:** Light armor, medium armor, shields\n\n**Weapons:** All simple weapons\n\n**Tools:** None\n\n**Skills:** Choose two from History, Insight, Medicine, Persuasion, and Religion",
         "snippet": "",
         "modifiers": [
@@ -86,7 +86,7 @@
         "name": "Spellcasting",
         "level": 1,
         "type": "feature",
-        "showInSheet": true,
+        "showInSheet": false,
         "description": "As a conduit for divine power, you can cast cleric spells.\n\n**Cantrips**\n\nAt 1st level, you know three cantrips of your choice from the cleric spell list. You learn additional cleric cantrips of your choice at higher levels, as shown in the Cantrips Known column of the Cleric table.\n\n**Spell Slots**\n\nThe Cleric table shows how many spell slots you have to cast your cleric spells of 1st level and higher. To cast one of these spells, you must expend a slot of the spell's level or higher. You regain all expended spell slots when you finish a long rest.\n\nYou prepare the list of cleric spells that are available for you to cast, choosing from the cleric spell list. When you do so, choose a number of cleric spells equal to your Wisdom modifier + your Cleric level (minimum of one spell). The spells must be of a level for which you have spell slots. You can change your list of prepared spells when you finish a long rest.\n\nFor example, if you know the 1st-level spell *Animal Friendship* and have a 1st-level and a 2nd-level spell slot available, you can cast *Animal Friendship* using either slot.\n\n**Spellcasting Ability**\n\nWisdom is your spellcasting ability for your cleric spells, since the power of your spells comes from your devotion to your deity. You use your Wisdom whenever a spell refers to your spellcasting ability. In addition, you use your Wisdom modifier when setting the saving throw DC for a cleric spell you cast and when making an attack roll with one.\n\n- **Spell save DC** = 8 + your proficiency bonus + your Wisdom modifier\n- **Spell attack modifier** = your proficiency bonus + your Wisdom modifier\n\n**Ritual Casting**\n\nYou can cast a cleric spell as a ritual if that spell has the ritual tag and you have the spell prepared.",
         "snippet": "As a conduit for divine power, you can cast cleric spells."
       },
@@ -95,7 +95,7 @@
         "level": 2,
         "type": "option",
         "count": 1,
-        "showInSheet": true,
+        "showInSheet": false,
         "description": "When you reach 2nd level, and again at 4th, 6th, 8th, 10th, 12th, 14th, 16th, and 19th level, you can improve upon one of your traits listed below. You have the following choices:\n\n- Gain an additional Stress Slot\n- Gain a +1 bonus to a Saving Throw\n- Gain a +1 bonus to your innate Absorb, to a maximum of your proficiency bonus.\n- Gain a +1 bonus to your Initiative\n- Gain proficiency in a skill, tool, or language. This option may only be chosen twice.",
         "snippet": "",
         "options": [

@@ -1,0 +1,121 @@
+{
+  "name": "Sage",
+  "description": "You spent years learning the lore of the multiverse. You scoured manuscripts, studied scrolls, and listened to the greatest experts on the subjects that interest you. Your efforts have made you a master in your fields of study.",
+  "languages": [],
+  "startingEquipment": [
+    {
+      "0": {
+        "description": "A bottle of ink",
+        "items": [
+          {
+            "type": "granted",
+            "value": "Ink"
+          }
+        ]
+      }
+    },
+    {
+      "0": {
+        "description": "A quill",
+        "items": [
+          {
+            "type": "granted",
+            "value": "Quill"
+          }
+        ]
+      }
+    },
+    {
+      "0": {
+        "description": "A small knife",
+        "items": [
+          {
+            "type": "granted",
+            "value": "Small Knife"
+          }
+        ]
+      }
+    },
+    {
+      "0": {
+        "description": "A letter from a dead colleague posing a question you have not yet been able to answer",
+        "items": [
+          {
+            "type": "granted",
+            "value": "Letter from Dead Colleague"
+          }
+        ]
+      }
+    },
+    {
+      "0": {
+        "description": "A set of common clothes",
+        "items": [
+          {
+            "type": "granted",
+            "value": "Common Clothes"
+          }
+        ]
+      }
+    },
+    {
+      "0": {
+        "description": "A pouch containing 10gp",
+        "items": [
+          {
+            "type": "granted",
+            "value": "gold",
+            "quantity": 10
+          }
+        ]
+      }
+    }
+  ],
+  "features": [
+    {
+      "name": "Sage Proficiencies",
+      "showInSheet": false,
+      "description": "You have proficiency with the following skills: Arcana and History. You also know two languages of your choice.",
+      "snippet": "",
+      "modifiers": [
+        {
+          "type": "skillProficiency",
+          "subType": "granted",
+          "value": "Arcana"
+        },
+        {
+          "type": "skillProficiency",
+          "subType": "granted",
+          "value": "History"
+        },
+        {
+          "type": "language",
+          "subType": "choose",
+          "from": ["Dwarvish", "Elvish", "Giant", "Gnomish", "Goblin", "Halfling", "Orc", "Abyssal", "Celestial", "Draconic", "Deep Speech", "Infernal", "Primordial", "Sylvan", "Undercommon"]
+        },
+        {
+          "type": "language",
+          "subType": "choose",
+          "from": ["Dwarvish", "Elvish", "Giant", "Gnomish", "Goblin", "Halfling", "Orc", "Abyssal", "Celestial", "Draconic", "Deep Speech", "Infernal", "Primordial", "Sylvan", "Undercommon"]
+        }
+      ]
+    },
+    {
+      "name": "Researcher",
+      "showInSheet": true,
+      "description": "By being a Sage, you have become an expert on a specific subject. Record what this subject is, such as a certain school of magic, a type of creature, or physics. Whenever you make an ability check related to your subject, you may add your proficiency bonus to the roll."
+    },
+    {
+      "name": "Origin Feat",
+      "showInSheet": true,
+      "description": "You have a feat that was gained through your background. Choose one of the following Origin Feats",
+      "modifiers": [
+        {
+          "type": "originFeat",
+          "subType": "choose",
+          "from": ["Chef"]
+        }
+      ]
+    }
+  ]
+}

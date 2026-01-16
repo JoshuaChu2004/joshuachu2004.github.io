@@ -1,0 +1,365 @@
+{
+    "name": "Rogue",
+    "description": "Rogues rely on skill, stealth, and their foes' vulnerabilities to get the upper hand in any situation. They have a knack for finding the solution to just about any problem, demonstrating a resourcefulness and versatility that is the cornerstone of any successful adventuring party.",
+    "classType": "Martial",
+    "hitDie": "d8",
+    "hitPointsAtFirstLevel": 8,
+    "hitPointsFixed": 5,
+    "stressSlotsAtFirstLevel": 4,
+    "spellInfo": {
+      "canCastSpells": false,
+      "casterType": null,
+      "spellGrowthRate": null,
+      "spellCastingAbility": null
+    },
+    "prowessInfo": {
+      "canUseProwesses": true,
+      "prowessGrowthRate": "full",
+      "prowessAbility": ["dexterity"],
+      "prowessList": {
+        "1": [ "Second Wind", "Grappling Strike", "Lunging Strike"],
+        "2": [ "Sweeping Strike"],
+        "3": [],
+        "4": [],
+        "5": [],
+        "6": [],
+        "7": [],
+        "8": [],
+        "9": []
+      }
+    },
+    "features": [
+      {
+        "name": "Rogue Proficiencies",
+        "level": 1,
+        "count": 4,
+        "type": "choice",
+        "showInSheet": false,
+        "description": "**Armor**\n\nLight armor\n\n**Weapons**\n\nSimple weapons, hand crossbows, longswords, rapiers, shortswords\n\nTools: Thieves’ Tools\n\nLanguages: Thieves’ Cant\n\n**Skills**\n\nChoose 4 from: Acrobatics, Athletics, Deception, Insight, Intimidation, Investigation, Perception, Performance, Persuasion, Sleight of Hand, and Stealth",
+        "snippet": "",
+        "modifiers": [
+          {
+            "type": "armorProficiency",
+            "subType": "granted",
+            "value": "Light Armor"
+          },
+          {
+            "type": "weaponProficiency",
+            "subType": "granted",
+            "value": "Simple Weapons"
+          },
+          {
+            "type": "weaponProficiency",
+            "subType": "granted",
+            "value": "Hand Crossbows"
+          },
+          {
+            "type": "weaponProficiency",
+            "subType": "granted",
+            "value": "Longswords"
+          },
+          {
+            "type": "weaponProficiency",
+            "subType": "granted",
+            "value": "Rapiers"
+          },
+          {
+            "type": "weaponProficiency",
+            "subType": "granted",
+            "value": "Shortswords"
+          },
+          {
+            "type": "toolProficiency",
+            "subType": "granted",
+            "value": "Thieves' Tools"
+          },
+          {
+            "type": "languageProficiency",
+            "subType": "granted",
+            "value": "Thieves' Cant"
+          },
+          {
+            "type": "skillProficiency",
+            "subType": "choose",
+            "from": ["Acrobatics", "Athletics", "Deception", "Insight", "Intimidation", "Investigation", "Perception", "Performance", "Persuasion", "Sleight of Hand", "Stealth"]
+          },
+          {
+            "type": "skillProficiency",
+            "subType": "choose",
+            "from": ["Acrobatics", "Athletics", "Deception", "Insight", "Intimidation", "Investigation", "Perception", "Performance", "Persuasion", "Sleight of Hand", "Stealth"]
+          },
+          {
+            "type": "skillProficiency",
+            "subType": "choose",
+            "from": ["Acrobatics", "Athletics", "Deception", "Insight", "Intimidation", "Investigation", "Perception", "Performance", "Persuasion", "Sleight of Hand", "Stealth"]
+          },
+          {
+            "type": "skillProficiency",
+            "subType": "choose",
+            "from": ["Acrobatics", "Athletics", "Deception", "Insight", "Intimidation", "Investigation", "Perception", "Performance", "Persuasion", "Sleight of Hand", "Stealth"]
+          }
+        ]
+      },
+      {
+        "name": "Sneak Attack",
+        "level": 1,
+        "type": "feature",
+        "count": 1,
+        "showInSheet": true,
+        "description": "Beginning at 1st level, you know how to strike subtly and exploit a foe's distraction. Once per turn, you can deal an extra 1d6 damage to one creature you hit with an attack if you have advantage on the attack roll. The attack must use a finesse or a ranged weapon. You don't need advantage on the attack roll if another enemy of the target is within 5 feet of it, that enemy isn't incapacitated, and you don't have disadvantage on the attack roll. The amount of the extra damage increases as you gain levels in this class, as shown in the Sneak Attack column of the Rogue table.",
+        "snippet": "Once per turn, you can deal an extra 1d6 damage to one creature you hit with an attack if you have advantage on the attack roll. The attack must use a finesse or a ranged weapon. You don't need advantage on the attack roll if another enemy of the target is within 5 feet of it, that enemy isn't incapacitated, and you don't have disadvantage on the attack roll. The amount of the extra damage increases as you gain levels in this class, as shown in the Sneak Attack column of the Rogue table."
+      },
+      {
+        "name": "Martial Prowess",
+        "level": 1,
+        "type": "feature",
+        "showInSheet": false,
+        "description": "Your training as a hidden attacker has imparted on you various techniques to utilize against your foes. You know two Prowesses from the Rogue prowess list.\n\n**Prowesses Known**\n\nThe Rogue table shows how many Prowesses you know at 1st level and higher. When you gain a level in this class, you can choose one of the Martial Prowesses you know and replace it with another Prowess from the Rogue prowess list.\n\n**Prowess Ability**\n\nDexterity is your Prowess ability for your rogue prowesses, as the power of your abilities relies on your physical capacity. You use your Dexterity whenever a prowess refers to your prowess ability. In addition, you use your Dexterity modifier when setting the saving throw DC for a rogue Prowess you use.\n\n**Prowess save DC**\n\n8 + your proficiency bonus + your Dexterity modifier.",
+        "snippet": "Your training as a hidden attacker has imparted on you various techniques to utilize against your foes. You know two Prowesses from the Rogue prowess list."
+      },
+      {
+        "name": "Cunning Action",
+        "level": 2,
+        "type": "feature",
+        "showInSheet": true,
+        "description": "Starting at 2nd level, your quick thinking and agility allow you to move and act quickly. You may take the Dash, Disengage, or Hide action as a Minor Action instead of a Major Action. Alternatively, you may take a Stress to take any action as a Minor Action. If the chosen action is a spell, take Stress equal to the spell’s level (minimum 1).",
+        "snippet": "You may take the Dash, Disengage, or Hide action as a Minor Action instead of a Major Action. Alternatively, you may take a Stress to take any action as a Minor Action. If the chosen action is a spell, take Stress equal to the spell’s level (minimum 1)."
+      },
+      {
+        "name": "Trait Improvement",
+        "level": 2,
+        "type": "option",
+        "count": 1,
+        "showInSheet": false,
+        "description": "When you reach 2nd level, and again at 4th, 6th, 8th, 10th, 12th, 14th, 16th, and 19th level, you can improve upon one of your traits listed below. You have the following choices:\n\n- Gain an additional Stress Slot\n- Gain a +1 bonus to a Saving Throw\n- Gain a +1 bonus to your innate Absorb, to a maximum of your proficiency bonus.\n- Gain a +1 bonus to your Initiative\n- Gain proficiency in a skill, tool, or language. This option may only be chosen twice.",
+        "snippet": "",
+        "options": [
+          {
+            "name": "Gain an additional Stress Slot",
+            "description": "You gain an additional Stress Slot.",
+            "snippet": "You gain an additional Stress Slot.",
+            "modifiers": [
+              {
+                "type": "bonusStressSlots",
+                "subType": "granted",
+                "bonus": 1
+              }
+            ]
+          },
+          {
+            "name": "Gain a +1 bonus to a Saving Throw",
+            "description": "You gain a +1 bonus to a Saving Throw.",
+            "snippet": "You gain a +1 bonus to a Saving Throw.",
+            "modifiers": [
+              {
+                "type": "savingThrowIncrease",
+                "subType": "choose",
+                "bonus": 1,
+                "from": ["Fortitude", "Reflex", "Will"]
+              }
+            ]
+          },
+          {
+            "name": "Gain a +1 bonus to your innate Absorb, to a maximum of your proficiency bonus.",
+            "description": "You gain a +1 bonus to your innate Absorb, to a maximum of your proficiency bonus.",
+            "snippet": "You gain a +1 bonus to your innate Absorb, to a maximum of your proficiency bonus.",
+            "modifiers": [
+              {
+                "type": "innateAbsorb",
+                "subType": "granted",
+                "bonus": 1
+              }
+            ]
+          },
+          {
+            "name": "Gain a +1 bonus to your Initiative",
+            "description": "You gain a +1 bonus to your Initiative.",
+            "snippet": "You gain a +1 bonus to your Initiative.",
+            "modifiers": [
+              {
+                "type": "bonusInitiative",
+                "subType": "granted",
+                "bonus": 1
+              }
+            ]
+          },
+          {
+            "name": "Gain proficiency in a skill.",
+            "description": "You gain proficiency in a skill.",
+            "snippet": "You gain proficiency in a skill.",
+            "modifiers": [
+              {
+                "type": "skillProficiency",
+                "subType": "choose",
+                "from": ["Acrobatics", "Animal Handling", "Arcana", "Athletics", "Deception", "History", "Insight", "Intimidation", "Investigation", "Medicine", "Nature", "Perception", "Performance", "Persuasion", "Religion", "Sleight of Hand", "Stealth", "Survival"]
+              }
+            ]
+          },
+          {
+            "name": "Gain proficiency in a tool.",
+            "description": "You gain proficiency in a tool.",
+            "snippet": "You gain proficiency in a tool.",
+            "modifiers": [
+              {
+                "type": "toolProficiency",
+                "subType": "choose",
+                "from": ["Alchemist's supplies", "Brewer's supplies", "Calligrapher's supplies", "Carpenter's tools", "Cartographer's tools", "Cobbler's tools", "Cook's utensils", "Glassblower's tools", "Jeweler's tools", "Leatherworker's tools", "Mason's tools", "Painter's supplies", "Potter's tools", "Smith's tools", "Tinker's tools", "Weaver's tools", "Woodcarver's tools", "Dice set", "Dragonchess set", "Playing card set", "Three-Dragon Ante set", "Bagpipes", "Drum", "Dulcimer", "Flute", "Lute", "Lyre", "Horn", "Pan flute", "Shawm", "Viol", "Disguise kit", "Forgery kit", "Herbalism kit", "Navigator's tools", "Poisoner's kit", "Thieves' tools"]
+              }
+            ]
+          },
+          {
+            "name": "Gain proficiency in a language.",
+            "description": "You gain proficiency in a language.",
+            "snippet": "You gain proficiency in a language.",
+            "modifiers": [
+              {
+                "type": "languageProficiency",
+                "subType": "choose",
+                "from": ["Dwarvish", "Elvish", "Giant", "Gnomish", "Goblin", "Halfling", "Orc", "Abyssal", "Celestial", "Deep Speech", "Draconic", "Infernal", "Primordial", "Sylvan", "Undercommon", "Undercommon"]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Roguish Archetype",
+        "level": 3,
+        "type": "subclass",
+        "showInSheet": true,
+        "description": "At 3rd level, you choose an archetype that you emulate in the exercise of your rogue abilities. The archetype you choose grants you features at 3rd level and again at 7th, 10th, 15th, and 18th level.",
+        "snippet": "",
+        "subclasses": ["Assassin"]
+      },
+      {
+        "name": "Expertise",
+        "level": 3,
+        "type": "feature",
+        "showInSheet": true,
+        "description": "Starting at 3rd level, choose two of your skill proficiencies, or one of your skill proficiencies and your proficiency with thieves' tools. Your proficiency bonus is doubled for any ability check you make that uses either of the chosen proficiencies.\n\nAt 6th level, you can choose two more of your proficiencies (in skills or with thieves' tools) to gain this benefit.",
+        "snippet": "Starting at 3rd level, choose two of your skill proficiencies, or one of your skill proficiencies and your proficiency with thieves' tools. Your proficiency bonus is doubled for any ability check you make that uses either of the chosen proficiencies.\n\nAt 6th level, you can choose two more of your proficiencies (in skills or with thieves' tools) to gain this benefit.",
+        "modifiers": [
+          {
+            "type": "skillExpertise",
+            "subType": "choose",
+            "from": ["Acrobatics", "Animal Handling", "Arcana", "Athletics", "Deception", "History", "Insight", "Intimidation", "Investigation", "Medicine", "Nature", "Perception", "Performance", "Persuasion", "Religion", "Sleight of Hand", "Stealth", "Survival"]
+          },
+          {
+            "type": "skillExpertise",
+            "subType": "choose",
+            "from": ["Acrobatics", "Animal Handling", "Arcana", "Athletics", "Deception", "History", "Insight", "Intimidation", "Investigation", "Medicine", "Nature", "Perception", "Performance", "Persuasion", "Religion", "Sleight of Hand", "Stealth", "Survival"]
+          }
+        ]
+      }
+    ],
+    "levelFeatures": {
+      "1": ["Rogue Proficiencies", "Martial Prowess"],
+      "2": ["Cunning Action"],
+      "3": ["Roguish Archetype", "Expertise"],
+      "4": [],
+      "5": [],
+      "6": [],
+      "7": [],
+      "8": [],
+      "9": [],
+      "10": [],
+      "11": [],
+      "12": [],
+      "13": []
+    },
+    "startingEquipment": [
+      {
+        "0": {
+          "description": "a rapier",
+          "items": [
+            {
+                "type": "granted",
+                "category": "weapons",
+                "value": "rapier"
+            }
+          ]
+        },
+        "1": {
+          "description": "a shortsword",
+          "items": [
+            {
+              "type": "granted",
+              "category": "weapons",
+              "value": "shortsword"
+            }
+          ]
+        }
+      },
+      {
+        "0": {
+          "description": "a shortbow",
+          "items": [
+            {
+              "type": "granted",
+              "category": "weapons",
+              "value": "shortbow"
+            }
+          ]
+        },
+        "1": {
+          "description": "a shortsword",
+          "items": [
+            {
+              "type": "granted",
+              "category": "weapons",
+              "value": "shortsword"
+            }
+          ]
+        }
+      },
+      {
+        "0": {
+          "description": "a burglar's pack",
+          "items": [
+            {
+              "type": "granted",
+              "category": "packs",
+              "value": "burglarspack"
+            }
+          ]
+        },
+        "1": {
+          "description": "A dungeoneer's pack",
+          "items": [
+            {
+              "type": "granted",
+              "category": "packs",
+              "value": "dungeoneerspack"
+            }
+          ]
+        }
+      },
+      {
+        "0": {
+          "description": "Leather armor",
+          "items": [
+            {
+              "type": "granted",
+              "category": "armor",
+              "value": "leatherarmor"
+            },
+            {
+              "type": "granted",
+              "category": "weapons",
+              "value": "dagger"
+            },
+            {
+              "type": "granted",
+              "category": "weapons",
+              "value": "dagger"
+            },
+            {
+              "type": "granted",
+              "category": "tools",
+              "value": "thieves' tools"
+            }
+          ]
+        }
+      }
+    ]
+}
+  

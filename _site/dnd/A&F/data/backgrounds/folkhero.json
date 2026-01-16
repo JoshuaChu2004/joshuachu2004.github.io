@@ -1,0 +1,146 @@
+{
+  "name": "Folk Hero",
+  "description": "You come from a humble social rank, but you are destined for so much more. Already the people of your home village regard you as their champion, and your destiny calls you to stand against the tyrants and monsters that threaten the common folk everywhere.",
+  "languages": [],
+  "startingEquipment": [
+    {
+      "0": {
+        "description": "A set of artisan's tools (one of your choice)",
+        "items": [
+          {
+            "type": "choose",
+            "from": [
+              "Alchemist's Supplies",
+              "Brewer's Supplies",
+              "Calligrapher's Supplies",
+              "Carpenter's Tools",
+              "Cartographer's Tools",
+              "Cobbler's Tools",
+              "Cook's Utensils",
+              "Glassblower's Tools",
+              "Jeweler's Tools",
+              "Leatherworker's Tools",
+              "Mason's Tools",
+              "Painter's Supplies",
+              "Potter's Tools",
+              "Smith's Tools",
+              "Tinker's Tools",
+              "Weaver's Tools",
+              "Woodcarver's Tools"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "0": {
+        "description": "A shovel",
+        "items": [
+          {
+            "type": "granted",
+            "value": "Shovel"
+          }
+        ]
+      }
+    },
+    {
+      "0": {
+        "description": "An iron pot",
+        "items": [
+          {
+            "type": "granted",
+            "value": "Iron Pot"
+          }
+        ]
+      }
+    },
+    {
+      "0": {
+        "description": "A set of common clothes",
+        "items": [
+          {
+            "type": "granted",
+            "value": "Common Clothes"
+          }
+        ]
+      }
+    },
+    {
+      "0": {
+        "description": "A pouch containing 10gp",
+        "items": [
+          {
+            "type": "granted",
+            "value": "gold",
+            "quantity": 10
+          }
+        ]
+      }
+    }
+  ],
+  "features": [
+    {
+      "name": "Folk Hero Proficiencies",
+      "showInSheet": false,
+      "description": "You have proficiency with the following skills: Animal Handling and Survival. You also have proficiency with one type of artisan's tools of your choice and vehicles (land).",
+      "snippet": "",
+      "modifiers": [
+        {
+          "type": "skillProficiency",
+          "subType": "granted",
+          "value": "Animal Handling"
+        },
+        {
+          "type": "skillProficiency",
+          "subType": "granted",
+          "value": "Survival"
+        },
+        {
+          "type": "toolProficiency",
+          "subType": "choose",
+          "from": [
+            "Alchemist's Supplies",
+            "Brewer's Supplies",
+            "Calligrapher's Supplies",
+            "Carpenter's Tools",
+            "Cartographer's Tools",
+            "Cobbler's Tools",
+            "Cook's Utensils",
+            "Glassblower's Tools",
+            "Jeweler's Tools",
+            "Leatherworker's Tools",
+            "Mason's Tools",
+            "Painter's Supplies",
+            "Potter's Tools",
+            "Smith's Tools",
+            "Tinker's Tools",
+            "Weaver's Tools",
+            "Woodcarver's Tools"
+          ]
+        },
+        {
+          "type": "toolProficiency",
+          "subType": "granted",
+          "value": "Vehicles (Land)"
+        }
+      ]
+    },
+    {
+      "name": "Call to Action",
+      "showInSheet": true,
+      "description": "A motivator calls you to stand strong in the face of danger and evil. It could be a prophecy, an inciting event, or simply the desire to do good. Record what it is, and a simple phrase that represents your moral values. Once per session, when you act in accordance to your moral values, another creature who witnesses it may gain Heroic Inspiration."
+    },
+    {
+      "name": "Origin Feat",
+      "showInSheet": true,
+      "description": "You have a feat that was gained through your background. Choose one of the following Origin Feats",
+      "modifiers": [
+        {
+          "type": "originFeat",
+          "subType": "choose",
+          "from": ["Chef"]
+        }
+      ]
+    }
+  ]
+}

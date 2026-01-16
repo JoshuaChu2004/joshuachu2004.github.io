@@ -1,0 +1,121 @@
+{
+  "name": "Entertainer",
+  "description": "You thrive in front of an audience. You know how to entrance them, entertain them, and even inspire them. Your poetics can stir the hearts of those who hear you, awakening grief or joy, laughter or anger. Your music raises their spirits or captures their sorrow. Your dance steps captivate, your humor cuts to the quick. Whatever techniques you use, your art is your life.",
+  "languages": [],
+  "startingEquipment": [
+    {
+      "0": {
+        "description": "A musical instrument (one of your choice)",
+        "items": [
+          {
+            "type": "choose",
+            "from": [
+              "Bagpipes",
+              "Drum",
+              "Dulcimer",
+              "Flute",
+              "Lute",
+              "Lyre",
+              "Horn",
+              "Pan Flute",
+              "Shawm",
+              "Viol"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "0": {
+        "description": "The favor of an admirer (love letter, lock of hair, or trinket)",
+        "items": [
+          {
+            "type": "granted",
+            "value": "Admirer's Favor"
+          }
+        ]
+      }
+    },
+    {
+      "0": {
+        "description": "A costume",
+        "items": [
+          {
+            "type": "granted",
+            "value": "Costume"
+          }
+        ]
+      }
+    },
+    {
+      "0": {
+        "description": "A pouch containing 15gp",
+        "items": [
+          {
+            "type": "granted",
+            "value": "gold",
+            "quantity": 15
+          }
+        ]
+      }
+    }
+  ],
+  "features": [
+    {
+      "name": "Entertainer Proficiencies",
+      "showInSheet": false,
+      "description": "You have proficiency with the following skills: Acrobatics and Performance. You also have proficiency with Disguise Kit and one type of musical instrument of your choice.",
+      "snippet": "",
+      "modifiers": [
+        {
+          "type": "skillProficiency",
+          "subType": "granted",
+          "value": "Acrobatics"
+        },
+        {
+          "type": "skillProficiency",
+          "subType": "granted",
+          "value": "Performance"
+        },
+        {
+          "type": "toolProficiency",
+          "subType": "granted",
+          "value": "Disguise Kit"
+        },
+        {
+          "type": "toolProficiency",
+          "subType": "choose",
+          "from": [
+            "Bagpipes",
+            "Drum",
+            "Dulcimer",
+            "Flute",
+            "Lute",
+            "Lyre",
+            "Horn",
+            "Pan Flute",
+            "Shawm",
+            "Viol"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "By Popular Demand",
+      "showInSheet": true,
+      "description": "You spread joy and hope wherever you go, or at least let others forget their woes for a moment. You can expend a Heroic Inspiration to draw a crowd of people or friendly creatures to where you are. As long as you continue performing, drawn creatures have disadvantage on Wisdom (Perception) checks to other creatures around them."
+    },
+    {
+      "name": "Origin Feat",
+      "showInSheet": true,
+      "description": "You have a feat that was gained through your background. Choose one of the following Origin Feats",
+      "modifiers": [
+        {
+          "type": "originFeat",
+          "subType": "choose",
+          "from": ["Chef"]
+        }
+      ]
+    }
+  ]
+}

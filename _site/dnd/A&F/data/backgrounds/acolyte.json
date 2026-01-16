@@ -1,0 +1,122 @@
+{
+  "name": "Acolyte",
+  "description": "You have spent your life in the service of a temple to a specific god or pantheon of gods. You act as an intermediary between the realm of the holy and the mortal world, performing sacred rites and offering sacrifices in order to conduct worshipers into the presence of the divine. You are not necessarily a cleric – performing sacred rites is not the same thing as channeling divine power.",
+  "languages": [],
+  "startingEquipment": [
+    {
+      "0": {
+        "description": "A holy symbol (a gift to you when you entered the priesthood)",
+        "items": [
+          {
+            "type": "granted",
+            "value": "Holy Symbol"
+          }
+        ]
+      }
+    },
+    {
+      "0": {
+        "description": "A prayer book or prayer wheel",
+        "items": [
+          {
+            "type": "granted",
+            "value": "Prayer Book"
+          }
+        ]
+      }
+    },
+    {
+      "0": {
+        "description": "5 sticks of incense",
+        "items": [
+          {
+            "type": "granted",
+            "value": "Incense",
+            "quantity": 5
+          }
+        ]
+      }
+    },
+    {
+      "0": {
+        "description": "Vestments",
+        "items": [
+          {
+            "type": "granted",
+            "value": "Vestments"
+          }
+        ]
+      }
+    },
+    {
+      "0": {
+        "description": "A set of common clothes",
+        "items": [
+          {
+            "type": "granted",
+            "value": "Common Clothes"
+          }
+        ]
+      }
+    },
+    {
+      "0": {
+        "description": "A pouch containing 15gp",
+        "items": [
+          {
+            "type": "granted",
+            "value": "gold",
+            "quantity": 15
+          }
+        ]
+      }
+    }
+  ],
+  "features": [
+    {
+      "name": "Acolyte Proficiencies",
+      "showInSheet": false,
+      "description": "You have proficiency with the following skills: Insight and Religion. You also know two languages of your choice.",
+      "snippet": "",
+      "modifiers": [
+        {
+          "type": "skillProficiency",
+          "subType": "granted",
+          "value": "Insight"
+        },
+        {
+          "type": "skillProficiency",
+          "subType": "granted",
+          "value": "Religion"
+        },
+        {
+          "type": "language",
+          "subType": "choose",
+          "from": ["Dwarvish", "Elvish", "Giant", "Gnomish", "Goblin", "Halfling", "Orc", "Abyssal", "Celestial", "Draconic", "Deep Speech", "Infernal", "Primordial", "Sylvan", "Undercommon"]
+        },
+        {
+          "type": "language",
+          "subType": "choose",
+          "from": ["Dwarvish", "Elvish", "Giant", "Gnomish", "Goblin", "Halfling", "Orc", "Abyssal", "Celestial", "Draconic", "Deep Speech", "Infernal", "Primordial", "Sylvan", "Undercommon"]
+        }
+      ]
+    },
+    {
+      "name": "Commandments of Faith",
+      "showInSheet": true,
+      "description": "As an acolyte, you have several sayings or values that were instilled in you. Record three of these that you hold onto most. Once per session, when you fully embody one of these principles, you may recover 2 Stress Slots."
+    },
+    {
+      "name": "Origin Feat",
+      "showInSheet": true,
+      "description": "You have a feat that was gained through your background. Choose one of the following Origin Feats",
+      "modifiers": [
+        {
+          "type": "originFeat",
+          "subType": "choose",
+          "from": ["Chef"]
+        }
+      ]
+    }
+  ]
+}

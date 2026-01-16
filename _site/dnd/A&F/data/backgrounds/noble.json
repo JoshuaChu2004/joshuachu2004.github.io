@@ -1,0 +1,99 @@
+{
+  "name": "Noble",
+  "description": "You understand wealth, power, and privilege. You carry a noble title, and your family owns land, collects taxes, and wields significant political influence. You might be a pampered aristocrat unfamiliar with work or discomfort, a former merchant just elevated to the nobility, or a disinherited scoundrel with a disproportionate sense of entitlement. Or you could be an honest, hard-working landowner who cares deeply about the people who live and work on your land, keenly aware of your responsibility to them.",
+  "languages": [],
+  "startingEquipment": [
+    {
+      "0": {
+        "description": "A set of fine clothes",
+        "items": [
+          {
+            "type": "granted",
+            "value": "Fine Clothes"
+          }
+        ]
+      }
+    },
+    {
+      "0": {
+        "description": "A signet ring",
+        "items": [
+          {
+            "type": "granted",
+            "value": "Signet Ring"
+          }
+        ]
+      }
+    },
+    {
+      "0": {
+        "description": "A scroll of pedigree",
+        "items": [
+          {
+            "type": "granted",
+            "value": "Scroll of Pedigree"
+          }
+        ]
+      }
+    },
+    {
+      "0": {
+        "description": "A purse containing 25gp",
+        "items": [
+          {
+            "type": "granted",
+            "value": "gold",
+            "quantity": 25
+          }
+        ]
+      }
+    }
+  ],
+  "features": [
+    {
+      "name": "Noble Proficiencies",
+      "showInSheet": false,
+      "description": "You have proficiency with the following skills: History and Persuasion. You also have proficiency with one type of gaming set of your choice and know one language of your choice.",
+      "snippet": "",
+      "modifiers": [
+        {
+          "type": "skillProficiency",
+          "subType": "granted",
+          "value": "History"
+        },
+        {
+          "type": "skillProficiency",
+          "subType": "granted",
+          "value": "Persuasion"
+        },
+        {
+          "type": "toolProficiency",
+          "subType": "choose",
+          "from": ["Playing Cards", "Three-Dragon Ante", "Dice"]
+        },
+        {
+          "type": "language",
+          "subType": "choose",
+          "from": ["Dwarvish", "Elvish", "Giant", "Gnomish", "Goblin", "Halfling", "Orc", "Abyssal", "Celestial", "Draconic", "Deep Speech", "Infernal", "Primordial", "Sylvan", "Undercommon"]
+        }
+      ]
+    },
+    {
+      "name": "Position of Privilege",
+      "showInSheet": true,
+      "description": "Thanks to your noble birth, others are encouraged to give you respect, whether it be genuine or fear of your political power. Once per session, you may announce your title to gain advantage on a Charisma check with another sentient humanoid."
+    },
+    {
+      "name": "Origin Feat",
+      "showInSheet": true,
+      "description": "You have a feat that was gained through your background. Choose one of the following Origin Feats",
+      "modifiers": [
+        {
+          "type": "originFeat",
+          "subType": "choose",
+          "from": ["Chef"]
+        }
+      ]
+    }
+  ]
+}

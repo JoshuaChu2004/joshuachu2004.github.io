@@ -1,5 +1,5 @@
 {
-  "name": "Criminal",
+  "name": "Criminal / Spy",
   "description": "You are an experienced criminal with a history of breaking the law. You have spent a lot of time among other criminals and still have contacts within the criminal underworld. You're far closer than most people to the world of murder, theft, and violence that pervades the underbelly of civilization, and you have survived up to this point by flouting the rules and regulations of society.",
   "languages": [],
   "startingEquipment": [
@@ -70,7 +70,7 @@
     {
       "name": "Criminal Contact",
       "showInSheet": true,
-      "description": "You have a reliable and trustworthy contact who acts as your liaison to a network of other criminals. You know how to get messages to and from your contact, even over great distances."
+      "description": "You have a reliable and trustworthy contact who acts as your liaison to a network of other criminals. You know how to get messages to and from your contact, even over great distances. Describe and record who this person is and how close a connection the two of you have. Once per session, you may send a message to them requesting aid, information, or simply chatting. You will receive a reply by the next session, so long as nothing prevents them from sending it or you receiving it."
     },
     {
       "name": "Origin Feat",

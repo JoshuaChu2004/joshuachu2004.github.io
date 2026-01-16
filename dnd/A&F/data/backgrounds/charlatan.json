@@ -1,0 +1,99 @@
+{
+  "name": "Charlatan",
+  "description": "You have always had a way with people. You know what makes them tick, you can tease out their hearts' desires after a few minutes of conversation, and with a few leading questions you can read them like they were children's books. It's a useful talent, and one that you're perfectly willing to use for your advantage. You know what people want and you deliver, or rather, you promise to deliver. Common sense should steer people away from things that sound too good to be true, but common sense seems to be in short supply when you're around.",
+  "languages": [],
+  "startingEquipment": [
+    {
+      "0": {
+        "description": "A set of fine clothes",
+        "items": [
+          {
+            "type": "granted",
+            "value": "Fine Clothes"
+          }
+        ]
+      }
+    },
+    {
+      "0": {
+        "description": "A disguise kit",
+        "items": [
+          {
+            "type": "granted",
+            "value": "Disguise Kit"
+          }
+        ]
+      }
+    },
+    {
+      "0": {
+        "description": "Tools of the con of your choice (ten stoppered bottles filled with colored liquid, a set of weighted dice, a deck of marked cards, or a signet ring of an imaginary duke)",
+        "items": [
+          {
+            "type": "choose",
+            "from": ["Con Bottles", "Weighted Dice", "Marked Cards", "False Signet Ring"]
+          }
+        ]
+      }
+    },
+    {
+      "0": {
+        "description": "A pouch containing 15gp",
+        "items": [
+          {
+            "type": "granted",
+            "value": "gold",
+            "quantity": 15
+          }
+        ]
+      }
+    }
+  ],
+  "features": [
+    {
+      "name": "Charlatan Proficiencies",
+      "showInSheet": false,
+      "description": "You have proficiency with the following skills: Deception and Sleight of Hand. You also have proficiency with Disguise Kit and Forgery Kit.",
+      "snippet": "",
+      "modifiers": [
+        {
+          "type": "skillProficiency",
+          "subType": "granted",
+          "value": "Deception"
+        },
+        {
+          "type": "skillProficiency",
+          "subType": "granted",
+          "value": "Sleight of Hand"
+        },
+        {
+          "type": "toolProficiency",
+          "subType": "granted",
+          "value": "Disguise Kit"
+        },
+        {
+          "type": "toolProficiency",
+          "subType": "granted",
+          "value": "Forgery Kit"
+        }
+      ]
+    },
+    {
+      "name": "False Identity",
+      "showInSheet": true,
+      "description": "As a charlatan, you have forged a second identity for yourself that includes documentation, connections, and mannerisms through which you run your scams. Record who your second identity is and how you balance the two lives. While assuming your second identity, you have advantage on Charisma checks made to pass as them or obfuscate any connection to your true self."
+    },
+    {
+      "name": "Origin Feat",
+      "showInSheet": true,
+      "description": "You have a feat that was gained through your background. Choose one of the following Origin Feats",
+      "modifiers": [
+        {
+          "type": "originFeat",
+          "subType": "choose",
+          "from": ["Chef"]
+        }
+      ]
+    }
+  ]
+}

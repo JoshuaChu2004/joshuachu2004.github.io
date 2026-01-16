@@ -1,0 +1,99 @@
+{
+  "name": "City Watch",
+  "description": "You have served the community where you grew up, standing as its first line of defense against crime. You aren't a soldier, directing your gaze outward at possible enemies. Instead, your service to your hometown was to help police its populace, protecting the citizenry from lawbreakers and malefactors of every stripe.",
+  "languages": [],
+  "startingEquipment": [
+    {
+      "0": {
+        "description": "A uniform in the style of your unit and indicative of your rank",
+        "items": [
+          {
+            "type": "granted",
+            "value": "Uniform"
+          }
+        ]
+      }
+    },
+    {
+      "0": {
+        "description": "A horn with which to summon help",
+        "items": [
+          {
+            "type": "granted",
+            "value": "Horn"
+          }
+        ]
+      }
+    },
+    {
+      "0": {
+        "description": "A set of manacles",
+        "items": [
+          {
+            "type": "granted",
+            "value": "Manacles"
+          }
+        ]
+      }
+    },
+    {
+      "0": {
+        "description": "A pouch containing 10gp",
+        "items": [
+          {
+            "type": "granted",
+            "value": "gold",
+            "quantity": 10
+          }
+        ]
+      }
+    }
+  ],
+  "features": [
+    {
+      "name": "City Watch Proficiencies",
+      "showInSheet": false,
+      "description": "You have proficiency with the following skills: Athletics and Insight. You also know two languages of your choice.",
+      "snippet": "",
+      "modifiers": [
+        {
+          "type": "skillProficiency",
+          "subType": "granted",
+          "value": "Athletics"
+        },
+        {
+          "type": "skillProficiency",
+          "subType": "granted",
+          "value": "Insight"
+        },
+        {
+          "type": "language",
+          "subType": "choose",
+          "from": ["Dwarvish", "Elvish", "Giant", "Gnomish", "Goblin", "Halfling", "Orc", "Abyssal", "Celestial", "Draconic", "Deep Speech", "Infernal", "Primordial", "Sylvan", "Undercommon"]
+        },
+        {
+          "type": "language",
+          "subType": "choose",
+          "from": ["Dwarvish", "Elvish", "Giant", "Gnomish", "Goblin", "Halfling", "Orc", "Abyssal", "Celestial", "Draconic", "Deep Speech", "Infernal", "Primordial", "Sylvan", "Undercommon"]
+        }
+      ]
+    },
+    {
+      "name": "Watcher's Eye",
+      "showInSheet": true,
+      "description": "Your experience in enforcing the law has given you a keen eye for the shady. You can take a Stress to have advantage on Wisdom (Insight) or Wisdom (Perception) to spot hubs of criminal activity or find people with criminal ties. However, they might not be very inclined to aid you."
+    },
+    {
+      "name": "Origin Feat",
+      "showInSheet": true,
+      "description": "You have a feat that was gained through your background. Choose one of the following Origin Feats",
+      "modifiers": [
+        {
+          "type": "originFeat",
+          "subType": "choose",
+          "from": ["Chef"]
+        }
+      ]
+    }
+  ]
+}

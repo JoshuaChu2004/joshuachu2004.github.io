@@ -1,0 +1,121 @@
+{
+  "name": "Outlander",
+  "description": "You grew up in the wilds, far from civilization and the comforts of town and technology. You've witnessed the migration of herds larger than forests, survived weather more extreme than any city-dweller could comprehend, and enjoyed the solitude of being the only thinking creature for miles in any direction. The wilds are in your blood, whether you were a nomad, an explorer, a recluse, a hunter-gatherer, or even a marauder. Even in places where you don't know the specific features of the terrain, you know the ways of the wild.",
+  "languages": [],
+  "startingEquipment": [
+    {
+      "0": {
+        "description": "A staff",
+        "items": [
+          {
+            "type": "granted",
+            "value": "Staff"
+          }
+        ]
+      }
+    },
+    {
+      "0": {
+        "description": "A hunting trap",
+        "items": [
+          {
+            "type": "granted",
+            "value": "Hunting Trap"
+          }
+        ]
+      }
+    },
+    {
+      "0": {
+        "description": "A trophy from an animal you killed",
+        "items": [
+          {
+            "type": "granted",
+            "value": "Animal Trophy"
+          }
+        ]
+      }
+    },
+    {
+      "0": {
+        "description": "A set of traveler's clothes",
+        "items": [
+          {
+            "type": "granted",
+            "value": "Traveler's Clothes"
+          }
+        ]
+      }
+    },
+    {
+      "0": {
+        "description": "A pouch containing 10gp",
+        "items": [
+          {
+            "type": "granted",
+            "value": "gold",
+            "quantity": 10
+          }
+        ]
+      }
+    }
+  ],
+  "features": [
+    {
+      "name": "Outlander Proficiencies",
+      "showInSheet": false,
+      "description": "You have proficiency with the following skills: Athletics and Survival. You also have proficiency with one type of musical instrument of your choice and know one language of your choice.",
+      "snippet": "",
+      "modifiers": [
+        {
+          "type": "skillProficiency",
+          "subType": "granted",
+          "value": "Athletics"
+        },
+        {
+          "type": "skillProficiency",
+          "subType": "granted",
+          "value": "Survival"
+        },
+        {
+          "type": "toolProficiency",
+          "subType": "choose",
+          "from": [
+            "Bagpipes",
+            "Drum",
+            "Dulcimer",
+            "Flute",
+            "Lute",
+            "Lyre",
+            "Horn",
+            "Pan Flute",
+            "Shawm",
+            "Viol"
+          ]
+        },
+        {
+          "type": "language",
+          "subType": "choose",
+          "from": ["Dwarvish", "Elvish", "Giant", "Gnomish", "Goblin", "Halfling", "Orc", "Abyssal", "Celestial", "Draconic", "Deep Speech", "Infernal", "Primordial", "Sylvan", "Undercommon"]
+        }
+      ]
+    },
+    {
+      "name": "Off the Grid",
+      "showInSheet": true,
+      "description": "From years of experience living off of the land, you excel at navigating natural terrains. Once per session, you may gain advantage on a Wisdom (Survival) or Wisdom (Perception) check while in an uncivilized area."
+    },
+    {
+      "name": "Origin Feat",
+      "showInSheet": true,
+      "description": "You have a feat that was gained through your background. Choose one of the following Origin Feats",
+      "modifiers": [
+        {
+          "type": "originFeat",
+          "subType": "choose",
+          "from": ["Chef"]
+        }
+      ]
+    }
+  ]
+}

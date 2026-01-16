@@ -1,0 +1,110 @@
+{
+  "name": "Soldier",
+  "description": "War has been your life for as long as you care to remember. You trained as a youth, studied the use of weapons and armor, learned basic survival techniques, including how to stay alive on the battlefield. You might have been part of a standing national army or a mercenary company, or perhaps a member of a local militia who rose to prominence during a recent war.",
+  "languages": [],
+  "startingEquipment": [
+    {
+      "0": {
+        "description": "An insignia of rank",
+        "items": [
+          {
+            "type": "granted",
+            "value": "Insignia of Rank"
+          }
+        ]
+      }
+    },
+    {
+      "0": {
+        "description": "A trophy taken from a fallen enemy (a dagger, broken blade, or piece of a banner)",
+        "items": [
+          {
+            "type": "granted",
+            "value": "Enemy Trophy"
+          }
+        ]
+      }
+    },
+    {
+      "0": {
+        "description": "A set of bone dice or a deck of cards",
+        "items": [
+          {
+            "type": "choose",
+            "from": ["Bone Dice", "Playing Cards"]
+          }
+        ]
+      }
+    },
+    {
+      "0": {
+        "description": "A set of common clothes",
+        "items": [
+          {
+            "type": "granted",
+            "value": "Common Clothes"
+          }
+        ]
+      }
+    },
+    {
+      "0": {
+        "description": "A pouch containing 10gp",
+        "items": [
+          {
+            "type": "granted",
+            "value": "gold",
+            "quantity": 10
+          }
+        ]
+      }
+    }
+  ],
+  "features": [
+    {
+      "name": "Soldier Proficiencies",
+      "showInSheet": false,
+      "description": "You have proficiency with the following skills: Athletics and Intimidation. You also have proficiency with one type of gaming set of your choice and vehicles (land).",
+      "snippet": "",
+      "modifiers": [
+        {
+          "type": "skillProficiency",
+          "subType": "granted",
+          "value": "Athletics"
+        },
+        {
+          "type": "skillProficiency",
+          "subType": "granted",
+          "value": "Intimidation"
+        },
+        {
+          "type": "toolProficiency",
+          "subType": "choose",
+          "from": ["Playing Cards", "Three-Dragon Ante", "Dice"]
+        },
+        {
+          "type": "toolProficiency",
+          "subType": "granted",
+          "value": "Vehicles (Land)"
+        }
+      ]
+    },
+    {
+      "name": "Military Rank",
+      "showInSheet": true,
+      "description": "You have a military rank from your career as a soldier. Soldiers and civilians loyal to your former military organization still recognize your authority and influence, and they defer to you if they are of a lower rank. Even outsiders will take your rank as a show of force and competence. Once per session, you can pull rank to gain advantage on a Charisma check with another sentient humanoid."
+    },
+    {
+      "name": "Origin Feat",
+      "showInSheet": true,
+      "description": "You have a feat that was gained through your background. Choose one of the following Origin Feats",
+      "modifiers": [
+        {
+          "type": "originFeat",
+          "subType": "choose",
+          "from": ["Chef"]
+        }
+      ]
+    }
+  ]
+}
