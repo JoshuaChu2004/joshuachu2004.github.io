@@ -51,22 +51,22 @@
           {
             "type": "weaponProficiency",
             "subType": "granted",
-            "value": "Hand Crossbows"
+            "value": "Crossbow Hand"
           },
           {
             "type": "weaponProficiency",
             "subType": "granted",
-            "value": "Longswords"
+            "value": "Longsword"
           },
           {
             "type": "weaponProficiency",
             "subType": "granted",
-            "value": "Rapiers"
+            "value": "Rapier"
           },
           {
             "type": "weaponProficiency",
             "subType": "granted",
-            "value": "Shortswords"
+            "value": "Shortsword"
           },
           {
             "type": "toolProficiency",
@@ -74,7 +74,7 @@
             "value": "Thieves' Tools"
           },
           {
-            "type": "languageProficiency",
+            "type": "language",
             "subType": "granted",
             "value": "Thieves' Cant"
           },
@@ -335,7 +335,7 @@
       },
       {
         "0": {
-          "description": "Leather armor",
+          "description": "Leather armor, two daggers, and thieve's tools",
           "items": [
             {
               "type": "granted",

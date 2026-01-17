@@ -361,10 +361,10 @@
       "description": "Light Armor",
       "items": [
         {
-          "type": "choose",
+          "type": "granted",
           "subType": "category",
           "category": "armor",
-          "value": "light"
+          "value": "lightarmor"
         }
       ]
     },
@@ -372,10 +372,10 @@
       "description": "Medium Armor",
       "items": [
         {
-          "type": "choose",
+          "type": "granted",
           "subType": "category",
           "category": "armor",
-          "value": "medium"
+          "value": "lightarmor"
         }
       ]
 
@@ -383,6 +383,21 @@
   },
   {
     "0": {
+      "description": "two shortswords",
+      "items": [
+        {
+          "type": "granted",
+          "category": "weapons",
+          "value": "shortsword"
+        },
+        {
+          "type": "granted",
+          "category": "weapons",
+          "value": "shortsword"
+        }
+      ]
+    },
+    "1": {
       "description": "two simple weapon",
       "items": [
         {
@@ -390,35 +405,7 @@
           "subType": "category",
           "category": "weapons",
           "subCategory": ["simple"]
-        }
-      ]
-    },
-    "1": {
-      "description": "A martial weapon",
-      "items": [
-        {
-          "type": "choose",
-          "subType": "category",
-          "category": "weapons",
-          "subCategory": ["martial"]
-        }
-      ]
-    }
-  },
-  {
-    "0": {
-      "description": "a light crossbow",
-      "items": [
-        {
-          "type": "granted",
-          "category": "weapons",
-          "value": "crossbowlight"
-        }
-      ]
-    },
-    "1": {
-      "description": "a simple weapon",
-      "items": [
+        },
         {
           "type": "choose",
           "subType": "category",
@@ -430,12 +417,12 @@
   },
   {
     "0": {
-      "description": "A priest's pack",
+      "description": "A dungeoneer's pack",
       "items": [
         {
           "type": "granted",
           "category": "packs",
-          "value": "priestspack"
+          "value": "dungeoneerspack"
         }
       ]
     },
@@ -452,17 +439,13 @@
   }, 
   {
     "0": {
-      "description": "a shield and a holy symbol",
+      "description": "a longbow",
       "items": [
         {
-          "type": "choose",
-          "subType": "category",
-          "category": "armor",
-          "subCategory": ["shield"]
-        },
-        {
           "type": "granted",
-          "value": "Holy Symbol"
+          "subType": "category",
+          "category": "weapon",
+          "value": "longbow"
         }
       ]
     }

@@ -3235,6 +3235,7 @@ function getDefaultCalculatedModifiers() {
 }
 
 function calculateFinalModifiers() {
+    debugger;
     // Reset calculatedModifiers to default structure
     characterData.calculatedModifiers = getDefaultCalculatedModifiers();
     
@@ -3388,6 +3389,7 @@ function generateEquipmentSelection(equipment, selectionIndex, source) {
                         optionEl.value = -1;
                         optionEl.textContent = 'Choose an option';
                         itemSelectEl.appendChild(optionEl);
+                        console.log("Items: ", items);
                         items.forEach(item => {
                             const optionEl = document.createElement('option');
                             optionEl.value = item.id;
