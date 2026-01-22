@@ -110,7 +110,7 @@
       "type": "option",
       "count": 1,
       "showInSheet": false,
-      "description": "When you reach 2nd level, and again at 4th, 6th, 8th, 10th, 12th, 14th, 16th, and 19th level, you can improve upon one of your traits listed below. You have the following choices:\n\n- Gain an additional Stress Slot\n- Gain a +1 bonus to a Saving Throw\n- Gain a +1 bonus to your innate Absorb, to a maximum of your proficiency bonus.\n- Gain a +1 bonus to your Initiative\n- Gain proficiency in a skill, tool, or language. This option may only be chosen twice.",
+      "description": "When you reach 2nd level, and again at 4th, 6th, 8th, 10th, 12th, 14th, 16th, and 19th level, you can improve upon one of your traits listed below. You have the following choices:\n\n- Gain an additional Stress Slot\n- Gain a +1 bonus to a Saving Throw\n- Gain a +2 bonus to your Initiative\n- Gain proficiency in a skill, tool, or language. This option may only be chosen twice.",
       "snippet": "",
       "options": [
         {
@@ -139,18 +139,6 @@
           ]
         },
         {
-          "name": "Gain a +1 bonus to your innate Absorb, to a maximum of your proficiency bonus.",
-          "description": "You gain a +1 bonus to your innate Absorb, to a maximum of your proficiency bonus.",
-          "snippet": "You gain a +1 bonus to your innate Absorb, to a maximum of your proficiency bonus.",
-          "modifiers": [
-            {
-              "type": "innateAbsorb",
-              "subType": "granted",
-              "bonus": 1
-            }
-          ]
-        },
-        {
           "name": "Gain a +1 bonus to your Initiative",
           "description": "You gain a +1 bonus to your Initiative.",
           "snippet": "You gain a +1 bonus to your Initiative.",
@@ -158,7 +146,7 @@
             {
               "type": "bonusInitiative",
               "subType": "granted",
-              "bonus": 1
+              "bonus": 2
             }
           ]
         },

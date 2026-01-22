@@ -339,7 +339,7 @@ function generateCombatStats() {
   );
   if (absorbTrait && coreTraits) {
     const valueEl = absorbTrait.querySelector(".cs-value");
-    if (valueEl) valueEl.textContent = getAbsorb().totalAbsorb;
+    if (valueEl) valueEl.textContent = getAbsorb();
   }
 
   // Proficiency Bonus
@@ -428,9 +428,8 @@ function getAbsorb() {
     });
 
   absorb = absorb + bonusAbsorb;
-  let totalAbsorb = absorb * getProficiencyBonus();
 
-  return { absorb: absorb, totalAbsorb: totalAbsorb };
+  return absorb;
 }
 
 // generate stress slots
@@ -447,7 +446,9 @@ function generateStressSlots(stressSlots) {
   const maxSlots = stressSlots.max || 2;
   const currentSlots = stressSlots.current || 0;
 
-  for (let i = 0; i < maxSlots; i++) {
+  const absorb = getAbsorb();
+
+  for (let i = 0; i < maxSlots + absorb; i++) {
     const slot = document.createElement("div");
     slot.className = "cs-slot";
     if (i < currentSlots) {

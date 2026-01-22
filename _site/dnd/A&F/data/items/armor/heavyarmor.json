@@ -7,7 +7,7 @@
     "armorTraits": {
         "AC": 16,
         "ability": "none",
-        "absorb": 3,
+        "absorb": 2,
         "strength": 2,
         "properties": ["stealthDisadvantage"]
     }
