@@ -1,6 +1,6 @@
 {
     "id": "crossbowlight",
-    "name": "Crossbow, light",
+    "name": "Light Crossbow",
     "type": "weapon",
     "category": "simple",
     "equipment": true,

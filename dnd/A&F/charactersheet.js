@@ -550,14 +550,18 @@ function generateSkills() {
     const skillName = skillEl.getAttribute("data-skill");
     if (!skillName) return;
 
-    const { totalModifier, passive, isProficient } = getSkillInfo(skillName);
+    const { totalModifier, passive, isProficient, isExpertise } = getSkillInfo(skillName);
 
     // Update proficiency indicator
     const proficiencyIcon = skillEl.querySelector(".cs-skill-proficiency");
     if (proficiencyIcon) {
-      if (isProficient) {
+      if (isExpertise) {
+        proficiencyIcon.className = "cs-skill-proficiency fa-solid fa-circle-exclamation";
+      }
+      else if (isProficient) {
         proficiencyIcon.className = "cs-skill-proficiency fa-solid fa-circle";
-      } else {
+      }
+      else {
         proficiencyIcon.className = "cs-skill-proficiency fa-regular fa-circle";
       }
     }
@@ -577,6 +581,7 @@ function generateSkills() {
 }
 
 function getSkillInfo(skillName) {
+  debugger;
   // Skill to ability mapping
   const skillAbilityMap = {
     acrobatics: "dexterity",
@@ -605,11 +610,15 @@ function getSkillInfo(skillName) {
 
   const isProficient =
     characterData.calculatedModifiers.skillProficiency[skillName].proficient;
+
+  const isExpertise =
+    characterData.calculatedModifiers.skillExpertise[skillName].expertise;
+
   const proficiencyBonus = isProficient ? getProficiencyBonus() : 0;
 
-  const totalModifier = abilityMod + proficiencyBonus;
+  const totalModifier = abilityMod + (isExpertise ? proficiencyBonus * 2 : proficiencyBonus);
   const passive = 10 + totalModifier;
-  return { totalModifier, passive, isProficient };
+  return { totalModifier, passive, isProficient, isExpertise };
 }
 
 // generate senses and movement
@@ -764,7 +773,7 @@ function getWeaponProficiency() {
     quarterstaff: "Quarterstaff",
     sickle: "Sickle",
     spear: "Spear",
-    crossbowLight: "Crossbow, Light",
+    crossbowLight: "Light Crossbow",
     dart: "Dart",
     shortbow: "Shortbow",
     sling: "Sling",
@@ -787,8 +796,8 @@ function getWeaponProficiency() {
     warhammer: "Warhammer",
     whip: "Whip",
     blowgun: "Blowgun",
-    crossbowHand: "Crossbow, Hand",
-    crossbowHeavy: "Crossbow, Heavy",
+    crossbowHand: "Hand Crossbow",
+    crossbowHeavy: "Heavy Crossbow",
     longbow: "Longbow",
     net: "Net",
   };

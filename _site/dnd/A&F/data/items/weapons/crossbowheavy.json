@@ -1,6 +1,6 @@
 {
     "id": "crossbowheavy",
-    "name": "Crossbow, heavy",
+    "name": "Heavy Crossbow",
     "type": "weapon",
     "category": "martial",
     "equipment": true,

@@ -1389,7 +1389,6 @@ tr.hidden{
     display: flex;
     flex-direction: row;
     gap: 12px;
-    flex-wrap: wrap;
     justify-content: center;
     align-items: flex-start;
     position: relative;
@@ -1468,8 +1467,8 @@ tr.hidden{
     flex: 1;
     height: 100%;
     border-top: 1px solid var(--border);
-    padding: 4px 0;
-    width: 90%;
+    padding: 4px 0 4px 4px;
+    width: 100%;
 }
 .cs-trait-list-item:first-child {
     border-top: none;
@@ -1708,7 +1707,6 @@ tr.hidden{
 }
 
 .cs-inspiration {
-    width: 182px;
 }
 
 .cs-saving-throw {

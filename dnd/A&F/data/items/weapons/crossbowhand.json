@@ -1,6 +1,6 @@
 {
     "id": "crossbowhand",
-    "name": "Crossbow, hand",
+    "name": "Hand Crossbow",
     "type": "weapon",
     "category": "martial",
     "equipment": true,

@@ -289,7 +289,7 @@
           "snippet": "You gain proficiency in a language.",
           "modifiers": [
             {
-              "type": "languageProficiency",
+              "type": "language",
               "subType": "choose",
               "from": [
                 "Dwarvish",

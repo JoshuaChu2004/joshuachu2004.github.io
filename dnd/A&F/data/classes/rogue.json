@@ -213,7 +213,7 @@
             "snippet": "You gain proficiency in a language.",
             "modifiers": [
               {
-                "type": "languageProficiency",
+                "type": "language",
                 "subType": "choose",
                 "from": ["Dwarvish", "Elvish", "Giant", "Gnomish", "Goblin", "Halfling", "Orc", "Abyssal", "Celestial", "Deep Speech", "Draconic", "Infernal", "Primordial", "Sylvan", "Undercommon", "Undercommon"]
               }

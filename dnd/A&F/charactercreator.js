@@ -342,9 +342,17 @@ function featureHasProwessChoices(feature) {
  */
 function getChoiceModifiers(feature) {
     if (!feature.modifiers || !Array.isArray(feature.modifiers)) return [];
-    return feature.modifiers.filter(modifier => 
-        modifier.subType === 'choose' || (modifier.from && Array.isArray(modifier.from))
-    );
+    const choiceModifiers = feature.modifiers.filter(modifier => modifier.subType === 'choose' || (modifier.from && Array.isArray(modifier.from)));
+
+    /*choiceModifiers.forEach(modifier => {
+        if (modifier.type === 'skillExpertise') {   
+            debugger;
+            const skills = characterData.proficiencies.skills;
+            modifier.from = modifier.from.filter(skill => skills[skill].proficient && !skills[skill].expertise);
+        }
+    });*/
+
+    return choiceModifiers;
 }
 
 function getSpellChoices(feature) {
@@ -3044,7 +3052,7 @@ function getDefaultCalculatedModifiers() {
                 proficient: false,
             },
             investigation: {
-                proficient: false,
+                proficient: false,  
             },
             medicine: {
                 proficient: false,
@@ -3072,6 +3080,62 @@ function getDefaultCalculatedModifiers() {
             },
             survival: {
                 proficient: false,
+            },
+        },
+        skillExpertise: {
+            acrobatics: {
+                expertise: false,
+            },
+            animalHandling: {
+                expertise: false,
+            },
+            athletics: {
+                expertise: false,
+            },
+            arcana: {
+                expertise: false,
+            },
+            deception: {
+                expertise: false,
+            },
+            history: {
+                expertise: false,
+            },
+            insight: {
+                expertise: false,
+            },
+            intimidation: {
+                expertise: false,
+            },
+            investigation: {
+                expertise: false,  
+            },
+            medicine: {
+                expertise: false,
+            },
+            nature: {
+                expertise: false,
+            },
+            perception: {
+                expertise: false,
+            },
+            performance: {
+                expertise: false,
+            },
+            persuasion: {
+                expertise: false,
+            },
+            religion: {
+                expertise: false,
+            },
+            sleightOfHand: {
+                expertise: false,
+            },
+            stealth: {
+                expertise: false,
+            },
+            survival: {
+                expertise: false,
             },
         },
         toolProficiency: [],
@@ -3259,6 +3323,8 @@ function calculateFinalModifiers() {
         if (value && finalModifier[value]) {
             if (type.toLowerCase().includes('proficiency')) {
                 finalModifier[value].proficient = true;
+            } else if (type.toLowerCase().includes('expertise')) {
+                finalModifier[value].expertise = true;
             } else if (bonus) {
                 finalModifier[value].bonus += bonus
             }
@@ -3745,7 +3811,7 @@ function removeClassLevelFeatures(level) {
         });
     }
 
-    if (characterData.class.spells) {
+    if (characterData.class.spells.spells) {
         characterData.class.spells = characterData.class.spells.filter(spell => {
             const spellData = gameData.spells.find(s => s.name === spell.name);
             if (!spellData) return false; // Keep if game spell not found (safety)
