@@ -1,0 +1,9 @@
+{
+    "name": "Skilled",
+    "originFeat": true,
+    "prerequisites": [],
+    "description": "You gain proficiency in any combination of three skills or tools of your choice.",
+    "snippet": "You gain proficiency in any combination of three skills or tools of your choice.",
+    "showInSheet": true,
+    "modifiers": []
+}

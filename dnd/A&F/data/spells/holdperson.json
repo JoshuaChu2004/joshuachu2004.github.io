@@ -1,0 +1,16 @@
+{
+    "name": "Hold Person",
+    "isCantrip": false,
+    "level": 2,
+    "school": "Enchantment",
+    "castingTime": "Major Action",
+    "range": "60 ft.",
+    "components": ["V", "S", "M"],
+    "material": "small, straight piece of iron",
+    "ritual": false,
+    "concentration": true,
+    "duration": "1 minute (Concentration)",
+    "durationType": "Minute",
+    "durationValue": 1,
+    "description": "Attempt to paralyze a humanoid who focuses on you for too long. Choose a humanoid that you can see within range. The target must make a Reflex saving throw or be paralyzed for the duration. At the end of each of its turns, the target can make another Reflex saving throw. On a success, the spell ends on the target.\n\n**At Higher Levels.** When you cast this spell using a spell slot of 3rd level or higher, you can target one additional humanoid for each slot level above 2nd. The humanoids must be within 30 feet of each other when you target them."
+}

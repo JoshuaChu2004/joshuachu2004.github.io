@@ -5,7 +5,7 @@
     "hitDie": "d8",
     "hitPointsAtFirstLevel": 8,
     "hitPointsFixed": 5,
-    "stressSlotsAtFirstLevel": 3,
+    "stressSlotsAtFirstLevel": 2,
     "prowessInfo": {
       "canUseProwesses": false,
       "prowessGrowthRate": null,
@@ -19,9 +19,9 @@
       "spellCastingAbility": ["wisdom"],
       "cantripGrowthRate": "high",
       "spellList": {
-        "0": ["Guidance"],
-        "1": ["Detect Magic", "Guiding Bolt"],
-        "2": [],
+        "0": ["Guidance", "Light", "Mending", "Resistance", "Sacred Flame", "Spare the Dying", "Thaumaturgy", "Toll the Dead", "Word of Radiance"],
+        "1": ["Bane", "Bless", "Ceremony", "Command", "Create or Destroy Water", "Cure Wounds", "Detect Magic", "Guiding Bolt", "Healing Word", "Inflict Wounds", "Protection from the Otherworldly", "Sanctuary", "Shield of Faith"],
+        "2": ["Aid", "Augury", "Blindness/Deafness", "Borrowed Knowledge", "Calm Emotions", "Enhance Ability", "Gentle Repose", "Hold Person", "Lesser Restoration", "Locate Object", "Prayer of Healing", "Silence", "Spiritual Weapon", "Warding Bond"],
         "3": [],
         "4": [],
         "5": [],

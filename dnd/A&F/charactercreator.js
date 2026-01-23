@@ -100,7 +100,7 @@ let characterData = {
     },
     vitals: {
         hitPoints: { current: -1, max: -1 },
-        stressSlots: { current: 0, max: 3 },
+        stressSlots: { current: -1, base: -1, max: -1 },
         exhaustion: { current: 0, max: 3 },
     },
     background: {
@@ -516,7 +516,7 @@ function confirmClass() {
     vitals.hitPoints.hitDie = classData.hitDie;
     vitals.hitPoints.temporary = 0;
     vitals.hitPoints.fixed = classData.hitPointsFixed;
-    vitals.stressSlots.max = classData.stressSlotsAtFirstLevel;
+    vitals.stressSlots.base = classData.stressSlotsAtFirstLevel;
 
     initializeNewClassLevelFeatures(1);
     generateSpellSlots();
@@ -580,7 +580,7 @@ function getMaxHitPoints() {
 
 function getMaxStressSlots() {
     const vitals = characterData.vitals;
-    let maxStressSlots = vitals.stressSlots.max;
+    let maxStressSlots = vitals.stressSlots.base;
     maxStressSlots += Math.max(0, getAbilityModifier('constitution'));
     return maxStressSlots;
 }
@@ -1162,6 +1162,7 @@ function unlearnSpell(spellName, isCantrip) {
 }
 
 function updateSpellElements() {
+    debugger;
     const classData = getGameFeatureData('class');
     const characterSpellInfo = getCharacterSpellInfo(characterData.class.level, classData.spellInfo.spellGrowthRate);
 
@@ -3299,7 +3300,6 @@ function getDefaultCalculatedModifiers() {
 }
 
 function calculateFinalModifiers() {
-    debugger;
     // Reset calculatedModifiers to default structure
     characterData.calculatedModifiers = getDefaultCalculatedModifiers();
     
@@ -3353,8 +3353,6 @@ function calculateFinalModifiers() {
 // ============================================================================
 
 function generateEquipment() {
-    
-    debugger;
     if (!characterData.class.name) return;
 
     if (!characterData.background.name) return;
@@ -3693,6 +3691,8 @@ function handleClassLevelChange(selectEl) {
 }
 
 function changeClassLevel(level) {
+
+    debugger;
     
     const levelUp = level > characterData.class.level;
     const difference = level - characterData.class.level;
@@ -3721,6 +3721,7 @@ function changeClassLevel(level) {
         generateSpells();
     }
     generateSpellSlots();
+    updateClassVitals();
 }
 
 function initializeNewClassLevelFeatures(level) {
@@ -3812,8 +3813,8 @@ function removeClassLevelFeatures(level) {
     }
 
     if (characterData.class.spells.spells) {
-        characterData.class.spells = characterData.class.spells.filter(spell => {
-            const spellData = gameData.spells.find(s => s.name === spell.name);
+        characterData.class.spells.spells = characterData.class.spells.spells.filter(spell => {
+            const spellData = gameData.spells.spells.find(s => s.name === spell.name);
             if (!spellData) return false; // Keep if game spell not found (safety)
             return spellData.level <= characterSpellInfo.maximumSpellLevel;
         });

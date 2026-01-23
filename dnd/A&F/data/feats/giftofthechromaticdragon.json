@@ -1,0 +1,9 @@
+{
+    "name": "Gift of the Chromatic Dragon",
+    "originFeat": false,
+    "prerequisites": [],
+    "description": "You've manifested some of the power of chromatic dragons, granting you the following benefits:\n- **Chromatic Infusion.** You can expend a Heroic Inspiration as a Minor Action to touch a weapon and infuse it with one of the following damage types: acid, cold, fire, lightning, or poison. For the next minute, the weapon deals an extra 1d4 damage of the chosen type when it hits.\n- **Reactive Resistance.** When you take acid, cold, fire, lightning, or poison damage, you reduce the damage by your total Absorb (minimum of 1).",
+    "snippet": "You can expend a Heroic Inspiration as a Minor Action to touch a weapon and infuse it with one of the following damage types: acid, cold, fire, lightning, or poison.",
+    "showInSheet": true,
+    "modifiers": []
+}

@@ -1,0 +1,16 @@
+{
+    "name": "Aid",
+    "isCantrip": false,
+    "level": 2,
+    "school": "Abjuration",
+    "castingTime": "Major Action",
+    "range": "30 ft.",
+    "components": ["V", "S", "M"],
+    "material": "tiny strip of white cloth",
+    "ritual": false,
+    "concentration": false,
+    "duration": "Until next long rest",
+    "durationType": "Special",
+    "durationValue": 0,
+    "description": "Your spell bolsters your allies with toughness and resolve. Choose up to four creatures within range. Each target's Absorb increases by 2 for the duration.\n\n**At Higher Levels.** When you cast this spell using a spell slot of 3rd level or higher, a target's Absorb increases by 1 for each slot level above 2nd."
+}

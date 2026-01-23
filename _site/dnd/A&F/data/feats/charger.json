@@ -1,0 +1,9 @@
+{
+    "name": "Charger",
+    "originFeat": false,
+    "prerequisites": [],
+    "description": "You have experience rushing your enemies head on, granting the following benefits:\n- When you use your Major Action to Dash, you can use a Minor Action to make a melee weapon attack or unarmed strike.\n- If you move at least 10 ft. in a straight line before making a melee weapon attack or unarmed strike, you may gain a +5 bonus to the attack's To Hit or damage roll. You choose this after rolling but before knowing the outcome of the attack.",
+    "snippet": "When you use your Major Action to Dash, you can use a Minor Action to make a melee weapon attack or unarmed strike. If you move at least 10 ft. in a straight line before making a melee weapon attack or unarmed strike, you may gain a +5 bonus to the attack's To Hit or damage roll. You choose this after rolling but before knowing the outcome of the attack.",
+    "showInSheet": true,
+    "modifiers": []
+}

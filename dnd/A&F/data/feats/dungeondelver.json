@@ -1,0 +1,9 @@
+{
+    "name": "Dungeon Delver",
+    "originFeat": true,
+    "prerequisites": [],
+    "description": "Alert to the hidden traps and secret doors found in many dungeons, you gain the following benefits:\n- You have advantage on Wisdom (Perception) and Intelligence (Investigation) checks made to detect the presence of secret doors and traps.\n- You have advantage on saving throws made to avoid or resist traps.\n- You can not get lost traversing a mortal-made structure by nonmagical means.",
+    "snippet": "Alert to the hidden traps and secret doors found in many dungeons, you gain the following benefits:\n- You have advantage on Wisdom (Perception) and Intelligence (Investigation) checks made to detect the presence of secret doors and traps.\n- You have advantage on saving throws made to avoid or resist traps.\n- You can not get lost traversing a mortal-made structure by nonmagical means.",
+    "showInSheet": true,
+    "modifiers": []
+}

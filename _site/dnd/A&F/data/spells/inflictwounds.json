@@ -1,0 +1,15 @@
+{
+    "name": "Inflict Wounds",
+    "isCantrip": false,
+    "level": 1,
+    "school": "Necromancy",
+    "castingTime": "Major Action",
+    "range": "Touch",
+    "components": ["V", "S"],
+    "ritual": false,
+    "concentration": false,
+    "duration": "Instantaneous",
+    "durationType": "Instantaneous",
+    "durationValue": 0,
+    "description": "Make a melee spell attack against a creature you can reach. On a hit, the target takes 2d10 + 5 necrotic damage.\n\n**At Higher Levels.** When you cast this spell using a spell slot of 2nd level or higher, the damage increases by 1d10 for each slot level above 1st."
+}

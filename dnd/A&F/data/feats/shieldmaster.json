@@ -1,0 +1,9 @@
+{
+    "name": "Shield Master",
+    "originFeat": false,
+    "prerequisites": [],
+    "description": "You use shields not just for protection but also for offense. You gain the following benefits while you are wielding a shield:\n- You may take the Shove action as a Minor Action with your shield.\n- If you aren't incapacitated, you can add your shield's AC bonus to any Reflex saving throw you make against a spell or other harmful effect that targets only you.\n- If you are subjected to an effect that allows you to make a Dexterity saving throw to take only half damage, you can use your reaction to take no damage if you succeed on the saving throw, interposing your shield between yourself and the source of the effect.",
+    "snippet": "You may take the Shove action as a Minor Action with your shield, and can add your shield's AC bonus to any Reflex saving throw you make against a spell or other harmful effect that targets only you.",
+    "showInSheet": true,
+    "modifiers": []
+}

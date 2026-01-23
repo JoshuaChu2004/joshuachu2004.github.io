@@ -1,0 +1,16 @@
+{
+    "name": "Ceremony",
+    "isCantrip": false,
+    "level": 1,
+    "school": "Abjuration",
+    "castingTime": "1 hour (Ritual)",
+    "range": "10 ft.",
+    "components": ["V", "S", "M"],
+    "material": "25 gp worth of powdered silver, which the spell consumes",
+    "ritual": true,
+    "concentration": false,
+    "duration": "Varies",
+    "durationType": "Special",
+    "durationValue": 0,
+    "description": "You perform one of several religious ceremonies. When you cast the spell, choose one of the following ceremonies, the target of which must be within 10 feet of you throughout the casting.\n- **Atonement.** You touch a creature who carries the guilt of a past sin and issue them an act or task that will give them peace. When the creature accomplishes that act, they gain Heroic Inspiration.\n- **Bless Water.** You touch one vial of water and cause it to become holy water.\n- **Coming of Age.** You touch one humanoid who is a young adult. For the next 24 hours, whenever the target makes an ability check, it can roll a d4 and add the number rolled to the ability check. A creature can benefit from this rite only once.\n- **Dedication.** You touch one humanoid who wishes to be dedicated to your god's service. For the next 24 hours, whenever the target makes a saving throw, it can roll a d4 and add the number rolled to the save.\n- **Funeral Rite.** You touch one corpse, and for the next 7 days, the target can't become undead by any means short of a Wish spell.\n- **Wedding.** You touch adult humanoids willing to be bonded together in marriage. While they still carry love and devotion for each other, they gain a +2 to AC so long as they are within 30 ft. of another bonded creature. A creature can only benefit from this rite when they end their previous bond."
+}

@@ -5,7 +5,7 @@
   "hitDie": "d8",
   "hitPointsAtFirstLevel": 8,
   "hitPointsFixed": 5,
-  "stressSlotsAtFirstLevel": 3,
+  "stressSlotsAtFirstLevel": 2,
   "prowessInfo": {
     "canUseProwesses": false,
     "prowessGrowthRate": null,

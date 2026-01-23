@@ -7,7 +7,7 @@
     "armorTraits": {
         "bonusAC": 2,
         "ability": null,
-        "bonusAbsorb": 1,
+        "absorb": 1,
         "strength": 13,
         "properties": ["protective"]
     }

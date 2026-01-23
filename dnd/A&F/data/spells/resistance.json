@@ -1,0 +1,16 @@
+{
+    "name": "Resistance",
+    "isCantrip": true,
+    "level": 0,
+    "school": "Abjuration",
+    "castingTime": "Reaction",
+    "range": "15 ft.",
+    "components": ["V", "S", "M"],
+    "material": "a miniature cloak",
+    "ritual": false,
+    "concentration": false,
+    "duration": "Instantaneous",
+    "durationType": "Instantaneous",
+    "durationValue": 0,
+    "description": "As a reaction to a creature within 15 ft. that you can see making a saving throw, you may let the target add a d4 to their roll. This can be done after the die is rolled, but before the DM declares it a success or failure."
+}

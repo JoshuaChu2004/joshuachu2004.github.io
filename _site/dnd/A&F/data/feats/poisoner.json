@@ -1,0 +1,9 @@
+{
+    "name": "Poisoner",
+    "originFeat": false,
+    "prerequisites": [],
+    "description": "You can prepare and deliver deadly poisons, gaining the following benefits:\n- When you make a damage roll, you ignore resistance to poison damage.\n- You can coat a weapon in poison as a Minor Action, instead of an action.\n- You gain proficiency with the poisoner's kit if you don't already have it. When you take the Prepare rest move, you may produce a number of doses of poison equal to your proficiency bonus. When a creature takes damage from a coated weapon or ammunition, that creature must succeed on a Fortitude saving throw (DC = 8 + your Wisdom modifier + your proficiency bonus) or take 2d8 poison damage and become poisoned until the end of your next turn.",
+    "snippet": "You can coat a weapon in poison as a Minor Action, and when you take the Prepare rest move, you may produce a number of doses of poison equal to your proficiency bonus.",
+    "showInSheet": true,
+    "modifiers": []
+}

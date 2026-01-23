@@ -377,6 +377,19 @@ function getMaxHitPoints() {
   return maxHP;
 }
 
+function getMaxStressSlots() {
+  const vitals = characterData.vitals;
+  let maxStressSlots = vitals.stressSlots.base;
+
+  maxStressSlots += characterData.calculatedModifiers.bonusStressSlots.bonus;
+
+  const absorb = getAbsorb();
+  maxStressSlots += absorb;
+  maxStressSlots += Math.max(0, getAbilityModifier("constitution"));
+
+  return maxStressSlots;
+}
+
 function getArmorClass() {
   let baseArmorClass = 10;
   let ability = "dexterity";
@@ -422,10 +435,13 @@ function getAbsorb() {
       const itemData = gameData.items.byId[i.id];
       if (itemData?.type === "armor") {
         isArmorEquipped = true;
-        absorb = itemData.armorTraits.absorb ?? absorb;
-        bonusAbsorb = itemData.armorTraits.bonusAbsorb ?? bonusAbsorb;
-      }
-    });
+        absorb += itemData.armorTraits.absorb ? itemData.armorTraits.absorb : 0;
+        bonusAbsorb += itemData.armorTraits.bonusAbsorb ? itemData.armorTraits.bonusAbsorb : 0;
+        }
+  });
+  bonusAbsorb += isArmorEquipped && characterData.calculatedModifiers.armorAbsorb.bonus ? characterData.calculatedModifiers.armorAbsorb.bonus : 0;
+      
+  bonusAbsorb += characterData.calculatedModifiers.innateAbsorb.bonus ? characterData.calculatedModifiers.innateAbsorb.bonus : 0;
 
   absorb = absorb + bonusAbsorb;
 
@@ -443,15 +459,13 @@ function generateStressSlots(stressSlots) {
   slotsContainer.innerHTML = "";
 
   // Create slots based on max
-  const maxSlots = stressSlots.max || 2;
-  const currentSlots = stressSlots.current || 0;
+  stressSlots.max = getMaxStressSlots();
+  stressSlots.current = Math.max(stressSlots.current, 0);
 
-  const absorb = getAbsorb();
-
-  for (let i = 0; i < maxSlots + absorb; i++) {
+  for (let i = 0; i < stressSlots.max; i++) {
     const slot = document.createElement("div");
     slot.className = "cs-slot";
-    if (i < currentSlots) {
+    if (i < stressSlots.current) {
       slot.classList.add("filled");
     }
     slotsContainer.appendChild(slot);
@@ -582,7 +596,6 @@ function generateSkills() {
 }
 
 function getSkillInfo(skillName) {
-  debugger;
   // Skill to ability mapping
   const skillAbilityMap = {
     acrobatics: "dexterity",
@@ -1281,7 +1294,6 @@ function generateFeatFeatures() {
 
 // check if any columns have no content
 function checkFeatureColumns() {
-  debugger;
   const actionSections = document.querySelector("#cs-actions-and-features");
 
   const featureColumns = actionSections.querySelectorAll(".cs-section-column");
@@ -1301,7 +1313,6 @@ function checkFeatureColumns() {
 }
 
 function checkProwessesSpellsColumns() {
-  debugger;
   const prowessesColumnContent = document.querySelector(
     "#cs-prowesses-content",
   );
@@ -1346,7 +1357,8 @@ function generateFeature(characterFeature, featureData, source = "") {
         <div class="cs-column-card-content">${parseDescription(featureDescription) != null ? parseDescription(featureDescription) : "Feature description will be loaded from class data."}</div>
     `;
   characterFeature.options?.forEach((option) => {
-    const optionData = featureData.options?.find((o) => o.name === option);
+    debugger;
+    const optionData = featureData.options?.find((o) => o.name === option.optionName);
     const optionDescription =
       optionData.snippet || optionData.snippet === ""
         ? optionData.snippet

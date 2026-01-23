@@ -1,0 +1,9 @@
+{
+    "name": "Tavern Brawler",
+    "originFeat": false,
+    "prerequisites": [],
+    "description": "Accustomed to the rough-and-tumble fighting using whatever weapons happen to be at hand, you gain the following benefits:\n- You are proficient with improvised weapons, and they use a d6 for damage.\n- When you hit a creature with an improvised weapon, you may take a Stress to deal an additional d6 of damage. The weapon then breaks.\n- When you hit a creature with an improvised weapon, your next Shove or Grapple attack against the target has advantage until the end of your next turn.",
+    "snippet": "You are proficient with improvised weapons, and they use a d6 for damage.",
+    "showInSheet": true,
+    "modifiers": []
+}

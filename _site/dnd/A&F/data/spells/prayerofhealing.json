@@ -1,0 +1,15 @@
+{
+    "name": "Prayer of Healing",
+    "isCantrip": false,
+    "level": 2,
+    "school": "Evocation",
+    "castingTime": "10 minutes",
+    "range": "30 ft.",
+    "components": ["V"],
+    "ritual": false,
+    "concentration": false,
+    "duration": "Instantaneous",
+    "durationType": "Instantaneous",
+    "durationValue": 0,
+    "description": "Up to six creatures of your choice that you can see within range each regain 2d8 + your spellcasting ability modifier hit points or recover 2 Stress Slots. This spell has no effect on undead or constructs.\n\n**At Higher Levels.** When you cast this spell using a spell slot of 3rd level or higher, the healing and stress recovery increase by 1d8 and 1 slot, respectively, for each slot level above 2nd."
+}

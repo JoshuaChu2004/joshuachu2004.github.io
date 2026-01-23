@@ -1,0 +1,9 @@
+{
+    "name": "Healer",
+    "originFeat": true,
+    "prerequisites": [],
+    "description": "You are an able physician, allowing you to mend wounds quickly and get your allies back in the fight. You gain the following benefits:\n- When you expend a use of a healer's kit on a creature that is Making a Stand, the creature regains at least 1 hit point and immediately ends the Death Move, provided nothing else is preventing it from regaining hit points. The creature can't benefit from this part of the feat again until it finishes a short or long rest.\n- When you spend a use of a healer's kit on a creature that is Clinging to Life, it may regain consciousness. The creature can't benefit from this part of the feat again until it finishes a short or long rest.\n- As a Major Action, you can spend one use of a healer's kit to tend to a creature. It regains 2d6 + its level hit points or recovers a number of Stress Slots equal to its proficiency bonus. The creature can't benefit from this part of the feat again until it finishes a short or long rest.",
+    "snippet": "As a Major Action, you can spend one use of a healer's kit to tend to a creature. It regains 2d6 + its level hit points or recovers a number of Stress Slots equal to its proficiency bonus.",
+    "showInSheet": true,
+    "modifiers": []
+}

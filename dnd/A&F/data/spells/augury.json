@@ -1,0 +1,16 @@
+{
+    "name": "Augury",
+    "isCantrip": false,
+    "level": 2,
+    "school": "Divination",
+    "castingTime": "1 minute (Ritual)",
+    "range": "Self",
+    "components": ["V", "S", "M"],
+    "material": "divining tools worth at least 25 gp",
+    "ritual": true,
+    "concentration": false,
+    "duration": "Instantaneous",
+    "durationType": "Instantaneous",
+    "durationValue": 0,
+    "description": "By employing some divining tool, you receive an omen from an otherworldly entity about the outcome of a specific action you plan to take within 30 minutes.\n- Weal, for good results\n- Woe, for bad results\n- Weal and woe, for both good and bad results\n- Nothing, for results that aren't especially good or bad\n\nThe spell doesn't take into account any possible circumstances that might change the outcome, such as the casting of additional spells or the loss or gain of a companion. If you cast the spell two or more times before completing your next long rest, there is a cumulative 25 percent chance for each casting after the first that you get a random reading. The DM makes this roll in secret."
+}

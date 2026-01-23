@@ -1,0 +1,15 @@
+{
+    "name": "Spare the Dying",
+    "isCantrip": true,
+    "level": 0,
+    "school": "Necromancy",
+    "castingTime": "Major Action",
+    "range": "Touch",
+    "components": ["V", "S"],
+    "ritual": false,
+    "concentration": false,
+    "duration": "Instantaneous",
+    "durationType": "Instantaneous",
+    "durationValue": 0,
+    "description": "You touch a living creature that has 0 hit points. The creature becomes stable. This spell has no effect on undead or constructs."
+}

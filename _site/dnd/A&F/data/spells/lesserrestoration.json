@@ -1,0 +1,15 @@
+{
+    "name": "Lesser Restoration",
+    "isCantrip": false,
+    "level": 2,
+    "school": "Abjuration",
+    "castingTime": "Major Action",
+    "range": "Touch",
+    "components": ["V", "S"],
+    "ritual": false,
+    "concentration": false,
+    "duration": "Instantaneous",
+    "durationType": "Instantaneous",
+    "durationValue": 0,
+    "description": "Touch a creature and end a disease or condition afflicting it. The condition can be blinded, deafened, dazed, stunned, paralyzed, or poisoned"
+}

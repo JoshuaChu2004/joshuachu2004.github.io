@@ -1,0 +1,9 @@
+{
+    "name": "Skulker",
+    "originFeat": false,
+    "prerequisites": ["Dexterity 13 or higher"],
+    "description": "You are an expert at slinking through shadows. You gain the following benefits:\n- You can take the Hide action as a Minor Action\n- When you are hidden from a creature and miss it with a ranged weapon attack, making the attack does not reveal your exact position.\n- Dim light doesn't impose disadvantage on your Wisdom (Perception) checks relying on sight.",
+    "snippet": "You can take the Hide action as a Minor Action, and when you are hidden from a creature and miss it with a ranged weapon attack, making the attack does not reveal your exact position.",
+    "showInSheet": true,
+    "modifiers": []
+}

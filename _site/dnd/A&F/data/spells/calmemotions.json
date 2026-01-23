@@ -1,0 +1,15 @@
+{
+    "name": "Calm Emotions",
+    "isCantrip": false,
+    "level": 2,
+    "school": "Enchantment",
+    "castingTime": "Major Action",
+    "range": "60 ft.",
+    "components": ["V", "S"],
+    "ritual": false,
+    "concentration": true,
+    "duration": "1 minute (Concentration)",
+    "durationType": "Minute",
+    "durationValue": 1,
+    "description": "You suppress strong emotions in a group of people. Each humanoid in a 20 ft. sphere centered on a point within range must make a Will saving throw. If a creature fails its saving throw, you may choose one of the following effects:\n- Suppress the charmed or frightened condition on the target. A suppressed effect resumes if this spell ends provided that its duration has not expired in the meantime.\n- Make a target indifferent about creatures of your choice that it has strong feelings towards. This indifference ends if the target is attacked, harmed by a spell, or witnesses its allies being harmed. When the spell ends, the creature's strong feelings return, unless the DM rules otherwise."
+}

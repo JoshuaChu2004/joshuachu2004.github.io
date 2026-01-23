@@ -1,4 +1,4 @@
 {
-    "spells": ["Burning Hands", "Faerie Fire", "Detect Magic", "Guiding Bolt"],
-    "cantrips": ["Guidance"]
+    "spells": ["Aid", "Augury", "Bane", "Bless", "Blindness/Deafness", "Borrowed Knowledge", "Calm Emotions", "Ceremony", "Command", "Create or Destroy Water", "Cure Wounds", "Detect Magic", "Enhance Ability", "Gentle Repose", "Guiding Bolt", "Healing Word", "Hold Person", "Inflict Wounds", "Lesser Restoration", "Locate Object", "Prayer of Healing", "Protection from the Otherworldly", "Sanctuary", "Shield of Faith", "Silence", "Spiritual Weapon", "Warding Bond"],
+    "cantrips": ["Guidance", "Light", "Mending", "Resistance", "Sacred Flame", "Spare the Dying", "Thaumaturgy", "Toll the Dead", "Word of Radiance"]
 }

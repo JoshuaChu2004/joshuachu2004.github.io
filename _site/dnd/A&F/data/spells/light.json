@@ -1,0 +1,16 @@
+{
+    "name": "Light",
+    "isCantrip": true,
+    "level": 0,
+    "school": "Evocation",
+    "castingTime": "Major Action",
+    "range": "Touch",
+    "components": ["V", "M"],
+    "material": "a firefly or phosphorescent moss",
+    "ritual": false,
+    "concentration": false,
+    "duration": "1 hour",
+    "durationType": "Hour",
+    "durationValue": 1,
+    "description": "You touch one object no longer than 10 ft. in any dimension. The object then sheds bright light in a 20 ft. radius and dim light for an additional 20 ft. The light can be covered as you like and the spell ends if you cast it again or dismiss it as an action.\n\nIf you target an object held or worn by an unwilling creature, you must succeed a spell attack against them to cast the spell."
+}

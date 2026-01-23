@@ -1,0 +1,9 @@
+{
+    "name": "Telekinetic",
+    "originFeat": true,
+    "prerequisites": [],
+    "description": "You learn to move things with your mind, granting you the following benefits:\n- As an action, you may pick up or move objects from up to 60 ft. away. The object can not be heavier than 10 lbs.\n- As a Minor Action, you can try to telekinetically shove one creature you can see within 30 feet of you. When you do so, the target must succeed on a Strength saving throw (DC 12 + your proficiency bonus) or be moved 5 feet towards you, away from you, or knocked Prone. A creature can willingly fail this save.",
+    "snippet": "As an action, you may pick up or move objects from up to 60 ft. away. The object can not be heavier than 10 lbs.",
+    "showInSheet": true,
+    "modifiers": []
+}

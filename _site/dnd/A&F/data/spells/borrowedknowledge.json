@@ -1,0 +1,16 @@
+{
+    "name": "Borrowed Knowledge",
+    "isCantrip": false,
+    "level": 2,
+    "school": "Divination",
+    "castingTime": "Major Action",
+    "range": "Self",
+    "components": ["V", "S", "M"],
+    "material": "a book worth at least 25 gp",
+    "ritual": false,
+    "concentration": false,
+    "duration": "1 hour",
+    "durationType": "Hour",
+    "durationValue": 1,
+    "description": "You draw on knowledge from spirits of the past. Choose one skill in which you lack proficiency. For the spell's duration, you have proficiency in the chosen skill. The spell ends early if you cast it again."
+}

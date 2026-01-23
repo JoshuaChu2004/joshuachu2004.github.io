@@ -1,0 +1,15 @@
+{
+    "name": "Silence",
+    "isCantrip": false,
+    "level": 2,
+    "school": "Illusion",
+    "castingTime": "Major Action",
+    "range": "120 ft.",
+    "components": ["V", "S"],
+    "ritual": true,
+    "concentration": true,
+    "duration": "10 Minutes (Concentration)",
+    "durationType": "Minute",
+    "durationValue": 10,
+    "description": "Create a 20 ft. sphere of complete silence centered around a point or object you can see within range. If the object is being held or worn by a creature, they may make a Reflex saving throw to instead center the spell on the space they occupy. Creatures and objects inside the sphere is immune to thunder damage and deafened. Casting a spell that includes a verbal component is impossible while inside the sphere."
+}

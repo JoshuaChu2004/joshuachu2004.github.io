@@ -1,0 +1,9 @@
+{
+    "name": "Slasher",
+    "originFeat": false,
+    "prerequisites": [],
+    "description": "You've learned where to cut to have the greatest results, granting you the following benefits:\n- Once per turn when you hit a creature with an attack that deals slashing damage, you can impose disadvantage on the target's next attack roll.\n- When you score a critical hit that deals slashing damage to a creature, you grievously wound it. For 1 minute, the target takes slashing damage equal to your weapon's damage modifier at the start of its turn. The condition ends when the target regains hit points or stops the bleeding as a Major Action.",
+    "snippet": "Once per turn when you hit a creature with an attack that deals slashing damage, you can impose disadvantage on the target's next attack roll.",
+    "showInSheet": true,
+    "modifiers": []
+}

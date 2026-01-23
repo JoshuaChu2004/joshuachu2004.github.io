@@ -1,0 +1,9 @@
+{
+    "name": "Keen Mind",
+    "originFeat": true,
+    "prerequisites": [],
+    "description": "You have a mind that can track time, direction, and detail with uncanny precision. You gain the following benefits.\n- You have advantage on Intelligence (Investigation) checks to search for hidden compartments, illusions, or secret mechanisms.\n- As long as you have viewed an accurate map of the area you are in, you can not get lost by nonmagical means.\n- You have advantage on saving throws against Illusion spells.\n- You can accurately recall anything you have seen or heard within the past month.",
+    "snippet": "You have advantage on Intelligence (Investigation) checks to search for hidden compartments, illusions, or secret mechanisms, and advantage on saving throws against Illusion spells.",
+    "showInSheet": true,
+    "modifiers": []
+}

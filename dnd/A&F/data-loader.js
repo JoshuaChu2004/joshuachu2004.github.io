@@ -611,7 +611,7 @@ async function loadProwess(prowessName) {
 
 async function loadSpell(spellName) {
     try {
-        const response = await fetch(`/dnd/A&F/data/spells/${spellName.toLowerCase().replace(/\s+/g, '')}.json`);
+        const response = await fetch(`/dnd/A&F/data/spells/${spellName.toLowerCase().replace(/\s+/g, '').replace("/", '')}.json`);
         if (!response.ok) {
             throw new Error(`Failed to load spell: ${spellName}`);
         }

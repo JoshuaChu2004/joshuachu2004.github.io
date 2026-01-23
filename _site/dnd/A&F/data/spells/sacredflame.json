@@ -1,0 +1,15 @@
+{
+    "name": "Sacred Flame",
+    "isCantrip": true,
+    "level": 0,
+    "school": "Evocation",
+    "castingTime": "Major Action",
+    "range": "60 ft.",
+    "components": ["V", "S"],
+    "ritual": false,
+    "concentration": false,
+    "duration": "Instantaneous",
+    "durationType": "Instantaneous",
+    "durationValue": 0,
+    "description": "Flame-like radiance descends on a creature that you can see within range. Make a ranged spell attack against the target. On a hit, the target takes 1d8 radiant damage. You may target a creature you can not see if you can instead see an open space above them.\n\n**At Higher Levels.** The spell's damage increases by 1d8 when you reach 5th level (2d8), 11th level (3d8), and 17th level (4d8)."
+}

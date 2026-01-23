@@ -1,0 +1,9 @@
+{
+    "name": "Sharpshooter",
+    "originFeat": false,
+    "prerequisites": [],
+    "description": "You have mastered ranged weapons and can make shots that others find impossible. You gain the following benefits:\n- Attacking at long range doesn't impose disadvantage on your ranged weapon attack rolls.\n- In place of a weapon attack, you may prepare a shot with a ranged weapon. The next attack you make with the weapon until the end of your turn gains a +5 bonus to its To Hit and damage roll.",
+    "snippet": "Attacking at long range doesn't impose disadvantage on your ranged weapon attack rolls.",
+    "showInSheet": true,
+    "modifiers": []
+}

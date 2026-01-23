@@ -1,0 +1,9 @@
+{
+    "name": "Linguist",
+    "originFeat": true,
+    "prerequisites": [],
+    "description": "You have studied languages and codes, gaining the following benefits:\n- You learn three languages of your choice.\n- You have an elementary understanding of all spoken languages. You may engage in basic communication with a creature that can understand at least one language but shares none with you. You and the DM decide how this communication occurs; an example could be only communicating in one-syllable words.\n- You can ably create written ciphers. Others can't decipher a code you create unless you teach them, they succeed on an Intelligence check (DC equal to your 10 + your Intelligence modifier + your proficiency bonus), or they use magic to decipher it.",
+    "snippet": "You learn three languages of your choice and have an elementary understanding of all spoken languages.",
+    "showInSheet": true,
+    "modifiers": []
+}

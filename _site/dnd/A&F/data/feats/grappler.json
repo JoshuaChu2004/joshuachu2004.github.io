@@ -1,0 +1,9 @@
+{
+    "name": "Grappler",
+    "originFeat": true,
+    "prerequisites": ["Strength 13 or higher"],
+    "description": "You've developed the skills necessary to hold your own in close-quarters grappling. You gain the following benefits:\n- When you succeed a melee attack roll against a creature, you may attempt to grapple them as a Minor Action.\n- Creatures have disadvantage on checks made to escape your grapple.\n- Dragging a grappled creature does not cost double movement.",
+    "snippet": "When you succeed a melee attack roll against a creature, you may attempt to grapple them as a Minor Action. Creatures have disadvantage on checks made to escape your grapple.",
+    "showInSheet": true,
+    "modifiers": []
+}

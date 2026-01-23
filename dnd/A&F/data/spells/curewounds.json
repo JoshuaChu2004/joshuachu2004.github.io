@@ -1,0 +1,15 @@
+{
+    "name": "Cure Wounds",
+    "isCantrip": false,
+    "level": 1,
+    "school": "Evocation",
+    "castingTime": "Major Action",
+    "range": "Touch",
+    "components": ["V", "S"],
+    "ritual": false,
+    "concentration": false,
+    "duration": "Instantaneous",
+    "durationType": "Instantaneous",
+    "durationValue": 0,
+    "description": "A creature you touch may regain 1d8 + your spellcasting ability modifier or recover 1 Stress Slot. If the creature has more than 0 hit points, it may roll its Hit Die, and the number rolled is added to the healing. This spell has no effect on undead or constructs.\n\n**At Higher Levels.** When you cast this spell using a spell slot of 2nd level or higher, the healing and stress recovery increase by 1d8 and 1 slot, respectively, for each slot level above 1st."
+}

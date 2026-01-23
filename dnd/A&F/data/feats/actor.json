@@ -1,0 +1,9 @@
+{
+    "name": "Actor",
+    "originFeat": true,
+    "prerequisites": [],
+    "description": "Skilled at mimicry and dramatics, you gain the following benefits:\n- You have an advantage on Charisma (Deception) and Charisma (Performance) checks when trying to pass yourself off as a different person.\n- You can mimic the speech of another person or the sounds made by other creatures. You must have heard the person speaking, or heard the creature make the sound, for at least 1 minute. A successful Wisdom (Insight) check contested by your Charisma (Deception) check allows a listener to determine that the effect is faked.",
+    "snippet": "You have an advantage on Charisma (Deception) and Charisma (Performance) checks when trying to pass yourself off as a different person.\n\nYou can mimic the speech of another person or the sounds made by other creatures. You must have heard the person speaking, or heard the creature make the sound, for at least 1 minute. A successful Wisdom (Insight) check contested by your Charisma (Deception) check allows a listener to determine that the effect is faked.",
+    "showInSheet": true,
+    "modifiers": []
+}

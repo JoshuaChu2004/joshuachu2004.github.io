@@ -1,0 +1,15 @@
+{
+    "name": "Spiritual Weapon",
+    "isCantrip": false,
+    "level": 2,
+    "school": "Evocation",
+    "castingTime": "Major Action",
+    "range": "60 ft.",
+    "components": ["V", "S"],
+    "ritual": false,
+    "concentration": false,
+    "duration": "1 minute",
+    "durationType": "Minute",
+    "durationValue": 1,
+    "description": "You create a floating, spectral weapon within range that lasts for the duration or until you cast this spell again.\n\nWhen you cast the spell, you can make a melee spell attack against a creature within 5 feet of the weapon. On a hit, the target takes force damage equal to 1d8 + your spellcasting ability modifier.\n\nAs a minor action on subsequent turns, you can move the weapon up to 20 feet and repeat the attack against a creature within 5 feet of it.\n\n**At Higher Levels.** When you cast this spell using a spell slot of 3rd level or higher, the damage increases by 1d8 for every two slot levels above the 2nd."
+}

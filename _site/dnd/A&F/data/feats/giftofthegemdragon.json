@@ -1,0 +1,9 @@
+{
+    "name": "Gift of the Gem Dragon",
+    "originFeat": false,
+    "prerequisites": [],
+    "description": "You've manifested some of the power of gem dragons, granting you the following benefits:\n- **Telekinetic Reprisal.** When you take damage from a creature that is within 10 feet of you, you can take a Stress as a reaction to emanate telekinetic energy. The creature that dealt damage to you must make a Fortitude saving throw (DC equals 8 + your proficiency bonus + your Intelligence, Wisdom, or Charisma modifier). On a failed save, the creature takes 2d8 force damage and is pushed up to 10 feet away from you. On a successful save, the creature takes half as much damage and isn't pushed.",
+    "snippet": "When you take damage from a creature that is within 10 feet of you, you can take a Stress as a reaction to emanate telekinetic energy.",
+    "showInSheet": true,
+    "modifiers": []
+}

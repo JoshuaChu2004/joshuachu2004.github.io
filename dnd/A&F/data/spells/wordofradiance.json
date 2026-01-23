@@ -1,0 +1,16 @@
+{
+    "name": "Word of Radiance",
+    "isCantrip": true,
+    "level": 0,
+    "school": "Evocation",
+    "castingTime": "Major Action",
+    "range": "5 ft.",
+    "components": ["V", "M"],
+    "material": "a holy symbol",
+    "ritual": false,
+    "concentration": false,
+    "duration": "Instantaneous",
+    "durationType": "Instantaneous",
+    "durationValue": 0,
+    "description": "You utter a divine word, and burning radiance erupts from you. Each creature of your choice that you can see within range must succeed on a Fortitude saving throw or take 1d6 radiant damage.\n\n**At Higher Levels.** The spell's damage increases by 1d6 when you reach 5th level (2d6), 11th level (3d6), and 17th level (4d6). The spell's area of effect increases when you reach 5th (10 ft.), 11th level (15 ft.), and 17th level (20 ft.)"
+}

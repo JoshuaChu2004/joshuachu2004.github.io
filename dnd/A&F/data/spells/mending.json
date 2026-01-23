@@ -1,0 +1,16 @@
+{
+    "name": "Mending",
+    "isCantrip": true,
+    "level": 0,
+    "school": "Transmutation",
+    "castingTime": "1 minute",
+    "range": "Touch",
+    "components": ["V", "S", "M"],
+    "material": "two lodestones",
+    "ritual": false,
+    "concentration": false,
+    "duration": "Instantaneous",
+    "durationType": "Instantaneous",
+    "durationValue": 0,
+    "description": "A single broken object no larger than 5 ft. in any direction, and repair it, leaving no trace of the former damage. If the object is particularly intricate, such as machinery or an artpiece, the DM may require you to have proficiency in a certain tool to cast this spell."
+}

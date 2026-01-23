@@ -1,0 +1,9 @@
+{
+    "name": "Heavy Armor Master",
+    "originFeat": false,
+    "prerequisites": ["Proficiency with heavy armor"],
+    "description": "You can use your armor to deflect strikes that would kill others. You gain the following benefits:\n- While wearing heavy armor, you reduce all damage except for psychic by your total Absorb value.\n- Once per round, if you take damage below your total Absorb, you may use the Absorption feature without taking a Stress.",
+    "snippet": "While wearing heavy armor, you reduce all damage except for psychic by your total Absorb value.",
+    "showInSheet": true,
+    "modifiers": []
+}

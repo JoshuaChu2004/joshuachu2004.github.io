@@ -1,0 +1,9 @@
+{
+    "name": "Gunner",
+    "originFeat": true,
+    "prerequisites": [],
+    "description": "You have a quick hand and keen eye when employing firearms, granting you the following benefits:\n- You gain proficiency with firearms (see \"Firearms\" in the Dungeon Master's Guide).\n- Once per turn, when you succeed on an attack with a firearm, the target has disadvantage on its next Fortitude or Reflex saving throw until the start of their turn.\n- Being within 5 feet of a hostile creature doesn't impose disadvantage on your ranged attack rolls.",
+    "snippet": "You gain proficiency with firearms. Once per turn, when you succeed on an attack with a firearm, the target has disadvantage on its next Fortitude or Reflex saving throw until the start of their turn.",
+    "showInSheet": true,
+    "modifiers": []
+}

@@ -1,0 +1,16 @@
+{
+    "name": "Shield of Faith",
+    "isCantrip": false,
+    "level": 1,
+    "school": "Abjuration",
+    "castingTime": "Minor Action",
+    "range": "60 ft.",
+    "components": ["V", "S", "M"],
+    "material": "a small piece of holy text",
+    "ritual": false,
+    "concentration": true,
+    "duration": "10 minutes (Concentration)",
+    "durationType": "Minute",
+    "durationValue": 10,
+    "description": "A shimmering field appears and surrounds a creature of your choice within range, granting it a +2 bonus to AC for the duration."
+}

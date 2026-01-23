@@ -1,0 +1,9 @@
+{
+    "name": "Telepathic",
+    "originFeat": true,
+    "prerequisites": [],
+    "description": "You awaken the ability to mentally connect with others, granting you the following benefits:\n- You can speak telepathically to any creature you can see within 60 feet of you. Your telepathic utterances are in a language you know, and the creature understands you only if it knows that language. Your communication doesn't give the creature the ability to respond to you telepathically.\n- You can take a Stress as a Major Action to connect yourself with a creature's mind, learning their surface-level thoughts and emotions. You may choose to delve deeper, forcing the target to succeed on a Will saving throw (DC 12 + your proficiency bonus), allowing you to read their mind on a failure. The target knows you are probing their mind when you do this.",
+    "snippet": "You can speak telepathically to any creature you can see within 60 feet of you.",
+    "showInSheet": true,
+    "modifiers": []
+}

@@ -1,0 +1,16 @@
+{
+    "name": "Protection from the Otherworldly",
+    "isCantrip": false,
+    "level": 1,
+    "school": "Abjuration",
+    "castingTime": "Major Action",
+    "range": "Touch",
+    "components": ["V", "S", "M"],
+    "material": "holy water or powdered silver and iron, which the spell consumes",
+    "ritual": false,
+    "concentration": false,
+    "duration": "1 hour",
+    "durationType": "Hour",
+    "durationValue": 1,
+    "description": "Until the spell ends, one willing creature you touch is protected against certain types of creatures: aberrations, celestials, elementals, fey, fiends, and undead. The protection grants several benefits. Creatures of those types have disadvantage on attack rolls against the target. The target also can't be charmed, frightened, or possessed by them.\n\nIf the target is already charmed, frightened, or possessed by such a creature, the target has advantage on any new saving throw against the relevant effect."
+}

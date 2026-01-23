@@ -1,0 +1,9 @@
+{
+    "name": "Spell Sniper",
+    "originFeat": false,
+    "prerequisites": ["The ability to cast at least one spell"],
+    "description": "You have learned techniques to enhance your attacks with certain kinds of spells, gaining the following benefits:\n- When you cast a spell that requires you to make an attack roll, the spell's range is doubled.\n- When making a ranged spell attack, you score a critical hit on a 19 or 20.",
+    "snippet": "When you cast a spell that requires you to make an attack roll, the spell's range is doubled, and when making a ranged spell attack, you score a critical hit on a 19 or 20.",
+    "showInSheet": true,
+    "modifiers": []
+}

@@ -1,0 +1,9 @@
+{
+    "name": "Weapon Training",
+    "originFeat": true,
+    "prerequisites": [],
+    "description": "You have practiced extensively with a variety of weapons, gaining proficiency with simple and martial weapons.",
+    "snippet": "You have practiced extensively with a variety of weapons, gaining proficiency with simple and martial weapons.",
+    "showInSheet": true,
+    "modifiers": []
+}

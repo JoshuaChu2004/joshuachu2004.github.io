@@ -8,7 +8,7 @@
         "AC": 13,
         "ability": "dexterity",
         "maxAbilityBonus": 2,
-        "bonusAbsorb": 1,
+        "absorb": 1,
         "strength": 0,
         "properties": []
     }

@@ -5,7 +5,7 @@
   "hitDie": "d10",
   "hitPointsAtFirstLevel": 10,
   "hitPointsFixed": 6,
-  "stressSlotsAtFirstLevel": 4,
+  "stressSlotsAtFirstLevel": 3,
   "spellInfo": {
     "canCastSpells": true,
     "casterType": "prepared",

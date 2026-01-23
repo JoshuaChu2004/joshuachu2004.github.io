@@ -1,0 +1,9 @@
+{
+    "name": "Sentinel",
+    "originFeat": false,
+    "prerequisites": [],
+    "description": "You have mastered techniques to take advantage of every drop in any enemy's guard, gaining the following benefits.\n- When you hit a creature with an opportunity attack, the creature's speed becomes 0 for the rest of the turn.\n- When a creature within 5 feet of you makes an attack against a target other than you, you can use your reaction to make a melee weapon attack against the attacking creature.",
+    "snippet": "When you hit a creature with an opportunity attack, the creature's speed becomes 0 for the rest of the turn.",
+    "showInSheet": true,
+    "modifiers": []
+}
