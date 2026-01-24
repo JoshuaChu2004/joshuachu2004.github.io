@@ -5,5 +5,16 @@
     "description": "You have trained to use a specific type of armor and shields, gaining the following benefits:\n- You gain proficiency with light, medium, or heavy armor.\n- You gain proficiency with shields.",
     "snippet": "You gain proficiency with light, medium, or heavy armor, and proficiency with shields.",
     "showInSheet": true,
-    "modifiers": []
+    "modifiers": [ 
+        {
+            "type": "armorProficiency",
+            "subType": "choose",
+            "from": ["Light Armor", "Medium Armor", "Heavy Armor"]
+        },
+        {
+            "type": "armorProficiency",
+            "subType": "granted",
+            "value": "Shields"
+        }
+    ]
 }

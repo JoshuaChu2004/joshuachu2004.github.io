@@ -5,5 +5,18 @@
     "description": "Quick to notice details of your environment, you gain the following benefits:\n- If you can see a creature's mouth while it is speaking a language you understand, you can interpret what it's saying by reading its lips.\n- You have a +5 bonus to your passive Wisdom (Perception) and passive Intelligence (Investigation) scores.",
     "snippet": "If you can see a creature's mouth while it is speaking a language you understand, you can interpret what it's saying by reading its lips.",
     "showInSheet": true,
-    "modifiers": []
+    "modifiers": [
+        {
+            "type": "skillPassive",
+            "subType": "granted",
+            "value": "Perception",
+            "bonus": 5
+        },
+        {
+            "type": "skillPassive",
+            "subType": "granted",
+            "value": "Investigation",
+            "bonus": 5
+        }
+    ]
 }

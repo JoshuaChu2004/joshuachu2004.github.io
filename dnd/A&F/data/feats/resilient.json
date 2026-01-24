@@ -5,5 +5,24 @@
     "description": "You gain a +1 bonus to all of your saving throws.",
     "snippet": "You gain a +1 bonus to all of your saving throws.",
     "showInSheet": true,
-    "modifiers": []
+    "modifiers": [
+        {
+            "type": "savingThrowIncrease",
+            "subType": "granted",
+            "value": "Fortitude",
+            "bonus": 1
+        },
+        {
+            "type": "savingThrowIncrease",
+            "subType": "granted",
+            "value": "Reflex",
+            "bonus": 1
+        },
+        {
+            "type": "savingThrowIncrease",
+            "subType": "granted",
+            "value": "Will",
+            "bonus": 1
+        }
+    ]
 }

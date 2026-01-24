@@ -5,5 +5,11 @@
     "description": "Hardy and resilient, you gain the following benefits:\n- You gain a +1 bonus to your Absorb.\n- Once per round, when you use the Absorption feature, you may reduce the damage by your total Absorb.\n- When you roll dice to regain hit points, you may reroll any 1s or 2s, taking the new value.",
     "snippet": "You gain a +1 bonus to your Absorb, and once per round, when you use the Absorption feature, you may reduce the damage by your total Absorb. When you roll dice to regain hit points, you may reroll any 1s or 2s, taking the new value.",
     "showInSheet": true,
-    "modifiers": []
+    "modifiers": [
+        {
+            "type": "bonusAbsorb",
+            "subType": "granted",
+            "bonus": 1
+        }
+    ]
 }

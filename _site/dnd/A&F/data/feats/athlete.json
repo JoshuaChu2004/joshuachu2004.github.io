@@ -5,5 +5,11 @@
     "description": "You have undergone extensive physical training to gain the following benefits:\n- When you are prone, standing up uses only 5 feet of your movement.\n- You have a 30 ft. climbing speed.\n- You have advantage on Strength (Athletics) checks to jump large gaps.\n- When you take the Dash action, you can take a Stress to add double your speed to your movement. For instance, with a speed of 30 ft., you can move up to 90 ft. if you dash.",
     "snippet": "When you are prone, standing up uses only 5 feet of your movement. You have a 30 ft. climbing speed and advantage on Strength (Athletics) checks to jump large gaps. When you take the Dash action, you can take a Stress to add double your speed to your movement. For instance, with a speed of 30 ft., you can move up to 90 ft. if you dash.",
     "showInSheet": true,
-    "modifiers": []
+    "modifiers": [
+        {
+            "type": "movement",
+            "subType": "climbing",
+            "bonus": 30
+        }
+    ]
 }

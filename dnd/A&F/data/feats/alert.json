@@ -5,5 +5,11 @@
     "description": "Always on the lookout for danger, you gain the following benefits:\n- You can't be surprised while you are conscious.\n- You gain a +5 bonus to initiative.\n- Other creatures don't gain advantage on attack rolls against you as a result of being unseen by you.",
     "snippet": "You can't be surprised while you are conscious, gain a +5 bonus to initiative, and other creatures don't gain advantage on attack rolls against you as a result of being unseen by you.",
     "showInSheet": true,
-    "modifiers": []
+    "modifiers": [
+        {
+            "type": "bonusInitiative",
+            "subType": "granted",
+            "bonus": 5
+        }
+    ]
 }

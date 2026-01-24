@@ -3294,8 +3294,82 @@ function getDefaultCalculatedModifiers() {
         oneHandedMeleeWeaponDamage: {
             bonus: 0,
         },
+        dualWieldACBonus: {
+            bonus: 0,
+        },
+        mediumArmorMaxAbilityBonus: {
+            bonus: 0,
+        },
+        elementalAdeptDamageType: [],
         language: [],
         feat: [],
+        movement: {
+            walking: -1,
+            flying: -1,
+            swimming: -1,
+            climbing: -1,
+            bonusMovement: 0,
+            bonusWalking: 0,
+            bonusFlying: 0,
+            bonusSwimming: 0,
+            bonusClimbing: 0,
+        }
+        skillPassive: {
+            acrobatics: {
+                bonus: 0,
+            },
+            animalHandling: {
+                bonus: 0,
+            },
+            athletics: {
+                bonus: 0,
+            },
+            arcana: {
+                bonus: 0,
+            },
+            deception: {
+                bonus: 0,
+            },
+            history: {
+                bonus: 0,
+            },
+            insight: {
+                bonus: 0,
+            },
+            intimidation: {
+                bonus: 0,
+            },
+            investigation: {
+                bonus: 0,  
+            },
+            medicine: {
+                bonus: 0,
+            },
+            nature: {
+                bonus: 0,
+            },
+            perception: {
+                bonus: 0,
+            },
+            performance: {
+                bonus: 0,
+            },
+            persuasion: {
+                bonus: 0,
+            },
+            religion: {
+                bonus: 0,
+            },
+            sleightOfHand: {
+                bonus: 0,
+            },
+            stealth: {
+                bonus: 0,
+            },
+            survival: {
+                bonus: 0,
+            },
+        }
     };
 }
 
