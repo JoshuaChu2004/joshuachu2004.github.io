@@ -56,9 +56,9 @@
       "snippet": "You can choose an additional Origin Feat.",
       "modifiers": [
         {
-          "type": "originFeat",
+          "type": "feat",
           "subType": "choose",
-          "from": ["Chef"]
+          "subCategory": "originFeats"
         }
       ]
     }

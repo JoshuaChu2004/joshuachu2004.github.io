@@ -5,5 +5,21 @@
     "description": "You gain proficiency in any combination of three skills or tools of your choice.",
     "snippet": "You gain proficiency in any combination of three skills or tools of your choice.",
     "showInSheet": true,
-    "modifiers": []
+    "modifiers": [ 
+        {
+            "type": "skillProficiency",
+            "subType": "choose",
+            "from": ["Acrobatics", "Animal Handling", "Arcana", "Athletics", "Deception", "History", "Insight", "Intimidation", "Investigation", "Medicine", "Nature", "Perception", "Performance", "Persuasion", "Religion", "Sleight of Hand", "Stealth", "Survival"]
+        },
+        {
+            "type": "skillProficiency",
+            "subType": "choose",
+            "from": ["Acrobatics", "Animal Handling", "Arcana", "Athletics", "Deception", "History", "Insight", "Intimidation", "Investigation", "Medicine", "Nature", "Perception", "Performance", "Persuasion", "Religion", "Sleight of Hand", "Stealth", "Survival"]
+        },
+        {
+            "type": "skillProficiency",
+            "subType": "choose",
+            "from": ["Acrobatics", "Animal Handling", "Arcana", "Athletics", "Deception", "History", "Insight", "Intimidation", "Investigation", "Medicine", "Nature", "Perception", "Performance", "Persuasion", "Religion", "Sleight of Hand", "Stealth", "Survival"]
+        }
+    ]
 }

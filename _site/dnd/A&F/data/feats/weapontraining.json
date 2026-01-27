@@ -5,5 +5,16 @@
     "description": "You have practiced extensively with a variety of weapons, gaining proficiency with simple and martial weapons.",
     "snippet": "You have practiced extensively with a variety of weapons, gaining proficiency with simple and martial weapons.",
     "showInSheet": true,
-    "modifiers": []
+    "modifiers": [
+        {
+            "type": "weaponProficiency",
+            "subType": "granted",
+            "value": "Simple Weapons"
+        },
+        {
+            "type": "weaponProficiency",
+            "subType": "granted",
+            "value": "Martial Weapons"
+        }
+    ]
 }

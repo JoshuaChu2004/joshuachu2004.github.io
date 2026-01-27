@@ -1,3 +1,4 @@
 {
-    "feats": ["Chef"]
+    "feats": ["Actor", "Alert", "Athlete", "Charger", "Chef", "Crossbow Expert", "Crusher", "Defensive Duelist", "Dual Weapon Master", "Dungeon Delver", "Durable", "Elemental Adept", "Fighting Initiate", "Gift of the Chromatic Dragon", "Gift of the Gem Dragon", "Gift of the Metallic Dragon", "Grappler", "Great Weapon Master", "Gunner", "Healer", "Heavy Armor Master", "Inspiring Leader", "Keen Mind", "Linguist", "Lucky", "Mage Slayer", "Medium Armor Master", "Mobile", "Mounted Combatant", "Observant", "Piercer", "Poisoner", "Polearm Master", "Protective Training", "Resilient", "Savage Attacker", "Sentinel", "Sharpshooter", "Shield Master", "Skill Expert", "Skilled", "Skulker", "Slasher", "Spell Sniper", "Tavern Brawler", "Telekinetic", "Telepathic", "Tough", "War Caster", "Weapon Training"],
+    "originFeats": ["Actor", "Alert", "Athlete", "Chef", "Defensive Duelist", "Dungeon Delver", "Fighting Initiate", "Grappler", "Gunner", "Healer", "Keen Mind", "Linguist", "Lucky", "Protective Training", "Savage Attacker", "Skilled", "Telekinetic", "Telepathic", "Weapon Training"]
 }

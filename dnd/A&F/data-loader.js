@@ -135,11 +135,17 @@ async function loadAllFeats() {
             throw new Error(`Failed to load all feats`);
         }
         const featList = await response.json();
-        const featsData = [];
+        const featsData = {
+            feats: [],
+            originFeats: [],
+        };
         for (const featName of featList.feats) {
             const featData = await loadFeat(featName);
             if (featData) {
-                featsData.push(featData);
+                featsData.feats.push(featData);
+                if (featData.originFeat) {
+                    featsData.originFeats.push(featData);
+                }
             }
         }
         return featsData;
@@ -307,7 +313,7 @@ async function loadAllUniversals() {
 
 async function loadUniversal(universalName) {
     try {
-        const response = await fetch(`/dnd/A&F/data/universal/${universalName.toLowerCase()}.json`);
+        const response = await fetch(`/dnd/A&F/data/universal/${formatName(universalName)}.json`);
         if (!response.ok) {
             throw new Error(`Failed to load universal: ${universalName}`);
         }
@@ -327,7 +333,7 @@ async function loadAbility(abilityName) {
     }
 
     try {
-        const response = await fetch(`/dnd/A&F/data/abilities/${abilityName.toLowerCase()}.json`);
+        const response = await fetch(`/dnd/A&F/data/abilities/${formatName(abilityName)}.json`);
         if (!response.ok) {
             throw new Error(`Failed to load ability: ${abilityName}`);
         }
@@ -350,7 +356,7 @@ async function loadClass(className) {
     }
 
     try {
-        const response = await fetch(`/dnd/A&F/data/classes/${className.toLowerCase()}.json`);
+        const response = await fetch(`/dnd/A&F/data/classes/${formatName(className)}.json`);
         if (!response.ok) {
             throw new Error(`Failed to load class: ${className}`);
         }
@@ -367,7 +373,7 @@ async function loadClass(className) {
 
 async function loadSubclass(subclassName) {
     try {
-        const response = await fetch(`/dnd/A&F/data/classes/subclasses/${subclassName.toLowerCase().replace(/\s+/g, '')}.json`);
+        const response = await fetch(`/dnd/A&F/data/classes/subclasses/${formatName(subclassName)}.json`);
         if (!response.ok) {
             throw new Error(`Failed to load subclass: ${subclassName}`);
         }
@@ -429,7 +435,7 @@ async function loadBackground(backgroundName) {
     }
 
     try {
-        const response = await fetch(`/dnd/A&F/data/backgrounds/${backgroundName.toLowerCase()}.json`);
+        const response = await fetch(`/dnd/A&F/data/backgrounds/${formatName(backgroundName)}.json`);
         if (!response.ok) {
             throw new Error(`Failed to load background: ${backgroundName}`);
         }
@@ -453,9 +459,7 @@ async function loadFeat(featName) {
     }
 
     try {
-        // Feats might be stored with spaces replaced by dashes or underscores
-        const normalizedName = featName.toLowerCase().replace(/\s+/g, '-');
-        const response = await fetch(`/dnd/A&F/data/feats/${normalizedName}.json`);
+        const response = await fetch(`/dnd/A&F/data/feats/${formatName(featName)}.json`);
         if (!response.ok) {
             throw new Error(`Failed to load feat: ${featName}`);
         }
@@ -595,7 +599,7 @@ async function loadCharacterGameData(characterData) {
  */
 async function loadProwess(prowessName) {
     try {
-        const response = await fetch(`/dnd/A&F/data/prowesses/${prowessName.toLowerCase().replace(/\s+/g, '')}.json`);
+        const response = await fetch(`/dnd/A&F/data/prowesses/${formatName(prowessName)}.json`);
         if (!response.ok) {
             throw new Error(`Failed to load prowess: ${prowessName}`);
         }
@@ -611,7 +615,7 @@ async function loadProwess(prowessName) {
 
 async function loadSpell(spellName) {
     try {
-        const response = await fetch(`/dnd/A&F/data/spells/${spellName.toLowerCase().replace(/\s+/g, '').replace("/", '')}.json`);
+        const response = await fetch(`/dnd/A&F/data/spells/${formatName(spellName)}.json`);
         if (!response.ok) {
             throw new Error(`Failed to load spell: ${spellName}`);
         }
@@ -632,7 +636,7 @@ async function loadSpell(spellName) {
  */
 async function loadItem(itemName) {
     try {
-        const response = await fetch(`/dnd/A&F/data/items/${itemName.toLowerCase().replace(/\s+/g, '').replace(/,/g, '').replace(/ /g, '').replace(/'/g, '')}.json`);
+        const response = await fetch(`/dnd/A&F/data/items/${formatName(itemName)}.json`);
         if (!response.ok) {
             throw new Error(`Failed to load item: ${itemName}`);
         }
@@ -652,7 +656,7 @@ async function loadItem(itemName) {
  */
 async function loadPack(packName) {
     try {
-        const response = await fetch(`/dnd/A&F/data/items/packs/${packName.toLowerCase().replace(/\s+/g, '').replace(/,/g, '').replace(/ /g, '').replace(/'/g, '')}.json`);
+        const response = await fetch(`/dnd/A&F/data/items/packs/${formatName(packName)}.json`);
         if (!response.ok) {
             throw new Error(`Failed to load pack: ${packName}`);
         }
@@ -667,7 +671,7 @@ async function loadPack(packName) {
 
 async function loadWeapon(weaponName) {
     try {
-        const response = await fetch(`/dnd/A&F/data/items/weapons/${weaponName.toLowerCase().replace(/\s+/g, '').replace(/,/g, '').replace(/ /g, '').replace(/'/g, '')}.json`);
+        const response = await fetch(`/dnd/A&F/data/items/weapons/${formatName(weaponName)}.json`);
         if (!response.ok) {
             throw new Error(`Failed to load weapon: ${weaponName}`);
         }
@@ -683,7 +687,7 @@ async function loadWeapon(weaponName) {
 
 async function loadArmor(armorName) {
     try {
-        const response = await fetch(`/dnd/A&F/data/items/armor/${armorName.toLowerCase().replace(/\s+/g, '').replace(/,/g, '').replace(/ /g, '').replace(/'/g, '')}.json`);
+        const response = await fetch(`/dnd/A&F/data/items/armor/${formatName(armorName)}.json`);
         if (!response.ok) {
             throw new Error(`Failed to load armor: ${armorName}`);
         }
@@ -696,6 +700,11 @@ async function loadArmor(armorName) {
         return null;
     }
 }
+
+function formatName(name) {
+    return name.toLowerCase().replace(/\s+/g, '').replace(/,/g, '').replace(/ /g, '').replace(/'/g, '').replace(/-/g, '').replace("/", "");
+}
+
 // Export functions for use in other files
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = {

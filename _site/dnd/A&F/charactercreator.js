@@ -407,6 +407,11 @@ async function loadCharacterBuilderData(hexId=null) {
             characterData = createDeepProxy(characterData, debouncedSave);
             characterData.hexId = generateRandomHexCode();
             localStorage.setItem(`characterData-${characterData.hexId}`, JSON.stringify(characterData));
+            
+            // Update URL with hexId so reloading doesn't create a new character
+            const urlParams = new URLSearchParams(window.location.search);
+            urlParams.set('hexId', characterData.hexId);
+            window.history.replaceState({}, '', `${window.location.pathname}?${urlParams.toString()}`);
         }
         
         generateCharacterBuilder();
@@ -522,7 +527,9 @@ function confirmClass() {
     generateSpellSlots();
 
     // Initialize modifiers array
-    characterData.modifiers = [];
+    if (!characterData.modifiers) {
+        characterData.modifiers = [];
+    }
 
     generateClass();
 
@@ -1309,7 +1316,7 @@ function confirmRace() {
     characterData.race.name = raceData.name;
 
     // Initialize features - auto-detect options and choices
-    raceData.features.forEach(feature => {
+    raceData.features.filter(feature => !characterData.race.features.find(f => f.name === feature.name)).forEach(feature => {
         const characterFeature = {
             name: feature.name,
         };
@@ -1678,7 +1685,32 @@ function generateFeature(gameFeature, characterFeature, source, subsource = null
                     }
                     selectEl.appendChild(optionEl);
                 });
+            } else if (modifier.type === 'feat' || modifier.type === 'originFeat') {
+                if (modifier.subCategory === 'originFeats') {
+                    const originFeatData = gameData.feats.originFeats
+                    originFeatData.forEach(originFeat => {
+                        const optionEl = document.createElement('option');
+                        optionEl.value = originFeat.name;
+                        optionEl.textContent = originFeat.name;
+                        selectEl.appendChild(optionEl);
+                        if (characterFeature.modifiers && characterFeature.modifiers[i] && characterFeature.modifiers[i].value === originFeat.name) {
+                            optionEl.selected = true;
+                        }
+                    });
+                } else {
+                    const featData = gameData.feats.feats
+                    featData.forEach(feat => {
+                        const optionEl = document.createElement('option');
+                        optionEl.value = feat.name;
+                        optionEl.textContent = feat.name;
+                        selectEl.appendChild(optionEl);
+                        if (characterFeature.modifiers && characterFeature.modifiers[i] && characterFeature.modifiers[i].value === feat.name) {
+                            optionEl.selected = true;
+                        }
+                    });
+                }
             }
+            choiceEl.appendChild(selectEl);
 
             // Show description of selected option
             const descriptionEl = document.createElement('div');
@@ -1690,14 +1722,17 @@ function generateFeature(gameFeature, characterFeature, source, subsource = null
                 const selectedValue = characterFeature.modifiers[i].value;
                 // Handle feat descriptions
                 if (modifier.type === 'feat' || modifier.type === 'originFeat') {
-                    const featData = gameData.feats.find(f => f.name === selectedValue);
+                    const featData = gameData.feats.feats.find(f => f.name === selectedValue);
                     if (featData) {
-                        descriptionEl.innerHTML = parseDescription(featData.description, 'charactercreator');
+                        choiceEl.querySelector('.cc-manager-feature')?.remove();
+                        const featureEl = generateFeature(featData, characterFeature, 'feats', null, choiceEl);
+                        if (featureEl) {
+                            featureEl.open = true;
+                        }
                     }
                 }
             }
             
-            choiceEl.appendChild(selectEl);
             choiceEl.appendChild(descriptionEl);
             choicesContainer.appendChild(choiceEl);
         });
@@ -1874,7 +1909,7 @@ function getGameFeatureData(source = 'class', subsource = null) {
         }
     } else if (source === 'feats') {
         sourceKey = 'feats';
-        return gameData.feats;
+        return gameData.feats.feats;
     }
     else if (source === 'abilities') {
         return gameData.abilities[0];
@@ -1895,7 +1930,7 @@ function getGameFeatureData(source = 'class', subsource = null) {
  */
 function getGameFeature(featureName, source = 'class', subsource = null) {
     if (source === 'feats') {
-        return gameData.feats.find(f => f.name === featureName) || null;
+        return gameData.feats.feats.find(f => f.name === featureName) || null;
     }
     const sourceData = getGameFeatureData(source, subsource);
     return sourceData?.features?.find(f => f.name === featureName) || null;
@@ -1986,7 +2021,7 @@ function generateOptionChoices(featureName, choiceIndex, selectedOption, charact
             const selectedValue = characterOption.choices[i].value;
             // Handle feat descriptions
             if (modifier.type === 'feat' || modifier.type === 'originFeat') {
-                const featData = gameData.feats.find(f => f.name === selectedValue);
+                const featData = gameData.feats.feats.find(f => f.name === selectedValue);
                 if (featData) {
                     descriptionEl.innerHTML = parseDescription(featData.description, 'charactercreator');
                 }
@@ -2043,7 +2078,7 @@ function handleOptionChoiceSelection(featureName, optionChoiceIndex, choiceIndex
                 removeFeat(featToRemove.source);
             }
         } else {
-            const featData = gameData.feats.find(f => f.name === value);
+            const featData = gameData.feats.feats.find(f => f.name === value);
             
             let characterFeat = characterData.feats.find(f => 
                 f.source.feature === featureName && 
@@ -2143,6 +2178,12 @@ function handleOptionSelection(featureName, choiceIndex, optionName, source = 'c
             }
         }
     }
+
+    // Update modifiers
+    updateModifiers();
+
+    updateProwesses();
+    updateSpells();
     
     // Update the summary to reflect selected count
     const featureEl = document.querySelector(`[data-feature-name="${featureName}"]`);
@@ -2159,11 +2200,6 @@ function handleOptionSelection(featureName, choiceIndex, optionName, source = 'c
         }
     }
     
-    // Update modifiers
-    updateModifiers();
-
-    updateProwesses();
-    updateSpells();
 }
 
 /**
@@ -2185,14 +2221,18 @@ function handleChoiceSelection(featureName, choiceIndex, type, value, source = '
     }
     
     // Update the selected option
-    characterFeature.modifiers[choiceIndex] = {
-        type: type,
-        value: value,
-    } || null;
+    if (value != -1) {
+        characterFeature.modifiers[choiceIndex] = {
+            type: type,
+            value: value,
+        };
+    } else {
+        characterFeature.modifiers.splice(choiceIndex, 1);
+    }
     
     // Update the choice description if its a Feat
     if (type === 'feat' || type === 'originFeat') {
-        const featData = gameData.feats.find(f => f.name === value);
+        const featData = gameData.feats.feats.find(f => f.name === value);
 
         let characterFeature = getCharacterFeature(featureName, 'feats');
         if (!characterFeature) {
@@ -2214,24 +2254,13 @@ function handleChoiceSelection(featureName, choiceIndex, type, value, source = '
         }
 
         const choiceEl = document.querySelector(`#cc-manager-feature-content-choice-${sanitizeFeatureName(featureName)}-${choiceIndex}`);
+        choiceEl.querySelector('.cc-manager-feature')?.remove();
         
         if (featData) {
-            generateFeature(featData, characterFeature, 'feats', null, choiceEl);
-        } else {
-            choiceEl.querySelector('.cc-manager-feature').remove();
-        }
-    }
-    
-    // Update the summary to reflect selected count
-    const featureEl = document.querySelector(`[data-feature-name="${featureName}"]`);
-    if (featureEl) {
-        const selectedCount = characterFeature.modifiers.filter(m => m).length;
-        const gameFeature = getGameFeature(featureName, source);
-        const choiceModifiers = getChoiceModifiers(gameFeature);
-        const choicesCount = choiceModifiers.length;
-        const metaItem = featureEl.querySelector('.cc-manager-feature-summary-meta-item');
-        if (metaItem && choicesCount > 0) {
-            metaItem.textContent = `${selectedCount}/${choicesCount} Choices`;
+            const featureEl = generateFeature(featData, characterFeature, 'feats', null, choiceEl);
+            if (featureEl) {
+                featureEl.open = true;
+            }
         }
     }
     
@@ -2240,6 +2269,19 @@ function handleChoiceSelection(featureName, choiceIndex, type, value, source = '
 
     updateProwesses();
     updateSpells();
+
+    // Update the summary to reflect selected count
+    const featureEl = document.querySelector(`[data-feature-name="${featureName}"]`);
+    if (featureEl) {
+        const selectedCount = characterFeature.modifiers.length;
+        const gameFeature = getGameFeature(featureName, source);
+        const choiceModifiers = getChoiceModifiers(gameFeature);
+        const choicesCount = choiceModifiers.length;
+        const metaItem = featureEl.querySelector('.cc-manager-feature-summary-meta-item');
+        if (metaItem && choicesCount > 0) {
+            metaItem.textContent = `${selectedCount}/${choicesCount} Choices`;
+        }
+    }
 } 
 
 function handleSubclassSelection(featureName, choiceIndex, subclassName, source = 'class') {
@@ -2250,17 +2292,6 @@ function handleSubclassSelection(featureName, choiceIndex, subclassName, source 
     characterFeature.subclass.name = subclassName;
 
     characterData.class.subclass.name = subclassName;
-
-    const featureEl = document.querySelector(`[data-feature-name="${featureName}"]`);
-    if (featureEl) {
-        const selectedCount = characterFeature.subclass?.name ? 1 : 0;
-        const gameFeature = getGameFeature(featureName, source);
-        const choicesCount = gameFeature.subclasses.length;
-        const metaItem = featureEl.querySelector('.cc-manager-feature-summary-meta-item');
-        if (metaItem && choicesCount > 0) {
-            metaItem.textContent = `${selectedCount}/${choicesCount} Choices`;
-        }
-    }
 
     if (subclassName != -1) {
         initializeNewSubclassLevelFeatures(characterData.class.level);
@@ -2275,6 +2306,17 @@ function handleSubclassSelection(featureName, choiceIndex, subclassName, source 
 
     updateProwesses();
     updateSpells();
+    
+    const featureEl = document.querySelector(`[data-feature-name="${featureName}"]`);
+    if (featureEl) {
+        const selectedCount = characterFeature.subclass?.name ? 1 : 0;
+        const gameFeature = getGameFeature(featureName, source);
+        const choicesCount = gameFeature.subclasses.length;
+        const metaItem = featureEl.querySelector('.cc-manager-feature-summary-meta-item');
+        if (metaItem && choicesCount > 0) {
+            metaItem.textContent = `${selectedCount}/${choicesCount} Choices`;
+        }
+    }
 }
 
 function removeSubclass() {
@@ -3285,6 +3327,9 @@ function getDefaultCalculatedModifiers() {
         bonusInitiative: {
             bonus: 0,
         },
+        hitPointMaximumPerLevel: {
+            bonus: 0,
+        },
         innateAbsorb: {
             bonus: 0,
         },
@@ -3313,7 +3358,7 @@ function getDefaultCalculatedModifiers() {
             bonusFlying: 0,
             bonusSwimming: 0,
             bonusClimbing: 0,
-        }
+        },
         skillPassive: {
             acrobatics: {
                 bonus: 0,
