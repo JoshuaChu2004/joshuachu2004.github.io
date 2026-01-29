@@ -3028,7 +3028,7 @@ function updateSpells() {
         }
     });
     console.log('Updated spells:', characterSpells);
-}
+} 
 
 
 

@@ -14,7 +14,7 @@
     "cantripGrowthRate": "high",
     "spellList": {
       "0": [],
-      "1": [],
+      "1": ["Absorb Elements", "Alarm", "Animal Friendship", "Cure Wounds", "Detect Magic", "Ensnaring Strike", "Entangle", "Fog Cloud", "Goodberry", "Hail of Thorns", "Jump", "Longstrider", "Searing Strike", "Snare", "Speak with Animals", "Zephyr Strike"],
       "2": [],
       "3": [],
       "4": [],
@@ -30,8 +30,8 @@
     "prowessGrowthRate": "half",
     "prowessAbility": ["wisdom"],
     "prowessList": {
-      "1": [],
-      "2": [],
+      "1": ["Called Shot", "Lacerating Strike", "Tactical Assessment", "Deft Manuevers", "Exploit Weakness"],
+      "2": ["Chase Down", "Study", "Menacing Strike", "Earthly Awareness", "Ricochet"],
       "3": [],
       "4": [],
       "5": [],

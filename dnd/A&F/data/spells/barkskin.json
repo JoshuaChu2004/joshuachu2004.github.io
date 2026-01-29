@@ -1,0 +1,16 @@
+{
+    "name": "Barkskin",
+    "isCantrip": false,
+    "level": 2,
+    "school": "Transmutation",
+    "castingTime": "Major Action",
+    "range": "Touch",
+    "components": ["V", "S", "M"],
+    "material": "a handful of oak bark",
+    "ritual": false,
+    "concentration": true,
+    "duration": "1 hour (Concentration)",
+    "durationType": "Hour",
+    "durationValue": 1,
+    "description": "You touch a willing creature. Until the spell ends, the target's skin has a rough, bark-like appearance, and the target's AC can't be less than 16 and its total Absorb can't be less than 3, regardless of what kind of armor it is wearing."
+}

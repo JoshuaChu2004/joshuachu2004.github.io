@@ -1,0 +1,11 @@
+{
+    "name": "Smoke Bomb",
+    "level": 3,
+    "useTime": "Minor Action",
+    "range": "15 ft. sphere",
+    "concentration": false,
+    "duration": "1 minute",
+    "durationType": "Minute",
+    "durationValue": 1,
+    "description": "Cause a thick smoke cloud in a 15 ft. sphere to appear that irritates and impairs the vision of any creatures inside of it. The smoke lasts for 1 minute and can be dispersed by moderate winds. You immediately gain the Hidden condition until you take the Attack or Cast a Spell action or are spotted by a hostile creature."
+}

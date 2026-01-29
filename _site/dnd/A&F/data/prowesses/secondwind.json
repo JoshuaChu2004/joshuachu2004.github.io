@@ -1,9 +1,9 @@
 {
     "name": "Second Wind",
     "level": 1,
-    "type": "Martial Prowess",
     "useTime": "Minor Action",
     "range": "Self",
+    "concentration": false,
     "duration": "Instantaneous",
     "durationType": "Instantaneous",
     "durationValue": 0,

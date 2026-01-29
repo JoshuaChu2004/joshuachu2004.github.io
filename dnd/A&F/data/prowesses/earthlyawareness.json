@@ -1,0 +1,11 @@
+{
+    "name": "Earthly Awareness",
+    "level": 2,
+    "useTime": "Major Action",
+    "range": "Self",
+    "concentration": true,
+    "duration": "10 minutes (Concentration)",
+    "durationType": "Minute",
+    "durationValue": 10,
+    "description": "As a Major Action, you gain Blindsight out to 15 ft. for 10 minutes."
+}

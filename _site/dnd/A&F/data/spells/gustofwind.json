@@ -1,0 +1,16 @@
+{
+    "name": "Gust of Wind",
+    "isCantrip": false,
+    "level": 2,
+    "school": "Evocation",
+    "castingTime": "Major Action",
+    "range": "Self (60 ft. line)",
+    "components": ["V", "S", "M"],
+    "material": "a legume seed",
+    "ritual": false,
+    "concentration": true,
+    "duration": "1 minute (Concentration)",
+    "durationType": "Minute",
+    "durationValue": 1,
+    "description": "A line of strong wind 60 feet long and 10 feet wide blasts from you in a direction you choose for the spell's duration. Each creature that ends its turn in the line must succeed on a Fortitude saving throw or be pushed 15 feet away from you and knocked Prone in a direction following the line. Any creature in the line must spend 2 feet of movement for every 1 foot it moves when moving closer to you. The gust disperses gas or vapor, and it extinguishes candles, torches, and similar unprotected flames in the area. As a Minor Action on each of your turns before the spell ends, you can change the direction in which the line blasts from you."
+}

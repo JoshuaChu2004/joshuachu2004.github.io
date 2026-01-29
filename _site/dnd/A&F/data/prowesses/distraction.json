@@ -1,0 +1,11 @@
+{
+    "name": "Distraction",
+    "level": 3,
+    "useTime": "Minor Action",
+    "range": "30 ft.",
+    "concentration": false,
+    "duration": "Until end of target's next turn",
+    "durationType": "Round",
+    "durationValue": 1,
+    "description": "Cause a distraction at a point within 30 ft. that you can see. All creatures within 30 ft. of the point of your choice must make a Will saving throw. On a fail, they are compelled to investigate the distraction until the end of their next turn. Creatures in Initiative automatically succeed this saving throw."
+}

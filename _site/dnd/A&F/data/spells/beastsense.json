@@ -1,0 +1,15 @@
+{
+    "name": "Beast Sense",
+    "isCantrip": false,
+    "level": 2,
+    "school": "Divination",
+    "castingTime": "Major Action",
+    "range": "Self",
+    "components": ["S"],
+    "ritual": true,
+    "concentration": true,
+    "duration": "1 hour (Concentration)",
+    "durationType": "Hour",
+    "durationValue": 1,
+    "description": "You touch a willing beast. For the duration of the spell, you can use your action to see through the beast's eyes and hear what it hears, and continue to do so until you use your action to return to your normal senses."
+}

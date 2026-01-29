@@ -1,0 +1,11 @@
+{
+    "name": "Unbridled Physicality",
+    "level": 2,
+    "useTime": "Special",
+    "range": "Self",
+    "concentration": false,
+    "duration": "Instantaneous",
+    "durationType": "Instantaneous",
+    "durationValue": 0,
+    "description": "When you make a Strength or Dexterity ability check, add a d10 to the roll."
+}

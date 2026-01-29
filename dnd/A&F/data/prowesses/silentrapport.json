@@ -1,0 +1,11 @@
+{
+    "name": "Silent Rapport",
+    "level": 2,
+    "useTime": "Major Action",
+    "range": "30 ft.",
+    "concentration": false,
+    "duration": "1 hour",
+    "durationType": "Hour",
+    "durationValue": 1,
+    "description": "You have come up with a code of gestures and quirks to secretly communicate with others. By spending a Focus Point, you can use these hidden gestures and codes to communicate simple ideas with a creature you have spent more than 24 hours with for 1 hour. This communication falters if you are unable to see or hear another."
+}

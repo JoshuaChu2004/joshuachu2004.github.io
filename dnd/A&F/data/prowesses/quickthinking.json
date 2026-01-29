@@ -1,0 +1,11 @@
+{
+    "name": "Quick Thinking",
+    "level": 2,
+    "useTime": "Reaction",
+    "range": "Self",
+    "concentration": false,
+    "duration": "Instantaneous",
+    "durationType": "Instantaneous",
+    "durationValue": 0,
+    "description": "When making a saving throw, turn it into a Reflex saving throw."
+}

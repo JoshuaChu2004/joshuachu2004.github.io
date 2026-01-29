@@ -1,0 +1,11 @@
+{
+    "name": "Don't Watch the Mouth",
+    "level": 1,
+    "useTime": "Major Action",
+    "range": "30 ft.",
+    "concentration": true,
+    "duration": "1 minute (Concentration)",
+    "durationType": "Minute",
+    "durationValue": 1,
+    "description": "You can distract a target from your actions just by talking to them. Force a target that can hear you to make a Will saving throw. On a fail, they have disadvantage on Perception checks while you are still keeping them in conversation."
+}

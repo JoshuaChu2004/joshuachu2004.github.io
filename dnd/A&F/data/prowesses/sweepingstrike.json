@@ -1,9 +1,9 @@
 {
     "name": "Sweeping Strike",
     "level": 2,
-    "type": "Martial Prowess",
     "useTime": "Special",
     "range": "Melee",
+    "concentration": false,
     "duration": "Instantaneous",
     "durationType": "Instantaneous",
     "durationValue": 0,

@@ -1,0 +1,11 @@
+{
+    "name": "Uncanny Strike",
+    "level": 1,
+    "useTime": "Special",
+    "range": "Melee",
+    "concentration": false,
+    "duration": "Instantaneous",
+    "durationType": "Instantaneous",
+    "durationValue": 0,
+    "description": "When you miss an attack that would have used Sneak Attack, take a Stress to roll your Sneak Attack die and deal the damage rolled to the target."
+}

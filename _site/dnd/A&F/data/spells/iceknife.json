@@ -1,0 +1,16 @@
+{
+    "name": "Ice Knife",
+    "isCantrip": false,
+    "level": 1,
+    "school": "Conjuration",
+    "castingTime": "Major Action",
+    "range": "60 ft.",
+    "components": ["S", "M"],
+    "material": "a drop of water or piece of ice",
+    "ritual": false,
+    "concentration": false,
+    "duration": "Instantaneous",
+    "durationType": "Instantaneous",
+    "durationValue": 0,
+    "description": "You create a shard of ice that explodes upon impact and fling it towards a creature. Make a ranged spell attack against the target. On a hit, the target takes 1d10 piercing damage. Use the same attack roll against the target and each creature within 5 ft. of the target. On a hit, they take 1d8 cold damage.\n\n**At Higher Levels.** When you cast this spell using a spell slot of 2nd level or higher, the cold damage increases by 1d8 for each slot level above 1st."
+}

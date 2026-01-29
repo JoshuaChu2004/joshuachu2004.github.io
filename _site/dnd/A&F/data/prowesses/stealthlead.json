@@ -1,0 +1,11 @@
+{
+    "name": "Stealth Lead",
+    "level": 3,
+    "useTime": "Major Action",
+    "range": "15 ft.",
+    "concentration": true,
+    "duration": "10 minutes (Concentration)",
+    "durationType": "Minute",
+    "durationValue": 10,
+    "description": "You can actively coverup the mistakes of your allies when attempting to hide. Choose up to five creatures within 15 ft. of you. While these creatures are within range, they may use your Dexterity (Stealth) modifier instead of their own."
+}

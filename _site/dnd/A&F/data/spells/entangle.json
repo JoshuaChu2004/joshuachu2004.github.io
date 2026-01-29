@@ -1,0 +1,15 @@
+{
+    "name": "Entangle",
+    "isCantrip": false,
+    "level": 1,
+    "school": "Conjuration",
+    "castingTime": "Major Action",
+    "range": "90 ft.",
+    "components": ["V", "S"],
+    "ritual": false,
+    "concentration": true,
+    "duration": "1 minute (Concentration)",
+    "durationType": "Minute",
+    "durationValue": 1,
+    "description": "Grasping weeds and vines sprout from the ground in a 20-foot square starting from a point within range. For the duration, these plants turn the ground in the area into difficult terrain. A creature in the area when you cast the spell must succeed on a Fortitude saving throw or be restrained by the entangling plants until the spell ends. A creature restrained by the plants can use its action to repeat the saving throw. On a success, it frees itself."
+}

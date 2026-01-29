@@ -1,0 +1,11 @@
+{
+    "name": "Lost in the Crowd",
+    "level": 3,
+    "useTime": "Special",
+    "range": "Self",
+    "concentration": false,
+    "duration": "Instantaneous",
+    "durationType": "Instantaneous",
+    "durationValue": 0,
+    "description": "When making a Stealth check while surrounded by non-hostile creatures, treat any roll 9 or below as a 10."
+}

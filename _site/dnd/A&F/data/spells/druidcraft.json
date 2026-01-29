@@ -1,0 +1,15 @@
+{
+    "name": "Druidcraft",
+    "isCantrip": true,
+    "level": 0,
+    "school": "Transmutation",
+    "castingTime": "Major Action",
+    "range": "30 ft.",
+    "components": ["V", "S"],
+    "ritual": false,
+    "concentration": false,
+    "duration": "Instantaneous",
+    "durationType": "Instantaneous",
+    "durationValue": 0,
+    "description": "Whispering to the spirits of nature, you may produce natural miracles such as predicting weather in the next 24 hours, causing plants to bloom or grow, or harmless sensory effects such as falling leaves or a light gust of wind."
+}

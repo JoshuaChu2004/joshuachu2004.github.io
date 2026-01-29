@@ -1,0 +1,11 @@
+{
+    "name": "Parry",
+    "level": 1,
+    "useTime": "Reaction",
+    "range": "Self",
+    "concentration": false,
+    "duration": "Instantaneous",
+    "durationType": "Instantaneous",
+    "durationValue": 0,
+    "description": "When a creature hits you with a melee attack, reduce the damage by 1d10 + your total Absorb."
+}

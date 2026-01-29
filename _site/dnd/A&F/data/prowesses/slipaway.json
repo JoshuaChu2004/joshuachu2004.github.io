@@ -1,0 +1,11 @@
+{
+    "name": "Slipaway",
+    "level": 3,
+    "useTime": "Reaction (when a creature makes a melee attack against you)",
+    "range": "Self",
+    "concentration": false,
+    "duration": "Instantaneous",
+    "durationType": "Instantaneous",
+    "durationValue": 0,
+    "description": "When a creature makes a melee attack against you, you may move up to your movement speed without triggering opportunity attacks."
+}

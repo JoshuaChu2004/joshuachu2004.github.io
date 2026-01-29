@@ -19,9 +19,9 @@
     "spellCastingAbility": ["wisdom"],
     "cantripGrowthRate": "low",
     "spellList": {
-      "0": [],
-      "1": [],
-      "2": [],
+      "0": ["Control Flames", "Control Water", "Druidcraft", "Frostbite", "Guidance", "Gust", "Light", "Mending", "Mold Earth", "Poison Spray", "Primal Savagery", "Resistance", "Shillelagh", "Thaumaturgy", "Thorn Whip", "Thunderclap"],
+      "1": ["Absorb Elements", "Animal Friendship", "Charm Person", "Cure Wounds", "Detect Magic", "Entangle", "Faerie Fire", "Fog Cloud", "Goodberry", "Healing Word", "Ice Knife", "Jump", "Longstrider", "Protection from the Otherworldly", "Snare", "Speak with Animals", "Thunderwave"],
+      "2": ["Animal Messenger", "Augury", "Barkskin", "Beast Sense", "Dust Devil", "Earthbind", "Enhance Ability", "Enlarge/Reduce", "Flame Blade", "Gust of Wind", "Healing Spirit", "Heat Metal", "Hold Person", "Lesser Restoration", "Locate Object", "Moonbeam", "Pass Without Trace", "Skywrite", "Spike Growth", "Summon Beast", "Wither and Bloom"],
       "3": [],
       "4": [],
       "5": [],

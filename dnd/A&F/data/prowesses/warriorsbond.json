@@ -1,0 +1,11 @@
+{
+    "name": "Warrior's Bond",
+    "level": 2,
+    "useTime": "Special",
+    "range": "Special",
+    "concentration": false,
+    "duration": "Special",
+    "durationType": "Special",
+    "durationValue": 0,
+    "description": "Impart your hope and will to your allies. If you have Heroic Inspiration, other friendly creatures can use it as if they had Heroic Inspiration as long as you are willing. This does not allow you and a creature to use the Heroic Help action if only you have Heroic Inspiration."
+}

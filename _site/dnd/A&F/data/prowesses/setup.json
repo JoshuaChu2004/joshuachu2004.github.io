@@ -1,0 +1,11 @@
+{
+    "name": "Set Up",
+    "level": 2,
+    "useTime": "Minor Action",
+    "range": "5 ft.",
+    "concentration": false,
+    "duration": "Until start of next turn",
+    "durationType": "Round",
+    "durationValue": 1,
+    "description": "Choose a creature within 5 ft. that you can see and inflict the Exposed condition until the start of your next turn. Optionally, you may take a Stress to further impair them. The next creature other than you who successfully attacks the target may roll your Sneak Attack die."
+}

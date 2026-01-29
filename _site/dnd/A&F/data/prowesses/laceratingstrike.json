@@ -1,0 +1,11 @@
+{
+    "name": "Lacerating Strike",
+    "level": 1,
+    "useTime": "1 Attack",
+    "range": "Melee",
+    "concentration": false,
+    "duration": "1 minute",
+    "durationType": "Minute",
+    "durationValue": 1,
+    "description": "When you hit a creature with a melee weapon attack, cause them to bleed profusely. The creature must make a Fortitude saving throw. On a fail, they take your damage equal to twice your proficiency bonus at the start of their turn for 1 minute. The next time the creature is healed, it regains no Hit Points, and the bleeding stops. The bleeding can also be stopped by a creature making a Wisdom (Medicine) check against your Prowess save DC as a Major Action."
+}

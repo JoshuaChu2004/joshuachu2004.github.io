@@ -1,9 +1,9 @@
 {
     "name": "Lunging Strike",
     "level": 1,
-    "type": "Martial Prowess",
-    "useTime": "Special",
+    "useTime": "1 Attack",
     "range": "Self",
+    "concentration": false,
     "duration": "Instantaneous",
     "durationType": "Instantaneous",
     "durationValue": 0,

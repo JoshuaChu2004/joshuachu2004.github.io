@@ -16,17 +16,17 @@
       "canUseProwesses": true,
       "prowessGrowthRate": "full",
       "prowessAbility": ["dexterity"],
-      "prowessList": {
-        "1": [ "Second Wind", "Grappling Strike", "Lunging Strike"],
-        "2": [ "Sweeping Strike"],
-        "3": [],
-        "4": [],
-        "5": [],
-        "6": [],
-        "7": [],
-        "8": [],
-        "9": []
-      }
+    "prowessList": {
+      "1": ["Smooth Talk", "Well Connected", "Uncanny Strike", "Lunging Strike", "Pushing Strike", "Tactical Assessment", "Smash and Grab", "Deft Manuevers", "Don't Watch the Mouth", "Exploit Weakness"],
+      "2": ["Study", "Silent Rapport", "Set Up", "Tripping Strike", "Poisoned Strike", "Menacing Strike", "Small Profile", "6th Sense", "Quick Thinking", "Ricochet"],
+      "3": ["Smoke Bomb", "Interrupt", "Thieves' Cache", "A Thousand Cuts", "Distraction", "Lost in the Crowd", "Eye for Danger", "Helping Hand", "Stealth Lead", "Slipaway"],
+      "4": [],
+      "5": [],
+      "6": [],
+      "7": [],
+      "8": [],
+      "9": []
+    }
     },
     "features": [
       {

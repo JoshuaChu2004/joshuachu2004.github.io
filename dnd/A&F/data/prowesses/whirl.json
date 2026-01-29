@@ -1,0 +1,11 @@
+{
+    "name": "Whirl",
+    "level": 3,
+    "useTime": "Major Action",
+    "range": "Self (10 ft. sphere)",
+    "concentration": true,
+    "duration": "1 minute (Concentration)",
+    "durationType": "Minute",
+    "durationValue": 1,
+    "description": "Begin spinning your weapon to threaten other creatures within a 10 ft. sphere. When a creature enters the area for the first time on a turn or starts its turn there, it must make a Reflex saving throw. On a failed save, the creature takes 1d10 + your weapon's damage modifier and half as much on a success. Falling Prone, being Restrained or Grappled, or getting Disarmed automatically ends this Prowess."
+}

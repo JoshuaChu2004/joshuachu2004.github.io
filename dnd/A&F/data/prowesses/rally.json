@@ -1,0 +1,11 @@
+{
+    "name": "Rally",
+    "level": 2,
+    "useTime": "Minor Action",
+    "range": "30 ft.",
+    "concentration": false,
+    "duration": "1 minute",
+    "durationType": "Minute",
+    "durationValue": 1,
+    "description": "Bolster the resolve of one of your companions. As a Minor Action, choose a friendly creature who can see or hear you. They gain 1d10 + your fighter level temporary hit points for 1 minute."
+}

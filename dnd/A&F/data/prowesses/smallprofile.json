@@ -1,0 +1,11 @@
+{
+    "name": "Small Profile",
+    "level": 2,
+    "useTime": "Major Action",
+    "range": "Self",
+    "concentration": true,
+    "duration": "1 minute (Concentration)",
+    "durationType": "Minute",
+    "durationValue": 1,
+    "description": "Present a slim profile of your body to your enemies. While this effect lasts, you may add your proficiency bonus to your AC."
+}

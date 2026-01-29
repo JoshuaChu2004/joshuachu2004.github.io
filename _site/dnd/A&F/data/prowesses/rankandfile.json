@@ -1,0 +1,11 @@
+{
+    "name": "Rank and File",
+    "level": 3,
+    "useTime": "Special",
+    "range": "Self",
+    "concentration": false,
+    "duration": "Instantaneous",
+    "durationType": "Instantaneous",
+    "durationValue": 0,
+    "description": "When making any Charisma ability check, you can instead make it a Charisma (Intimidation) ability check."
+}

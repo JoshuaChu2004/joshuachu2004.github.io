@@ -1,0 +1,11 @@
+{
+    "name": "Helping Hand",
+    "level": 3,
+    "useTime": "Minor Action",
+    "range": "30 ft.",
+    "concentration": false,
+    "duration": "1 minute",
+    "durationType": "Minute",
+    "durationValue": 1,
+    "description": "You may take the Help action as a Minor action. The creature you aid also has advantage on its next saving throw within 1 minute."
+}

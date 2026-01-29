@@ -1,0 +1,16 @@
+{
+    "name": "Snare",
+    "isCantrip": false,
+    "level": 1,
+    "school": "Abjuration",
+    "castingTime": "Major Action",
+    "range": "Touch",
+    "components": ["S", "M"],
+    "material": "25 ft. of rope, which the spell consumes",
+    "ritual": false,
+    "concentration": false,
+    "duration": "24 hours",
+    "durationType": "Hour",
+    "durationValue": 24,
+    "description": "Form a magical trap in a 10 ft. circle on the ground or floor. The next time a Small, Medium, or Large creature moves into the spell's radius, it must succeed on a Reflex saving throw or be restrained into the air and left hanging upside down by several feet. A restrained creature may remake the saving throw at the end of its turn. Alternatively, a different creature may use a Major Action to make a Intelligence (Arcana) check against your spell save DC, ending the effect on a success. The trap is nearly invisible and requires a successful Intelligence (Investigation) check against your spell save DC to be discerned."
+}

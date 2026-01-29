@@ -1,0 +1,11 @@
+{
+    "name": "Deft Manuevers",
+    "level": 1,
+    "useTime": "Minor Action",
+    "range": "Self",
+    "concentration": false,
+    "duration": "Until end of turn",
+    "durationType": "Round",
+    "durationValue": 1,
+    "description": "Until the end of your turn, gain advantage on Strength (Athletics) and Dexterity (Acrobatics) checks and ignore the effects of Difficult Terrain."
+}

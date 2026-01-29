@@ -1,0 +1,11 @@
+{
+    "name": "Back to Back",
+    "level": 3,
+    "useTime": "Major Action",
+    "range": "10 ft.",
+    "concentration": true,
+    "duration": "1 minute (Concentration)",
+    "durationType": "Minute",
+    "durationValue": 1,
+    "description": "Fight against the odds with an ally. Choose a willing creature within 10 ft. of you. At the start of your and the creature's turn, so long as you remain within 10 ft. of each other, you and they may gain one of the following benefits: Gain 1d6 + your proficiency bonus temporary hit points. Gain advantage on your first attack roll on your turn. Increase your AC by your proficiency bonus until the start of your next turn."
+}

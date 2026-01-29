@@ -1,0 +1,11 @@
+{
+    "name": "Interrupt",
+    "level": 3,
+    "useTime": "Reaction (when a creature within 5 ft. takes a Major or Minor action)",
+    "range": "5 ft.",
+    "concentration": false,
+    "duration": "Instantaneous",
+    "durationType": "Instantaneous",
+    "durationValue": 0,
+    "description": "You attempt to disrupt the actions of a creature within 5 ft. Take a Stress to force the target to make a Reflex saving throw. On a failure, the triggering action is interrupted and wasted, but the creature does not expend any resources (spell slots, class features, etc.) On a success, the action continues normally."
+}

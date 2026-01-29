@@ -1,0 +1,15 @@
+{
+    "name": "Control Flames",
+    "isCantrip": true,
+    "level": 0,
+    "school": "Transmutation",
+    "castingTime": "Major Action",
+    "range": "60 ft.",
+    "components": ["S"],
+    "ritual": false,
+    "concentration": false,
+    "duration": "Varies",
+    "durationType": "Varies",
+    "durationValue": 0,
+    "description": "Exercise an amount of control over the natural element of fire. Choose a point you can see within range:\n- Instantaneously expand an existing flame 5 ft. in one direction, provided fuel is present in the new direction\n- Instantaneously extinguish flames within a 5 ft. cube\n- Change the color, brightness, or cause simple shapes to appear in an existing flame for 1 hour\n- Create a magical flame, either held by you or on the ground that you can see within range for 1 hour. If the flame is on the ground, any creature that enters its space for the first time on its turn or ends its turn there must succeed a Reflex saving throw, taking 1d8 fire damage on a failure.\n\n**At Higher Levels.** The spell's damage increases by 1d8 when you reach 5th level (2d8), 11th level (3d8), and 17th level (4d8)."
+}

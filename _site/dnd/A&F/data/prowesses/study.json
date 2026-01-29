@@ -1,0 +1,11 @@
+{
+    "name": "Study",
+    "level": 2,
+    "useTime": "Major Action",
+    "range": "30 ft.",
+    "concentration": false,
+    "duration": "1 minute",
+    "durationType": "Minute",
+    "durationValue": 1,
+    "description": "You have learned to deduce information about a creature just by looking at it. For the next minute, you have advantage on Wisdom (Insight) and Intelligence (Investigation) checks against a creature you can see within 30 ft."
+}

@@ -1,0 +1,11 @@
+{
+    "name": "Tripping Strike",
+    "level": 2,
+    "useTime": "1 Attack",
+    "range": "Melee",
+    "concentration": false,
+    "duration": "Instantaneous",
+    "durationType": "Instantaneous",
+    "durationValue": 0,
+    "description": "When you hit a creature with a melee attack, you can force the target to make a Fortitude Saving Throw, knocking them Prone on a failure."
+}

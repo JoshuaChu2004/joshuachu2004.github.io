@@ -1,0 +1,11 @@
+{
+    "name": "Dragged to Safety",
+    "level": 3,
+    "useTime": "Minor Action",
+    "range": "5 ft.",
+    "concentration": false,
+    "duration": "Until end of turn",
+    "durationType": "Round",
+    "durationValue": 1,
+    "description": "As a minor action, cause a willing creature within 5 ft. of you to follow your movement until the end of your turn."
+}

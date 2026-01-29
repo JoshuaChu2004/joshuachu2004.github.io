@@ -1,0 +1,11 @@
+{
+    "name": "Tactical Assessment",
+    "level": 1,
+    "useTime": "Major Action",
+    "range": "Self",
+    "concentration": false,
+    "duration": "Instantaneous",
+    "durationType": "Instantaneous",
+    "durationValue": 0,
+    "description": "When you make an Intelligence or Wisdom ability check, you can add a d10 to the roll."
+}

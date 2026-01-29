@@ -1,0 +1,11 @@
+{
+    "name": "Taunt",
+    "level": 1,
+    "useTime": "Minor Action",
+    "range": "30 ft.",
+    "concentration": false,
+    "duration": "Instantaneous",
+    "durationType": "Instantaneous",
+    "durationValue": 0,
+    "description": "Make yourself a bigger or more appealing target of your enemies. As a Minor Action, you can choose creatures up to your proficiency bonus that you can see to make a Will Saving Throw. On a fail, they must spend their next turn attempting to harm you. If a target is not in initiative, then they may become hostile but not fight you."
+}

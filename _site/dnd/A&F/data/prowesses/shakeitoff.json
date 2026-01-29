@@ -1,0 +1,11 @@
+{
+    "name": "Shake it Off",
+    "level": 2,
+    "useTime": "Special",
+    "range": "Self",
+    "concentration": false,
+    "duration": "Instantaneous",
+    "durationType": "Instantaneous",
+    "durationValue": 0,
+    "description": "Use the Absorption feature without taking any Stress."
+}

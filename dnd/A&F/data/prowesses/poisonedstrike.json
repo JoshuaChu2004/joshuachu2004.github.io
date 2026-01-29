@@ -1,0 +1,11 @@
+{
+    "name": "Poisoned Strike",
+    "level": 2,
+    "useTime": "Special",
+    "range": "Melee",
+    "concentration": false,
+    "duration": "Until end of next turn",
+    "durationType": "Round",
+    "durationValue": 1,
+    "description": "When you hit a creature with an attack, you can force the target to make a Fortitude Saving Throw, inflicting the Poisoned condition until the end of your next turn on a failure."
+}

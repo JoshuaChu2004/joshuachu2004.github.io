@@ -1,0 +1,11 @@
+{
+    "name": "Thieves' Cache",
+    "level": 3,
+    "useTime": "10 Minutes",
+    "range": "Special",
+    "concentration": false,
+    "duration": "Instantaneous",
+    "durationType": "Instantaneous",
+    "durationValue": 0,
+    "description": "You are aware of supply caches hidden everywhere for members of an organization you are either part of or friendly with. By spending 10 minutes searching or seeking out clues written in Thieves' Cant, you can find a cache that contains one of the following: An artisan's tools A healer's kit A common potion of healing A common potion of relaxation A grappling hook and 50 ft. of rope Once used, this prowess can not be unflipped until the end of the next long rest."
+}

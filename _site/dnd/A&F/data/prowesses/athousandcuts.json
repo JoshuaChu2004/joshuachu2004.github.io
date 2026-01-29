@@ -1,0 +1,11 @@
+{
+    "name": "A Thousand Cuts",
+    "level": 3,
+    "useTime": "Major Action",
+    "range": "Self",
+    "concentration": true,
+    "duration": "1 minute (Concentration)",
+    "durationType": "Minute",
+    "durationValue": 1,
+    "description": "Unleash flurries of strikes whenever you attack. When you hit a creature with a melee weapon attack, you can cause a different creature within 5 ft. of the target to take damage equal to your weapon's damage modifier."
+}

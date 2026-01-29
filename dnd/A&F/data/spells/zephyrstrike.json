@@ -1,0 +1,15 @@
+{
+    "name": "Zephyr Strike",
+    "isCantrip": false,
+    "level": 1,
+    "school": "Transmutation",
+    "castingTime": "Minor Action",
+    "range": "Self",
+    "components": ["V"],
+    "ritual": false,
+    "concentration": false,
+    "duration": "1 minute",
+    "durationType": "Minute",
+    "durationValue": 1,
+    "description": "You move like the wind. For the duration, your movement doesn't provoke opportunity attacks. Once before the spell ends, you can give yourself advantage on one weapon attack roll on your turn. That attack deals an extra 1d8 force damage on a hit. Whether you hit or miss, your walking speed increases by 30 feet until the end of that turn."
+}

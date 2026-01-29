@@ -1,0 +1,11 @@
+{
+    "name": "Eye for Danger",
+    "level": 3,
+    "useTime": "Major Action",
+    "range": "20 ft.",
+    "concentration": false,
+    "duration": "Instantaneous",
+    "durationType": "Instantaneous",
+    "durationValue": 0,
+    "description": "Your extensive training has made your perceptive to hidden traps and foes. You become aware of any traps within 20 ft. of you. Also, all Hidden creatures within 20 ft. must make a Reflex saving throw. On a failure, you know of their current location."
+}

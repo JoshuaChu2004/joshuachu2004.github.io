@@ -1,0 +1,15 @@
+{
+    "name": "Thunderclap",
+    "isCantrip": true,
+    "level": 0,
+    "school": "Evocation",
+    "castingTime": "Major Action",
+    "range": "Self (5 ft. radius)",
+    "components": ["S"],
+    "ritual": false,
+    "concentration": false,
+    "duration": "Instantaneous",
+    "durationType": "Instantaneous",
+    "durationValue": 0,
+    "description": "You create a burst of thunderous sound, which can be heard 100 feet away. Each creature other than you within 5 feet of you must make a Constitution saving throw. On a failed save, the creature takes 1d6 thunder damage.\n\n**At Higher Levels.** The spell's damage increases by 1d6 when you reach 5th level (2d6), 11th level (3d6), and 17th level (4d6)."
+}

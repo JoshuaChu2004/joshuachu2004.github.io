@@ -1,0 +1,11 @@
+{
+    "name": "Piercing Shot",
+    "level": 3,
+    "useTime": "1 Attack",
+    "range": "Ranged (30 ft. line)",
+    "concentration": false,
+    "duration": "Instantaneous",
+    "durationType": "Instantaneous",
+    "durationValue": 0,
+    "description": "When you hit a creature with a ranged attack, you can have the attack target all creatures in a 30 ft. line that originates from you and goes in the direction of the original target. You use the same To Hit roll and damage roll against each creature."
+}

@@ -1,0 +1,11 @@
+{
+    "name": "Ricochet",
+    "level": 2,
+    "useTime": "1 Attack",
+    "range": "Ranged",
+    "concentration": false,
+    "duration": "Instantaneous",
+    "durationType": "Instantaneous",
+    "durationValue": 0,
+    "description": "When you hit a creature with a ranged attack, you can target a second creature within 15 ft. of the first. You use the same To Hit roll and damage roll against each creature."
+}

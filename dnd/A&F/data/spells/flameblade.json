@@ -1,0 +1,16 @@
+{
+    "name": "Flame Blade",
+    "isCantrip": false,
+    "level": 2,
+    "school": "Evocation",
+    "castingTime": "Minor Action",
+    "range": "Self",
+    "components": ["V", "S", "M"],
+    "material": "a leaf of sumac",
+    "ritual": false,
+    "concentration": true,
+    "duration": "10 minutes (Concentration)",
+    "durationType": "Minute",
+    "durationValue": 10,
+    "description": "You evoke a fiery blade in your free hand. It counts as a simple melee weapon with which you are proficient. It deals 2d6 + 4 fire damage on a hit, and you make melee spell attacks when you attack with it. The blade is similar in size and shape to a scimitar, and it lasts for the duration. If you let go of the blade, it disappears, but you can evoke the blade again as a Minor Action. The flaming blade sheds bright light in a 10-foot radius and dim light for an additional 10 ft.\n\n**At Higher Levels.** When you cast this spell using a spell slot of 3rd level or higher, the damage increases by 1d6 for every slot level above 2nd."
+}

@@ -1,0 +1,11 @@
+{
+    "name": "Lean on Me",
+    "level": 1,
+    "useTime": "Reaction",
+    "range": "15 ft.",
+    "concentration": false,
+    "duration": "Instantaneous",
+    "durationType": "Instantaneous",
+    "durationValue": 0,
+    "description": "When a creature you can see within 15 ft. fails an ability check or saving throw, you may use your reaction to make the same roll using your own abilities. If your result is higher, the creature uses your result instead."
+}

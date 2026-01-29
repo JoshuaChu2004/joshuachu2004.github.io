@@ -1,0 +1,11 @@
+{
+    "name": "Smash and Grab",
+    "level": 1,
+    "useTime": "Special",
+    "range": "Melee",
+    "concentration": false,
+    "duration": "Instantaneous",
+    "durationType": "Instantaneous",
+    "durationValue": 0,
+    "description": "When you hit a creature with Sneak Attack, you may make a Sleight of Hand check against their Passive Perception. On a success, you can steal an object from the creature that they are not holding, which can be taken with one hand. You can not retrieve armor or large articles of clothing."
+}

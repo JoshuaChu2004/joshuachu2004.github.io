@@ -1,0 +1,15 @@
+{
+    "name": "Skywrite",
+    "isCantrip": false,
+    "level": 2,
+    "school": "Transmutation",
+    "castingTime": "Major Action",
+    "range": "Sight",
+    "components": ["V", "S"],
+    "ritual": true,
+    "concentration": false,
+    "duration": "1 day",
+    "durationType": "Day",
+    "durationValue": 1,
+    "description": "You cause up to twenty-five words to form in a part of the sky you can see. The words appear to be made of cloud and remain in place for the spell's duration. The words dissipate when the spell ends. A strong wind can disperse the clouds and end the spell early."
+}

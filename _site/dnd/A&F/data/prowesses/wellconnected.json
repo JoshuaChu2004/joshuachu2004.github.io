@@ -1,0 +1,11 @@
+{
+    "name": "Well Connected",
+    "level": 1,
+    "useTime": "1 Hour",
+    "range": "Special",
+    "concentration": false,
+    "duration": "Instantaneous",
+    "durationType": "Instantaneous",
+    "durationValue": 0,
+    "description": "You have connections everywhere, it seems. By spending 1 hour searching or seeking out connections in a civilized area, you may describe a person you know who resides here. You may also describe the relationship you have with this person, but they can not owe you any favors."
+}

@@ -1,0 +1,11 @@
+{
+    "name": "Smooth Talk",
+    "level": 1,
+    "useTime": "Major Action",
+    "range": "30 ft.",
+    "concentration": false,
+    "duration": "Instantaneous",
+    "durationType": "Instantaneous",
+    "durationValue": 0,
+    "description": "Become an expert on subtle lies and mental manipulation. As a Major Action, take a Stress to make a creature believe a minor detail you say, such as having just arrived in the area, or working at a local tavern, or shift the suspicion from yourself to a nearby individual. If your lie is very weak or a target is particularly insightful, they may make a Reflex saving throw at the DM's discretion."
+}

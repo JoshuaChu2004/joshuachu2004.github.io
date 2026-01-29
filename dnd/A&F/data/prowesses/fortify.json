@@ -1,0 +1,11 @@
+{
+    "name": "Fortify",
+    "level": 3,
+    "useTime": "Minor Action",
+    "range": "Self",
+    "concentration": false,
+    "duration": "Until start of next turn",
+    "durationType": "Round",
+    "durationValue": 1,
+    "description": "As a minor action, bolster your defense. Until the start of your next turn, whenever you use the Absorption feature, reduce the damage by your total Absorb."
+}

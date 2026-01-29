@@ -1,0 +1,11 @@
+{
+    "name": "Strength in Numbers",
+    "level": 1,
+    "useTime": "Major Action",
+    "range": "Self",
+    "concentration": false,
+    "duration": "10 minutes",
+    "durationType": "Minute",
+    "durationValue": 10,
+    "description": "You coordinate your efforts with uncanny precision. For the next 10 minutes, when you use the Help action to assist a creature on an ability check, that creature adds your proficiency bonus to its roll. In addition, when a creature uses the Help action to assist you on an ability check during this duration, you add your proficiency bonus to the roll."
+}

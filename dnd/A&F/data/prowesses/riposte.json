@@ -1,0 +1,11 @@
+{
+    "name": "Riposte",
+    "level": 2,
+    "useTime": "Reaction",
+    "range": "Melee",
+    "concentration": false,
+    "duration": "Instantaneous",
+    "durationType": "Instantaneous",
+    "durationValue": 0,
+    "description": "When a creature misses you with a melee attack, you can use your reaction to make a melee attack against that creature."
+}

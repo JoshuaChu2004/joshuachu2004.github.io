@@ -1,0 +1,16 @@
+{
+    "name": "Wither and Bloom",
+    "isCantrip": false,
+    "level": 2,
+    "school": "Necromancy",
+    "castingTime": "Major Action",
+    "range": "60 ft.",
+    "components": ["V", "S", "M"],
+    "material": "a withered vine",
+    "ritual": false,
+    "concentration": false,
+    "duration": "Instantaneous",
+    "durationType": "Instantaneous",
+    "durationValue": 0,
+    "description": "You invoke both death and life upon a 10-foot-radius sphere centered on a point within range. Each creature of your choice in that area must make a Fortitude saving throw, taking 2d6 necrotic damage on a failed save, or half as much damage on a successful one. Nonmagical vegetation in that area withers. In addition, a creature of your choice can regain a number of hit points equal to the damage dealt.\n\n**At Higher Levels.** When you cast this spell using a spell slot of 3rd level or higher, the damage increases by 1d6 for each slot above 2nd."
+}

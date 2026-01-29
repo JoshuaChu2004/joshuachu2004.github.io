@@ -1,0 +1,16 @@
+{
+    "name": "Enlarge/Reduce",
+    "isCantrip": false,
+    "level": 2,
+    "school": "Transmutation",
+    "castingTime": "Major Action",
+    "range": "30 ft.",
+    "components": ["V", "S", "M"],
+    "material": "a pinch of powdered iron",
+    "ritual": false,
+    "concentration": true,
+    "duration": "1 minute (Concentration)",
+    "durationType": "Minute",
+    "durationValue": 1,
+    "description": "Cause a creature or an object you can see within range to grow or shrink for the duration. An unwilling creature must make a Fortitude saving throw to avoid this spell. This spell has no effect on objects being worn or carried. If the target is a creature, objects it is wearing or carrying change size with it for the duration of the spell.\n\n**Enlarge.** The target's size category increases by one category, and its dimensions are effectively doubled. Until the spell ends, the target has advantage on Strength checks and Fortitude saving throws, and weapon attacks deal an additional 1d4 extra damage.\n\n**Reduce.** The target's size category decreases by one category, and its dimensions are effectively halved. Until the spell ends, the target has disadvantage on Strength checks and Fortitude saving throws, and weapon attacks deal 1d4 less damage."
+}

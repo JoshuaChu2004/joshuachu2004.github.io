@@ -1,0 +1,11 @@
+{
+    "name": "Chase Down",
+    "level": 2,
+    "useTime": "Reaction",
+    "range": "Melee",
+    "concentration": false,
+    "duration": "Instantaneous",
+    "durationType": "Instantaneous",
+    "durationValue": 0,
+    "description": "When a creature leaves your melee range, you can follow it up to your movement speed as a reaction."
+}

@@ -1,0 +1,11 @@
+{
+    "name": "Called Shot",
+    "level": 1,
+    "useTime": "1 Attack",
+    "range": "Ranged",
+    "concentration": false,
+    "duration": "Instantaneous",
+    "durationType": "Instantaneous",
+    "durationValue": 0,
+    "description": "When you miss a ranged weapon attack against a creature, take a Stress to succeed in the attack, regardless of AC."
+}

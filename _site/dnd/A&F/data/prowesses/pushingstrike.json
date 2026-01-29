@@ -1,0 +1,11 @@
+{
+    "name": "Pushing Strike",
+    "level": 1,
+    "useTime": "1 Attack",
+    "range": "Melee",
+    "concentration": false,
+    "duration": "Instantaneous",
+    "durationType": "Instantaneous",
+    "durationValue": 0,
+    "description": "When you hit a creature with a weapon attack, you can force the target to make a Fortitude Saving Throw, pushing them 15 ft. away on a failure."
+}

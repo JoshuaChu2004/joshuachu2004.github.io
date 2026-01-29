@@ -1,0 +1,11 @@
+{
+    "name": "6th Sense",
+    "level": 2,
+    "useTime": "Major Action",
+    "range": "20 ft.",
+    "concentration": false,
+    "duration": "Instantaneous",
+    "durationType": "Instantaneous",
+    "durationValue": 0,
+    "description": "You've come into contact with enough magic to know when you're in the presence of it. As a Major Action, you can detect the presence of magic affecting any creatures, objects, or locations within 20 ft. of you that you can see."
+}

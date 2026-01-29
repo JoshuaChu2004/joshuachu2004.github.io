@@ -17,9 +17,9 @@
     "prowessGrowthRate": "full",
     "prowessAbility": ["strength", "dexterity"],
     "prowessList": {
-      "1": [ "Second Wind", "Grappling Strike", "Lunging Strike"],
-      "2": [ "Sweeping Strike"],
-      "3": [],
+      "1": ["Second Wind", "Taunt", "Grappling Strike", "Lunging Strike", "Pushing Strike", "Tactical Assessment", "Parry", "Lean on Me", "Strength in Numbers", "Exploit Weakness"],
+      "2": ["Rally", "Warrior's Bond", "Riposte", "Tripping Strike", "Sweeping Strike", "Menacing Strike", "Unbridled Physicality", "6th Sense", "Shake it Off", "Ricochet"],
+      "3": ["Piercing Shot", "Interrupt", "Whirl", "A Thousand Cuts", "Fortify", "Dragged to Safety", "Eye for Danger", "Helping Hand", "Back to Back", "Rank and File"],
       "4": [],
       "5": [],
       "6": [],

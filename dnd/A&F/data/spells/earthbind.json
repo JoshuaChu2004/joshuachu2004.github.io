@@ -1,0 +1,15 @@
+{
+    "name": "Earthbind",
+    "isCantrip": false,
+    "level": 2,
+    "school": "Transmutation",
+    "castingTime": "Major Action",
+    "range": "300 ft.",
+    "components": ["V"],
+    "ritual": false,
+    "concentration": false,
+    "duration": "1 minute",
+    "durationType": "Minute",
+    "durationValue": 1,
+    "description": "Forcibly ground a creature you can see within range. The target must make a Fortitude saving throw. On a fail, the creature is knocked Prone and is unable to stand up until this spell ends. A flying creature begins to free-fall until it reaches the ground and is then knocked Prone. A creature may repeat the saving throw at the end of its turn to end the spell."
+}
