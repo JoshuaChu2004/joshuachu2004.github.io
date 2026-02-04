@@ -432,9 +432,24 @@ function generateCharacterBuilder() {
         };
     }
 
-    generateClasses();
-    generateRaces();
-    generateBackgrounds();
+    if (characterData.class.name) {
+        generateClass();
+
+        updateSpellElements();
+        updateProwessElements();
+    } else {
+        generateClasses();
+    }
+    if (characterData.race.name) {
+        generateRace();
+    } else {
+        generateRaces();
+    }
+    if (characterData.background.name) {
+        generateBackground();
+    } else {
+        generateBackgrounds();
+    }
     generateAbilities();
     generateEquipment();
 }
@@ -1434,7 +1449,7 @@ function confirmBackground() {
     characterData.background.name = backgroundData.name;
 
     // Initialize features - auto-detect options and choices
-    backgroundData.features.forEach(feature => {
+    backgroundData.features.filter(feature => !characterData.background.features.find(f => f.name === feature.name)).forEach(feature => {
         const characterFeature = {
             name: feature.name,
         };
@@ -1490,7 +1505,7 @@ function generateAbilities() {
     abilities.forEach(abilityData => {
         temporaryData = abilityData;
 
-        abilityData.features.forEach(feature => {
+        abilityData.features.filter(feature => !characterData.abilities.features.find(f => f.name === feature.name)).forEach(feature => {
             const characterFeature = {
                 name: feature.name,
             };
@@ -1509,6 +1524,16 @@ function generateAbilities() {
             characterData.abilities.features.push(characterFeature);
         });
         generateFeatures('abilities');
+    });
+
+    const abilityPointBuySelectionsEl = document.querySelector('.cc-abilities-point-buy-selections');
+
+    abilityPointBuySelectionsEl.querySelectorAll('.cc-abilities-point-buy-selection-select').forEach(selectionEl => {
+        debugger;
+        const ability = selectionEl.getAttribute('ability');
+        const modifier = characterData.abilities[ability].modifier;
+
+        selectionEl.value = modifier;
     });
 }
 // ============================================================================
@@ -3849,8 +3874,7 @@ function initializeNewClassLevelFeatures(level) {
     const availableFeatures = classData.features.filter(f => f.level <= level);
     
     // Initialize features - auto-detect options and choices
-    availableFeatures.forEach(feature => {
-        if (characterData.class.features.find(f => f.name === feature.name)) return;
+    availableFeatures.filter(feature => !characterData.class.features.find(f => f.name === feature.name)).forEach(feature => {
         const characterFeature = {
             name: feature.name,
         };
@@ -3884,8 +3908,7 @@ function initializeNewSubclassLevelFeatures(level) {
     const availableFeatures = subclassData.features.filter(f => f.level <= level);
     
     // Initialize features - auto-detect options and choices
-    availableFeatures.forEach(feature => {
-        if (characterData.class.subclass.features.find(f => f.name === feature.name)) return;
+    availableFeatures.filter(feature => !characterData.class.subclass.features.find(f => f.name === feature.name)).forEach(feature => {
         const characterFeature = {
             name: feature.name,
         };
