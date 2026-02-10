@@ -1,0 +1,74 @@
+{
+  "name": "Beastmaster",
+  "description": "The Beast Master archetype embodies a friendship between the civilized races and the beasts of the world. United in focus, beast and ranger work as one to fight the monstrous foes that threaten civilization and the wilderness alike. Emulating the Beast Master archetype means committing yourself to this ideal, working in partnership with an animal as its companion and friend.",
+  "snippet": "",
+  "class": "Ranger",
+  "prowessInfo": {
+    "canUseProwesses": false,
+    "prowessGrowthRate": null,
+    "prowessAbility": null,
+    "prowessList": null
+  },
+  "spellInfo": {
+    "canCastSpells": false,
+    "casterType": null,
+    "spellGrowthRate": null,
+    "spellCastingAbility": null
+  },
+  "features": [
+    {
+      "name": "Ranger's Companion",
+      "level": 3,
+      "type": "feature",
+      "showInSheet": true,
+      "description": "At 3rd level, you gain a companion that accompanies you on your adventures and has magically bonded with you. Choose a beast, monstrosity, aberration, or dragon that is no larger than Medium, and that has a challenge rating of ¼ or lower. You should work with your DM to determine if the creature you choose is allowed and how you managed to acquire it as your companion. While you are bonded with the companion, they gain the following benefits:\n\n• It adds your proficiency bonus to its AC, attack rolls, damage rolls, skills it is proficient in, and all saving throws.\n• Its hit point maximum equals its normal maximum or four times your ranger level, whichever is higher.\n• During a short rest, it can take the Tend action to heal itself, or the Relax move to restore your Stress.\n\nThe companion obeys your commands as best as it can. It takes its turn on your initiative. It can move and use its Reactions on its own, but it will only take actions when you command it to as a Minor Action. Once per turn, you may take Stress to command your Companion without using a Minor Action. Your companion may use your Martial Prowesses, provided the Prowess describes an action the companion is physically capable of performing.\n\nIf you are incapacitated or absent, the companion acts on its own, focusing on protecting you and itself.\n\nWhen the companion is reduced to 0 Hit Points, you should work with your DM to determine if it begins making death saving throws, is shielded from permanent death by magic, or is otherwise dispelled. Regardless of the method, if the companion is or would be killed, you may restore or replace it at the end of your next long rest.",
+      "snippet": "At 3rd level, you gain a companion that accompanies you on your adventures and has magically bonded with you. Choose a beast, monstrosity, aberration, or dragon that is no larger than Medium, and that has a challenge rating of ¼ or lower. You should work with your DM to determine if the creature you choose is allowed and how you managed to acquire it as your companion. While you are bonded with the companion, they gain the following benefits:\n\n• It adds your proficiency bonus to its AC, attack rolls, damage rolls, skills it is proficient in, and all saving throws.\n• Its hit point maximum equals its normal maximum or four times your ranger level, whichever is higher.\n• During a short rest, it can take the Tend action to heal itself, or the Relax move to restore your Stress.\n\nThe companion obeys your commands as best as it can. It takes its turn on your initiative. It can move and use its Reactions on its own, but it will only take actions when you command it to as a Minor Action. Once per turn, you may take Stress to command your Companion without using a Minor Action. Your companion may use your Martial Prowesses, provided the Prowess describes an action the companion is physically capable of performing.\n\nIf you are incapacitated or absent, the companion acts on its own, focusing on protecting you and itself.\n\nWhen the companion is reduced to 0 Hit Points, you should work with your DM to determine if it begins making death saving throws, is shielded from permanent death by magic, or is otherwise dispelled. Regardless of the method, if the companion is or would be killed, you may restore or replace it at the end of your next long rest."
+    },
+    {
+      "name": "Exceptional Training",
+      "level": 7,
+      "type": "feature",
+      "showInSheet": true,
+      "description": "Beginning at 7th level, your companion has grown far stronger as a result of your training, granting it the following benefits:\n\n• When you command your beast companion to take the Attack action, the companion can make two attacks, or it can take the Multiattack action if it has that action.\n• The companion's attacks also count as magical for the purpose of overcoming resistance and immunity to nonmagical attacks and damage.\n• The companion's attacks also benefit from creatures marked by Hunter's Mark.",
+      "snippet": "Your companion can make two attacks or use Multiattack when commanded to Attack. Its attacks count as magical and benefit from Hunter's Mark."
+    },
+    {
+      "name": "Improved Ranger's Companion",
+      "level": 11,
+      "type": "feature",
+      "showInSheet": true,
+      "description": "Starting at 11th level, your mastery over your bond allows you to command far more powerful creatures. You may now have a companion that is a beast, monstrosity, aberration, or dragon that is no larger than Large and has a challenge rating of 1 or lower. Its hit point maximum equals its normal maximum or five times your ranger level, whichever is higher.\n\nIf you choose to keep your existing companion, you may instead grant it a new form that follows these restrictions, representing the companion growing stronger alongside you. One common way to do this is to grant the companion a Dire form, which reflects increased size, strength, and resilience. When a companion gains a Dire form, it gains the following benefits:\n\n• Its size increases to Large, if it was smaller.\n• Its AC increases by 1.\n• It gains a +2 bonus to its Strength modifier.\n• It gains a +1 bonus to its Constitution modifier.\n• The damage die of its attacks increases by one step to a maximum of d12.\n\nThe companion retains its personality, memories, and bond with you, regardless of whether it takes on a new form or is replaced by a different creature.",
+      "snippet": "Your companion can be Large, CR 1 or lower; HP max = normal or 5 × ranger level. Alternatively, grant your existing companion a Dire form: Large, +1 AC, +2 Str, +1 Con, damage die increases one step (max d12)."
+    },
+    {
+      "name": "Share Spells",
+      "level": 15,
+      "type": "feature",
+      "showInSheet": true,
+      "description": "Beginning at 15th level, when you cast a spell targeting yourself, you can also affect your beast companion with the spell if the beast is within 30 feet of you.",
+      "snippet": "When you cast a spell targeting yourself, you can also affect your companion if it is within 30 feet."
+    }
+  ],
+  "levelFeatures": {
+    "1": [],
+    "2": [],
+    "3": ["Ranger's Companion"],
+    "4": [],
+    "5": [],
+    "6": [],
+    "7": ["Exceptional Training"],
+    "8": [],
+    "9": [],
+    "10": [],
+    "11": ["Improved Ranger's Companion"],
+    "12": [],
+    "13": [],
+    "14": [],
+    "15": ["Share Spells"],
+    "16": [],
+    "17": [],
+    "18": [],
+    "19": [],
+    "20": []
+  }
+}

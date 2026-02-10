@@ -1027,7 +1027,15 @@ function takeProwess(prowessName) {
 
     const prowess = {
         name: prowessName,
+        grantedAtLevel: null,
         flipped: false,
+        source: {
+            source: 'class',
+            subsource: null,
+            feature: null,
+            type: 'prepared',
+            option: null,
+        }
     }
 
     characterData.class.prowesses.push(prowess);
@@ -1184,7 +1192,6 @@ function unlearnSpell(spellName, isCantrip) {
 }
 
 function updateSpellElements() {
-    debugger;
     const classData = getGameFeatureData('class');
     const characterSpellInfo = getCharacterSpellInfo(characterData.class.level, classData.spellInfo.spellGrowthRate);
 
@@ -1353,7 +1360,7 @@ function confirmRace() {
     // Initialize modifiers array
     characterData.modifiers = [];
 
-    generateRace();
+    generateRace(raceData);
 
     dialog.close();
 }
@@ -1363,13 +1370,20 @@ function cancelRace() {
     dialog.close();
 }
 
-function generateRace() {
+function generateRace(raceData = null) {
     console.log('Generating race...');
+    if (!raceData) {
+        raceData = getGameFeatureData('race');
+    }
     const raceManagerEl = document.querySelector('#cc-builder-tab-race-manage');
     const raceChooseEl = document.querySelector('#cc-builder-tab-race-choose');
 
     raceManagerEl.classList.remove('hidden');
     raceChooseEl.classList.add('hidden');
+
+    const raceProgressionDisplayEl = raceManagerEl.querySelector('.cc-progression-display');
+    raceProgressionDisplayEl.querySelector('.title').textContent = raceData.name;
+    raceProgressionDisplayEl.querySelector('#cc-race-description').textContent = raceData.description;
     
     // Generate race features
     generateFeatures('race');
@@ -1471,7 +1485,7 @@ function confirmBackground() {
     // Initialize modifiers array
     characterData.modifiers = [];
 
-    generateBackground();
+    generateBackground(backgroundData);
 
     dialog.close();
 }
@@ -1481,13 +1495,20 @@ function cancelBackground() {
     dialog.close();
 }
 
-function generateBackground() {
+function generateBackground(backgroundData = null) {
+    if (!backgroundData) {
+        backgroundData = getGameFeatureData('background');
+    }
     console.log('Generating background...');
     const backgroundManagerEl = document.querySelector('#cc-builder-tab-background-manage');
     const backgroundChooseEl = document.querySelector('#cc-builder-tab-background-choose');
-
+    const backgroundProgressionDisplayEl = backgroundManagerEl.querySelector('.cc-progression-display');
+    
     backgroundManagerEl.classList.remove('hidden');
     backgroundChooseEl.classList.add('hidden');
+
+    backgroundProgressionDisplayEl.querySelector('.title').textContent = backgroundData.name;
+    backgroundProgressionDisplayEl.querySelector('#cc-background-description').textContent = backgroundData.description;
     
     // Generate background features
     generateFeatures('background');
@@ -1529,7 +1550,6 @@ function generateAbilities() {
     const abilityPointBuySelectionsEl = document.querySelector('.cc-abilities-point-buy-selections');
 
     abilityPointBuySelectionsEl.querySelectorAll('.cc-abilities-point-buy-selection-select').forEach(selectionEl => {
-        debugger;
         const ability = selectionEl.getAttribute('ability');
         const modifier = characterData.abilities[ability].modifier;
 
@@ -1824,7 +1844,7 @@ function generateFeatures(source = 'class', subsource = null) {
     
     if ((!characterData[source]?.name && source !== 'abilities') || !gameData) return;
 
-    if (subsource && !characterData[source]?.subclass?.name) {
+    if (source === 'class' && subsource && !characterData[source]?.subclass?.name) {
         console.error('Subclass not found for:', source);
     }
     
@@ -2787,6 +2807,8 @@ function updateModifiers() {
 
 function updateProwesses() {
     if (!gameData) return;
+
+    debugger;
     
     // Clear existing modifiers
     const characterProwesses = characterData.class.prowesses.filter(p => p.source.type !== "granted" || p.source.type !== "choose");
@@ -3835,8 +3857,6 @@ function handleClassLevelChange(selectEl) {
 }
 
 function changeClassLevel(level) {
-
-    debugger;
     
     const levelUp = level > characterData.class.level;
     const difference = level - characterData.class.level;

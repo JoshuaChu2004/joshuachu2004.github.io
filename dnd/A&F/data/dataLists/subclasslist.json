@@ -1,12 +1,1 @@
-{
-    "cleric": ["Light Domain"],
-    "fighter": [],
-    "rogue": [],
-    "wizard": [],
-    "bard": [],
-    "druid": [],
-    "paladin": [],
-    "ranger": [],
-    "sorcerer": [],
-    "warlock": []
-}
+{"cleric":["Light Domain"],"fighter":["Battle Master"],"rogue":["Assassin"],"wizard":[],"bard":[],"druid":["Circle of the Shepherd"],"paladin":[],"ranger":["Beastmaster"],"sorcerer":[],"warlock":[]}

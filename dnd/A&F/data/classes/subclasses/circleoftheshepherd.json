@@ -1,0 +1,90 @@
+{
+  "name": "Circle of the Shepherd",
+  "description": "Druids of the Circle of the Shepherd commune with the spirits of nature, especially the spirits of beasts and the fey, and call to those spirits for aid. These druids recognize that all living things play a role in the natural world, yet they focus on protecting animals and fey creatures that have difficulty defending themselves. Shepherds, as they are known, see such creatures as their charges. They ward off monsters that threaten them, rebuke hunters who kill more prey than necessary, and prevent civilization from encroaching on rare animal habitats and on sites sacred to the fey.\n\nMany of these druids are happiest far from cities and towns, content to spend their days in the company of animals and the fey creatures of the wilds. Members of this circle become adventurers to oppose forces that threaten their charges or to seek knowledge and power that will help them safeguard their charges better. Wherever these druids go, the spirits of the wilderness are with them.",
+  "snippet": "",
+  "class": "Druid",
+  "prowessInfo": {
+    "canUseProwesses": false,
+    "prowessGrowthRate": null,
+    "prowessAbility": null,
+    "prowessList": null
+  },
+  "spellInfo": {
+    "canCastSpells": false,
+    "casterType": null,
+    "spellGrowthRate": null,
+    "spellCastingAbility": null
+  },
+  "features": [
+    {
+      "name": "Speech of the Woods",
+      "level": 3,
+      "type": "feature",
+      "showInSheet": true,
+      "description": "At 3rd level, you gain the ability to converse with beasts and many fey.\n\nYou learn to speak, read, and write Sylvan. In addition, you can naturally comprehend and interact with beast and fey creatures, though they still do not speak. You have advantage on Charisma checks when interacting with a beast or fey that has an Intelligence modifier lower than yours.",
+      "snippet": "You learn Sylvan. You can comprehend and interact with beasts and fey. You have advantage on Charisma checks with beasts and fey that have lower Intelligence than you."
+    },
+    {
+      "name": "Spirit Totem",
+      "level": 3,
+      "type": "feature",
+      "showInSheet": true,
+      "description": "Starting at 3rd level, you gain the ability to call forth nature spirits and use them to influence the world around you.\n\nAs a Minor Action, expend a Heroic Inspiration to summon an incorporeal spirit to a point you can see within 60 feet of you. The spirit creates an aura in a 30-foot radius around that point for 1 minute. You may use a Minor Action on subsequent turns to move the spirit up to 30 ft. The effect of the spirit's aura depends on the type of spirit you summon from the options below:\n\n**Bear Spirit.** The bear spirit grants you and your allies its might and endurance. Each creature of your choice in the aura when the spirit appears gains temporary hit points equal to 5 + your druid level. In addition, you and your allies gain advantage on Strength checks and Strength saving throws while in the aura.\n\n**Hawk Spirit.** The hawk spirit is a consummate hunter, aiding you and your allies with its keen sight. When a creature makes an attack roll against a target in the spirit's aura, you can use your reaction to grant advantage to that attack roll. In addition, you and your allies have advantage on Wisdom (Perception) checks while in the aura.\n\n**Unicorn Spirit.** The unicorn spirit lends its protection to those nearby. When you or your allies are healed within the aura, they may regain an additional 1d8 hit points.",
+      "snippet": "As a Minor Action, expend a Heroic Inspiration to summon an incorporeal spirit to a point you can see within 60 feet of you. The spirit creates an aura in a 30-foot radius around that point for 1 minute. You may use a Minor Action on subsequent turns to move the spirit up to 30 ft. The effect of the spirit's aura depends on the type of spirit you summon from the options below:\n\n**Bear Spirit.** The bear spirit grants you and your allies its might and endurance. Each creature of your choice in the aura when the spirit appears gains temporary hit points equal to 5 + your druid level. In addition, you and your allies gain advantage on Strength checks and Strength saving throws while in the aura.\n\n**Hawk Spirit.** The hawk spirit is a consummate hunter, aiding you and your allies with its keen sight. When a creature makes an attack roll against a target in the spirit's aura, you can use your reaction to grant advantage to that attack roll. In addition, you and your allies have advantage on Wisdom (Perception) checks while in the aura.\n\n**Unicorn Spirit.** The unicorn spirit lends its protection to those nearby. When you or your allies are healed within the aura, they may regain an additional 1d8 hit points."
+    },
+    {
+      "name": "Mighty Summoner",
+      "level": 6,
+      "type": "feature",
+      "showInSheet": true,
+      "description": "At 6th level, beasts and fey that you conjure are more resilient than normal. Any beast or fey summoned or created by a spell that you cast gains two benefits:\n\n• The creature appears with additional Hit Points equal to double your druid level.\n• The damage from its natural weapons is considered magical for the purpose of overcoming immunity and resistance to nonmagical attacks and damage.",
+      "snippet": "Beasts and fey you summon gain extra HP equal to twice your druid level. Their natural weapon damage counts as magical."
+    },
+    {
+      "name": "Guardian Spirit",
+      "level": 10,
+      "type": "feature",
+      "showInSheet": true,
+      "description": "Beginning at 10th level, your Spirit Totem safeguards the beasts and fey that you call forth with your magic. At the end of your turn, all of your summoned beasts and fey that are within your totem's aura regain 1d8 + your Wisdom modifier hit points.",
+      "snippet": "At the end of your turn, summoned beasts and fey in your totem's aura regain 1d8 + Wisdom modifier hit points."
+    },
+    {
+      "name": "One of Them",
+      "level": 14,
+      "type": "feature",
+      "showInSheet": true,
+      "description": "Beginning at 14th level, your affinity with the beasts and fey you call forth grows. When you cast a spell that summons a beast or fey, you may immediately take the Wild Shape action without using a Major or Minor Action. While in your Wild Shape form, you have advantage on Concentration checks.",
+      "snippet": "When you cast a spell that summons a beast or fey, you may immediately use Wild Shape without an action. In Wild Shape you have advantage on Concentration checks."
+    },
+    {
+      "name": "Faithful Summons",
+      "level": 18,
+      "type": "feature",
+      "showInSheet": true,
+      "description": "Starting at 18th level, the nature spirits you commune with protect you when you are defenseless. When you fall unconscious against your will, you may expend Heroic Inspiration to immediately cast Conjure Animals at 9th level centered on yourself, specifically summoning four beasts of your choice that are CR 2 or lower. The conjured beasts act on their own to protect you and attack your foes. The spell requires no concentration.",
+      "snippet": "When you fall unconscious against your will, you may expend Heroic Inspiration to cast Conjure Animals at 9th level (four beasts, CR 2 or lower) centered on you. No concentration. They protect you and attack foes."
+    }
+  ],
+  "levelFeatures": {
+    "1": [],
+    "2": [],
+    "3": ["Speech of the Woods", "Spirit Totem"],
+    "4": [],
+    "5": [],
+    "6": ["Mighty Summoner"],
+    "7": [],
+    "8": [],
+    "9": [],
+    "10": ["Guardian Spirit"],
+    "11": [],
+    "12": [],
+    "13": [],
+    "14": ["One of Them"],
+    "15": [],
+    "16": [],
+    "17": [],
+    "18": ["Faithful Summons"],
+    "19": [],
+    "20": []
+  }
+}

@@ -1,0 +1,96 @@
+1st Level Prowesses,,,,
+Name,Use Time,Description,Tags,Class List
+Second Wind,1 Minor Action,"You have a limited well of stamina that you can draw on to protect yourself from harm. On your turn, you can use a Minor Action to regain hit points equal to 1d10 + your fighter level and recover 1 Stress Slot.","Combat
+Healing",Fighter
+Taunt,1 Minor Action,"Make yourself a bigger or more appealing target for your enemies. As a Minor Action, choose a creature within 30 ft. that you can see to make a Will Saving Throw. On a fail, they must spend their next turn attempting to harm you. If you target a creature not already hostile towards you, they become hostile but may not immediately attack you.","Combat
+CC",Fighter
+Grappling Strike,1 Attack,"When you hit a creature with a melee attack, you can force the target to make a Fortitude Saving Throw, inflicting the Grappled condition on a failure.","Combat
+CC",Fighter
+Lunging Strike,1 Attack,"When you make a melee attack on your turn, you can extend the reach of that attack by 5 ft.",Combat,"Fighter, Rogue"
+Pushing Strike,1 Attack,"When you hit a creature with a weapon attack, you can force the target to make a Fortitude Saving Throw, pushing them 15 ft. away on a failure.","Combat
+CC","Fighter, Rogue"
+Tactical Assessment,1 Major Action,"When you make an Intelligence or Wisdom ability check, you can add a d10 to the roll.",Utility,"Fighter, Rogue, Ranger"
+Parry,1 Reaction,"When a creature hits you with a melee attack, reduce the damage by 1d10 + your total Absorb.","Combat
+Defense",Fighter
+Lean on Me,1 Reaction,"When a creature you can see within 15 ft. fails an ability check or saving throw, you may use your reaction to make the same roll using your own abilities. If your result is higher, the creature uses your result instead.","Utility
+Traversal",Fighter
+Strength in Numbers,1 Major Action,"You coordinate your efforts with uncanny precision. For the next 10 minutes, when you use the Help action to assist a creature on an ability check, that creature adds your proficiency bonus to its roll.
+
+In addition, when a creature uses the Help action to assist you on an ability check during this duration, you add your proficiency bonus to the roll.",Utility,Fighter
+Opportunist,1 Reaction,"As a reaction to a creature you can see leaves your melee range, you may make an opportunity attack against them.","Combat
+Damage",—
+Exploit Weakness,Special,"When a creature fails against your Prowess Save DC, also inflict the Exposed condition.",Combat CC,"Fighter, Rogue, Ranger"
+Called Shot,1 Attack,"When you miss a ranged weapon attack against a creature, take a Stress to succeed in the attack, regardless of AC.",Combat,Ranger
+Lacerating Strike,1 Attack,"When you hit a creature with a melee weapon attack, cause them to bleed profusely. The creature must make a Fortitude saving throw. On a fail, they take your damage equal to twice your proficiency bonus at the start of their turn for 1 minute. The next time the creature is healed, it regains no Hit Points, and the bleeding stops. The bleeding can also be stopped by a creature making a Wisdom (Medicine) check against your Prowess save DC as a Major Action.",Combat,Ranger
+Deft Manuevers,Minor Action,"Until the end of your turn, gain advantage on Strength (Athletics) and Dexterity (Acrobatics) checks and ignore the effects of Difficult Terrain.",Utility,"Rogue, Ranger"
+Smash and Grab,Special,"When you hit a creature with Sneak Attack, you may make a Sleight of Hand check against their Passive Perception. On a success, you can steal an object from the creature that they are not holding, which can be taken with one hand. You can not retrieve armor or large articles of clothing.",Combat,Rogue
+Don't Watch the Mouth,Major Action,"You can distract a target from your actions just by talking to them. Force a target that can hear you to make a Will saving throw. On a fail, they have disadvantage on Perception checks while you are still keeping them in conversation.",CC,Rogue
+Smooth Talk,Major Action,"Become an expert on subtle lies and mental manipulation. As a Major Action, take a Stress to make a creature believe a minor detail you say, such as having just arrived in the area, or working at a local tavern, or shift the suspicion from yourself to a nearby individual. If your lie is very weak or a target is particularly insightful, they may make a Reflex saving throw at the DM's discretion.",Utility,Rogue
+Well Connected,1 Hour,"You have connections everywhere, it seems. By spending 1 hour searching or seeking out connections in a civilized area, you may describe a person you know who resides here. You may also describe the relationship you have with this person, but they can not owe you any favors.",Utility,Rogue
+Uncanny Strike,Special,"When you miss an attack that would have used Sneak Attack, take a Stress to roll your Sneak Attack die and deal the damage rolled to the target.",Combat,Rogue
+2nd Level Prowesses,,,,
+Name,Use Time,Description,Tags,Class List
+Rally,1 Minor Action,"Bolster the resolve of one of your companions. As a Minor Action, choose a friendly creature who can see or hear you. They gain 1d10 + your fighter level temporary hit points for 1 minute.","Combat
+Healing",Fighter
+Warrior's Bond,Special,"Impart your hope and will to your allies. If you have Heroic Inspiration, other friendly creatures can use it as if they had Heroic Inspiration as long as you are willing. This does not allow you and a creature to use the Heroic Help action if only you have Heroic Inspiration.",Utility,Fighter
+Riposte,1 Reaction,"When a creature misses you with a melee attack, you can use your reaction to make a melee attack against that creature.","Combat
+Damage",Fighter
+Tripping Strike,1 Attack,"When you hit a creature with a melee attack, you can force the target to make a Fortitude Saving Throw, knocking them Prone on a failure.","Combat
+CC","Fighter, Rogue"
+Sweeping Strike,1 Attack,"When you hit a creature with a melee attack, you can have the attack target all creatures within 5 ft. of you. You use the same To Hit roll and damage roll against each creature.","Combat
+AOE
+Damage",Fighter
+Menacing Strike,1 Attack,"When you hit a creature with a melee attack, you can force the target to make a Will Saving Throw, inflicting the Frightened condition on a failure.","Combat
+CC","Fighter, Rogue, Ranger"
+Unbridled Physicality,Special,"When you make a Strength or Dexterity ability check, add a d10 to the roll.",Utility,Fighter
+6th Sense,1 Major Action,"You've come into contact with enough magic to know when you're in the presence of it. As a Major Action, you can detect the presence of magic affecting any creatures, objects, or locations within 20 ft. of you that you can see.",Utility,"Fighter, Rogue"
+Shake it Off,Special,Use the Absorption feature without taking any Stress.,"Combat
+Defense",Fighter
+Ricochet,1 Attack,"When you hit a creature with a ranged attack, you can target a second creature within 15 ft. of the first. You use the same To Hit roll and damage roll against each creature.","Combat
+Damage","Fighter, Rogue, Ranger"
+Study,Major Action,"You have learned to deduce information about a creature just by looking at it. For the next minute, you have advantage on Wisdom (Insight) and Intelligence (Investigation) checks against a creature you can see within 30 ft.",Utility,"Rogue, Ranger"
+Poisoned Strike,Special,"When you hit a creature with an attack, you can force the target to make a Fortitude Saving Throw, inflicting the Poisoned condition until the end of your next turn on a failure.",Combat CC,Rogue
+Small Profile,Major Action,"Present a slim profile of your body to your enemies. While this effect lasts, you may add your proficiency bonus to your AC.",Defense,Rogue
+Quick Thinking,Reaction,"When making a saving throw, turn it into a Reflex saving throw.",Utility,Rogue
+Silent Rapport,Major Action,"You have come up with a code of gestures and quirks to secretly communicate with others. By spending a Focus Point, you can use these hidden gestures and codes to communicate simple ideas with a creature you have spent more than 24 hours with for 1 hour. This communication falters if you are unable to see or hear another.",Utility,Rogue
+Set Up,Minor Action,"Choose a creature within 5 ft. that you can see and inflict the Exposed condition until the start of your next turn. Optionally, you may take a Stress to further impair them. The next creature other than you who successfully attacks the target may roll your Sneak Attack die.",Combat CC,Rogue
+Chase Down,Reaction,"When a creature leaves your melee range, you can follow it up to your movement speed as a reaction.",Combat,Ranger
+Earthly Awareness,Major Action,"As a Major Action, you gain Blindsight out to 15 ft. for 10 minutes.",Utility,Ranger
+3rd Level Prowesses,,,,
+Name,Use Time,Description,Tags,Class List
+Piercing Shot,1 Attack,"When you hit a creature with a ranged attack, you can have the attack target all creatures in a 30 ft. line that originates from you and goes in the direction of the original target. You use the same To Hit roll and damage roll against each creature.","Combat
+AOE
+Damage",Fighter
+Interrupt,1 Reaction (when a creature within 5 ft. takes a Major or Minor action),"You attempt to disrupt the actions of a creature within 5 ft. Take a Stress to force the target to make a Reflex saving throw. On a failure, the triggering action is interrupted and wasted, but the creature does not expend any resources (spell slots, class features, etc.)
+
+On a success, the action continues normally.","Combat
+CC","Fighter, Rogue"
+Whirl,"1 Major Action (Concentration, 1 minute)","Begin spinning your weapon to threaten other creatures within a 10 ft. sphere. When a creature enters the area for the first time on a turn or starts its turn there, it must make a Reflex saving throw. On a failed save, the creature takes 1d10 + your weapon's damage modifier and half as much on a success.
+
+Falling Prone, being Restrained or Grappled, or getting Disarmed automatically ends this Prowess.","Combat
+AOE
+Damage",Fighter
+A Thousand Cuts,"1 Major Action (Concentration, 1 Minute)","Unleash flurries of strikes whenever you attack. When you hit a creature with a melee weapon attack, you can cause a different creature within 5 ft. of the target to take damage equal to your weapon's damage modifier.","Combat
+Damage","Fighter, Rogue"
+Fortify,1 Minor Action,"As a minor action, bolster your defense. Until the start of your next turn, whenever you use the Absorption feature, reduce the damage by your total Absorb.","Combat
+Defence",Fighter
+Dragged to Safety,1 Minor Action,"As a minor action, cause a willing creature within 5 ft. of you to follow your movement until the end of your turn.","Combat
+Movement",Fighter
+Eye for Danger,1 Major Action,"Your extensive training has made your perceptive to hidden traps and foes. You become aware of any traps within 20 ft. of you. Also, all Hidden creatures within 20 ft. must make a Reflex saving throw. On a failure, you know of their current location.",Utility,"Fighter, Rogue"
+Helping Hand,1 Minor Action,You may take the Help action as a Minor action. The creature you aid also has advantage on its next saving throw within 1 minute.,"Combat
+Support","Fighter, Rogue"
+Back to Back,"1 Major Action (Concentration, 1 minute)","Fight against the odds with an ally. Choose a willing creature within 10 ft. of you. At the start of your and the creature's turn, so long as you remain within 10 ft. of each other, you and they may gain one of the following benefits:
+Gain 1d6 + your proficiency bonus temporary hit points.
+
+Gain advantage on your first attack roll on your turn.
+
+Increase your AC by your proficiency bonus until the start of your next turn.","Combat
+Support",Fighter
+Rank and File,Special,"When making any Charisma ability check, you can instead make it a Charisma (Intimidation) ability check.","Utility
+Social",Fighter
+Smoke Bomb,Minor Action,"Cause a thick smoke cloud in a 15 ft. sphere to appear that irritates and impairs the vision of any creatures inside of it. The smoke lasts for 1 minute and can be dispersed by moderate winds. You immediately gain the Hidden condition until you take the Attack or Cast a Spell action or are spotted by a hostile creature.",Combat,Rogue
+Thieves' Cache,10 Minutes,"You are aware of supply caches hidden everywhere for members of an organization you are either part of or friendly with. By spending 10 minutes searching or seeking out clues written in Thieves' Cant, you can find a cache that contains one of the following: An artisan's tools A healer's kit A common potion of healing A common potion of relaxation A grappling hook and 50 ft. of rope Once used, this prowess can not be unflipped until the end of the next long rest.",Utility,Rogue
+Distraction,Minor Action,"Cause a distraction at a point within 30 ft. that you can see. All creatures within 30 ft. of the point of your choice must make a Will saving throw. On a fail, they are compelled to investigate the distraction until the end of their next turn. Creatures in Initiative automatically succeed this saving throw.",CC,Rogue
+Lost in the Crowd,Special,"When making a Stealth check while surrounded by non-hostile creatures, treat any roll 9 or below as a 10.",Utility,Rogue
+Stealth Lead,Major Action,"You can actively coverup the mistakes of your allies when attempting to hide. Choose up to five creatures within 15 ft. of you. While these creatures are within range, they may use your Dexterity (Stealth) modifier instead of their own.",Utility,Rogue
+Slipaway,Reaction (when a creature makes a melee attack against you),"When a creature makes a melee attack against you, you may move up to your movement speed without triggering opportunity attacks.",Movement,Rogue

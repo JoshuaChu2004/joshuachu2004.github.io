@@ -1326,16 +1326,13 @@ function checkProwessesSpellsColumns() {
   if (prowessesColumnContent.children.length === 0) {
     prowessesTitleEl.classList.add("hidden");
     prowessesColumnContent.classList.add("hidden");
+    spellsTitleEl.classList.remove("hidden");
+    spellsColumnContent.classList.remove("hidden");
   } else {
     prowessesTitleEl.classList.remove("hidden");
     prowessesColumnContent.classList.remove("hidden");
-  }
-  if (spellsColumnContent.children.length === 0) {
     spellsTitleEl.classList.add("hidden");
     spellsColumnContent.classList.add("hidden");
-  } else {
-    spellsTitleEl.classList.remove("hidden");
-    spellsColumnContent.classList.remove("hidden");
   }
 
   if (spellsColumnContent.children.length !== 0 && prowessesColumnContent.children.length === 0) {

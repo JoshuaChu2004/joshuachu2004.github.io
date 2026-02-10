@@ -1,0 +1,102 @@
+{
+  "name": "Assassin",
+  "description": "You focus your training on the grim art of death. Those who adhere to this archetype are diverse: hired killers, spies, bounty hunters, and even specially anointed priests trained to exterminate the enemies of their deity. Stealth, poison, and disguise help you eliminate your foes with deadly efficiency.",
+  "snippet": "",
+  "class": "Rogue",
+  "prowessInfo": {
+    "canUseProwesses": false,
+    "prowessGrowthRate": null,
+    "prowessAbility": null,
+    "prowessList": null
+  },
+  "spellInfo": {
+    "canCastSpells": false,
+    "casterType": null,
+    "spellGrowthRate": null,
+    "spellCastingAbility": null
+  },
+  "features": [
+    {
+      "name": "Bonus Proficiencies",
+      "level": 3,
+      "type": "feature",
+      "showInSheet": true,
+      "description": "When you choose this archetype at 3rd level, you gain proficiency with the disguise kit and the poisoner's kit.",
+      "snippet": "You gain proficiency with the disguise kit and the poisoner's kit.",
+      "modifiers": [
+        {
+          "type": "toolProficiency",
+          "subType": "granted",
+          "value": "Disguise Kit"
+        },
+        {
+          "type": "toolProficiency",
+          "subType": "granted",
+          "value": "Poisoner's Kit"
+        }
+      ]
+    },
+    {
+      "name": "Assassinate",
+      "level": 3,
+      "type": "feature",
+      "showInSheet": true,
+      "description": "Starting at 3rd level, you are at your deadliest when you get the drop on your enemies. You have advantage on attack rolls against any creature that hasn't taken a turn in the combat yet. In addition, any hit you score against a creature that is surprised is a critical hit.\n\nAlternatively, on your first turn in combat, you may expend Heroic Inspiration to treat a hit you score with an attack as a critical hit.",
+      "snippet": "You have advantage on attack rolls against creatures that haven't acted yet. Hits against surprised creatures are critical hits. You may expend Heroic Inspiration on your first turn to treat a hit as a critical hit."
+    },
+    {
+      "name": "Infiltration Expertise",
+      "level": 7,
+      "type": "feature",
+      "showInSheet": true,
+      "description": "Starting at 7th level, you can unfailingly create false identities for yourself. You must spend seven days and 25 gp to establish the history, profession, and affiliations for an identity. You can't establish an identity that belongs to someone else. For example, you might acquire appropriate clothing, letters of introduction, and official-looking certification to establish yourself as a member of a trading house from a remote city so you can insinuate yourself into the company of other wealthy merchants.\n\nThereafter, if you adopt the new identity as a disguise, other creatures believe you to be that person until given an obvious reason not to.",
+      "snippet": "You can spend seven days and 25 gp to create a false identity. When you adopt it as a disguise, others believe you to be that person until given an obvious reason not to."
+    },
+    {
+      "name": "Impostor",
+      "level": 10,
+      "type": "feature",
+      "showInSheet": true,
+      "description": "At 10th level, you gain the ability to unerringly mimic another person's speech, writing, and behavior. You must spend at least three hours studying these three components of the person's behavior, listening to speech, examining handwriting, and observing mannerisms.\n\nYour ruse is indiscernible to the casual observer. If a wary creature suspects something is amiss, you have advantage on any Charisma (Deception) check you make to avoid detection.",
+      "snippet": "After studying a person for at least three hours, you can unerringly mimic their speech, writing, and behavior. You have advantage on Charisma (Deception) checks to avoid detection when suspected."
+    },
+    {
+      "name": "Clean Kill",
+      "level": 15,
+      "type": "feature",
+      "showInSheet": true,
+      "description": "At 15th level, when you reduce a creature to 0 Hit Points on your turn, you may immediately become Hidden without any actions.",
+      "snippet": "When you reduce a creature to 0 Hit Points on your turn, you may immediately become Hidden without any actions."
+    },
+    {
+      "name": "Death Strike",
+      "level": 18,
+      "type": "feature",
+      "showInSheet": true,
+      "description": "Starting at 18th level, you become a master of instant death. When you attack and hit a creature that is surprised, it must make a Fortitude saving throw. On a failed save, double the damage of your attack against the creature.",
+      "snippet": "When you hit a surprised creature, it must make a Fortitude saving throw. On a failed save, double the damage of your attack."
+    }
+  ],
+  "levelFeatures": {
+    "1": [],
+    "2": [],
+    "3": ["Bonus Proficiencies", "Assassinate"],
+    "4": [],
+    "5": [],
+    "6": [],
+    "7": ["Infiltration Expertise"],
+    "8": [],
+    "9": [],
+    "10": ["Impostor"],
+    "11": [],
+    "12": [],
+    "13": [],
+    "14": [],
+    "15": ["Clean Kill"],
+    "16": [],
+    "17": [],
+    "18": ["Death Strike"],
+    "19": [],
+    "20": []
+  }
+}
