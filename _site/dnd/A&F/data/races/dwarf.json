@@ -1,0 +1,55 @@
+{
+    "name": "Dwarf",
+    "description": "Kingdoms rich in ancient grandeur, halls carved into the roots of mountains, the echoing of picks and hammers in deep mines and blazing forges, a commitment to clan and tradition, and a burning hatred of goblins and orcs – these common threads unite all dwarves.",
+    "size": "Medium",
+    "speed": { "walking": 25 },
+    "languages": ["Common", "Dwarvish"],
+    "features": [
+        {
+            "name": "Age",
+            "showInSheet": false,
+            "description": "Dwarves mature at the same rate as humans, but they're considered young until they reach the age of 50. On average, they live about 350 years.",
+            "snippet": "Dwarves are considered young until 50 and live about 350 years."
+        },
+        {
+            "name": "Size",
+            "showInSheet": false,
+            "description": "Dwarves stand between 4 and 5 feet tall and average about 150 pounds. Your size is Medium.",
+            "snippet": "Your size is Medium."
+        },
+        {
+            "name": "Speed",
+            "showInSheet": false,
+            "description": "Your base walking speed is 25 feet. Your speed is not reduced by wearing heavy armor.",
+            "snippet": "Your base walking speed is 25 feet. Your speed is not reduced by wearing heavy armor."
+        },
+        {
+            "name": "Darkvision",
+            "showInSheet": true,
+            "description": "Accustomed to life underground, you have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.",
+            "snippet": "You can see in dim light within 60 feet as if bright light, and in darkness as if dim light. You can't discern color in darkness."
+        },
+        {
+            "name": "Dwarven Resilience",
+            "showInSheet": true,
+            "description": "You have advantage on saving throws against poison, and you have resistance against poison damage.",
+            "snippet": "You have advantage on saving throws against poison and resistance to poison damage."
+        },
+        {
+            "name": "Dwarven Toughness",
+            "showInSheet": true,
+            "description": "You gain a +1 bonus to your Absorb. Also, when you use the Absorption feature, you may take an additional Stress to quarter the damage.",
+            "snippet": "You gain a +1 bonus to your Absorb. When you use Absorption, you may take an additional Stress to quarter the damage."
+        },
+        {
+            "name": "Languages",
+            "showInSheet": false,
+            "description": "You can speak, read, and write Common and Dwarvish. Dwarvish is full of hard consonants and guttural sounds.",
+            "snippet": "You can speak, read, and write Common and Dwarvish.",
+            "modifiers": [
+                { "type": "language", "subType": "granted", "value": "Common" },
+                { "type": "language", "subType": "granted", "value": "Dwarvish" }
+            ]
+        }
+    ]
+}

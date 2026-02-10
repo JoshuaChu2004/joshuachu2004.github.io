@@ -1,0 +1,55 @@
+{
+    "name": "Dragonborn",
+    "description": "Dragonborn look very much like dragons standing erect in humanoid form, though they lack wings or a tail.",
+    "size": "Medium",
+    "speed": { "walking": 30 },
+    "languages": ["Common", "Draconic"],
+    "features": [
+        {
+            "name": "Age",
+            "showInSheet": false,
+            "description": "Young dragonborn grow quickly. They walk hours after hatching, attain the size and development of a 10-year-old human child by the age of 3, and reach adulthood by 15. They live to be around 80.",
+            "snippet": "Young dragonborn grow quickly and reach adulthood by 15. They live to be around 80."
+        },
+        {
+            "name": "Size",
+            "showInSheet": false,
+            "description": "Dragonborn are taller and heavier than humans, standing well over 6 feet tall and averaging almost 250 pounds. Your size is Medium.",
+            "snippet": "Your size is Medium."
+        },
+        {
+            "name": "Speed",
+            "showInSheet": false,
+            "description": "Your base walking speed is 30 feet.",
+            "snippet": "Your base walking speed is 30 feet."
+        },
+        {
+            "name": "Draconic Ancestry",
+            "showInSheet": true,
+            "description": "You have draconic ancestry. Choose one type of dragon from the Draconic Ancestry table. Your breath weapon and damage resistance are determined by the dragon type, as shown in the table.\n\n| Dragon Color | Damage Type | Breath Weapon |\n| Black | Acid | 5 by 30 ft. line (Reflex save) |\n| Blue | Lightning | 5 by 30 ft. line (Reflex save) |\n| Brass | Fire | 5 by 30 ft. line (Reflex save) |\n| Bronze | Lightning | 5 by 30 ft. line (Reflex save) |\n| Copper | Acid | 5 by 30 ft. line (Reflex save) |\n| Gold | Fire | 15 ft. cone (Reflex save) |\n| Green | Poison | 15 ft. cone (Fortitude save) |\n| Red | Fire | 15 ft. cone (Reflex save) |\n| Silver | Cold | 15 ft. cone (Fortitude save) |\n| White | Cold | 15 ft. cone (Fortitude save) |",
+            "snippet": "Choose one type of dragon. Your breath weapon and damage resistance are determined by the dragon type."
+        },
+        {
+            "name": "Breath Weapon",
+            "showInSheet": true,
+            "description": "You can exhale destructive energy. Your draconic ancestry determines the size, shape, and damage type of the exhalation. As a Major Action, take a Stress to force each creature in the area of the exhalation to make a saving throw, the type of which is determined by your draconic ancestry. The DC for this saving throw equals 8 + your Constitution modifier + your proficiency bonus. A creature takes 2d6 damage on a failed save, and half as much damage on a successful one. The damage increases to 3d6 at 6th level, 4d6 at 11th level, and 5d6 at 16th level.",
+            "snippet": "As a Major Action, take a Stress to exhale destructive energy in an area. Creatures make a save or take 2d6 damage (scales at 6th, 11th, 16th level)."
+        },
+        {
+            "name": "Damage Resistance",
+            "showInSheet": true,
+            "description": "You have resistance to the damage type associated with your draconic ancestry.",
+            "snippet": "You have resistance to the damage type associated with your draconic ancestry."
+        },
+        {
+            "name": "Languages",
+            "showInSheet": false,
+            "description": "You can speak, read, and write Common and Draconic. Draconic is thought to be one of the oldest languages and is often used in the study of magic.",
+            "snippet": "You can speak, read, and write Common and Draconic.",
+            "modifiers": [
+                { "type": "language", "subType": "granted", "value": "Common" },
+                { "type": "language", "subType": "granted", "value": "Draconic" }
+            ]
+        }
+    ]
+}

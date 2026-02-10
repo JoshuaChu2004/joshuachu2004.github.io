@@ -1,0 +1,49 @@
+{
+    "name": "High Elf",
+    "description": "As a high elf, you have a keen mind and a mastery of at least the basics of magic. In many of the worlds of D&D, there are two kinds of high elves. One type is haughty and reclusive, believing themselves to be superior to non-elves and even other elves. The other type are more common and more friendly, and often encountered among humans and other races.",
+    "size": "Medium",
+    "speed": { "walking": 30 },
+    "languages": ["Common", "Elvish"],
+    "features": [
+        {
+            "name": "Age",
+            "showInSheet": false,
+            "description": "Although elves reach physical maturity at about the same age as humans, the elven understanding of adulthood goes beyond physical growth to encompass worldly experience. An elf typically claims adulthood and an adult name around the age of 100 and can live to be 750 years old.",
+            "snippet": "Elves claim adulthood around 100 and can live to be 750 years old."
+        },
+        {
+            "name": "Size",
+            "showInSheet": false,
+            "description": "Elves range from under 5 to over 6 feet tall and have slender builds. Your size is Medium.",
+            "snippet": "Your size is Medium."
+        },
+        {
+            "name": "Speed",
+            "showInSheet": false,
+            "description": "Your base walking speed is 30 feet.",
+            "snippet": "Your base walking speed is 30 feet."
+        },
+        {
+            "name": "Trance",
+            "showInSheet": true,
+            "description": "Elves do not need to sleep. Instead, they enter a meditation known as \"trance.\" Instead of the normal 6-8 hours a human requires, elves need to only trance for 4 hours a day. However, the duration of a long rest does not change. During a rest, you may enter a Trance to take an additional rest move so long as you are not interrupted.",
+            "snippet": "You trance for 4 hours instead of sleeping. During a rest, you may enter a Trance to take an additional rest move if not interrupted."
+        },
+        {
+            "name": "Elven Pride",
+            "showInSheet": true,
+            "description": "When you succeed an ability check, attack roll, or saving throw, you may take a Stress to gain advantage on your next ability check, attack roll, or saving throw within 1 minute.",
+            "snippet": "When you succeed on a check, attack, or save, you may take a Stress to gain advantage on your next one within 1 minute."
+        },
+        {
+            "name": "Languages",
+            "showInSheet": false,
+            "description": "You can speak, read, and write Common and Elvish.",
+            "snippet": "You can speak, read, and write Common and Elvish.",
+            "modifiers": [
+                { "type": "language", "subType": "granted", "value": "Common" },
+                { "type": "language", "subType": "granted", "value": "Elvish" }
+            ]
+        }
+    ]
+}

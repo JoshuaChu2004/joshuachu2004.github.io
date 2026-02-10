@@ -399,7 +399,7 @@ async function loadRace(raceName, variant = false) {
     }
 
     try {
-        const response = await fetch(`/dnd/A&F/data/races/${raceName.toLowerCase()}.json`);
+        const response = await fetch(`/dnd/A&F/data/races/${formatName(raceName)}.json`);
         if (!response.ok) {
             throw new Error(`Failed to load race: ${raceName}`);
         }

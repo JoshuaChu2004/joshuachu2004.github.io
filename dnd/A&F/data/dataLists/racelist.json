@@ -1,3 +1,17 @@
 {
-    "races": ["Human"]
+    "races": [
+        "Dragonborn",
+        "Dwarf",
+        "Eladrin",
+        "Forest Gnome",
+        "Half Elf",
+        "Half-Orc",
+        "High Elf",
+        "Human",
+        "Lightfoot Halfling",
+        "Rock Gnome",
+        "Stout Halfling",
+        "Tiefling",
+        "Wood Elf"
+    ]
 }

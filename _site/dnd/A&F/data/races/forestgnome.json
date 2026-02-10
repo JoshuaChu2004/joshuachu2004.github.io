@@ -1,0 +1,55 @@
+{
+    "name": "Forest Gnome",
+    "description": "As a forest gnome, you have a natural knack for illusion and inherent quickness and stealth. Forest gnomes are rare and secretive. They gather in hidden communities in sylvan forests, using illusions and trickery to conceal themselves from threats or to mask their escape should they be detected.",
+    "size": "Small",
+    "speed": { "walking": 25 },
+    "languages": ["Common", "Gnomish"],
+    "features": [
+        {
+            "name": "Age",
+            "showInSheet": false,
+            "description": "Gnomes mature at the same rate as humans, and most are expected to settle into adult life around the age of 40. They can live to 350 years on average, but it's not too uncommon for them to reach 500 years of age.",
+            "snippet": "Gnomes settle into adult life around 40 and can live to 350–500 years."
+        },
+        {
+            "name": "Size",
+            "showInSheet": false,
+            "description": "Gnomes are between 3 and 4 feet tall and weigh around 40 pounds. Your size is Small.",
+            "snippet": "Your size is Small."
+        },
+        {
+            "name": "Speed",
+            "showInSheet": false,
+            "description": "Your base walking speed is 25 feet.",
+            "snippet": "Your base walking speed is 25 feet."
+        },
+        {
+            "name": "Darkvision",
+            "showInSheet": true,
+            "description": "Accustomed to life underground, you have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.",
+            "snippet": "You can see in dim light within 60 feet as if bright light, and in darkness as if dim light."
+        },
+        {
+            "name": "Gnome Cunning",
+            "showInSheet": true,
+            "description": "You have advantage on all Intelligence, Wisdom, and Charisma saves against magic.",
+            "snippet": "You have advantage on all Intelligence, Wisdom, and Charisma saves against magic."
+        },
+        {
+            "name": "Natural Illusionist",
+            "showInSheet": true,
+            "description": "You know the Minor Illusion cantrip. Intelligence is your spellcasting modifier for it.",
+            "snippet": "You know the Minor Illusion cantrip. Intelligence is your spellcasting modifier for it."
+        },
+        {
+            "name": "Languages",
+            "showInSheet": false,
+            "description": "You can read, speak, and write Common and Gnomish.",
+            "snippet": "You can read, speak, and write Common and Gnomish.",
+            "modifiers": [
+                { "type": "language", "subType": "granted", "value": "Common" },
+                { "type": "language", "subType": "granted", "value": "Gnomish" }
+            ]
+        }
+    ]
+}

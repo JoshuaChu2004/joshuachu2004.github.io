@@ -46,11 +46,11 @@
     {
       "name": "Humanity's Hope",
       "showInSheet": true,
-      "description": "When you take the Prepare move during a rest with another companion, the other may gain an additional Heroic Inspiration.",
-      "snippet": "When you take the Prepare move during a rest with another companion, the other may gain an additional Heroic Inspiration."
+      "description": "When you take the Prepare move during a rest, choose one of your allies to gain an additional Heroic Inspiration.",
+      "snippet": "When you take the Prepare move during a rest, choose one ally to gain an additional Heroic Inspiration."
     },
     {
-      "name": "Versatile",
+      "name": "Human Versatility",
       "showInSheet": true,
       "description": "You can choose an additional Origin Feat.",
       "snippet": "You can choose an additional Origin Feat.",

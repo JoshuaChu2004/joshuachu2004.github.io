@@ -1,0 +1,49 @@
+{
+    "name": "Stout Halfling",
+    "description": "As a stout halfling, you're hardier than average and have some resistance to poison. Some say that stouts have dwarven blood. In the Forgotten Realms, these halflings are called stronghearts, and they're most common in the south.",
+    "size": "Small",
+    "speed": { "walking": 25 },
+    "languages": ["Common", "Halfling"],
+    "features": [
+        {
+            "name": "Age",
+            "showInSheet": false,
+            "description": "A halfling reaches adulthood at the age of 20 and generally lives into the middle of his or her second century.",
+            "snippet": "Halflings reach adulthood at 20 and generally live into the middle of their second century."
+        },
+        {
+            "name": "Size",
+            "showInSheet": false,
+            "description": "Halflings average about 3 feet tall and weigh about 40 pounds. Your size is Small.",
+            "snippet": "Your size is Small."
+        },
+        {
+            "name": "Speed",
+            "showInSheet": false,
+            "description": "Your base walking speed is 25 feet.",
+            "snippet": "Your base walking speed is 25 feet."
+        },
+        {
+            "name": "Halfling Luck",
+            "showInSheet": true,
+            "description": "When you roll a 1 on an attack roll, ability check, or saving throw, you can reroll the die. You must use the new result, even if it is a 1.",
+            "snippet": "When you roll a 1 on an attack roll, ability check, or saving throw, you can reroll the die and must use the new result."
+        },
+        {
+            "name": "Stout Toughness",
+            "showInSheet": true,
+            "description": "You gain a +1 bonus to your Absorb. Also, when you use the Absorption feature, you gain temporary hit points equal to total Absorb.",
+            "snippet": "You gain a +1 bonus to your Absorb. When you use Absorption, you gain temporary hit points equal to your total Absorb."
+        },
+        {
+            "name": "Languages",
+            "showInSheet": false,
+            "description": "You can speak, read, and write Common and Halfling.",
+            "snippet": "You can speak, read, and write Common and Halfling.",
+            "modifiers": [
+                { "type": "language", "subType": "granted", "value": "Common" },
+                { "type": "language", "subType": "granted", "value": "Halfling" }
+            ]
+        }
+    ]
+}

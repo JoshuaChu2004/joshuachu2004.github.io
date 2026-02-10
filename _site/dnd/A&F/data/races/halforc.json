@@ -1,0 +1,55 @@
+{
+    "name": "Half-Orc",
+    "description": "When alliances between humans and orcs are sealed by marriages, half-orcs are born. Some half-orcs rise to become proud chiefs of orc tribes, their human blood giving them an edge over their full-blooded orc rivals. Some venture into the world to prove their worth among humans and other more civilized races. Many of these become adventurers, achieving greatness for their mighty deeds and notoriety for their barbaric customs and savage fury.",
+    "size": "Medium",
+    "speed": { "walking": 30 },
+    "languages": ["Common", "Orc"],
+    "features": [
+        {
+            "name": "Age",
+            "showInSheet": false,
+            "description": "Half-orcs mature a little faster than humans, reaching adulthood around age 14. They age noticeably faster and rarely live longer than 75 years.",
+            "snippet": "Half-orcs reach adulthood around 14 and rarely live longer than 75 years."
+        },
+        {
+            "name": "Size",
+            "showInSheet": false,
+            "description": "Half-orcs are somewhat larger and bulkier than humans, and they range from 5 to well over 6 feet tall. Your size is Medium.",
+            "snippet": "Your size is Medium."
+        },
+        {
+            "name": "Speed",
+            "showInSheet": false,
+            "description": "Your base walking speed is 30 feet.",
+            "snippet": "Your base walking speed is 30 feet."
+        },
+        {
+            "name": "Darkvision",
+            "showInSheet": true,
+            "description": "Thanks to your orc blood, you have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.",
+            "snippet": "You can see in dim light within 60 feet as if bright light, and in darkness as if dim light."
+        },
+        {
+            "name": "Relentless Endurance",
+            "showInSheet": true,
+            "description": "When you take the Make a Stand Death Move, you immediately recover a number of Stress Slots equal to your proficiency bonus.",
+            "snippet": "When you take the Make a Stand Death Move, you immediately recover Stress Slots equal to your proficiency bonus."
+        },
+        {
+            "name": "Savage Attacks",
+            "showInSheet": true,
+            "description": "When you expend Heroic Inspiration to gain advantage on a weapon attack, it deals an additional d8 of damage.",
+            "snippet": "When you expend Heroic Inspiration to gain advantage on a weapon attack, it deals an additional d8 of damage."
+        },
+        {
+            "name": "Languages",
+            "showInSheet": false,
+            "description": "You can speak, read, and write Common and Orc. Orc is a harsh, grating language with hard consonants. It has no script of its own but is written in the Dwarvish script.",
+            "snippet": "You can speak, read, and write Common and Orc.",
+            "modifiers": [
+                { "type": "language", "subType": "granted", "value": "Common" },
+                { "type": "language", "subType": "granted", "value": "Orc" }
+            ]
+        }
+    ]
+}

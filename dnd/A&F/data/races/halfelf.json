@@ -1,0 +1,50 @@
+{
+    "name": "Half-Elf",
+    "description": "Walking in two worlds but truly belonging to neither, half-elves combine what some say are the best qualities of their elf and human parents: human curiosity, inventiveness, and ambition tempered by the refined senses, love of nature, and artistic tastes of the elves.",
+    "size": "Medium",
+    "speed": { "walking": 30 },
+    "languages": ["Common", "Elvish"],
+    "features": [
+        {
+            "name": "Age",
+            "showInSheet": false,
+            "description": "Half-elves age at much the same rate as humans, reaching adulthood at the age of 20. They live much longer than humans, however, often exceeding 180 years.",
+            "snippet": "Half-elves reach adulthood at 20 and often exceed 180 years."
+        },
+        {
+            "name": "Size",
+            "showInSheet": false,
+            "description": "Half-elves are more or less the same size as humans, ranging from 5 to 6 feet tall. Your size is Medium.",
+            "snippet": "Your size is Medium."
+        },
+        {
+            "name": "Speed",
+            "showInSheet": false,
+            "description": "Your base walking speed is 30 feet.",
+            "snippet": "Your base walking speed is 30 feet."
+        },
+        {
+            "name": "Humanity's Hope",
+            "showInSheet": true,
+            "description": "When you take the Prepare move during a rest, choose one of your allies to gain an additional Heroic Inspiration.",
+            "snippet": "When you take the Prepare move during a rest, choose one ally to gain an additional Heroic Inspiration."
+        },
+        {
+            "name": "Elven Lineage",
+            "showInSheet": true,
+            "description": "Choose one of the following Lineages:\n- **Elven Pride (High Elf Lineage).** When you succeed an ability check, attack roll, or saving throw, you may take a Stress to gain advantage on your next ability check, attack roll, or saving throw within 1 minute.\n- **Uncanny Reactions (Wood Elf Lineage).** When you roll Initiative, you may expend a Heroic Inspiration to make the result your maximum possible value. This can only be done if you haven't rolled yet.",
+            "snippet": "Choose one lineage: Elven Pride (High Elf) or Uncanny Reactions (Wood Elf)."
+        },
+        {
+            "name": "Languages",
+            "showInSheet": false,
+            "description": "You can read, speak, and write Common, Elvish, and one language of your choice.",
+            "snippet": "You can read, speak, and write Common, Elvish, and one language of your choice.",
+            "modifiers": [
+                { "type": "language", "subType": "granted", "value": "Common" },
+                { "type": "language", "subType": "granted", "value": "Elvish" },
+                { "type": "language", "subType": "choose", "from": ["Dwarvish", "Giant", "Gnomish", "Goblin", "Halfling", "Orc", "Abyssal", "Celestial", "Draconic", "Deep Speech", "Infernal", "Primordial", "Sylvan", "Undercommon"] }
+            ]
+        }
+    ]
+}
