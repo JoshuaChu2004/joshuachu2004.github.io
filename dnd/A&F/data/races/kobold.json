@@ -1,0 +1,82 @@
+{
+  "name": "Kobold",
+  "description": "Some of the smallest draconic creatures in the multiverse, kobolds display their draconic ancestry in the glint of their scales and in their roars. Legends tell of the first kobolds emerging from the Underdark near the lairs of the earliest dragons. In some lands, kobolds serve chromatic or metallic dragons — even worshiping them as divine beings. In other places, kobolds know too well how dangerous those dragons can be and help others defend against draconic destruction. Whatever their relationship to dragons, kobold scales tend to be rust colored, although the occasional kobold sports a scale color more akin to that of a chromatic or a metallic dragon. A kobold's cry can express a range of emotion: anger, resolve, elation, fear, and more. Regardless of the emotion expressed, their cry resonates with draconic power.",
+  "size": "Small",
+  "speed": { "walking": 30 },
+  "languages": ["Common", "One other language of your choice"],
+  "features": [
+    {
+      "name": "Creature Type",
+      "showInSheet": false,
+      "description": "You are a Humanoid.",
+      "snippet": "You are a Humanoid."
+    },
+    {
+      "name": "Size",
+      "showInSheet": false,
+      "description": "You are Small.",
+      "snippet": "You are Small."
+    },
+    {
+      "name": "Speed",
+      "showInSheet": false,
+      "description": "Your walking speed is 30 feet.",
+      "snippet": "Your walking speed is 30 feet."
+    },
+    {
+      "name": "Darkvision",
+      "showInSheet": false,
+      "description": "You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You discern colors in that darkness only as shades of gray.",
+      "snippet": "You can see in dim light within 60 feet as if bright light, and in darkness as if dim light; colors in darkness only as shades of gray."
+    },
+    {
+      "name": "Draconic Cry",
+      "showInSheet": true,
+      "description": "As a Minor Action, take a Stress to let out a cry at your enemies within 10 feet of you. Until the start of your next turn, you and your allies have advantage on attack rolls against any of those enemies who could hear you.",
+      "snippet": "As a Minor Action, take a Stress to cry at enemies within 10 ft.; you and allies have advantage on attack rolls against them until the start of your next turn."
+    },
+    {
+      "name": "Kobold Legacy",
+      "showInSheet": true,
+      "description": "Kobolds' connection to dragons can manifest in unpredictable ways in an individual kobold. Choose one of the following legacy options for your kobold:\n- **Craftiness.** You have proficiency in one of the following skills of your choice: Arcana, Investigation, Medicine, Sleight of Hand, or Survival.\n- **Defiance.** You have advantage on saving throws to avoid or end the frightened condition on yourself.\n- **Draconic Sorcery.** You know one cantrip of your choice from the sorcerer spell list. Intelligence, Wisdom, or Charisma is your spellcasting ability for that cantrip (choose when you select this race).",
+      "snippet": "Choose one: Craftiness (proficiency in one skill from Arcana, Investigation, Medicine, Sleight of Hand, or Survival), Defiance (advantage on saves vs. frightened), or Draconic Sorcery (one sorcerer cantrip; choose spellcasting ability).",
+      "options": [
+        {
+          "name": "Craftiness",
+          "description": "You have proficiency in one of the following skills of your choice: Arcana, Investigation, Medicine, Sleight of Hand, or Survival.",
+          "snippet": "You have proficiency in one of the following skills of your choice: Arcana, Investigation, Medicine, Sleight of Hand, or Survival.",
+          "modifiers": [
+            {
+              "type": "skillProficiency",
+              "subType": "choose",
+              "from": ["Arcana", "Investigation", "Medicine", "Sleight of Hand", "Survival"]
+            }
+          ]
+        },
+        {
+          "name": "Defiance",
+          "description": "You have advantage on saving throws to avoid or end the frightened condition on yourself.",
+          "snippet": "You have advantage on saving throws to avoid or end the frightened condition on yourself."
+        },
+        {
+          "name": "Draconic Sorcery",
+          "description": "You know one cantrip of your choice from the sorcerer spell list. Intelligence, Wisdom, or Charisma is your spellcasting ability for that cantrip (choose when you select this race)."
+        }
+      ]
+    },
+    {
+      "name": "Languages",
+      "showInSheet": false,
+      "description": "Your character can speak, read, and write Common and one other language that you and your DM agree is appropriate for the character. The Player's Handbook offers a list of languages to choose from. The DM is free to modify that list for a campaign.",
+      "snippet": "You can speak, read, and write Common and one other language of your choice (appropriate to the campaign).",
+      "modifiers": [
+        { "type": "language", "subType": "granted", "value": "Common" },
+        {
+          "type": "language",
+          "subType": "choose",
+          "from": ["Dwarvish", "Elvish", "Giant", "Gnomish", "Goblin", "Halfling", "Orc", "Abyssal", "Celestial", "Draconic", "Deep Speech", "Infernal", "Primordial", "Sylvan", "Undercommon"]
+        }
+      ]
+    }
+  ]
+}
