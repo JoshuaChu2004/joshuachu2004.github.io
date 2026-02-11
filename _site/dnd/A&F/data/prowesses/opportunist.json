@@ -1,0 +1,11 @@
+{
+    "name": "Opportunist",
+    "level": 1,
+    "useTime": "Special",
+    "range": "Self",
+    "concentration": false,
+    "duration": "Instantaneous",
+    "durationType": "Instantaneous",
+    "durationValue": 0,
+    "description": "As a reaction to a creature you can see leaving your melee range, you may make an opportunity attack against them."
+}

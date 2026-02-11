@@ -363,10 +363,9 @@
           "type": "granted",
           "subType": "category",
           "category": "armor",
-          "value": "lightarmor"
+          "value": "mediumarmor"
         }
       ]
-
     }
   },
   {

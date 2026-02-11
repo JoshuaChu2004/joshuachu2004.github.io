@@ -327,8 +327,9 @@
           "items": [
             {
               "type": "granted",
+              "subType": "category",
               "category": "armor",
-              "value": "leatherarmor"
+              "value": "lightarmor"
             },
             {
               "type": "granted",
