@@ -1,0 +1,204 @@
+<body>
+    <div id="header-placeholder"></div>
+
+    <main class="container">
+        <!-- HERO -->
+        <section class="intro-content">
+            <div class="section-content">
+                <span class="kicker">Portfolio</span>
+                <div class="slogan">
+                    
+                    
+                </div>
+                <div class="about">
+                    
+                    
+                </div>
+                <div class="cta">
+                    <a class="btn" href="assets/JoshuaChu_Resume2025.pdf" download="JoshuaChu_Resume2025.pdf" rel="noopener">Download résumé</a>
+                    <a class="btn" href="https://spiritboundstudios.itch.io" target="_blank" rel="noopener">itch.io</a>
+                    <a class="btn" href="https://www.linkedin.com/in/chujoshua2004" target="_blank" rel="noopener">LinkedIn</a>
+                </div>
+            </div>
+            <div class="image-carousel">
+                <div class="carousel-container">
+                    <div class="carousel-track">
+                        <!-- Clone of last slide for seamless loop -->
+                        <div class="carousel-slide">
+                            <img src="assets/WayOfTheRisingStorm/WayOfTheRisingStorm-1.png" alt="Project 4" />
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="assets/intothedepths.png" alt="Project 1" />
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="assets/volley.png" alt="Project 2" />
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="assets/vbo/vbo.png" alt="Project 3" />
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="assets/WayOfTheRisingStorm/WayOfTheRisingStorm-1.png" alt="Project 4" />
+                        </div>
+                        <!-- Clone of first slide for seamless loop -->
+                        <div class="carousel-slide">
+                            <img src="assets/intothedepths.png" alt="Project 1" />
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-controls">
+                    <button class="carousel-btn prev" onclick="scrollCarousel(-1)">‹</button>
+                    <button class="carousel-btn next" onclick="scrollCarousel(1)">›</button>
+                </div>
+                <div class="carousel-dots">
+                    <span class="dot active" onclick="goToSlide(1)"></span>
+                    <span class="dot" onclick="goToSlide(2)"></span>
+                    <span class="dot" onclick="goToSlide(3)"></span>
+                    <span class="dot" onclick="goToSlide(4)"></span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Video Games Section -->
+        <section id="games" class="section">
+            <div class="section-content">
+                <div class="section-header">Video Games</div>
+                <div class="grid projects">
+                    
+                </div>
+            </div>
+        </section>
+
+        <!-- Software Section -->
+        <section id="software" class="section">
+            <div class="section-content">
+            <div class="section-header">Internships</div>
+            <div class="grid projects">
+                
+            </div>
+        </section>
+
+        <!-- D&D Homebrew Section -->
+        <section id="homebrew" class="section">
+            <div class="section-content">
+            <div class="section-header">D&D Homebrew Content</div>
+            <div class="project-card"> 
+                
+                <a class="project-title" href="/dnd/" target="_blank" rel="noopener">D&D Wiki</a>
+                <p></p>
+                <img class="project-image" src="assets\WayOfTheRisingStorm\WayOfTheRisingStorm-2.png" alt="D&D" />
+                <a class="project-link" href="/dnd/" target="_blank" rel="noopener">View Wiki</a>
+            </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section">
+            <div class="section-content">
+            <div class="section-header">About Me</div>
+            <div class="section-content" style="padding: 0;">
+                
+                
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section">
+            <div class="section-content">
+            <div class="section-header">Get In Touch</div>
+            <div class="section-content" style="padding: 0;">
+                
+                
+                </div>
+                <div class="contact-links">
+                    <a class="btn" href="mailto:chujoshua2004@gmail.com">Email Me</a>
+                    <a class="btn" href="https://www.linkedin.com/in/chujoshua2004" target="_blank" rel="noopener">LinkedIn</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        let currentSlide = 0;
+        const totalSlides = 4;
+        let autoAdvanceInterval;
+        let isTransitioning = false;
+
+        function updateCarousel() {
+            if (isTransitioning) return;
+            const track = document.querySelector('.carousel-track');
+            const dots = document.querySelectorAll('.dot');
+            
+            isTransitioning = true;
+            track.style.transition = 'transform 0.5s ease-in-out';
+            
+            // Move to the current slide (accounting for the first clone)
+            const offset = -(currentSlide + 1) * 100;
+            track.style.transform = `translateX(${offset}%)`;
+            
+            // Update dots
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+            
+            setTimeout(() => {
+                isTransitioning = false;
+                
+                // Handle seamless loop
+                if (currentSlide === -1) {
+                    // Jump to last real slide
+                    track.style.transition = 'none';
+                    currentSlide = totalSlides - 1;
+                    const offset = -(currentSlide + 1) * 100;
+                    track.style.transform = `translateX(${offset}%)`;
+                    setTimeout(() => {
+                        track.style.transition = 'transform 0.5s ease-in-out';
+                    }, 50);
+                } else if (currentSlide === totalSlides) {
+                    // Jump to first real slide
+                    track.style.transition = 'none';
+                    currentSlide = 0;
+                    const offset = -(currentSlide + 1) * 100;
+                    track.style.transform = `translateX(${offset}%)`;
+                    setTimeout(() => {
+                        track.style.transition = 'transform 0.5s ease-in-out';
+                    }, 50);
+                }
+            }, 500);
+        }
+
+        function scrollCarousel(direction) {
+            if (isTransitioning) return;
+            
+            currentSlide += direction;
+            updateCarousel();
+            resetAutoAdvance();
+        }
+
+        function goToSlide(slideIndex) {
+            if (isTransitioning) return;
+            
+            currentSlide = slideIndex - 1; // Convert to 0-based index
+            updateCarousel();
+            resetAutoAdvance();
+        }
+
+        function startAutoAdvance() {
+            if (autoAdvanceInterval) {
+                clearInterval(autoAdvanceInterval);
+            }
+            autoAdvanceInterval = setInterval(() => {
+                scrollCarousel(1);
+            }, 5000);
+        }
+
+        function resetAutoAdvance() {
+            startAutoAdvance();
+        }
+
+        // Initialize carousel
+        updateCarousel();
+        startAutoAdvance();
+    </script>
+</body>

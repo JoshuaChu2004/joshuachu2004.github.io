@@ -11,365 +11,57 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="/styles.css">
     
-    
-    <script src="/js/advanced-content-loader.js"></script>
-    
 
 </head>
 
 <body>
-    <header>
-        <div class="header-container" data-pageType="" data-layout="portfoliobase" data-custom_js="/js/advanced-content-loader.js">
-            <nav>
-                <div style="display: flex; gap: 12px; align-items: center">
-                    <span class="pill">🎮 Joshua Chu</span>
-                    <span class="muted" style="font-size: 13px" data-short="Game Dev • Software Engineer • D&D Homebrew">Game Developer • Software Engineer • D&D Homebrew Creator</span>
-                </div>
-                <div class="links">
-                    <a href="/index.html">Home</a>
-                    <a href="/index.html#games" data-short="Games">Video Games</a>
-                    <a href="/index.html#software">Software</a>
-                    <a href="/dnd/">D&D</a>
-                    <a href="/index.html#about">About</a>
-                    <a href="/index.html#contact">Contact</a>
-                </div>
-            </nav>
-        </div>
-        <div class="header-container mobile" data-pageType="" data-layout="portfoliobase" data-custom_js="/js/advanced-content-loader.js">
-
-            <nav>
-                <div class="pill mobile">🎮 Joshua Chu</div>
-                <div class="links">
-                    <a href="/index.html">Home</a>
-                    <a href="/index.html#games" data-short="Games">Video Games</a>
-                    <a href="/index.html#software">Software</a>
-                    <a href="/dnd/">D&D</a>
-                    <a href="/index.html#about">About</a>
-                    <a href="/index.html#contact">Contact</a>
-                </div>
-            </nav>
-        </div>
+    <header data-pageType="" data-layout="base" data-custom_js="">
+        <nav>
+            <div class="navbar-brand">
+                <span class="navbar-item">Joshua Chu</span>
+            </div>
+            <div class="navbar-links">
+                <a class="navbar-link" href="">Home</a>
+                <a class="navbar-link" href="/#games" data-short="Games">Video Games</a>
+                <a class="navbar-link" href="/#software">Software</a>
+                <a class="navbar-link" href="/dnd/">D&D</a>
+                <a class="navbar-link" href="/#about">About</a>
+                <a class="navbar-link" href="/#contact">Contact</a>
+            </div>
+        </nav>
+    </header>
+    <header class="mobile" data-pageType="" data-layout="base" data-custom_js="">
+        <nav>
+            <div style="display: flex; gap: 12px; align-items: center">
+                <span class="pill">🎮 Joshua Chu</span>
+                <span class="muted" style="font-size: 13px" data-short="Game Dev • Software Engineer • D&D Homebrew">Game Developer • Software Engineer • D&D Homebrew Creator</span>
+            </div>
+            <div class="links">
+                <a href="/index.html">Home</a>
+                <a href="/index.html#games" data-short="Games">Video Games</a>
+                <a href="/index.html#software">Software</a>
+                <a href="/dnd/">D&D</a>
+                <a href="/index.html#about">About</a>
+                <a href="/index.html#contact">Contact</a>
+            </div>
+        </nav>
     </header>
 
     <div id="content-container" class="content-loading">
-        <body>
-    <div id="header-placeholder"></div>
-
-    <main class="container">
-        <!-- HERO -->
-        <section class="intro-content">
-            <div class="section-content">
-                <span class="kicker">Portfolio</span>
-                <div class="slogan">
-                    
-                    <h1 id="crafting-immersive-gameplay">Crafting Immersive Gameplay,</h1>
-<h1 id="building-solutions-and">Building Solutions, and</h1>
-<h1 id="designing-exciting-ttrpg-content">Designing Exciting TTRPG Content.</h1>
-
-                </div>
-                <div class="about">
-                    
-                    <p>I’m Joshua Chu, a Computer Science student at UCSB, game developer, and TTRPG designer. I create engaging systems, polished user experiences, and collaborative stories—whether that’s through building video games, designing tabletop mechanics, or developing tools as a frontend engineering intern at VBO Tickets.</p>
-
-                </div>
-                <div class="cta">
-                    <a class="btn" href="assets/JoshuaChu_Resume2025.pdf" download="JoshuaChu_Resume2025.pdf" rel="noopener">Download résumé</a>
-                    <a class="btn" href="https://spiritboundstudios.itch.io" target="_blank" rel="noopener">itch.io</a>
-                    <a class="btn" href="https://www.linkedin.com/in/chujoshua2004" target="_blank" rel="noopener">LinkedIn</a>
-                </div>
-            </div>
-            <div class="image-carousel">
-                <div class="carousel-container">
-                    <div class="carousel-track">
-                        <!-- Clone of last slide for seamless loop -->
-                        <div class="carousel-slide">
-                            <img src="assets/WayOfTheRisingStorm/WayOfTheRisingStorm-1.png" alt="Project 4" />
-                        </div>
-                        <div class="carousel-slide">
-                            <img src="assets/intothedepths.png" alt="Project 1" />
-                        </div>
-                        <div class="carousel-slide">
-                            <img src="assets/volley.png" alt="Project 2" />
-                        </div>
-                        <div class="carousel-slide">
-                            <img src="assets/vbo/vbo.png" alt="Project 3" />
-                        </div>
-                        <div class="carousel-slide">
-                            <img src="assets/WayOfTheRisingStorm/WayOfTheRisingStorm-1.png" alt="Project 4" />
-                        </div>
-                        <!-- Clone of first slide for seamless loop -->
-                        <div class="carousel-slide">
-                            <img src="assets/intothedepths.png" alt="Project 1" />
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-controls">
-                    <button class="carousel-btn prev" onclick="scrollCarousel(-1)">‹</button>
-                    <button class="carousel-btn next" onclick="scrollCarousel(1)">›</button>
-                </div>
-                <div class="carousel-dots">
-                    <span class="dot active" onclick="goToSlide(1)"></span>
-                    <span class="dot" onclick="goToSlide(2)"></span>
-                    <span class="dot" onclick="goToSlide(3)"></span>
-                    <span class="dot" onclick="goToSlide(4)"></span>
-                </div>
-            </div>
-        </section>
-
-        <!-- Video Games Section -->
-        <section id="games" class="section">
-            <div class="section-content">
-                <div class="section-header">Video Games</div>
-                <div class="grid projects">
-                    
-                    <div class="project-card">
-                        <a class="project-title" href="/projects/intothedepths" target="_blank" rel="noopener">Into the Depths</a>
-                        <div class="project-description">A roguelike deckbuilder game where you fight monsters to grow more powerful, collecting new cards, items, and feats!</div>
-                        <img class="project-image" src="/assets/intothedepths.png" alt="Into the Depths" />
-                        <a class="project-link" href="/projects/intothedepths" target="_blank" rel="noopener">View Project</a>
-                    </div>
-                    
-                    <div class="project-card">
-                        <a class="project-title" href="/projects/volley" target="_blank" rel="noopener">Volley!</a>
-                        <div class="project-description">A 2D volleyball game where you play as a volleyball player trying to win matches.</div>
-                        <img class="project-image" src="/assets/volley.png" alt="Volley!" />
-                        <a class="project-link" href="/projects/volley" target="_blank" rel="noopener">View Project</a>
-                    </div>
-                    
-                </div>
-            </div>
-        </section>
-
-        <!-- Software Section -->
-        <section id="software" class="section">
-            <div class="section-content">
-            <div class="section-header">Internships</div>
-            <div class="grid projects">
-                
-                <div class="project-card">
-                    <a class="project-title" href="/software/vbo/" target="_blank" rel="noopener">VBO Tickets</a>
-                    <div class="project-description">Developed a high-performance WebGL seat map display system for VBO Tickets, enabling real-time rendering of up to 100,000 seats with smooth performance for large venues. Built dynamic seat-sorting functionality and integrated with backend systems for real-time updates.</div>
-                    <img class="project-image" src="/assets/vbo/vbologo.png" alt="VBO Tickets" />
-                    <a class="project-link" href="/software/vbo/" target="_blank" rel="noopener">View Internship</a>
-                    </div>
-                </div>
-                
-            </div>
-        </section>
-
-        <!-- D&D Homebrew Section -->
-        <section id="homebrew" class="section">
-            <div class="section-content">
-            <div class="section-header">D&D Homebrew Content</div>
-            <div class="project-card"> 
-                
-                <a class="project-title" href="/dnd/" target="_blank" rel="noopener">D&D Wiki</a>
-                <p>View the wiki page I developed myself for all the homebrew content I have created for Dungeons & Dragons! It includes one full class, twenty-four subclasses, fourty-eight items, and much more!</p>
-                <img class="project-image" src="assets\WayOfTheRisingStorm\WayOfTheRisingStorm-2.png" alt="D&D" />
-                <a class="project-link" href="/dnd/" target="_blank" rel="noopener">View Wiki</a>
-            </div>
-            </div>
-        </section>
-
-        <!-- About Section -->
-        <section id="about" class="section">
-            <div class="section-content">
-            <div class="section-header">About Me</div>
-            <div class="section-content" style="padding: 0;">
-                
-                <p>Born in San Jose to immigrant parents, I grew up immersed in technology — but it was the <strong>interactivity of computer games</strong> that first inspired me. By third grade, I had already set my sights on becoming a game developer.</p>
-
-<div class="break"></div>
-
-<p>I’m currently pursuing a B.S. in Computer Science at UC Santa Barbara, where I serve as an officer in the <strong>UCSB Game Development Club</strong>. I lead projects ranging from narrative experiments to mechanics-driven prototypes, organize events, and mentor new members in game design and development.</p>
-
-<div class="break"></div>
-
-<p>In Fall 2025, I released <strong>Into the Depths</strong>, a solo-developed roguelike deckbuilder in Godot featuring a persistent deck system to encourage strategic play. I also led development on <strong>Spirit</strong>, a Unity-based 2D RPG with dual protagonists and hybrid mechanics like rhythm-based combat and word-building spells. Though on hold, it shaped my growth as a systems designer and team lead.</p>
-
-<div class="break"></div>
-
-<p>In the Summer of 2025, I was a <strong>Software Engineering Intern</strong> at VBO Tickets, contributing to a platform-wide front-end upgrade. I developed a new WebGL-powered seat map using PixiJS, designed to render up to 100,000 seats simultaneously with smooth performance — a major scalability improvement for large venues. I also implemented a dynamic sidebar using JavaScript, C#, HTML, and CSS, enabling users to sort and select seats in real time by price, value, or availability.</p>
-
-<div class="break"></div>
-
-<p>I’m passionate about designing immersive, meaningful experiences where engineering meets storytelling — whether through gameplay, narrative, or interactive systems.</p>
-
-<div class="break"></div>
-
-<p>📌 <strong>Open to roles</strong> in game development, front-end engineering, or creative software focused on player experience and interactivity.</p>
-
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="section">
-            <div class="section-content">
-            <div class="section-header">Get In Touch</div>
-            <div class="section-content" style="padding: 0;">
-                
-                <p>I’m always interested in new opportunities and collaborations. Feel free to reach out!</p>
-
-                </div>
-                <div class="contact-links">
-                    <a class="btn" href="mailto:chujoshua2004@gmail.com">Email Me</a>
-                    <a class="btn" href="https://www.linkedin.com/in/chujoshua2004" target="_blank" rel="noopener">LinkedIn</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <script>
-        let currentSlide = 0;
-        const totalSlides = 4;
-        let autoAdvanceInterval;
-        let isTransitioning = false;
-
-        function updateCarousel() {
-            if (isTransitioning) return;
-            const track = document.querySelector('.carousel-track');
-            const dots = document.querySelectorAll('.dot');
-            
-            isTransitioning = true;
-            track.style.transition = 'transform 0.5s ease-in-out';
-            
-            // Move to the current slide (accounting for the first clone)
-            const offset = -(currentSlide + 1) * 100;
-            track.style.transform = `translateX(${offset}%)`;
-            
-            // Update dots
-            dots.forEach((dot, index) => {
-                dot.classList.toggle('active', index === currentSlide);
-            });
-            
-            setTimeout(() => {
-                isTransitioning = false;
-                
-                // Handle seamless loop
-                if (currentSlide === -1) {
-                    // Jump to last real slide
-                    track.style.transition = 'none';
-                    currentSlide = totalSlides - 1;
-                    const offset = -(currentSlide + 1) * 100;
-                    track.style.transform = `translateX(${offset}%)`;
-                    setTimeout(() => {
-                        track.style.transition = 'transform 0.5s ease-in-out';
-                    }, 50);
-                } else if (currentSlide === totalSlides) {
-                    // Jump to first real slide
-                    track.style.transition = 'none';
-                    currentSlide = 0;
-                    const offset = -(currentSlide + 1) * 100;
-                    track.style.transform = `translateX(${offset}%)`;
-                    setTimeout(() => {
-                        track.style.transition = 'transform 0.5s ease-in-out';
-                    }, 50);
-                }
-            }, 500);
-        }
-
-        function scrollCarousel(direction) {
-            if (isTransitioning) return;
-            
-            currentSlide += direction;
-            updateCarousel();
-            resetAutoAdvance();
-        }
-
-        function goToSlide(slideIndex) {
-            if (isTransitioning) return;
-            
-            currentSlide = slideIndex - 1; // Convert to 0-based index
-            updateCarousel();
-            resetAutoAdvance();
-        }
-
-        function startAutoAdvance() {
-            if (autoAdvanceInterval) {
-                clearInterval(autoAdvanceInterval);
-            }
-            autoAdvanceInterval = setInterval(() => {
-                scrollCarousel(1);
-            }, 5000);
-        }
-
-        function resetAutoAdvance() {
-            startAutoAdvance();
-        }
-
-        // Initialize carousel
-        updateCarousel();
-        startAutoAdvance();
-    </script>
-</body>
+        <section class="hero">
+    <div class="hero-video">
+        <video autoplay muted playsinline loop >
+            <source src="/assets/hero_1.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
     </div>
-
-    <!-- Back to Top Button -->
-    <div id="back-to-top" class="back-to-top" style="display: none;">
-        <a href="#content-header">Back to Top</a>
+    <div class="hero-content">
     </div>
-
-
+</section>
+<video autoplay muted playsinline loop >
+    <source src="/assets/hero_1.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+    </div>
 </body>
 </html>
-
-
-<script>    
-
-    console.log(document.querySelector('.header-container').dataset.pageType);
-    console.log(document.querySelector('.header-container').dataset.layout);
-
-    if (!document.querySelector('.header-container').dataset.custom_js) {
-        console.log('Removing content-loading class due to custom_js not being set');
-        document.querySelector('#content-container').classList.remove('content-loading');
-    }
-
-    if (document.querySelector('#no-playtesters')) {
-        document.querySelector('#acknowledgements').style.display = 'none';
-    }
-
-    // Back to Top Button Logic
-    function toggleBackToTop() {
-        const backToTopButton = document.getElementById('back-to-top');
-        const windowHeight = window.innerHeight;
-        const documentHeight = document.documentElement.scrollHeight;
-        
-        // Show button if page height is more than 2 screens worth
-        if (documentHeight > windowHeight * 1.25) {
-            backToTopButton.style.display = 'block';
-        } else {
-            backToTopButton.style.display = 'none';
-        }
-    }
-
-    // Check on page load and resize
-    document.addEventListener('DOMContentLoaded', toggleBackToTop);
-    window.addEventListener('resize', toggleBackToTop);
-
-    // Toggle notes dropdown
-    function toggleNotes(arrowElement) {
-        const dropdown = arrowElement.parentElement.querySelector('.notes-dropdown');
-        const isVisible = dropdown.style.display !== 'none';
-        
-        if (isVisible) {
-            dropdown.style.display = 'none';
-            arrowElement.textContent = '▶';
-        } else {
-            dropdown.style.display = 'block';
-            arrowElement.textContent = '▼';
-        }
-    }
-
-    
-    document.addEventListener('DOMContentLoaded', function() {
-        // Auto-load content from data attributes
-        loadAllContent();
-        const html = document.querySelector('html');
-        console.log('Loading content: ' + html.innerHTML);
-        html.innerHTML = convertToDivs(extractContentFromHtml(html.innerHTML));
-        console.log('Loading content: ' + html.innerHTML);
-        document.querySelector('#content-container').classList.remove('content-loading');
-    });
-</script>
